@@ -1,0 +1,23 @@
+관리자 URL : http://mrkanghyun.cafe24.com/GoOut/ServicePage/ServiceMain.do
+어드민 URL : http://mrkanghyun.cafe24.com/GoOut/AdminPage/AdminMain.do
+관리자 계정 : admin / admin
+회원 계정 : test / test
+
+
+
+2조 프로젝트 호스팅 URL : http://intheater.cafe24.com/Intheater/
+관리자 ID : admin
+관리자 비밀번호 : 123qwe 
+
+
+
+메인주소: http://nkg1584.cafe24.com/main/main.do
+관리자주소: http://nkg1584.cafe24.com/admin
+관리자아이디: admin 비번: 1111
+
+
+
+사용자 접속URL = http://illuhospital.cafe24.com/IlluProject/main.1u
+관리자 접속URL = http://illuhospital.cafe24.com/IlluProject/admin/login.1u
+관리자id: admin
+관리자pw: illu23242526

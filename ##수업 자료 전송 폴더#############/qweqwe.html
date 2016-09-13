@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>checkall</title>
+
+		<!-- 모바일 웹 페이지 설정 -->
+		<link rel="shortcut icon" href="img/icon.png" />
+		<link rel="apple-touch-icon" href="img/icon.png" />
+		<!-- 모바일 웹 페이지 설정 끝 -->
+
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<![endif]-->
+		
+		<!-- jQuery Framework 참조하기 -->
+		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+			<script type="text/javascript">
+			$(function() {
+				// #all_check 요소의 상태가 변한 경우
+				$("#all_check").change(function() {
+					// 스스로의 체크 상태 판별
+					var is_check = $(this).is(":checked");
+					
+					// .hobby_check 요소들의 체크 상태 일괄 변경
+					// 체크박스의 선택은 HTML 태그의 checked 속성으로 추가할 수 있다.
+					// 이 속성은 이름만 지정하고 별도의 값이 없는 형태이기 때문에, attr() 함수가 아닌 prop 함수를 사용한다.
+					$(".hobby_check").prop("checked", is_check);
+				});
+			});
+		</script>
+</head>
+
+<body>
+	<form name="form1">
+		<fieldset>
+			<legend>취미</legend>
+			<div>
+				<!--전체 선택용 체크박스-->
+				<input type="checkbox" id="all_check" value="Y" />
+				<label for="all_check">전체 선택</label>
+
+				<!--개별 항목들에 대한 체크박스-->
+				<input type="checkbox" id="hobby1" class="hobby_check" value="축구" name="ho"/>
+				<label for="hobby1">축구</label>
+
+				<input type="checkbox" id="hobby2" class="hobby_check" value="농구" name="ho" />
+				<label for="hobby2">농구</label>
+
+				<input type="checkbox" id="hobby3" class="hobby_check" value="야구" name="ho" />
+				<label for="hobby3">야구</label>
+
+			</div>
+		</fieldset>
+	</form>
+</body>
+</html>
