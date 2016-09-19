@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<title>helper</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+
+<script src="http://code.jquery.com/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		ul {
+			list-style: none;
+		}
+		body {
+			text-align: center;
+			height: auto;
+		}
+		.container{
+			text-align: center;
+			height: 650px;
+			margin: 0;
+			padding: 0;
+			width: auto;
+			
+			
+		}
+		body > div.navbar-inverse {
+			text-align: center ;
+			position: absolute;
+		    left: 0;
+		    top: 0;
+		    width: 100%;
+		    min-height: 140px;
+		    border-color: #b7b6b6;
+		    z-index: 100;
+		    position: fixed;
+		    margin-bottom: 0;
+		    background-image: -webkit-linear-gradient(top,#fff6cc 0,#fff6cc 100%);
+		    background-image: -o-linear-gradient(top,#3c3c3c 0,#fff6cc 100%);
+		    background-image: -webkit-gradient(linear,left top,left bottom,from(#fff6cc),to(#fff6cc));
+		    background-color: #fff6cc ;
+		    /* background-image: linear-gradient(to bottom,#3c3c3c 0,#222 100%);     color: #9d9d9d; */
+			
+					}
+
+		.list-inline{
+			width: 100%;
+			height: 50px;
+			color: #f0ad4e;
+			border-bottom: 1px dotted #f5eab6;
+		}
+		.list-inline > li > a{
+			
+			font-weight: bold;
+			background-color: #fff6cc ;
+			
+		}
+
+		.list-inline > li > ul.sub > li > a{
+
+			color: #9d9d9d ;
+		}
+		.list-inline > li > ul.sub > li > a:hover {
+
+		}
+		.list-inline > li {
+			
+			height: 53px;
+			
+		}
+		
+		.navbar-collapse {
+			height: 50px ;
+
+			border-top: 1px solid #f5eab6;
+			
+		}
+		.navbar-collapse > ul > li {
+			font-size: 11px;
+		}
+		.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+		    border-color: #f5eab6;
+
+		}
+		.depth2{
+			height: 100px;
+			width: 100%;
+			z-index:50;
+			background-color: #fff6cc ;
+		}
+		.collapse.in {
+			min-height: 300px;	
+			background-color: #fff6cc ;
+		}
+		.collapse.in > .list-inline > li > a{
+			padding: 0;
+		}
+		@media (min-width: 992px){
+			.navbar-nav>li>a {
+			    padding-top: 5px;
+			    padding-bottom: 5px;
+			}
+			
+			.nav>li>a {
+			    position: relative;
+			    display: block;
+			    padding: 5px 5px;
+			}
+		}
+		.sub {
+				margin: 0;
+				padding: 10px;
+				height: 100px;
+				overflow-y: auto;
+				z-index:50;
+				background-color: #fff6cc ;
+			}
+		.form-group {
+			padding: 0px;
+			height: 22px;
+			width: 150px;
+			margin: 1px;
+			margin-right: 150px;
+		}
+		.form-control{
+			height: 20px;
+		    padding: 3px 3px;
+		    font-size: 14px;
+		    line-height: 1.42857143;
+		    color: #555;		    
+		    background-image: none;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		}
+		.btn {
+		    display: block;
+		    padding: 3px 3px;
+		    margin : 2px;
+		    font-size: 12px;
+		    font-weight: 200;
+		    line-height: 1.42857143;
+		    text-align: center;
+		    white-space: nowrap;
+		    vertical-align: middle;
+		    -ms-touch-action: manipulation;
+		    touch-action: manipulation;
+		    cursor: pointer;
+		    -webkit-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+		    background-image: none;
+		    border: 1px solid transparent;
+		    border-radius: 4px;
+		    width: 61px;
+		    height: 22px;
+		}
+		#logo{
+			text-align: center;
+			background-color: #fff6cc;
+			padding: 0;
+
+		}
+		.name{
+			margin: auto;
+		}
+		#background1{
+			background: url(img/main1.jpg) ;
+			background-size: 100% 100%;
+		}
+		#background2{
+			background: url(img/main2.jpg) ;
+			background-size: 100% 100%;
+		}
+		#background3{
+			background: url(img/main3.jpg) ;
+			background-size: 100% 100%;
+		}
+		/**캐러셀의 반응형 기능*/
+		@media (min-width: 768px) {
+			.featurette-heading{
+				font-size: 50px;
+			}
+		}
+		@media (min-width: 992px) {
+			.featurette-heading{
+				margin-top: 120px;
+			}
+		}
+		div.carousel-inner > div.item {
+			height: 100%;
+			width : 100%;
+			margin-top: 140px;
+
+		}
+		div.carousel-inner > div.item > div.container {
+			padding: 0;
+		}
+		div.footer{
+
+		    width: 100%;
+		    height: 280px;
+		    background: url(img/footerBack.gif) center top repeat;
+		    margin-top: inherit;
+		    overflow: hidden;
+
+		}
+		.family_site {
+		    width: 100%;
+		    height: 67px;
+		    border-top: 1px solid #cac0b6;
+		}
+		.footerWrap {
+		    height: 100%;
+		    background-color: #2e2f2e;
+		}
+ 
+
+	</style>
+	<!-- jQuery Framework 참조하기 -->
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			// 헤드바의 리스트를 숨기기
+			$(".depth2").hide();
+			$("#depth2").hide();
+
+
+			//마우스를 올리면 펼쳐짐
+			$("ul.list-inline > li").hover(function(){
+				$(".depth2").slideDown(300);
+				$("#depth2").slideDown(300);
+
+			},
+
+			function(){
+				// 모든 서브 메뉴에 대하여 숨김처리
+					$(".depth2").slideUp(300);
+					$("#depth2").slideUp(300);
+
+			/** 링크에 대한 클릭 이벤트 처리 */
+				$(".collapse.in > .col-md-2 a").click(function() {
+					// 클릭된 자기 자신은 selected 클래스를 적용한다. 만약 적용된 상태라면 제거한다.
+					$(this).toggleClass("selected");
+					// 클릭된 나 자신을 제외한 나머지 링크들은 selected 클래스를 무조건 삭제한다.
+					$(".col-md-2 a").not(this).removeClass("selected");
+					
+					// 펼칠 대상을 검색
+					var target = $(this).parents(".col-md-2").find(".sub");
+					
+					// 나머지 대상을 검색
+					var other = $(".col-md-2 a").not(this).parents(".col-md-2").find(".sub");
+					
+					// 애니메이션으로 열고 닫기 처리
+					target.slideToggle(300);
+					other.slideUp(300);
+					
+					// 현재 클릭된 항목에 대한 내용이 열려진 상태라면, 내용을 load() 함수로 불러와서 출력
+					if (target.css("display") != "none") {
+						target.load($(this).attr("href"));
+					}
+					
+					// 링크의 페이지 이동 중지
+					return false;
+				});
+			});
+
+		});
+	</script>
+</head>
+
+<body>
+	<!-- 상단 메뉴바 -->
+	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+			<a id="logo" href=""><img style="height : 120px;" src="img/logo.png" alt="로고"></a></font>		
+				<div class="container2">
+					<div class="navbar-header">
+						<!-- 핸드폰용 단축 버튼	-->
+						<button type="button" class="navbar-toggle" data-toggle="collapse" 
+						data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>						
+					</div>
+					<div class="collapse navbar-collapse" ">
+						<ul class="nav navbar-nav list-inline col-md-4" ">
+							<li id="login" class="col-md-offset-1 col-md-1"><a href="after_titleBar.html">Logout</a></li>
+							<li id="join" class="col-md-1"><a href="">MyPage</a></li>
+							<li class="col-md-offset-4 col-md-1"><a href="">브랜드 이야기</a>
+								<ul class="sub depth2">
+									<li><a href="">브랜드 스토리</a></li>
+									<li><a href="">지점 위치</a></li>
+								</ul>
+							</li>
+							<li class="col-md-1"><a href="">제품 목록</a>
+								<ul class="sub depth2">
+									<li><a href="">빵</a></li>
+									<li><a href="">케이크</a></li>
+									<li><a href="">쿠키</a></li>
+								</ul>
+							</li>								
+							<li class="col-md-1"><a href="">주문 제작</a></li>
+							<li class="col-md-1"><a href="">커뮤니티</a>
+								<ul class="sub depth2">
+									<li><a href="">공지사항</a></li>
+									<li><a href="">글쓰기</a></li>
+									<li><a href="">1:1문의하기(Q&A)</a></li>
+								</ul>
+							</li>						
+						</ul>						
+					</div><!-- /.nav-collapse-->
+					<div id="depth2" style=" height : 100px; width: 100%; background-color: rgba(255, 246, 204, 0.8); ; z-index:50;">
+						
+					</div>					
+				</div><!-- /.container2-->				
+			</div><!-- /.navbar-->
+	<!-- 캐러셀 내용 -->
+	<div class="container">
+		<div class="carousel slide" id="carousel-generic" data-ride="carousel">
+			
+			<!-- 내용영역 -->
+			<div class="carousel-inner">
+				<!-- 항목(1) -->
+				<div id="background1" class="item active">
+					<div class="container">
+						<div class="carousel-caption">
+							<h1><!-- HTML5 + CSS3 기반의 반응형 웹 퍼블리싱 --></h1>
+							<p><!-- 반응형 웹 작업의 핵심 포인트는 부트스트랩에서 제공하는 Grid System 입니다. --></p>
+						</div>
+					</div>
+				</div>
+				<!-- //항목(1) -->
+
+
+				<!-- 항목(2) -->
+				<div id="background2"  class="item">
+					<div class="container">
+						<div class="carousel-caption">
+						 	<h1><!-- 다음 단계는? --></h1>
+							<p><!-- "Javascript + jQuery + Ajax 완벽 가이드"강의를 추천합니다. --></p>
+						</div>
+					</div>
+				</div>
+				<!-- //항목(2) -->
+
+
+				<!-- 항목(3) -->
+				<div id="background3"  class="item">					
+					<div class="container">
+						<div class="carousel-caption">
+							<h1><!-- CSS3는 CSS2가 기본입니다. --></h1>
+							<p><!-- 웹 표준에서의 모든 내용을 파악해야 CSS3가 다루기 쉽습니다. --></p>
+						</div>
+					</div>
+				</div>
+				<!-- //항목(3) -->
+			</div>
+			<!-- //내용영역 -->
+
+			<!-- 이동버튼 -->
+			
+		</div>
+		<!-- //캐러셀 영역End -->
+	</div>
+	<!-- 페이지 내용 영역 -->
+	<div style="margin-top : 140px;" class="body">
+		<p>연주야 <br>
+			동굴로 가자!
+		</p>
+	</div>
+	<!-- 하단 footer -->
+	<div class="footer">
+		<div class="family_site">
+			<ul>
+				 
+			</ul>
+		</div>
+		<div class="footerWrap">
+			<ul>
+				
+			</ul>
+		</div>
+	</div>	
+</body>
+
+</html>
