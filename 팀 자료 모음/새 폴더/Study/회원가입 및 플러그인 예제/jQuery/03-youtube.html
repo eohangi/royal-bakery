@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+<script src="http://code.jquery.com/jquery.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
+
+<!--  media element 플러그인 -->
+ <link rel="stylesheet" href="plugins/mediaelement/mediaelementplayer.css" /> 
+<script src="plugins/mediaelement/mediaelement-and-player.min.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		//video태그에 정의한 id값으로
+		//미디어 엘리먼트 동작시키기
+		$('#player').mediaelementplayer();
+	});
+</script>
+</head>
+<body>
+	<div class="container">
+	<h1 class="page-header">Video Player</h1>
+	
+	<!--  동영상이 표시될 영역을 16:9비율로 설정하는 bootstrap 클래스가 적용된 div -->
+	<div class="embed-responsive embed-responsive-16by9">
+		<!--  동영상 재생 기능을 갖는 태그 추가 type에서 video/youtube 관련 태그는 없던거지만 plugins를 통해 가능하게 되었다.  -->
+		<video id="player" style="width: 100%; height:100%" type="video/youtube" src="https://www.youtube.com/watch?v=sF9sv9lT83A"></video>
+	</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+
+<!--  lightbox plugin -->
+<link rel="stylesheet" href="plugins/lightbox/css/lightbox.min.css" />
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+
+<script src="http://code.jquery.com/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="page-header">Lightbox Example</h1>
+
+		<div class="row">
+			<div class="col-md-3">
+				<!-- 링크에는 확대될 원본 이미지 경로. img에서는 목록에서 보여질 축소판 썸네일 경로. -->
+				<a href="img/big_755.jpg" class="thumbnail"
+					data-lightbox="big_755" data-title="Bread1"> <img
+					src="img/big_755.jpg" alt="" class="img-responsive" /></a>
+				<!--  여기서 사용하게되는 lightbox는  data-lightbox 와 data-title 이다.-->
+				<!-- data-lightbox를 같은 명칭으로 선언하면 그룹으로 묶여서 data-title밑에 Image 1 of 4 형식으로 나타난다. -->
+			</div>
+			<div class="col-md-3">
+				<a href="img/bread6_big_09.jpg" class="thumbnail"
+					data-lightbox="big_755" data-title="Bread2"> <img
+					src="img/bread6_big_09.jpg" alt="" class="img-responsive" /></a>
+			</div>
+			<div class="col-md-3">
+				<a href="img/2016-8-25_event(16).jpg" class="thumbnail"
+					data-lightbox="big_755" data-title="Bread3"> <img
+					src="img/2016-8-25_event(16).jpg" alt="" class="img-responsive" /></a>
+			</div>
+			<div class="col-md-3">
+				<a href="img/2016-7-8_event(1).jpg" class="thumbnail"
+					data-lightbox="big_755" data-title="Bread4"> <img
+					src="img/2016-7-8_event(1).jpg" alt="" class="img-responsive" /></a>
+			</div>
+		</div>
+	</div>
+
+	<!--  플러그인 스크립트를 body 종료 직전에 적용해야 함  -->
+	<script src="plugins/lightbox/js/lightbox-plus-jquery.min.js"></script>
+</body>
+</html>

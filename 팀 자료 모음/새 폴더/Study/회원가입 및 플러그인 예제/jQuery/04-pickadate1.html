@@ -1,0 +1,139 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>My JSP Page</title>
+<!-- Twitter Bootstrap3 & jQuery -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- pickadate plugin -->
+<link rel="stylesheet" href="plugins/pickadate/themes/default.css" />
+<link rel="stylesheet" href="plugins/pickadate/themes/default.date.css" />
+<link rel="stylesheet" href="plugins/pickadate/themes/default.time.css" />
+<script src="plugins/pickadate/picker.js"></script>
+<script src="plugins/pickadate/picker.date.js"></script>
+<script src="plugins/pickadate/picker.time.js"></script>
+<script src="plugins/pickadate/translations/ko_KR.js"></script>
+
+
+<script type="text/javascript">
+	$(function() {
+		// 1) 기본 사용법
+		$("#sample1").pickadate();
+
+		// 2) 옵션 지정하기
+		// --> 기본값 강제 설정하기
+		// input태그에서 data-value 속성을 직접 정의해도 됨
+		$("#sample2").attr("data-value", "2016-09-01");
+		$("#sample2").pickadate({
+			/** 월 이름 표시 옵션 */
+			weekdayShort : [ 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa' ],
+
+			/** 버튼 표시 문구 */
+			today : '오늘',
+			clear : '지우기',
+			close : '닫기',
+
+			/** 년, 월 선택 버튼 표시 텍스트 */
+			labelMonthNext : '다음달로 이동',
+			labelMonthPrev : '이전달로 이동',
+			labelMonthSelect : '월 선택',
+			labelYearSelect : '년 선택',
+			selectMonths : true,
+			selectYears : true,
+
+			/** 날짜 형식 */
+			format : 'yyyy-mm-dd', // 화면에 보이는 형식
+
+			/** 선택시 액션 */
+			closeOnSelect : false, //선택시 자동 닫기 방지
+			closeOnClear : false,
+			// 지우기 선택시 자동 닫기 방지 
+
+			/** 년도 선택 수 제한 */
+			selectYears : 4,
+			//현재 년도 기준으로 앞뒤로 두개
+			firstDay : 1,
+			//시작요일을 변경 0=일~6=토
+
+			/** 선택 가능한 최소,최대값 (boolean, int, array 지정)*/
+			min : -5, // 5일전까지만 선택 가능
+			//  min: [2016,9,1],
+			//  max: [2016,9,20],    특적날자만 집어줄수 있다.
+			max : true, // 오늘 이후는 선택 불가    or   max: 10, 오늘부터 10일까지는 가능 (false는 제한 없음)
+		});
+
+		/** 3) 특정 날짜 선택 제한 (2차 배열 ) */
+		$("#sample3").pickadate({
+			firstDay : 0, //시작요일은 일요일로...
+			disable : [ [ 2016, 8, 1 ], //<-- 월은 0부터 시작하므로..
+			[ 2016, 8, 2 ], 
+			[ 2016, 8, 7 ], 
+			[ 2016, 8, 18 ], 
+			1, 7 // <-- 시작요일에 상관없이 1번째 열과 7번째 열 선택 제한
+			]
+		});
+		
+		/** 4) 기간제한 1 */
+		$("#sample4").pickadate({
+			disable : [
+			         // 9월 5일부터 9월 10일까지 제한 -> 월은 0부터 시작함
+			         {from: [2016,8,5], to: [2016,8,10]}
+			]
+		});
+		
+		/** 4) 기간제한 2 */
+		$("#sample5").pickadate({
+			disable : [
+		//  오늘부터 10일간 제한함
+		{from: new Date(), to: 10}
+		]
+		});
+		
+		/** 4) 기간제한3 */
+		$("#sample6").pickadate({
+			disable : [
+				         // 오늘부터 10일 이전 제한
+				         //오늘 날짜는 new Date() 혹은 true로 지정
+				         {from: -10, to: true}
+				]
+		});
+	
+	});
+</script>
+
+</head>
+<body>
+	<div class="container">
+		<h1 class="page-header">Pickadate Plugin</h1>
+
+		<h2>1)기본 사용법</h2>
+		<input type="text" id="sample1" class="form-control" />
+
+		<h2>2)옵션 지정하기</h2>
+		<input type="text" id="sample2" class="form-control"
+			data-value="2016-09-09" />
+
+		<h2>3) 날짜 제한</h2>
+		<input type="text" id="sample3" class="form-control" />
+
+		<h2>4) 기간제한(1)</h2>
+		<input type="text" id="sample4" class="form-control" />
+
+		<h2>4) 기간제한(2)</h2>
+		<input type="text" id="sample5" class="form-control" />
+
+		<h2>4) 기간제한(3)</h2>
+		<input type="text" id="sample6" class="form-control" />
+
+
+	</div>
+</body>
+</html>
+

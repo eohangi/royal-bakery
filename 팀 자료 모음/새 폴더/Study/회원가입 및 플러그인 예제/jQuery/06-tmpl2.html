@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>My JSP Page</title>
+	<!-- Twitter Bootstrap3 & jQuery -->
+	<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<!--  tmpl 플러그인 참조-->
+	<script type="text/javascript" src="plugins/handlebars/handlebars-v4.0.5.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+
+			$("#btn").click(function() {
+			//미리준비한 틀에 출력될 내용을  JSON으로 준비
+			var content = {
+				speak: {
+					data: [
+					{eng: "A piece of cake.", kor: "식은 죽 먹기지요"} ,
+					{eng: "Absolutely.", kor: "절대적으로 그렇지요"} ,
+					{eng: "After you.", kor: "먼저 가시지요"} ,
+					{eng: "Be my guest.", kor: "사양하지 말고 하세요"} ,
+					{eng: "Be patient.", kor: "좀 참으세요"} ,
+					{eng: "Be punctual", kor: "시간좀 지켜"} ,
+					{eng: "Catch you later.", kor: "나중에 보자구요"} ,
+					{eng: "Certainly.", kor: "확실히 그래요"} ,
+					{eng: "Delicious", kor: "맛있어요"} ,
+					{eng: "Depends.", kor: "경우에 따라 다르지요"} ,
+					{eng: "Did you get it?", kor: "알아 들었어요?"} ,
+					{eng: "Easy does it.", kor: "천천히 하는 것이 잘 하는 거에요"} ,
+					{eng: "Either will do.", kor: "둘 다 되요"} ,
+					{eng: "Enjoy your meal.", kor: "맛있게 드세요"} ,
+					{eng: "Enough is enough.", kor: "충분 하니까 이제 그만 해요"} ,
+					{eng: "Far from it.", kor: "아직 멀었지요"} ,
+					{eng: "Fifty-fifty.", kor: "확률이 반반입니다"} ,	
+					{eng: "Follow me.", kor: "따라 오세요"} ,
+					{eng: "Get in the line.", kor: "줄을 서세요"} ,	
+					{eng: "Get lost", kor: "당장 꺼져"} ,
+					{eng: "Hang in there.", kor: "좀 견뎌 봐요"} ,
+					{eng: "Hang loose.", kor: "좀 편히 쉬고 있어요"} ,	
+					{eng: "Hang on;", kor: "잠깐 기다리세요"}
+					]
+				}
+			};
+
+			// 미리 준비한 HTML틀을 읽어온다.
+			var template = Handlebars.compile( $("#list-item-tmpl").html());
+			var html = template(content.speak);
+
+			//#list에 읽어온 내용을 추가한다.
+			// 그러나 내용이 똑같다는 문제가 있다.
+			$("#list").append(html);
+		});
+		});
+	</script>
+
+</head>
+<body>
+	<div class="container">
+		<h1 class="page-header">tmpl 플러그인</h1>
+		<div class="list-group" id="list"></div>
+
+
+		<button id="btn" class="btn btn-primary btn-block">더 보기</button>
+	</div>
+	<!--  동적으로 생성될 HTML의 기본 틀 -->
+	<script type="text/x-handlebars-template" id="list-item-tmpl">
+		{{#data}}
+		<a href="#" class="list-group-item">
+			<h4 class="list-group-item-heading">
+				{{eng}}
+			</h4>
+			<p class="list-group-item-text">
+				{{kor}}
+			</p>
+		</a>
+		{{/data}}
+	</script>
+
+	<!--<p class="list-group-item-text">This is List Content. Hello World</p>-->
+</body>
+</html>

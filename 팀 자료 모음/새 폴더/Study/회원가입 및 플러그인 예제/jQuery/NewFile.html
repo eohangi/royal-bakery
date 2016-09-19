@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>demo-05</title>
+
+<!-- 모바일 웹 페이지 설정 -->
+<link rel="shortcut icon" href="assets/ico/favicon.png" />
+<link rel="apple-touch-icon-precomposed"
+	href="assets/ico/apple-touch-icon-144-precomposed.png" />
+
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+
+<script src="http://code.jquery.com/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+body {
+	padding-top: 70px;
+}
+
+footer {
+	padding: 30px 0;
+}
+
+h2 {
+	font-size: 18px;
+	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+</style>
+
+<!--  tmpl 플러그인 참조-->
+	<!-- jQuery Framework 참조하기 -->
+<script type="text/javascript" src="plugins/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="plugins/tmpl/jquery.tmpl.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+
+		$("#btn").click(function() {
+			//미리준비한 틀에 출력될 내용을  JSON으로 준비
+			var content = {
+				speak : {
+					data : [ {
+						title : "스마트한 결혼 준비 -2탄",
+						price : "결혼 선배들에게 듣는 웨딩드레스 잘 고르는 법"
+					}, ]
+				}
+			};
+			
+			// 삭제하기 버튼
+			var del_input = $("<input>");
+			del_input.attr({
+				"type" : "button",
+				"value" : "삭제하기"
+			});
+			del_input.addClass("delete_btn");
+
+			// 미리 준비한 HTML틀을 읽어온다.
+			//최소한의 알맹이만 던져주면 알아서 반복 처리된다.
+			var html = $("#list-item-tmpl").tmpl(content.speak.data);
+
+			//#list에 읽어온 내용을 추가한다.
+			// 그러나 내용이 똑같다는 문제가 있다.
+			$("#list").append(html);
+
+			
+		});
+
+
+	});
+</script>
+
+</head>
+
+<body>
+	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+		<div class="container">
+
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">News Paper</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="#">종합뉴스</a></li>
+					<li><a href="#">정치</a></li>
+					<li><a href="#">경제</a></li>
+					<li><a href="#">사화</a></li>
+					<li><a href="#">문화/생활</a></li>
+					<li><a href="#">IT</a></li>
+					<li><a href="#">연애</a></li>
+					<li><a href="#">스포츠</a></li>
+					<li class="active"><a href="#">매거진</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-->
+	</div>
+	<!-- /. navbar -->
+
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="col-sm-9">
+				<div class="jumbotron">
+					<h1>야경이 아름다운 곳에서...</h1>
+					<p>밤 시간도 아쉬운 커플들에게 희소식! 야경이 아름다운 데이트 추천지 10선!</p>
+				</div>
+				<div class="row">
+					<div class="col-6 col-sm-6 col-lg-4">
+						<h2>스마트한 결혼준비 - 2탄</h2>
+						<p>결혼 선배들에게 듣는 웨딩드레스 잘 고르는 법</p>
+						<p>
+							<button id="btn" class="btn btn-default">
+								더 보기 &raquo;</a>
+						</p>
+					</div>
+					<!-- /span -->
+
+					<div class="col-6 col-sm-6 col-lg-4">
+						<h2>권태기가 올 줄은...</h2>
+						<p>태기! 우리 커플은 이렇게 극복했다. 권태기 극복 노하우 대 공개!</p>
+						<p>
+							<a class="btn btn-default" href="#">더 보기 &raquo;</a>
+						</p>
+					</div>
+					<!-- /span -->
+
+
+					<div class="col-6 col-sm-6 col-lg-4">
+						<h2>특별한 날, 완벽준비 가이드</h2>
+						<p>요조숙녀처럼, 요부처럼! 특별한 밤 그이의 몸과 영혼을 사로잡는 비법!!!</p>
+						<p>
+							<a class="btn btn-default" href="#">더 보기 &raquo;</a>
+						</p>
+					</div>
+					<!-- /span -->
+
+
+					<div class="col-6 col-sm-6 col-lg-4">
+						<h2>추억의 사진 복원</h2>
+						<p>한 장의 사진들도 놓칠 수 없다. 폴라로이드 사진을 디지털로!!!</p>
+						<p>
+							<a class="btn btn-default" href="#">더 보기 &raquo;</a>
+						</p>
+					</div>
+					<!-- /span -->
+
+					<div class="col-6 col-sm-6 col-lg-4">
+						<h2>일이냐, 사랑이냐. 그것이 문제로다.</h2>
+						<p>알파걸들에게 듣는 결혼과 사랑에 관한 솔직담백 토크.</p>
+						<p>
+							<a class="btn btn-default" href="#">더 보기 &raquo;</a>
+						</p>
+					</div>
+					<!-- /span -->
+
+
+					<div class="col-6 col-sm-6 col-lg-4">
+						<h2>흡연에 관한 서로의 진실</h2>
+						<p>남녀사이 흡연을 둘러싼 다양한 논쟁들.</p>
+						<p>
+							<a class="btn btn-default" href="#">더 보기 &raquo;</a>
+						</p>
+					</div>
+					<!-- /span -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /span -->
+
+			<div class="col-sm-3" id="sidebar">
+				<div class="list-group">
+					<!--  id를 그룹이 안받으면 나중에 나타날 text들이 리스트 밖에 생성 -->
+					<a href="#" class="list-group-item" id="list"></a>
+					<!-- 	<button id="btn" class="btn btn-primary btn-block">더 보기</button> -->
+				</div>
+			</div>
+			<!-- /span -->
+		</div>
+		<!-- row -->
+
+		<hr>
+
+		<footer>
+			<p>&copy; Company 2013</p>
+		</footer>
+
+	</div>
+	<!--/ .container -->
+	<!--  동적으로 생성될 HTML의 기본 틀 -->
+	<script type="text/x-jquery-tmpl" id="list-item-tmpl">
+	<a href="#" class="list-group-item">
+			<h4 class="list-group-item-heading">
+			${title}
+			</h4>
+		<p class="list-group-item-text">
+			${price}
+		</p>
+			</a>
+</script>
+
+</body>
+</html>
