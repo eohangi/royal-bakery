@@ -3,7 +3,7 @@
 <!doctype html>
 	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
 		<a id="logo" href=""><img style="height: 120px;"
-			src="img/logo.png" alt="로고"></a></font>
+			src="img/logo.png" alt="로고"></a>
 		<div class="container2">
 			<div class="navbar-header">
 				<!-- 핸드폰용 단축 버튼	-->
@@ -14,7 +14,7 @@
 						class="icon-bar"></span>
 				</button>
 			</div>
-			<div class="collapse navbar-collapse"">
+			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav list-inline">
 					<li id="login" class="col-md-offset-1 col-md-1"><a
 						href="MainIndex.jsp">Logout</a></li>
@@ -36,7 +36,7 @@
 						<ul class="sub depth2">
 							<li><a href="">공지사항</a></li>
 							<li><a href="">글쓰기</a></li>
-							<li><a href="">1:1문의하기(Q&A)</a></li>
+							<li><a href="">1:1문의하기(Q&amp;A)</a></li>
 						</ul></li>
 				</ul>
 			</div>
