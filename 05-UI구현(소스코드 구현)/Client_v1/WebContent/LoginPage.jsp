@@ -6,11 +6,13 @@
 <%@ include file="inc/Common.jsp"%>
 </head>
 <body>
-
+	
 	<%@ include file="inc/Header1.jsp"%>
+	
+	
 	<div class="page-header"></div>
 	<div class="loginB">
-		<form class="form1"  method="POST" action="bread.jsp">
+		<form class="form1"  method="POST" action="MainIndex2.jsp">
 			<fieldset>
 				<legend>로그인</legend>
 			

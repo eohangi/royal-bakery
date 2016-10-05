@@ -4,7 +4,7 @@
 <!doctype html>
 <div class="head">
 	<div class="banner">
-		<a href=""> <img src="img/logo.png" alt="logo">
+		<a href="MainIndex1.jsp"> <img src="img/logo.png" alt="logo">
 		</a>
 	</div>
 	<div class="titlebar">

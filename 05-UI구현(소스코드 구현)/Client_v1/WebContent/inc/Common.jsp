@@ -47,7 +47,7 @@ div.row {
 /****************************** banner *********************/
 .banner {
 	text-align: center;
-	background-color: #fff6cc
+	background-color: #fff6cc;
 }
 
 /**  타이틀 바 영역의 배경 색상 그라데이션 처리 */
@@ -140,7 +140,7 @@ div.row {
 
 /*****************************  content*************************** */
 #slide1 h1 {
-	min-height: 750px;
+	
 	text-indent: -10000px;
 	padding-right: 0px;
 }
@@ -150,13 +150,13 @@ div.row {
 }
 
 #slide2 h3 {
-	min-height: 750px;
+	
 	text-indent: -10000px;
 	padding-right: 0px;
 }
 
 #content {
-	min-height: 800px;
+	
 }
 
 .box1 {
@@ -175,7 +175,7 @@ div.row {
 /******************** client join and update*************************** */
 div.clientjoin {
 	text-align: center;
-	min-height: 750px;
+	
 	width: auto;
 	height: auto;
 	position: relative;
@@ -262,7 +262,7 @@ div.container {
 
 /************************************** Idsearch *************************************/
 .Idsearch {
-	min-height: 750px;
+	
 	padding-top: 100px;
 	margin-left: 300px;
 	margin-right: 300px;
