@@ -8,7 +8,7 @@
 <body>
 
 	<%@ include file="inc/Header2.jsp"%>
-	<div class="page-header"></div>
+	
 	<div class="container">
 
 			<div class="col-md-2" id="slide1">

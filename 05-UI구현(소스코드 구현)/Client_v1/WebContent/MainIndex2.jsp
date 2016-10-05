@@ -260,7 +260,7 @@ F
 	</div>
 	<div class="carinner-content">
 		<ul class="carinner-content-container" id="boxbody">
-			<li class="mybox" id="mybox" onclick=window.open("http://www.naver.com","_self")>
+			<li class="mybox" id="mybox" onclick="location.href='bread.jsp'">
 				<a href="http://www.naver.com"></a>
 				<p>
 					<img style="width: 40px; height: 40px;" src="img/search.png">
@@ -272,7 +272,7 @@ F
 				<h6></h6>
 				</p>
 			</li>
-			<li class="mybox" id="mybox" onclick=window.open("http://www.naver.com","_self")>
+			<li class="mybox" id="mybox" onclick="location.href='CustomOrder.jsp'">
 				<p>
 					<img style="width: 40px; height: 40px;" src="img/search.png">
 				</p>
@@ -283,7 +283,7 @@ F
 				<h6></h6>
 				</p>
 			</li>
-			<li class="mybox" id="mybox" onclick=window.open("http://www.naver.com","_self")>
+			<li class="mybox" id="mybox" onclick="location.href='MybookingList.jsp'">
 				<p>
 					<img style="width: 40px; height: 40px;" src="img/search.png">
 				</p>

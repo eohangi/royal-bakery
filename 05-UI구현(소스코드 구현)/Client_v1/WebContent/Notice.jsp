@@ -13,16 +13,15 @@
 			<div class="col-md-2" id="slide1" ><h1>슬라이드1</h1></div>
 			<!-- 페이지 내용 영역 -->
 			<div class="col-md-8" id="content" >
-				<ul class="tab_menu1 tab3 mgb_20  list-unstyled">
+				<ul class="tab_menu1 tab2 mgb_20  list-unstyled">
 					<li><a href="#">공지사항</a></li>
-					<li><a href="FAQ.jsp">F A Q</a></li>
 					<li><a href="Inquire.jsp">1대1 문의하기</a></li>
 				</ul>
 				<div class="page-header">
 					<h2>공지사항</h2>
 				</div>
 				<div class="2ndwrap">
-					<table border="1" width="auto" align="center">
+					<table border="1" width="100%" align="center">
 						<!-- 표 제목 -->
 						<thead>
 							<tr>
@@ -87,7 +86,7 @@
 								
 							</tr>
 		
-							<tr class="panel panel-default">
+							<tr class="collapsible">
 								<td align="center">1</td>
 								<td><a class="accordion-togle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">신규 가입 고객을 위한 이벤트</a></td>
 								<td align="center">관리자</td>

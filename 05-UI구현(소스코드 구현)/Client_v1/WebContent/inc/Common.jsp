@@ -41,7 +41,8 @@
 
 div.row {
 	margin-right: 0;
-	min-height: 950px;
+	margin-bottom: 50px;
+	
 }
 
 /****************************** banner *********************/
@@ -155,7 +156,7 @@ div.row {
 	padding-right: 0px;
 }
 
-#content {
+.content {
 	
 }
 
@@ -163,13 +164,13 @@ div.row {
 	margin-top: 50px;
 	width: 50%;
 	height: 300px;
-	float: left;
+	
 }
 
 .box2 {
 	width: 50%;
-	height: 300px;
-	float: left;
+	height: auto;
+	
 }
 
 /******************** client join and update*************************** */
@@ -248,12 +249,12 @@ div.container {
 
 /***************************** inquire *************************************/
 .Tarea {
-	width: 70%;
+	/* width: 70%; */
 }
 
 .area {
-	width: 70%;
-	height: 300px;
+	/* width: 70%;
+	height: 300px; */
 }
 
 .button {
