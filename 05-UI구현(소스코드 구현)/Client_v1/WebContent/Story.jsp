@@ -16,7 +16,7 @@
 		<!-- 페이지 내용 영역(김양수 수정내용)-->
 		<div  Id="content">
 			<!-- 페이지에서 보여지는 전체의 내용을 감싸는 박스 -->
-			<div class="mypage-container">
+			<div class="mypage-container col-md-offset-2 col-md-8">
 
 				<!-- 해당 페이지의 이름을 보여주는 내용을 감싸는 박스 -->
 				<div class="page-name">

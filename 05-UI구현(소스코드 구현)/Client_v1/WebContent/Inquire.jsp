@@ -34,17 +34,17 @@
 							</div>
 						</div>
 						<div class="form-group col-md-12">
-							<label for="addr2" class="col-md-2">내용</label>
+							<label for="addr2" class="col-md-2" >내용</label>
 							<div class="col-md-10">
 								
 									<textarea name="body" id="body" 
-										class="form-control Area"></textarea>
+										class="form-control Area" rows="10" style="margin-bottom:10px;"></textarea>
 								
 							</div>
 							
-								<div class="button">
-									<button type="button" class="btn btn-primary" onclick="location.href='InquireConfirm.jsp'">제출하기</button>
-									<button type="submit" class="btn btn-primary">취소</button>
+								<div class="button" style="margin-right:20px;">
+									<button type="button" class="btn btn-primary"  onclick="location.href='InquireConfirm.jsp'">제출하기</button>
+									<button type="button" class="btn btn-primary" onclick="location.href='MyquestionList.jsp'">취소</button>
 								</div>
 							
 					</form>

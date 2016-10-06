@@ -287,7 +287,7 @@ div.container {
 	float: right;
 }
 
-.form-control {
+.login_form {
 	width: 60%;
 }
 
