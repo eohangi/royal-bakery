@@ -114,138 +114,7 @@ $(function(){
 
 <style type="text/css">
 
-/** web18/10-titlebar.html 의 코드를 재활용 */
-/** 기본 초기화 처리 */
-.top {
-	
-}
-
-div.container {
-	text-align: center;
-	min-height: 650px;
-	margin: auto;
-	width: auto;
-	height: auto;
-	position: relative;
-}
-
-/**  타이틀 바 영역의 배경 색상 그라데이션 처리 */
-.titlebar {
-	width: 100%;
-	height: 45px;
-	border-bottom: 1px solid #555;
-	/** 웹킷에 대한 그라데이션 - 강의시간에는 구글 크롬만 대상으로 합니다. */
-	background-image: -webkit-linear-gradient(top, rgb(89, 189, 212) 8%,
-		rgb(40, 142, 168) 74%);
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
-}
-/** 리스트 항목 가로 배치 */
-.navi>li {
-	width: 20%;
-	float: left;
-	height: 45px;
-}
-
-/** float 처리 마감제 */
-.navi:after {
-	color: '';
-	display: block;
-	float: none;
-	clear: both;
-}
-
-/** 링크의 사이즈 처리 및 텍스트 꾸밈 */
-.navi>li>a {
-	text-decoration: none;
-	display: block;
-	width: auto;
-	height: 45px;
-	text-align: center;
-	font-weight: bold;
-	line-height: 45px;
-	color: white;
-	text-shadow: 0 1px 1px black;
-	-webkit-transition: all 0.2s ease-in;
-}
-
-.list-unstyled {
-	margin: 0;
-}
-
-/** 링크 마우스 오버 */
-.navi>li:hover>a {
-	color: #f60;
-	position: relative;
-	top: -1px;
-}
-
-/** 2depth 메뉴 컨테이너 */
-.navi>li>ul {
-	background: rgb(89, 189, 212);
-	width: 100%;
-	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-	/** 타이틀바 보다 작은 값 */
-	z-index: 100;
-	/** 숨김 처리 */
-	opacity: 0;
-	visibility: hidden;
-	position: relative;
-}
-
-/* 2depth메뉴 보이기 처리 */
-.navi>li:hover>ul {
-	opacity: 1;
-	visibility: visible;
-	-webkit-transition: all 0.5s;
-	position: relative;
-	top: 0px;
-}
-
-/* 2depth 메뉴 컨테이너 각 항목 > 링크 */
-.navi ul>li>a {
-	display: block;
-	text-align: center;
-	height: 30px;
-	font-weight: normal;
-	font-size: 11px;
-	line-height: 30px;
-	color: #fff;
-	text-decoration: none;
-}
-
-/* 2depth 메뉴 컨테이너 각 항목 > 링크 마우스 오버 */
-.navi ul>li>a:hover {
-	color: #ff0;
-	background: rgb(89, 179, 192);
-}
-
-/**  content  */
-div.sidebar1 {
-	float: left;
-	background: #f60;
-	min-height: 650px;
-	position: relative;
-	width: 100px;
-	height: auto;
-}
-
-div.sidebar2 {
-	float: left;
-	background: #f60;
-	min-height: 650px;
-	position: relative;
-	width: 100px;
-	height: auto;
-}
-
-div.content {
-	float: left;
-	background: #ff0;
-	min-height: 650px;
-	position: relative;
-	width: 600px;
-}
-
+<%@ include file = "css/common.css" %>
 .join {
 	margin: auto;
 	align: center;
@@ -263,24 +132,6 @@ div.content {
 	padding-bottom: 50px;
 }
 
-/** footer  */
-.footer {
-	height: 100px;
-	position: relative;
-	bottom: 0;
-	width: 100%;
-	/* Set the fixed height of the footer here */
-	background-color: #f5f5f5;
-}
-
-.family_site {
-	
-}
-
-.footerWrap {
-	height: 100%;
-	background-color: #5f5353;
-}
 </style>
 </head>
 <body>
@@ -367,16 +218,7 @@ div.content {
 		</div>
 	</div>
 
-	<div class="footer">
-		<div class="footerWrap">
-			<ul class="list-unstyled">
-				<li>
-					<address>copyright 2016</address>
-				</li>
-			</ul>
-		</div>
-	</div>
-
+<%@ include file = "inc/footer.jsp" %>
 </body>
 
 </html>

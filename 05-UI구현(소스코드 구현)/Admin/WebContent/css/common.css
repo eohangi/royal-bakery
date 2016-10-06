@@ -1,47 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true"%>
-<!DOCTYPE html>
-<html lang="ko">
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-<title>Royal</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
-
-<script src="http://code.jquery.com/jquery.min.js"></script>
-
-<!-- Latest compiled and minified JavaScript -->
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-<!-- jQuery Framework 참조하기 -->
-<script src="http://code.jquery.com/jquery.min.js"></script>
-
-<style type="text/css">
-
 /** web18/10-titlebar.html 의 코드를 재활용 */
 /** 기본 초기화 처리 */
-
 .top {
-
+	
 }
 
-.container {
+div.container {
 	text-align: center;
 	min-height: 650px;
-	margin: 0;
-	padding: 0;
+	margin: auto;
 	width: auto;
+	height: auto;
+	position: relative;
+	overflow: hidden;
+	padding: 0;
 }
-
 
 /**  타이틀 바 영역의 배경 색상 그라데이션 처리 */
 .titlebar {
@@ -134,20 +106,39 @@
 }
 
 /**  content  */
-.col-md-2 {
-	background: #f60;
-	min-height: 650px;
+div.sidebar1 {
+	float: left;
+	
+
+	position: relative;
+	width: 100px;
+	height: auto;
 }
 
-.col-md-8 {
-	background: #ff0;
-	min-height: 650px;
+div.sidebar2 {
+	float: left;
+	
+	
+	position: relative;
+	width: 100px;
+	height: auto;
 }
 
+div.content {
+	float: left;
+	
+	
+	position: relative;
+	width: 600px;
+}
 /** footer  */
-
 .footer {
 	height: 100px;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	background-color: #f5f5f5;
 }
 
 .family_site {
@@ -158,26 +149,3 @@
 	height: 100%;
 	background-color: #5f5353;
 }
-</style>
-</head>
-<body>
-<%@ include file = "Header.jsp" %>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-2" id="slide1">
-				슬라이드1
-			</div>
-			<!-- 페이지 내용 영역 -->
-			<div class="col-md-8" id="content">
-				<h2>본문</h2>
-			</div>
-
-			<div class="col-md-2" id="slide2">
-				슬라이드2
-			</div>
-		</div>
-	</div>
-	<%@ include file = "inc/footer.jsp" %>
-</body>
-
-</html>
