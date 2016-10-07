@@ -4,6 +4,7 @@
 <%@ page import="jsputil.cart.*"%>
 <%@ page import="java.util.*"%>
 <%
+	// hello world
 	if (session.getAttribute("username") == null) {
 		session.setAttribute("username", request.getParameter("username"));
 	}
