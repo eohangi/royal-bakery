@@ -19,12 +19,12 @@
 				<!-- 다음예제에서 반복됩니다. -->
 				<div class="form-group">
 					<label for="user_id">아이디</label> <input type="text" id="user_id"
-						class="form-control" placeholder="아이디를 입력하세요." />
+						class="form-control login_form" placeholder="아이디를 입력하세요." />
 				</div>
 
 				<div class="form-group">
 					<label for="user_pw">비밀번호</label> <input type="password"
-						id="user_pw" class="form-control" placeholder="비밀번호를 입력하세요." />
+						id="user_pw" class="form-control login_form" placeholder="비밀번호를 입력하세요." />
 				</div>
 
 

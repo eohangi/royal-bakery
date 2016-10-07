@@ -17,9 +17,8 @@
 			</div>
 			<!-- 페이지 내용 영역 -->
 			<div class="col-md-8" Id="content">
-				<ul class="tab_menu1 tab3 mgb_20 list-unstyled">
+				<ul class="tab_menu1 tab2 mgb_20 list-unstyled">
 					<li><a href="Notice.jsp">공지사항</a></li>
-					<li><a href="FAQ.jsp">F A Q</a></li>
 					<li><a href="#">1대1 문의하기</a></li>
 				</ul>
 				<div class="page-header">
@@ -39,15 +38,18 @@
 						<div class="form-group">
 							<label for="addr2" class="col-md-2">내용</label>
 							<div class="col-md-10">
-								<div class="col-md-10">
-									<textarea name="body" id="body" class="Area" rows="10"
-										cols="80" style="resize: none;">front line 어쩌구 저쩌구 ~~~~~~~~~~~~~~~~~~~~~~~~~~</textarea>
-								</div>
+
+								<textarea name="body" id="body" class="Area form-control"
+									rows="10" style="resize: none;">front line 어쩌구 저쩌구 ~~~~~~~~~~~~~~~~~~~~~~~~~~</textarea>
+
 							</div>
 							<div>
-								<div class="button">
-									<button type="submit" class="btn btn-primary">수정완료</button>
-									<button type="submit" class="btn btn-primary">취소</button>
+								<div class="button"
+									style="margin-top: 10px; margin-right: 20px;">
+									<button type="button" class="btn btn-primary"
+										onclick="location.href='InquireConfirm.jsp'">수정완료</button>
+									<button type="button" class="btn btn-primary"
+										onclick="location.href='InquireConfirm.jsp'">취소</button>
 								</div>
 							</div>
 					</form>

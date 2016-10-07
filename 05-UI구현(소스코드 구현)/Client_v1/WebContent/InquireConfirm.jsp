@@ -16,13 +16,13 @@
 		</div>
 		<!-- 페이지 내용 영역 -->
 		<div class="col-md-8" Id="content">
-			<ul class="tab_menu1 tab3 mgb_20 list-unstyled">
+			<ul class="tab_menu1 tab2 mgb_20 list-unstyled">
 				<li><a href="Notice.jsp">공지사항</a></li>
-				<li><a href="FAQ.jsp">F A Q</a></li>
+			
 				<li><a href="#">1대1 문의하기</a></li>
 			</ul>
 			<div class="page-header">
-				<h2>이전 문의내용</h2>
+				<h2>문의내용</h2>
 			</div>
 
 
@@ -39,13 +39,13 @@
 						<label for="addr2" class="col-md-2">내용</label>
 
 						<div class="col-md-10">
-							<textarea name="body" id="body" class="Area" rows="10" cols="80"
+							<textarea name="body" id="body" class="Area form-control" rows="10"
 								disabled style="resize: none;">front line 어쩌구 저쩌구 ~~~~~~~~~~~~~~~~~~~~~~~~~~</textarea>
 						</div>
 
 
-						<div class="button">
-							<button type="submit" class="btn btn-primary">수정하기</button>
+						<div class="button" style="margin-top : 10px; margin-right: 20px;">
+							<button type="button" class="btn btn-primary" onclick="location.href='InquireUpdate.jsp'" >수정하기</button>
 						</div>
 					</div>
 				</form>
@@ -65,12 +65,12 @@
 						<label for="addr2" class="col-md-2">내용</label>
 
 						<div class="col-md-10">
-							<textarea name="body" id="body" class="Area" rows="10" cols="80"
+							<textarea name="body" id="body" class="Area form-control" rows="10" 
 								disabled style="resize: none;"></textarea>
 						</div>
 
 
-						<div class="button">
+						<div class="button" style="margin-top : 10px; margin-right: 20px;">
 							<button type="button" class="btn btn-primary" onclick="location.href='MyquestionList.jsp'" >확인</button>
 						</div>
 					</div>

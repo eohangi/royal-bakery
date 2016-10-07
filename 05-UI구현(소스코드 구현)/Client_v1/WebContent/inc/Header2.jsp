@@ -15,7 +15,6 @@
 					<li><a href="InformationUpdate.jsp">Update</a></li>
 					<li><a href="mypayment.jsp">Payment</a></li>
 					<li><a href="MybookingList.jsp">Booking</a></li>
-					<li><a href="MyquestionList.jsp">Notice</a></li>
 				</ul></li>
 			<li><a href="Story.jsp">Brand</a>
 				<ul class="list-unstyled">
@@ -27,11 +26,11 @@
 					<li><a href="cake.jsp">cake</a></li>
 					<li><a href="cookie.jsp">cookie</a></li>
 				</ul></li>
-			<li><a href="./CustomOrder.jsp">Order</a></li>
+			<li><a href="CustomOrder.jsp">Order</a></li>
 			<li><a href="Notice.jsp">Community</a>
 				<ul class="list-unstyled">
-					<li><a href="./Notice.jsp">공지사항</a></li>
-					<li><a href="./Inquire.jsp">문의하기</a></li>
+					<li><a href="Notice.jsp">공지사항</a></li>
+					<li><a href="MyquestionList.jsp">문의하기</a></li>
 				</ul></li>
 
 		</ul>
