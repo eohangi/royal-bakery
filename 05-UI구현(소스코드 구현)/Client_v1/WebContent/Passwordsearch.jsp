@@ -9,8 +9,7 @@
 
 	<%@ include file="inc/Header1.jsp"%>
 
-	<div class="page-header"></div>
-	<div class="Idsearch">
+	<div class="Idsearch" >
 		<div class="IdsearchText">
 			<p1> <strong><비밀번호를잊으셨나요??></strong></p1>
 			<br /> <br />
@@ -65,8 +64,9 @@
 		</div>
 	</div>
 
-
+<div style="margin-top: 100px;">
 	<%@ include file="inc/Footer.jsp"%>
+	</div>
 </body>
 
 </html>

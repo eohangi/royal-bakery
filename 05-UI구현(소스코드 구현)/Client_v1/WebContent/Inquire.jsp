@@ -15,10 +15,7 @@
 			</div>
 			<!-- 페이지 내용 영역 -->
 			<div class="col-md-8" >
-				<ul class="tab_menu1 tab2 mgb_20 list-unstyled">
-					<li><a href="Notice.jsp">공지사항</a></li>
-					<li><a href="#">1대1 문의하기</a></li>
-				</ul>
+	
 				<div class="page-header">
 					<h2>1대1 문의</h2>
 				</div>

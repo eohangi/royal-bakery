@@ -9,6 +9,7 @@
 
 	<%@ include file="inc/Header1.jsp"%>
 	<div class="page-header"></div>
+	
 	<div class="Idsearch">
 		<div class="IdsearchText">
 			<p1> <strong><아이디가기억나지않으세요?></strong></p1>
@@ -20,7 +21,7 @@
 		<hr />
 		<br />
 
-		<div class="Search">
+		<div class="Search" style="height:300px;">
 			<div class="form-group">
 				<label for="user_name" class="col-md-2">이름*</label>
 				<div class="col-md-10 clearfix">

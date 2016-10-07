@@ -15,7 +15,7 @@
 			<div class="col-md-8" id="content" >
 				<ul class="tab_menu1 tab2 mgb_20  list-unstyled">
 					<li><a href="#">공지사항</a></li>
-					<li><a href="Inquire.jsp">1대1 문의하기</a></li>
+					<li><a href="MyquestionList.jsp">1대1 문의하기</a></li>
 				</ul>
 				<div class="page-header">
 					<h2>공지사항</h2>

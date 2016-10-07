@@ -119,7 +119,7 @@
 
 							<p class="removequestion pull-right" id="removequestion">
 								<input type="button" class="btn btn-warning" value="삭제하기"
-									onclick=window.open("http://www.naver.com","_self")>
+									onclick="#">
 							</p>
 						</ul>
 						<!-- /페이지에 들어갈 2가지 메뉴시작-->

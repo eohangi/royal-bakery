@@ -53,8 +53,8 @@
 					<div class="form-group">
 						<label for="tel" class="col-md-2">주문시 요청사항</label>
 						<div class="col-md-10">
-							<div class="col-md-10">
-								<textarea name="body" id="body" class="Area" rows="4" cols="80"></textarea>
+							<div class="col-md-12">
+								<textarea name="body" id="body" class="Area form-control" rows="4" ></textarea>
 							</div>
 						</div>
 					</div>
@@ -78,7 +78,7 @@
 						<div class="button">
 							<!-- 들여쓰기 -->
 							<button type="button" class="btn btn-primary" onclick="location.href='OrderConfirmation.jsp'">결제하기</button>
-							<button type="reset" class="btn btn-danger">취소</button>
+							<button type="button" class="btn btn-danger" onclick="location.href='CustomOrder.jsp'">취소</button>
 						</div>
 					</div>
 
