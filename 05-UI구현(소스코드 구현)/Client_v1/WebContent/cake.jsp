@@ -169,52 +169,12 @@
 
 	<div class="row">
 
-		<!---------------------------------------  장바구니   ----------------------------------- -->
-		<form class="form-horizontal" id="inquireform">
-
-			<div class="col-md-2" style="padding-right: 0px;">
-
-				<table class="table table-striped table-bordered table-hover">
-					<thead>
-						<tr>
-							<th class="text-center" colspan="2"
-								style="background-color: rgb(217, 204, 255)">장바구니</th>
-						</tr>
-					</thead>
-					<tbody>
-
-						<tr>
-							<th class="text-center"><%=goods.getCode()%> <%
- 	// 상품 코드
- %> <%=goods.getName()%> <%
- 	// 상품 이름
- %> <%=goods.getPrice()%> <%
- 	// 상품 가격
- %> (<%=goods.getOrderQnt()%>) <%
- 	// 상품 수량
- %></th>
-							<th class="text-center">삭제</th>
-						</tr>
-					</tbody>
-					<tfoot>
-						<tr>
-							<th class="text-center"
-								style="background-color: rgb(209, 255, 204)"></th>
-							<th class="text-center"
-								style="background-color: rgb(209, 255, 204)">총금액</th>
-						</tr>
-						<tr>
-							<th class="text-center" colspan="2"
-								style="background-color: rgb(209, 255, 204)">
-								<button type="submit" class="btn btn-primary" onclick=' '>예약하기</button>
-							</th>
-						</tr>
-					</tfoot>
-				</table>
-
-			</div>
-		</form>
-		<!--------------------------------------  장바구니 ------------ ------------------------- -->
+	
+			<div class="col-md-2" id="slide1">
+		<h1>슬라이드1</h1>
+	</div>
+		
+		
 		<!-- 페이지 내용 영역 -->
 		<div class="col-md-8">
 			<ul id="myTab" class="nav nav-tabs">
@@ -343,12 +303,55 @@
 				</div>
 			</div>
 		</div>
+			<!---------------------------------------  장바구니   ----------------------------------- -->
+		<form class="form-horizontal" id="inquireform">
+
+			<div class="col-md-2" style="padding-right: 0px;">
+
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th class="text-center" colspan="2"
+								style="background-color: rgb(217, 204, 255)">장바구니</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr>
+							<th class="text-center"><%=goods.getCode()%> <%
+ 	// 상품 코드
+ %> <%=goods.getName()%> <%
+ 	// 상품 이름
+ %> <%=goods.getPrice()%> <%
+ 	// 상품 가격
+ %> (<%=goods.getOrderQnt()%>) <%
+ 	// 상품 수량
+ %></th>
+							<th class="text-center">삭제</th>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th class="text-center"
+								style="background-color: rgb(209, 255, 204)"></th>
+							<th class="text-center"
+								style="background-color: rgb(209, 255, 204)">총금액</th>
+						</tr>
+						<tr>
+							<th class="text-center" colspan="2"
+								style="background-color: rgb(209, 255, 204)">
+								<button type="submit" class="btn btn-primary" onclick=' '>예약하기</button>
+							</th>
+						</tr>
+					</tfoot>
+				</table>
+
+			</div>
+		</form>
+		<!--------------------------------------  장바구니 ------------ ------------------------- -->
 	</div>
 
 
-	<div class="col-md-2" id="slide1">
-		<h1>슬라이드1</h1>
-	</div>
 
 
 	<%@ include file="inc/Footer.jsp"%>
