@@ -4,6 +4,7 @@
 <%@ page import="jsputil.cart.*"%>
 <%@ page import="java.util.*"%>
 <%
+	// hello world
 	if (session.getAttribute("username") == null) {
 		session.setAttribute("username", request.getParameter("username"));
 	}
@@ -235,7 +236,7 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input type="text" placeholder=" 현재 재고량 : 15 개">
+								<input type="text" placeholder=" 현재 재고량 : 15 개" disabled>
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
@@ -252,7 +253,7 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input type="text" placeholder=" 현재 재고량 : 15 개">
+								<input type="text" placeholder=" 현재 재고량 : 15 개" disabled>
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
@@ -268,7 +269,7 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input type="text" placeholder=" 현재 재고량 : 15 개">
+								<input type="text" placeholder=" 현재 재고량 : 15 개" disabled>
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
@@ -285,7 +286,7 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input type="text" placeholder=" 현재 재고량 : 15 개">
+								<input type="text" placeholder=" 현재 재고량 : 15 개" disabled>
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
@@ -302,7 +303,7 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input type="text" placeholder=" 현재 재고량 : 15 개">
+								<input type="text" placeholder=" 현재 재고량 : 15 개" disabled>
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
@@ -318,7 +319,7 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input type="text" placeholder=" 현재 재고량 : 15 개">
+								<input type="text" placeholder=" 현재 재고량 : 15 개" disabled>
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
@@ -335,7 +336,7 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input type="text" placeholder=" 현재 재고량 : 15 개">
+								<input type="text" placeholder=" 현재 재고량 : 15 개" disabled>
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
