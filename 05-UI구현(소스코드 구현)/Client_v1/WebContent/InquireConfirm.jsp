@@ -52,11 +52,7 @@
 			<div class="inner final">
 				<form class="form-horizontal" id="inquireform">
 					<div class="form-group">
-						<label for="addr1" class="col-md-2">답변</label>
-						<div class="col-md-10">
-							<input type="text" name="addr1" id="addr1" class="form-control"
-								value="답변이 아직 완료되지 않은 게시물입니다." disabled>
-						</div>
+	
 
 						<label for="addr2" class="col-md-2">내용</label>
 

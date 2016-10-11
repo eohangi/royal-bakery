@@ -23,6 +23,27 @@
 					<p>고객님의 주문이 정상적으로 처리 되었습니다.</p>
 					<p>Royal Bakery를 선택해 주셔서 감사합니다.</p>
 					<hr />
+					<div class="form-group row">
+						<label for="user_id" class="col-md-2">상품 정보</label>
+						<div class="col-md-10">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th class="text-center">품명</th>
+										<th class="text-center">수량</th>
+										<th class="text-center">가격</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="text-center">크로와상</td>
+										<td class="text-center">3개</td>
+										<td class="text-center">3000원</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="user_id" class="col-md-2">주문자</label>
 						<div class="col-md-10">
@@ -34,7 +55,7 @@
 						<label for="name" class="col-md-2">주문일시</label>
 						<div class="col-md-10">
 							<input type="text" name="name" id="name" class="form-control"
-								placeholder="2016년 11월 23일" disabled>
+								placeholder="2016년 11월 23일 18:25" disabled>
 						</div>
 					</div>
 					<div class="form-group">
