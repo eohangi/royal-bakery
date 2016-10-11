@@ -12,9 +12,6 @@
 			<li><a href="LoginPage.jsp">LogOut</a></li>
 			<li><a href="MyPage.jsp">MyPage</a>
 				<ul class="list-unstyled">
-					<li><a href="InformationUpdate.jsp">Update</a></li>
-					<li><a href="mypayment.jsp">Payment</a></li>
-					<li><a href="MybookingList.jsp">Booking</a></li>
 				</ul></li>
 			<li><a href="Story.jsp">Brand</a>
 				<ul class="list-unstyled">
