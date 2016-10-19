@@ -8,7 +8,7 @@
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
 	<resultMap type="project.jsp.bakery.model.product" id="product">
 		<result property="id" column="id" />
-		<result property="pro_classify" column="pro_classify" />
+		<result property="proClassify" column="pro_classify" />
 		<result property="pro_name" column="pro_name" />
 		<result property="pro_price" column="pro_price" />
 		<result property="stock" column="stock" />
@@ -23,4 +23,6 @@
 		<result property="pro_edit_date" column="pro_edit_date" />
 		<result property="pro_reg_date" column="pro_reg_date" />
 	</resultMap>
+	
+	
 </mapper>
