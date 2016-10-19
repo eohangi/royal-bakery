@@ -6,7 +6,7 @@
 <!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
 <mapper namespace="ProductMapper">
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
-	<resultMap type="project.jsp.bakery.model.product" id="product">
+	<resultMap type="project.jsp.bakery.model.Product" id="product">
 		<result property="id" column="id" />
 		<result property="proClassify" column="pro_classify" />
 		<result property="proName" column="pro_name" />
