@@ -24,6 +24,7 @@
 		<mapper resource="project/jsp/bakery/dao/mapper/CartMapper.xml" />
 		<mapper resource="project/jsp/bakery/dao/mapper/Document.xml" />
 		<mapper resource="project/jsp/bakery/dao/mapper/Comment.xml" />
+		<mapper resource="project/jsp/bakery/dao/mapper/CustomMapper.xml" />
 	</mappers>
 </configuration>
 
