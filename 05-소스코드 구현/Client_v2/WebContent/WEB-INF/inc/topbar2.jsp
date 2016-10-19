@@ -5,7 +5,7 @@
 <!doctype html>
 <div class="head">
 	<div class="banner">
-		<a href="MainIndex2.jsp"> <img src="img/logo.png" alt="logo">
+		<a href="MainIndex2.jsp"> <img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="logo">
 		</a>
 	</div>
 	<div class="titlebar">

@@ -40,7 +40,7 @@
 						<li class="mybox" id="mybox" onclick=window.open("InformationUpdate.jsp","_self")>
 							<a href="http://www.naver.com"></a>
 							<p>
-								<img style="width: 40px; height: 40px;" src="img/search.png">
+								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
 							<p>
 							<h4>개인정보 수정</h4>
@@ -51,7 +51,7 @@
 						</li>
 						<li class="mybox" id="mybox" onclick=window.open("MybookingList.jsp","_self")>
 							<p>
-								<img style="width: 40px; height: 40px;" src="img/search.png">
+								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
 							<p>
 							<h4>장바구니</h4>
@@ -62,7 +62,7 @@
 						</li>
 						<li class="mybox" id="mybox" onclick=window.open("mypayment.jsp","_self")>
 							<p>
-								<img style="width: 40px; height: 40px;" src="img/search.png">
+								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
 							<p>
 							<h4>결제확인</h4>
@@ -73,7 +73,7 @@
 						</li>
 						<li class="mybox" id="mybox" onclick=window.open("MyquestionList.jsp","_self")>
 							<p>
-								<img style="width: 40px; height: 40px;" src="img/search.png">
+								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
 							<p>
 							<h4>상담내역</h4>
