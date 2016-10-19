@@ -10,7 +10,7 @@ public class order {
 	private String pickupTime;
 	private String barcode;
 	private String orderCategory;
-	private String orDditTime;
+	private String orEditTime;
 	public String getId() {
 		return id;
 	}
