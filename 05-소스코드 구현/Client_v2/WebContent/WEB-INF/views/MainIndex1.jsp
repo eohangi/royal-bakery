@@ -14,17 +14,17 @@
 		<div class="carousel-inner">
 			<!-- 항목 (1) -->
 			<div class="item active">
-				<img src="img/main1.jpg" alt="꽃(1)">
+				<img src="${pageContext.request.contextPath}/assets/img/main1.jpg" alt="꽃(1)">
 
 			</div>
 			<!-- 항목 (2) -->
 			<div class="item">
-				<img src="img/main2.jpg" alt="꽃(2)">
+				<img src="${pageContext.request.contextPath}/assets/img/main2.jpg" alt="꽃(2)">
 
 			</div>
 			<!-- 항목 (3) -->
 			<div class="item">
-				<img src="img/main3.jpg" alt="꽃(3)">
+				<img src="${pageContext.request.contextPath}/assets/img/main3.jpg" alt="꽃(3)">
 
 			</div>
 
@@ -34,9 +34,8 @@
 	<div class="carinner-content">
 		<ul class="carinner-content-container" id="boxbody">
 			<li class="mybox" id="mybox" onclick="location.href='LoginPage.jsp'">
-				<a href="http://www.naver.com"></a>
 				<p>
-					<img style="width: 40px; height: 40px;" src="img/search.png">
+					<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 				</p>
 				<p>
 				<h4>일반제품 예약</h4>
@@ -47,7 +46,7 @@
 			</li>
 			<li class="mybox" id="mybox" onclick="location.href='LoginPage.jsp'">
 				<p>
-					<img style="width: 40px; height: 40px;" src="img/search.png">
+					<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 				</p>
 				<p>
 				<h4>주문제작 예약</h4>
@@ -58,7 +57,7 @@
 			</li>
 			<li class="mybox" id="mybox" onclick="location.href='LoginPage.jsp'">
 				<p>
-					<img style="width: 40px; height: 40px;" src="img/search.png">
+					<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 				</p>
 				<p>
 				<h4>장바구니</h4>

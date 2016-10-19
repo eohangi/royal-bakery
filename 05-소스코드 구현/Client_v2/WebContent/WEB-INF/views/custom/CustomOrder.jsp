@@ -18,7 +18,7 @@
 
 			<div class="box1 pull-left">
 				<p>
-					<img src="./img/choco.jpg" width="300px" height="300px" />
+					<img src="${pageContext.request.contextPath}/assets/img/choco.jpg" width="300px" height="300px" />
 				<p>
 			</div>
 			<div class="clearfix">

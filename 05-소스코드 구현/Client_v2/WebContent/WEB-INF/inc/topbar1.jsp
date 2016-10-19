@@ -5,7 +5,7 @@
 <!doctype html>
 <div class="head">
 	<div class="banner">
-		<a href="MainIndex1.jsp"> <img src="img/logo.png" alt="logo">
+		<a href="MainIndex1.jsp"> <img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="logo">
 		</a>
 	</div>
 	<div class="titlebar">
@@ -22,7 +22,7 @@
 					<li><a href="LoginPage.jsp">cake</a></li>
 					<li><a href="LoginPage.jsp">cookie</a></li>
 				</ul></li>
-			<li><a href="LoginPage.jsp">Order</a></li>
+			<li><a href="${pageContext.request.contextPath}/custom/CustomOrder.do">Order</a></li>
 			<li><a href="LoginPage.jsp">Community</a>
 				<ul class="list-unstyled">
 					<li><a href="LoginPage.jsp">공지사항</a></li>
