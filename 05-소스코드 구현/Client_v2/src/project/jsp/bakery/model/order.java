@@ -60,16 +60,16 @@ public class order {
 		this.orderCategory = orderCategory;
 	}
 	public String getOrDditTime() {
-		return orDditTime;
+		return orEditTime;
 	}
 	public void setOrDditTime(String orDditTime) {
-		this.orDditTime = orDditTime;
+		this.orEditTime = orDditTime;
 	}
 	@Override
 	public String toString() {
 		return "order [id=" + id + ", orderNo=" + orderNo + ", totalSum=" + totalSum + ", memberId=" + memberId
 				+ ", orRegDate=" + orRegDate + ", pickupTime=" + pickupTime + ", barcode=" + barcode
-				+ ", orderCategory=" + orderCategory + ", orDditTime=" + orDditTime + "]";
+				+ ", orderCategory=" + orderCategory + ", orEditTime=" + orEditTime + "]";
 	}
 	
 	
