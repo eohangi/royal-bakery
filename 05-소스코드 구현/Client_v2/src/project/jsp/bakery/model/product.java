@@ -15,7 +15,7 @@ public class Product {
 	private int protein;
 	private String proImg;
 	private String proEditDate;
-	private String regDate;
+	private String proRegDate;
 	
 	//getter , setter
 	public int getId() {
@@ -103,17 +103,17 @@ public class Product {
 		this.proEditDate = proEditDate;
 	}
 	public String getRegDate() {
-		return regDate;
+		return proRegDate;
 	}
-	public void setRegDate(String regDate) {
-		this.regDate = regDate;
+	public void setRegDate(String proRegDate) {
+		this.proRegDate = proRegDate;
 	}
 	@Override
 	public String toString() {
 		return "product [id=" + id + ", proClassify=" + proClassify + ", proName=" + proName + ", proPrice=" + proPrice
 				+ ", stock=" + stock + ", status=" + status + ", content=" + content + ", kcal=" + kcal + ", na=" + na
 				+ ", sugar=" + sugar + ", fat=" + fat + ", protein=" + protein + ", proImg=" + proImg + ", proEditDate="
-				+ proEditDate + ", regDate=" + regDate + "]";
+				+ proEditDate + ", proRegDate=" + proRegDate + "]";
 	}
 	
 }

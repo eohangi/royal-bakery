@@ -11,7 +11,7 @@ public interface ProductService {
 	 * @return BbsDocument - 읽어 들일 게심루 일련번호가 저장된 Beans
 	 * @throws Exception
 	 */
-	public Product selectProduct ( Product product) throws Exception;
+	public Product selectProduct (Product product) throws Exception;
 	
 	/**
 	 * 제품 목록 조회
