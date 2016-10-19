@@ -9,8 +9,8 @@
 	<resultMap type="project.jsp.bakery.model.product" id="product">
 		<result property="id" column="id" />
 		<result property="proClassify" column="pro_classify" />
-		<result property="pro_name" column="pro_name" />
-		<result property="pro_price" column="pro_price" />
+		<result property="proName" column="pro_name" />
+		<result property="proPrice" column="pro_price" />
 		<result property="stock" column="stock" />
 		<result property="status" column="status" />
 		<result property="content" column="content" />
@@ -19,9 +19,9 @@
 		<result property="sugar" column="sugar" />
 		<result property="fat" column="fat" />
 		<result property="protein" column="protein" />
-		<result property="pro_img" column="pro_img" />
-		<result property="pro_edit_date" column="pro_edit_date" />
-		<result property="pro_reg_date" column="pro_reg_date" />
+		<result property="proImg" column="pro_img" />
+		<result property="proEditDate" column="pro_edit_date" />
+		<result property="proRegDate" column="pro_reg_date" />
 	</resultMap>
 	
 	
