@@ -11,14 +11,14 @@
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
 	<resultMap id="cart" type="project.jsp.bakery.model.cart">
 		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
-		<result property=" id" column="id" />
-		<result property=" proName" column="pro_name" />
-		<result property=" proPrice" column="pro_price" />
-		<result property=" proCount" column="pro_count" />
-		<result property=" orderNo" column="order_no" />
-		<result property=" opText" column="op_text" />
-		<result property=" Cartcol" column="Cartcol" />
-		<result property=" OrderId" column="Order_id" />
+		<result property="id" column="id" />
+		<result property="proName" column="pro_name" />
+		<result property="proPrice" column="pro_price" />
+		<result property="proCount" column="pro_count" />
+		<result property="orderNo" column="order_no" />
+		<result property="opText" column="op_text" />
+		<result property="Cartcol" column="Cartcol" />
+		<result property="OrderId" column="Order_id" />
 	</resultMap>
 
 </mapper>
