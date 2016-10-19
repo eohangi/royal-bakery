@@ -21,5 +21,39 @@
 		<result property="orderCategory" column="order_category" />
 		<result property="orEditTime" column="or_edit_time" />
 	</resultMap>
+	
+		<!-- 게시글 정보 저장하기 -->
+	<insert id="insertOrder" parameterType="project.jsp.bakery.model.order"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO order(order_no,total_sum,member_id,or_reg_date,pickup_time,barcode,order_category,or_edit_time)VALUES ( #{orderNo}, #{totalSum}, #{memberId},now(),now(), #{barcode}, #{orderCategory},now())
+	</insert>
+	
+	<!-- 게시물 목록을 조회한다. -->
+	<select id="selectOrder" parameterType="project.jsp.bakery.model.order"
+		resultMap="order">
+		SELECT id,order_no,total_sum,member_id,or_reg_date,pickup_time,
+		barcode,order_category,or_edit_time
 
+		FROM order
+
+		WHERE
+			category=#{category}
+
+		
+		ORDER BY id DESC
+		LIMIT #{limitStart},#{listCount}
+	</select>
+	
+<!-- 	<update id="updateOrder" parameterType="project.jsp.bakery.model.order">
+		UPDATE bbs_document
+		SET category=#{category},
+		writer_name=#{writerName},
+		email=#{email},
+		subject=#{subject},
+		content=#{content},
+		ip_address=#{ipAddress},
+		edit_date=now()
+		WHERE id=#{id}
+	</update>
+ -->
 </mapper>
