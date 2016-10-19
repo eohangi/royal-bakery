@@ -25,6 +25,7 @@
 		<mapper resource="project/jsp/bakery/dao/mapper/DocumentMapper.xml" />
 		<mapper resource="project/jsp/bakery/dao/mapper/CommentMapper.xml" />
 		<mapper resource="project/jsp/bakery/dao/mapper/CustomMapper.xml" />
+		<mapper resource="project/jsp/bakery/dao/mapper/MemberMapper.xml" />
 	</mappers>
 </configuration>
 
