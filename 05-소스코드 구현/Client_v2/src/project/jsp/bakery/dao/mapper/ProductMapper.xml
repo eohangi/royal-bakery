@@ -5,9 +5,9 @@
 
 <!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
 <mapper namespace="ProductMapper">
-
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
 	<resultMap type="project.jsp.bakery.model.product" id="product">
+	
 		<result property="id" column="id" />
 		<result property="proClassify" column="pro_classify" />
 		<result property="proName" column="pro_name" />
@@ -24,14 +24,16 @@
 		<result property="proEditDate" column="pro_edit_date" />
 		<result property="proRegDate" column="pro_reg_date" />
 	</resultMap>
-	
+
 	<!-- 제품 저장하기 -->
 	<insert id="insertProduct" parameterType="project.jsp.bakery.model.product"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO product (
-		 pro_classify, pro_name, pro_price, pro_img, stock, status, content, kcal, na, sugar, fat, protein, pro_edit_date, pro_reg_date
+		pro_classify, pro_name, pro_price, pro_img, stock, status, content,
+		kcal, na, sugar, fat, protein, pro_edit_date, pro_reg_date
 		) VALUES (
-		#{proClassify} ,#{proName},#{proPrice},#{proImg},#{stock},#{status},#{content},
+		#{proClassify}
+		,#{proName},#{proPrice},#{proImg},#{stock},#{status},#{content},
 		#{kcal},#{na},#{sugar},#{fat},#{protein}, now(), now()
 		)
 	</insert>
@@ -39,53 +41,60 @@
 	<!-- 제품 목록을 조회한다. -->
 	<select parameterType="project.jsp.bakery.model.product"
 		resultMap="product" id="selectProductList">
-		SELECT id, pro_classify, pro_name, pro_price, pro_img, stock, status, content, kcal, na, sugar, fat, protein
+		SELECT id, pro_classify, pro_name, pro_price,
+		pro_img, stock, status, content, kcal, na, sugar, fat, protein
 
-		FROM product
+		FROM
+		product
 
 		WHERE pro_classify=#{proClassify}
 
 		ORDER BY id DESC
-		LIMIT #{limitStart}, #{listCount}
+		LIMIT
+		#{limitStart}, #{listCount}
 	</select>
 
 	<!-- 제품 하나에 대한 정보를 조회한다. -->
 	<select parameterType="project.jsp.bakery.model.product"
 		resultMap="product" id="selectProduct">
-		SELECT id, pro_classify, pro_name, pro_price, pro_img, stock, status, content, kcal, na, sugar, fat, protein,pro_edit_date, pro_reg_date
+		SELECT id, pro_classify, pro_name, pro_price,
+		pro_img, stock, status, content, kcal, na, sugar, fat,
+		protein,pro_edit_date, pro_reg_date
 		FROM product
-		WHERE pro_classify=#{proClassify} AND id=#{id}
+		WHERE
+		pro_classify=#{proClassify} AND id=#{id}
 	</select>
 
 	<!-- 전체 제품 수를 조회한다. -->
 	<select parameterType="project.jsp.bakery.model.product"
 		resultType="int" id="selectProduct">
 		SELECT COUNT(id) FROM product
-		WHERE pro_classify=#{proClassify}
+		WHERE
+		pro_classify=#{proClassify}
 	</select>
-	
+
 	<!-- 제품 삭제하기 -->
 	<delete parameterType="project.jsp.bakery.model.product" id="deleteProduct">
 		DELETE FROM product WHERE id=#{id}
 	</delete>
-	
+
 	<!-- 제품 정보 수정하기 -->
 	<update parameterType="project.jsp.bakery.model.product" id="updateProduct">
 		UPDATE product SET
-			pro_classify=#{proClassify},
-			pro_name=#{proName},
-			pro_price=#{proPrice},
-			stock=#{stock},
-			status=#{status},
-			content=#{content},
-			kcal=#{kcal},
-			na=#{na},
-			sugar=#{sugar},
-			fat=#{fat},
-			protein=#{protein},
-			pro_img=#{proImg},
-			pro_edit_date=now()
-		WHERE id=#{id}			
+		pro_classify=#{proClassify},
+		pro_name=#{proName},
+		pro_price=#{proPrice},
+		stock=#{stock},
+		status=#{status},
+		content=#{content},
+		kcal=#{kcal},
+		na=#{na},
+		sugar=#{sugar},
+		fat=#{fat},
+		protein=#{protein},
+		pro_img=#{proImg},
+		pro_edit_date=now()
+		WHERE id=#{id}
 	</update>
 
 </mapper>
