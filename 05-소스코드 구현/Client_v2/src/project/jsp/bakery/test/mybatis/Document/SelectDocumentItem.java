@@ -14,7 +14,7 @@ public class SelectDocumentItem {
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 
 		Document document = new Document();
-		document.setId(4);
+		document.setId(5);
 
 		Document item = null;
 
@@ -22,7 +22,7 @@ public class SelectDocumentItem {
 			// professormapper.selectprofessorlist 기능을 호출한다.
 			// 두번째 파라미터는 조회 조건시에 사용될 파라미터 --> Beans객체
 			// 조회 결과가 단일행을 리턴하기 때문에 Beans 객체 형태로 리턴된다
-			item = sqlSession.selectOne("DocumentMapper.selectDocumentItem", document);
+			item = sqlSession.selectOne("DocumentMapper.selectDocument", document);
 		} catch (Exception e) {
 			System.out.println(e.getLocalizedMessage());
 			System.out.println("데이터 조회에 실패했습니다.");
