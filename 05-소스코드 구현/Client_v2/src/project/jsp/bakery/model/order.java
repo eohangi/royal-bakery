@@ -59,10 +59,10 @@ public class order {
 	public void setOrderCategory(String orderCategory) {
 		this.orderCategory = orderCategory;
 	}
-	public String getOrDditTime() {
+	public String getOrEditTime() {
 		return orEditTime;
 	}
-	public void setOrDditTime(String orEditTime) {
+	public void setOrEditTime(String orEditTime) {
 		this.orEditTime = orEditTime;
 	}
 	@Override
@@ -71,6 +71,8 @@ public class order {
 				+ ", orRegDate=" + orRegDate + ", pickupTime=" + pickupTime + ", barcode=" + barcode
 				+ ", orderCategory=" + orderCategory + ", orEditTime=" + orEditTime + "]";
 	}
+
+	
 	
 	
 	

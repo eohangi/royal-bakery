@@ -6,10 +6,10 @@
 <!-- 이 파일의 경로를 config.xml에 명시해야 한다. -->
 
 <!-- Professor 테이블에 대한 CRUD 기능을 구현하기 위한 Mapper -->
-<mapper namespace="CartMember">
+<mapper namespace="CartMapper">
 
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
-	<resultMap id="cart" type="project.jsp.bakery.model.cart">
+	<resultMap id="Cart" type="project.jsp.bakery.model.cart">
 		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
 		<result property="id" column="id" />
 		<result property="proName" column="pro_name" />

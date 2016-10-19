@@ -19,7 +19,7 @@ public class MyBatisConnectionFactory {
 
 			// 접속 정보를 명시하고 있는 XML의 경로 읽기
 			Reader reader = Resources.getResourceAsReader(
-								"project/jsp/mysite/dao/config.xml");
+								"project/jsp/bakery/dao/config.xml");
 
 			if (sqlSessionFactory == null) {
 				sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
