@@ -1,6 +1,6 @@
 package project.jsp.bakery.model;
 
-public class product {
+public class Product {
 	private int id;
 	private String proClassify;
 	private String proName;
