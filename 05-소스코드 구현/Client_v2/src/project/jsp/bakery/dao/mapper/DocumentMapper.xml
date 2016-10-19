@@ -20,4 +20,24 @@
 		<result property="check" column="check" />
 		<result property="memberId" column="Member_id" />
 	</resultMap>
+	
+	<!-- 게시글 정보 저장하기 -->
+	<insert id="insertDocument" parameterType="project.jsp.bakery.model.Document"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO document (
+			category, writer_name, subject, content, reg_date, edit_date, ip_addr,
+			Member_id, writer_pw 
+		) VALUE (
+			#{category}, #{writerName}, #{subject}, #{content}, now(), now(), #{ipAddr},
+			
+			<choose>
+				<when test="memberId == 0">
+					null, password#({writerPw})
+				</when>
+				<otherwise>
+					#{memberId}, #{writerPw}
+				</otherwise>
+			</choose> 
+		)
+	</insert>
 </mapper>
