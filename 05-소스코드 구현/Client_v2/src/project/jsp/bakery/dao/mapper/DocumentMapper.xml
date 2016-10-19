@@ -40,4 +40,47 @@
 			</choose> 
 		)
 	</insert>
+	
+	<!-- 다중행 조회 -->
+	<select id="selectDocumentList"
+		parameterType="project.jsp.bakery.model.Document"
+		resultMap="document">
+		SELECT
+			category, writer_name, subject, content,
+			DATE_FORMAT(reg_date, '%Y-%m-%d') AS reg_date,
+			DATE_FORMAT(edit_date, '%Y-%m-%d') AS edit_date,
+			ip_addr, Member_id, writer_pw
+		FROM document
+		ORDER BY id ASC	
+	</select>
+	
+	<!-- 단일행 조회 -->
+	<select id="selectDocumentItem"
+		parameterType="project.jsp.bakery.model.Document"
+		resultMap="document">
+		SELECT
+			category, writer_name, subject, content,
+			DATE_FORMAT(reg_date, '%Y-%m-%d') AS reg_date,
+			DATE_FORMAT(edit_date, '%Y-%m-%d') AS edit_date,
+			ip_addr, Member_id, writer_pw
+		FROM document
+		WHERE id=#{id}
+	</select>
+	
+	<!-- 데이터 갱신 -->
+	<update id="updateDocumentItem"
+		parameterType="project.jsp.bakery.model.Document">
+		UPDATE document SET
+			category=#{category}, writer_name=#{writerName}, 
+			subject=#{subject}, content=#{content}, ip_addr=#{ipAddr},
+			edit_date=now()
+		WHERE id=#{id}		
+	</update>
+	
+	<!-- 데이터 삭제 -->
+	<delete id="deleteDocumentItem"
+		parameterType="project.jsp.bakery.model.Document">
+		DELETE FROM document WHERE id=#{id}
+	</delete>
+	
 </mapper>
