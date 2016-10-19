@@ -24,9 +24,20 @@
 		<result property="proEditDate" column="pro_edit_date" />
 		<result property="proRegDate" column="pro_reg_date" />
 	</resultMap>
+	
+	<!-- 제품 저장하기 -->
+	<insert id="insertProduct" parameterType="project.jsp.bakery.model.product"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO product (
+		 pro_classify, pro_name, pro_price, pro_img, stock, status, content, kcal, na, sugar, fat, protein, pro_edit_date, pro_reg_date
+		) VALUES (
+		#{proClassify} ,#{proName},#{proPrice},#{proImg},#{stock},#{status},#{content},
+		#{kcal},#{na},#{sugar},#{fat},#{protein}, now(), now()
+		)
+	</insert>
 
-	<!-- 게시물 목록을 조회한다. -->
-	<select parameterType="study.jsp.mysite.model.product"
+	<!-- 제품 목록을 조회한다. -->
+	<select parameterType="project.jsp.bakery.model.product"
 		resultMap="product" id="selectProductList">
 		SELECT id, pro_classify, pro_name, pro_price, pro_img, stock, status, content, kcal, na, sugar, fat, protein
 
@@ -38,19 +49,43 @@
 		LIMIT #{limitStart}, #{listCount}
 	</select>
 
-	<!-- 게시물 하나에 대한 정보를 조회한다. -->
-	<select parameterType="study.jsp.mysite.model.product"
+	<!-- 제품 하나에 대한 정보를 조회한다. -->
+	<select parameterType="project.jsp.bakery.model.product"
 		resultMap="product" id="selectProduct">
 		SELECT id, pro_classify, pro_name, pro_price, pro_img, stock, status, content, kcal, na, sugar, fat, protein,pro_edit_date, pro_reg_date
 		FROM product
 		WHERE pro_classify=#{proClassify} AND id=#{id}
 	</select>
 
-	<!-- 전체 게시물 수를 조회한다. -->
-	<select parameterType="study.jsp.mysite.model.product"
+	<!-- 전체 제품 수를 조회한다. -->
+	<select parameterType="project.jsp.bakery.model.product"
 		resultType="int" id="selectProduct">
 		SELECT COUNT(id) FROM product
 		WHERE pro_classify=#{proClassify}
 	</select>
+	
+	<!-- 제품 삭제하기 -->
+	<delete parameterType="project.jsp.bakery.model.product" id="deleteProduct">
+		DELETE FROM product WHERE id=#{id}
+	</delete>
+	
+	<!-- 제품 정보 수정하기 -->
+	<update parameterType="project.jsp.bakery.model.product" id="updateProduct">
+		UPDATE product SET
+			pro_classify=#{proClassify},
+			pro_name=#{proName},
+			pro_price=#{proPrice},
+			stock=#{stock},
+			status=#{status},
+			content=#{content},
+			kcal=#{kcal},
+			na=#{na},
+			sugar=#{sugar},
+			fat=#{fat},
+			protein=#{protein},
+			pro_img=#{proImg},
+			pro_edit_date=now()
+		WHERE id=#{id}			
+	</update>
 
 </mapper>

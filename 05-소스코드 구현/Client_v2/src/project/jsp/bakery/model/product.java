@@ -2,11 +2,11 @@ package project.jsp.bakery.model;
 
 public class product  { // <<-- 클래스명 소문자
 	private int id;
-	private String proClassify;
+	private char proClassify;  // a: 빵, b: 케잌 c: 쿠키
 	private String proName;
 	private int proPrice;
-	private int stock;
-	private String status;
+	private int stock;			
+	private char status;		// o: 있음	x: 품절
 	private String content;
 	private int kcal;
 	private int na;
@@ -18,16 +18,17 @@ public class product  { // <<-- 클래스명 소문자
 	private String proRegDate;
 	
 	//getter , setter
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getProClassify() {
+	public char getProClassify() {
 		return proClassify;
 	}
-	public void setProClassify(String proClassify) {
+	public void setProClassify(char proClassify) {
 		this.proClassify = proClassify;
 	}
 	public String getProName() {
@@ -48,10 +49,10 @@ public class product  { // <<-- 클래스명 소문자
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-	public String getStatus() {
+	public char getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(char status) {
 		this.status = status;
 	}
 	public String getContent() {
@@ -102,10 +103,10 @@ public class product  { // <<-- 클래스명 소문자
 	public void setProEditDate(String proEditDate) {
 		this.proEditDate = proEditDate;
 	}
-	public String getRegDate() {
+	public String getProRegDate() {
 		return proRegDate;
 	}
-	public void setRegDate(String proRegDate) {
+	public void setProRegDate(String proRegDate) {
 		this.proRegDate = proRegDate;
 	}
 	@Override
@@ -115,5 +116,6 @@ public class product  { // <<-- 클래스명 소문자
 				+ ", sugar=" + sugar + ", fat=" + fat + ", protein=" + protein + ", proImg=" + proImg + ", proEditDate="
 				+ proEditDate + ", proRegDate=" + proRegDate + "]";
 	}
+
 	
 }
