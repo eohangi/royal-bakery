@@ -10,8 +10,8 @@
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" 
-				    value="jdbc:mysql://localhost:3306/mydb?characterEncoding=UTF8" />
+				<property name="url"
+					value="jdbc:mysql://localhost:3306/mydb?characterEncoding=UTF8" />
 				<property name="username" value="root" />
 				<property name="password" value="root" />
 			</dataSource>
@@ -24,7 +24,7 @@
 		<mapper resource="project/jsp/bakery/dao/mapper/CartMapper.xml" />
 		<mapper resource="project/jsp/bakery/dao/mapper/DocumentMapper.xml" />
 		<mapper resource="project/jsp/bakery/dao/mapper/CommentMapper.xml" />
-
+		<mapper resource="project/jsp/bakery/dao/mapper/CustomMapper.xml" />
 	</mappers>
 </configuration>
 
