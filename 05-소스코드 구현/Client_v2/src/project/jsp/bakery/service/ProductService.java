@@ -7,7 +7,7 @@ import project.jsp.bakery.model.product;
 public interface ProductService {
 	/**
 	 * 하나의 빵 정보를 읽어들다.
-	 * @param document - 읽얻르일 게시물 일련번호가 저장된 BEans
+	 * @param document - 읽얻르일 게시물 일련번호가 저장된 Beans
 	 * @return BbsDocument - 읽어 들일 게심루 일련번호가 저장된 Beans
 	 * @throws Exception
 	 */

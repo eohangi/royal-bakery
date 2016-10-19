@@ -5,6 +5,7 @@
 
 <!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
 <mapper namespace="ProductMapper">
+
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
 	<resultMap type="project.jsp.bakery.model.product" id="product">
 		<result property="id" column="id" />
@@ -23,6 +24,33 @@
 		<result property="proEditDate" column="pro_edit_date" />
 		<result property="proRegDate" column="pro_reg_date" />
 	</resultMap>
-	
-	
+
+	<!-- 게시물 목록을 조회한다. -->
+	<select parameterType="study.jsp.mysite.model.product"
+		resultMap="product" id="selectProductList">
+		SELECT id, pro_classify, pro_name, pro_price, pro_img, stock, status, content, kcal, na, sugar, fat, protein
+
+		FROM product
+
+		WHERE pro_classify=#{proClassify}
+
+		ORDER BY id DESC
+		LIMIT #{limitStart}, #{listCount}
+	</select>
+
+	<!-- 게시물 하나에 대한 정보를 조회한다. -->
+	<select parameterType="study.jsp.mysite.model.product"
+		resultMap="product" id="selectProduct">
+		SELECT id, pro_classify, pro_name, pro_price, pro_img, stock, status, content, kcal, na, sugar, fat, protein,pro_edit_date, pro_reg_date
+		FROM product
+		WHERE pro_classify=#{proClassify} AND id=#{id}
+	</select>
+
+	<!-- 전체 게시물 수를 조회한다. -->
+	<select parameterType="study.jsp.mysite.model.product"
+		resultType="int" id="selectProduct">
+		SELECT COUNT(id) FROM product
+		WHERE pro_classify=#{proClassify}
+	</select>
+
 </mapper>
