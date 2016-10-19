@@ -67,7 +67,7 @@
 
 	<!-- 전체 제품 수를 조회한다. -->
 	<select parameterType="project.jsp.bakery.model.product"
-		resultType="int" id="selectProduct">
+		resultType="int" id="selectProductCount">
 		SELECT COUNT(id) FROM product
 		WHERE
 		pro_classify=#{proClassify}
