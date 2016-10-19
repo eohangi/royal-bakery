@@ -15,9 +15,9 @@
 
 
 		<!-- 페이지 내용 영역 -->
-<div class="col-md-2" id="slide1">
-		<h1>슬라이드1</h1>
-	</div>
+		<div class="col-md-2" id="slide1">
+			<h1>슬라이드1</h1>
+		</div>
 		<div class="col-md-8">
 			<ul id="myTab" class="nav nav-tabs">
 				<li class="active col-md-4"><a href="bread.jsp">bread</a></li>
@@ -36,7 +36,8 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input class="pull-left" type="text" placeholder=" 현재 재고량 : 15 개">
+								<input class="pull-left" type="text"
+									placeholder=" 현재 재고량 : 15 개">
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
@@ -53,7 +54,8 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input class="pull-left" type="text" placeholder=" 현재 재고량 : 15 개">
+								<input class="pull-left" type="text"
+									placeholder=" 현재 재고량 : 15 개">
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
@@ -69,7 +71,8 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input class="pull-left" type="text" placeholder=" 현재 재고량 : 15 개">
+								<input class="pull-left" type="text"
+									placeholder=" 현재 재고량 : 15 개">
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
@@ -86,7 +89,8 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input class="pull-left" type="text" placeholder=" 현재 재고량 : 15 개">
+								<input class="pull-left" type="text"
+									placeholder=" 현재 재고량 : 15 개">
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
@@ -103,7 +107,8 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input class="pull-left" type="text" placeholder=" 현재 재고량 : 15 개">
+								<input class="pull-left" type="text"
+									placeholder=" 현재 재고량 : 15 개">
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
@@ -119,7 +124,8 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input class="pull-left" type="text" placeholder=" 현재 재고량 : 15 개">
+								<input class="pull-left" type="text"
+									placeholder=" 현재 재고량 : 15 개">
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
@@ -136,7 +142,8 @@
 							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
 							<p>1000won</p>
 							<p>
-								<input class="pull-left" type="text" placeholder=" 현재 재고량 : 15 개">
+								<input class="pull-left" type="text"
+									placeholder=" 현재 재고량 : 15 개">
 								<!-- 갯수 -->
 								<input type="number" name="quantity" class="pull-left" min="1"
 									max="5">
@@ -149,10 +156,10 @@
 
 			<!--// 탭 화면 끝 -->
 		</div>
-	
 
-<!-- 슬라이드 2 -->
-			<!---------------------------------------  장바구니   ----------------------------------- -->
+
+		<!-- 슬라이드 2 -->
+		<!---------------------------------------  장바구니   ----------------------------------- -->
 		<form class="form-horizontal" id="inquireform">
 
 			<div class="col-md-2" style="padding-right: 0px;">
@@ -190,7 +197,7 @@
 			</div>
 		</form>
 		<!--------------------------------------  장바구니 ------------ ------------------------- -->
-</div>
+	</div>
 
 	<%@ include file="/WEB-INF/inc/Footer.jsp"%>
 </body>
