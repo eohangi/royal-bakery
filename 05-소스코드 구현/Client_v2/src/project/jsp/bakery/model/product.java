@@ -1,6 +1,6 @@
 package project.jsp.bakery.model;
 
-public class product  { // <<-- 클래스명 대문자
+public class product  { // <<-- 클래스명 소문자
 	private int id;
 	private String proClassify;
 	private String proName;
