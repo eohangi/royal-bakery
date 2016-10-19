@@ -62,8 +62,8 @@ public class order {
 	public String getOrDditTime() {
 		return orEditTime;
 	}
-	public void setOrDditTime(String orDditTime) {
-		this.orEditTime = orDditTime;
+	public void setOrDditTime(String orEditTime) {
+		this.orEditTime = orEditTime;
 	}
 	@Override
 	public String toString() {
