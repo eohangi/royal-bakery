@@ -55,7 +55,7 @@
 	</select>
 	
 	<!-- 단일행 조회 -->
-	<select id="selectDocumentItem"
+	<select id="selectDocument"
 		parameterType="project.jsp.bakery.model.Document"
 		resultMap="document">
 		SELECT
@@ -68,7 +68,7 @@
 	</select>
 	
 	<!-- 데이터 갱신 -->
-	<update id="updateDocumentItem"
+	<update id="updateDocument"
 		parameterType="project.jsp.bakery.model.Document">
 		UPDATE document SET
 			category=#{category}, writer_name=#{writerName}, 
@@ -78,7 +78,7 @@
 	</update>
 	
 	<!-- 데이터 삭제 -->
-	<delete id="deleteDocumentItem"
+	<delete id="deleteDocument"
 		parameterType="project.jsp.bakery.model.Document">
 		DELETE FROM document WHERE id=#{id}
 	</delete>
