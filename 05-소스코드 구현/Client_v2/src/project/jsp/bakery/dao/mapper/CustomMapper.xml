@@ -49,7 +49,7 @@
 		SELECT id, cu_classify, cu_name, cu_price, cu_edit_date, cu_reg_date
 		FROM custom 
 		WHERE
-		cu_classify=#{cuClassify}
+		id=#{id}
 	</select>
 
 	<update id="updateCustomItem" parameterType="project.jsp.bakery.model.Custom">
