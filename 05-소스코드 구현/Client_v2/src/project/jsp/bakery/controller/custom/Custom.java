@@ -72,6 +72,6 @@ public class Custom extends BaseController {
 		upload = UploadHelper.getInstance();
 		
 		// "/WEB-INF/views/index.jsp"파일을 View로 사용한다.
-		return "/custom/CustomOrder";
+		return "custom/CustomOrder";
 	}
 }
