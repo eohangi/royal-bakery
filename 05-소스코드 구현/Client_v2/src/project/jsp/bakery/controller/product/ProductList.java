@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.Logger;
 
 import project.jsp.helper.BaseController;
+import project.jsp.helper.WebHelper;
 
 /**
  * Servlet implementation class ProductList
@@ -19,11 +20,10 @@ import project.jsp.helper.BaseController;
 public class ProductList extends BaseController {
 	
 	/**1. 사용할 것들 선언*/
-	
-	SqlSession sqlSession;
-	
+		
 	Logger logger;
-	
+	SqlSession sqlSession;
+	WebHelper web;
 	
 	
 	@Override
