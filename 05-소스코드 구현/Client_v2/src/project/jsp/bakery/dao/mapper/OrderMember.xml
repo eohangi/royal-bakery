@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 이 파일의 경로를 config.xml에 명시해야 한다. -->
+
+<!-- Professor 테이블에 대한 CRUD 기능을 구현하기 위한 Mapper -->
+<mapper namespace="OrderMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="order" type="project.jsp.bakery.model.order">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property=" id" column="id" />
+		<result property=" orderNo" column="order_no" />
+		<result property=" totalSum" column="total_sum" />
+		<result property=" memberId" column="member_id" />
+		<result property=" orRegDate" column="or_reg_date" />
+		<result property=" pickupTime" column="pickup_time" />
+		<result property=" barcode" column="barcode" />
+		<result property=" orderCategory" column="order_category" />
+		<result property=" orEditTime" column="or_edit_time" />
+	</resultMap>
+
+</mapper>
