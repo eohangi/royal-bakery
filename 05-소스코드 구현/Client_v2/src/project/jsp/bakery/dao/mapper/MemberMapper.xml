@@ -8,17 +8,17 @@
 <mapper namespace="MemberMapper">
 	<resultMap id="member" type="project.jsp.bakery.model.Member">
 		<result property="id" column="id"/>
-		<result property="name" column="name"/>
-		<result property="user_id" column="user_id"/>
-		<result property="user_pw" column="user_pw"/>
+		<result property="mem_name" column="mem_name"/>
+		<result property="mem_id" column="mem_id"/>
+		<result property="mem_pw" column="mem_pw"/>
 		<result property="email" column="email"/>
-		<result property="gender" column="gender"/>
+		<result property="phone_no" column="phone_no"/>
 		<result property="birthdate" column="birthdate"/>
-		<result property="tel" column="tel"/>
 		<result property="postcode" column="postcode"/>
 		<result property="addr1" column="addr1"/>
 		<result property="addr2" column="addr2"/>
-		<result property="profile_img" column="profile_img"/>
+		<result property="classify" column="classify"/>
+		<result property="gender" column="gender"/>
 		<result property="reg_date" column="reg_date"/>
 		<result property="edit_date" column="edit_date"/>
 	</resultMap>
@@ -26,7 +26,7 @@
 	<!-- 아이디 중복검사를 수행한다. -->
 	<select id="selectUserIdCount" parameterType="project.jsp.bakery.model.Member"
 		resultType="int">
-		select count(id) from member where user_id=#{user_id}
+		select count(id) from member where user_id=#{mem_id}
 	</select>
 
 	<!-- 이메일 중복검사를 수행한다. -->
@@ -39,15 +39,13 @@
 	<insert id="insertMember" parameterType="project.jsp.bakery.model.Member"
 		useGeneratedKeys="true" keyProperty="id">
 		Insert into member(
-		name,user_id, user_pw,
-		email, gender, birthdate, tel,
-		postcode, addr1, addr2,
-		profile_img, reg_date, edit_date)
+		mem_name,mem_id, mem_pw,
+		email, phone_no, birthdate, postcode,
+		addr1, addr2, classify, gender, reg_date, edit_date)
 		values(
-		#{name},#{user_id},password(#{user_pw}),
-		#{email},#{gender},#{birthdate},#{tel},
-		#{postcode},#{addr1},#{addr2},#{profile_img},
-		now(),now()
+		#{mem_name},#{mem_id},password(#{mem_pw}),
+		#{email},#{phone_no},#{birthdate},#{postcode},
+		#{addr1},#{addr2},#{classify},#{gender},now(),now()
 		)
 	</insert>
 
@@ -55,16 +53,17 @@
 	<select id="selectLoginInfo" parameterType="project.jsp.bakery.model.Member"
 	resultMap="member">
 		select 
-			id,name,user_id,user_pw,email,gender,date_format(birthdate,'%y-%m-%d') as birthdate,
-			tel,postcode,addr1,addr2,profile_img,reg_date,edit_date
+			id,mem_name,mem_id,mem_pw,email,
+			phone_no,date_format(birthdate,'%y-%m-%d') as birthdate,addr1,addr2,
+			gender,reg_date,edit_date
 			from member
-			where user_id=#{user_id} and user_pw=password(#{user_pw})
+			where mem_id=#{mem_id} and mem_pw=password(#{mem_pw})
 			order by id desc limit 0,1
 	</select>
 	
 	<!-- 비밀번호 재발급// 이메일주소가 일치하는 비밀번호를 변경한다. -->
 	<update id="updateMemberPasswordByEmail" parameterType="project.jsp.bakery.model.Member">
-	UPDATE member SET user_pw = password(#{user_pw}), edit_date=now()
+	UPDATE member SET mem_pw = password(#{mem_pw}), edit_date=now()
 	WHERE email=#{email};	
 	</update>
 	
@@ -72,7 +71,7 @@
 	<select id="selectMemberPasswordCount" parameterType="project.jsp.bakery.model.Member"
 		resultType="int">
 		SELECT count(id) FROM member
-		WHERE id=#{id} and user_pw=password(#{user_pw});
+		WHERE id=#{id} and mem_pw=password(#{mem_pw});
 	</select>
 	
 	<!-- 회원정보를 삭제한다//탈퇴. -->

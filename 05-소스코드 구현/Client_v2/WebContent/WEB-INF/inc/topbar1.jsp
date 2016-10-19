@@ -11,7 +11,7 @@
 	<div class="titlebar">
 		<ul class="list-unstyled navi">
 			<li><a href="LoginPage.jsp">Login</a></li>
-			<li><a href="ClientJoinPage.jsp">Join</a></li>
+			<li><a href="${pageContext.request.contextPath}/member/Join.do">Join</a></li>
 			<li><a href="Story.jsp">Brand</a>
 				<ul class="list-unstyled">
 					<li><a href="Story.jsp">Story</a></li>

@@ -2,42 +2,43 @@ package project.jsp.bakery.model;
 
 public class Member {
 	private int id;
-	private String name;
-	private String user_id;
-	private String user_pw;
+	private String mem_name;
+	private String mem_id;
+	private String mem_pw;
 	private String email;
-	private String gender;
+	private String phone_no;
 	private String birthdate;
-	private String tel;
 	private String postcode;
 	private String addr1;
 	private String addr2;
-	private String profile_img;
+	private String classify;
+	private String gender;
 	private String reg_date;
 	private String edit_date;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getMem_name() {
+		return mem_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
 	}
-	public String getUser_id() {
-		return user_id;
+	public String getMem_id() {
+		return mem_id;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
 	}
-	public String getUser_pw() {
-		return user_pw;
+	public String getMem_pw() {
+		return mem_pw;
 	}
-	public void setUser_pw(String user_pw) {
-		this.user_pw = user_pw;
+	public void setMem_pw(String mem_pw) {
+		this.mem_pw = mem_pw;
 	}
 	public String getEmail() {
 		return email;
@@ -45,23 +46,17 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getGender() {
-		return gender;
+	public String getPhone_no() {
+		return phone_no;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setPhone_no(String phone_no) {
+		this.phone_no = phone_no;
 	}
 	public String getBirthdate() {
 		return birthdate;
 	}
 	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
-	}
-	public String getTel() {
-		return tel;
-	}
-	public void setTel(String tel) {
-		this.tel = tel;
 	}
 	public String getPostcode() {
 		return postcode;
@@ -81,11 +76,17 @@ public class Member {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
-	public String getProfile_img() {
-		return profile_img;
+	public String getClassify() {
+		return classify;
 	}
-	public void setProfile_img(String profile_img) {
-		this.profile_img = profile_img;
+	public void setClassify(String classify) {
+		this.classify = classify;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	public String getReg_date() {
 		return reg_date;
@@ -101,11 +102,12 @@ public class Member {
 	}
 	@Override
 	public String toString() {
-		return "Member [id=" + id + ", name=" + name + ", user_id=" + user_id + ", user_pw=" + user_pw + ", email="
-				+ email + ", gender=" + gender + ", birthdate=" + birthdate + ", tel=" + tel + ", postcode=" + postcode
-				+ ", addr1=" + addr1 + ", addr2=" + addr2 + ", profile_img=" + profile_img + ", reg_date=" + reg_date
-				+ ", edit_date=" + edit_date + "]";
+		return "Member [id=" + id + ", mem_name=" + mem_name + ", mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", email="
+				+ email + ", phone_no=" + phone_no + ", birthdate=" + birthdate + ", postcode=" + postcode + ", addr1="
+				+ addr1 + ", addr2=" + addr2 + ", classify=" + classify + ", gender=" + gender + ", reg_date="
+				+ reg_date + ", edit_date=" + edit_date + "]";
 	}
+	
 	
 	
 }
