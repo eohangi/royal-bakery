@@ -74,7 +74,7 @@ public abstract class BaseController extends HttpServlet {
         // 획득한 View가 존재한다면 화면 표시
         if (view != null) {
             // View를 생성한다.
-            view = "/WEB-INF/" + view + ".jsp";
+            view = "/WEB-INF/views/" + view + ".jsp";
             logger.info("[View] " + view);
             RequestDispatcher dispatcher = request.getRequestDispatcher(view);
             dispatcher.forward(request, response);
