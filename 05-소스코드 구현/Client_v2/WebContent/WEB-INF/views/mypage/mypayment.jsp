@@ -51,9 +51,10 @@
 
 					<!-- 페이지에 들어갈 2가지 메뉴시작-->
 					<ul class="payinner-content-container" id="boxbody">
-						<li class="mybox" id="mybox" onclick=window.open("OrderList.jsp","_self")>
+						<li class="mybox" id="mybox" >
+						<a href="${pageContext.request.contextPath}/mypage/ReservationList.do">
 							<p>
-								<img style="width: 40px; height: 40px;" src="img/search.png">
+								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
 							<p>
 							<h4>예약확인</h4>
@@ -61,11 +62,13 @@
 							<p>
 							<h6>고객님이 결제하신 상품을 확인 할 수 있습니다.</h6>
 							</p>
+							</a>
 
 						</li>
-						<li class="mybox" id="mybox" onclick=window.open("ReservationList.jsp","_self")>
+						<li class="mybox" id="mybox" >
+						<a href="${pageContext.request.contextPath}/mypage/OrderList.do">
 							<p>
-								<img style="width: 40px; height: 40px;" src="img/search.png">
+								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
 							<p>
 							<h4>구매내역</h4>
@@ -73,6 +76,7 @@
 							<p>
 							<h6>고객님이 받아가신 상품을 확인 할 수 있습니다.</h6>
 							</p>
+							</a>
 						</li>
 					</ul>
 					<!-- /페이지에 들어갈 2가지 메뉴시작-->

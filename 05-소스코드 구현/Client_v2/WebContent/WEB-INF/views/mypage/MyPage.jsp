@@ -37,10 +37,12 @@
 					</div>
 					<!-- 페이지에 들어갈 4가지 메뉴시작-->
 					<ul class="myinner-content-container" id="boxbody">
-						<li class="mybox" id="mybox" onclick=window.open("InformationUpdate.jsp","_self")>
-							<a href="http://www.naver.com"></a>
+						<li class="mybox" id="mybox" >
+						<a href="${pageContext.request.contextPath}/member/InformationUpdate.do">
+
 							<p>
-								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
+								<img style="width: 40px; height: 40px;"
+									src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
 							<p>
 							<h4>개인정보 수정</h4>
@@ -48,10 +50,13 @@
 							<p>
 							<h6>고객님의 개인정보를 변경할 수 있습니다.</h6>
 							</p>
+							</a>
 						</li>
-						<li class="mybox" id="mybox" onclick=window.open("MybookingList.jsp","_self")>
+						<li class="mybox" id="mybox" >
+						<a href="${pageContext.request.contextPath}/mypage/MybookingList.do">
 							<p>
-								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
+								<img style="width: 40px; height: 40px;"
+									src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
 							<p>
 							<h4>장바구니</h4>
@@ -59,10 +64,13 @@
 							<p>
 							<h6>고객님의 담으신 상품을 확인 할 수 있습니다.</h6>
 							</p>
+							</a>
 						</li>
-						<li class="mybox" id="mybox" onclick=window.open("mypayment.jsp","_self")>
+						<li class="mybox" id="mybox">
+						<a href="${pageContext.request.contextPath}/mypage/mypayment.do">
 							<p>
-								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
+								<img style="width: 40px; height: 40px;"
+									src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
 							<p>
 							<h4>결제확인</h4>
@@ -70,18 +78,20 @@
 							<p>
 							<h6>고객님이 결제하신 상품을 확인할 수 있습니다.</h6>
 							</p>
+							</a>
 						</li>
-						<li class="mybox" id="mybox" onclick=window.open("MyquestionList.jsp","_self")>
-							<p>
-								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
-							</p>
-							<p>
-							<h4>상담내역</h4>
-							</p>
-							<p>
-							<h6>상담한 내역을 확인 할 수 있습니다.</h6>
-							</p>
-						</li>
+						<li class="mybox" id="mybox"><a href="${pageContext.request.contextPath}/Inquire/MyquestionList.do">
+								<p>
+									<img style="width: 40px; height: 40px;"
+										src="${pageContext.request.contextPath}/assets/img/search.png">
+								</p>
+								<p>
+								<h4>상담내역</h4>
+								</p>
+								<p>
+								<h6>상담한 내역을 확인 할 수 있습니다.</h6>
+								</p>
+						</a></li>
 					</ul>
 				</div>
 			</div>
