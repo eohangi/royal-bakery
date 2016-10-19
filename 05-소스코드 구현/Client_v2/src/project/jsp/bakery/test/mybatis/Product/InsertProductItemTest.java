@@ -12,19 +12,18 @@ public class InsertProductItemTest {
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		/** (2) 데이터베이스에 저장할 product의 정보를 저장하고 있는 javabeans 객체 */
 		product product = new product();
-		product.setProClassify('a');
-		product.setProName("클라우드 팝");
-		product.setProPrice(5800);
-		product.setProImg("/Client_v2/WebContent/assets/img/bread/b001.jpg");
-		product.setStatus('o');
-		product.setContent("부드러운 슈와 바삭한 패스트리, 속에는 달콤한 슈크림을 듬뿍넣어 조화롭게 어우러진 봉긋한 구름을 형상화 한 제품");
-		product.setStock(43);
-		product.setFat(13);
-		product.setKcal(400);
-		product.setNa(320);
-		product.setSugar(26);
-		product.setProtein(9);
-		
+		product.setProClassify('c');	// a: 빵, b: 케잌 c: 쿠키
+		product.setProName("더블초코칩쿠키");	//품명
+		product.setProPrice(3800);				//가격
+		product.setProImg("/Client_v2/WebContent/assets/img/cokie/c009.jpg");
+		product.setStatus('o');	// o: 있음	x: 품절
+		product.setContent("더블초코칩 뚜레쥬르 쿠키");
+		product.setStock(13);	//재고		
+		product.setKcal(165);	//칼로리		
+		product.setSugar(11);	//당
+		product.setProtein(1);	//단백질
+		product.setFat(4);		//지방		
+		product.setNa(105);		//나트륨
 
 		/** (3) */
 		/** 데이터 저장 기능 호출하기 + 트렌젝션 */
