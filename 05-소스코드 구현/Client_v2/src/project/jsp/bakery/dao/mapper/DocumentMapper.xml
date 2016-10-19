@@ -18,6 +18,6 @@
 		<result property="ipAddr" column="ip_addr" />
 		<result property="category" column="category" />
 		<result property="check" column="check" />
-		<result property="memberId" column="member_id" />
+		<result property="memberId" column="Member_id" />
 	</resultMap>
 </mapper>

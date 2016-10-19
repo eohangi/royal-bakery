@@ -10,10 +10,10 @@
 	<resultMap type="project.jsp.bakery.model.Comment" id="comment">
 		<result property="id" column="id" />
 		<result property="coContent" column="co_content" />
-		<result property="regDate" column="reg_date" />
-		<result property="editDate" column="edit_date" />
-		<result property="memberId" column="member_id" />
-		<result property="documentId" column="document_id" />
+		<result property="coRegDate" column="co_reg_date" />
+		<result property="coEditDate" column="co_edit_date" />
+		<result property="memberId" column="Member_id" />
+		<result property="documentId" column="Document_id" />
 	
 	</resultMap>
 </mapper>

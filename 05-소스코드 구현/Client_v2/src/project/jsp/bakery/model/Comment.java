@@ -3,11 +3,10 @@ package project.jsp.bakery.model;
 public class Comment {
 	private int id;
 	private String coContent;
-	private String regDate;
-	private String editDate;
+	private String coRegDate;
+	private String coEditDate;
 	private int memberId;
 	private int documentId;
-	
 	
 	public int getId() {
 		return id;
@@ -21,17 +20,17 @@ public class Comment {
 	public void setCoContent(String coContent) {
 		this.coContent = coContent;
 	}
-	public String getRegDate() {
-		return regDate;
+	public String getCoRegDate() {
+		return coRegDate;
 	}
-	public void setRegDate(String regDate) {
-		this.regDate = regDate;
+	public void setCoRegDate(String coRegDate) {
+		this.coRegDate = coRegDate;
 	}
-	public String getEditDate() {
-		return editDate;
+	public String getCoEditDate() {
+		return coEditDate;
 	}
-	public void setEditDate(String editDate) {
-		this.editDate = editDate;
+	public void setCoEditDate(String coEditDate) {
+		this.coEditDate = coEditDate;
 	}
 	public int getMemberId() {
 		return memberId;
@@ -47,9 +46,9 @@ public class Comment {
 	}
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", coContent=" + coContent + ", regDate=" + regDate + ", editDate=" + editDate
-				+ ", memberId=" + memberId + ", documentId=" + documentId + "]";
+		return "Comment [id=" + id + ", coContent=" + coContent + ", coRegDate=" + coRegDate + ", coEditDate="
+				+ coEditDate + ", memberId=" + memberId + ", documentId=" + documentId + "]";
 	}
 	
-}	
 	
+}	
