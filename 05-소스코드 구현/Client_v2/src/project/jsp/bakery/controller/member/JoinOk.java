@@ -51,42 +51,22 @@ public class JoinOk extends BaseController {
 		if (web.getSession("loginInfo") != null) {
 			// 이미 SqlSession 객체를 생성했으므로, 데이터베이스 접속을 해제해야 한다.
 			sqlSession.close();
-			web.redirect(web.getRootPath() + "/Index.do", "이미 로그인 하셨습니다.");
+			web.redirect(web.getRootPath() + "/MainIndex1.do", "이미 로그인 하셨습니다.");
 			return null;
 		}
-		
-
-		/** (4) 파일이 포함된 POST 파라미터 받기 */
-		// <form>태그 안에 <input type="file">요소가 포함되어 있고,
-		// <form>태그에 enctype="multipart/form-data"가 정의되어 있는 경우
-		// WebHelper의 getString()|getInt() 메서드는 더 이상 사용할 수 없게 된다.
-		try {
-			upload.multipartRequest(request);
-		} catch (Exception e) {
-			sqlSession.close();
-			web.redirect(null, "multipart 데이터가 아닙니다.");
-			return null;
-		}
-		//uploadHelper에서 텍스트 형식의 파라미터를 분류한 Map을 리턴받아서 값을 추출한다.
-		Map<String,String> paramMap = upload.getParamMap();
-		if(paramMap == null){
-			throw new NullPointerException();
 			
-		}catch (NullPointerException e){
-			e.printStackTrace();
-		}
 		
-		String userId = paramMap.get("mem_id");
-		String userPw = paramMap.get("mem_pw");
-		String userPwre = paramMap.get("mem_pw_re");
-		String name = paramMap.get("mem_name");
-		String email = paramMap.get("email");
-		String tel = paramMap.get("phone_no");
-		String birthdate = paramMap.get("birthdate");
-		String gender = paramMap.get("gender");
-		String postcode = paramMap.get("postcode");
-		String addr1 = paramMap.get("addr1");
-		String addr2 = paramMap.get("addr2");
+		String userId = web.getString("mem_id");
+		String userPw = web.getString("mem_pw");
+		String userPwre = web.getString("mem_pw_re");
+		String name = web.getString("mem_name");
+		String email = web.getString("email");
+		String tel = web.getString("phone_no");
+		String birthdate = web.getString("birthdate");
+		String gender = web.getString("gender");
+		String postcode = web.getString("postcode");
+		String addr1 = web.getString("addr1");
+		String addr2 = web.getString("addr2");
 		
 		
 		//전달받은 파라미터는 값의 정상여부 확인을 위해서 로그로 확인
@@ -216,7 +196,7 @@ public class JoinOk extends BaseController {
 		/** (7) 전달받은 파라미터를 Beans 객체에 담는다. */
 		Member member = new Member();
 		member.setMem_id(userId);
-		member.setMem_pw(userPwre);
+		member.setMem_pw(userPw);
 		member.setMem_name(name);
 		member.setEmail(email);
 		member.setPhone_no(tel);
@@ -238,7 +218,7 @@ public class JoinOk extends BaseController {
 
 		/** (9) 가입이 완료되었으므로 메인페이지로 이동 */
 		sqlSession.close();
-		web.redirect(web.getRootPath() + "/index.do", "회원가입이 완료되었습니다. 로그인 해 주세요.");
+		web.redirect(web.getRootPath() + "/MainIndex1.do", "회원가입이 완료되었습니다. 로그인 해 주세요.");
 
 		// INSERT,UPDATE,DELETE 처리를 수행하는 action 페이지들은
 		// 자체적으로 View를 갖지 않고 결과를 확인할 수 있는
