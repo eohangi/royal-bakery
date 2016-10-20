@@ -1,6 +1,6 @@
 package project.jsp.bakery.model;
 
-public class order {
+public class Orders {
 	
 	private String id;
 	private String orderNo;

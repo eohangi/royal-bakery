@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.model.Document;
-import project.jsp.bakery.model.order;
+import project.jsp.bakery.model.Orders;
 import project.jsp.bakery.service.OrderService;
 
 public class OrderServiceImpl implements OrderService{
@@ -25,10 +25,10 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public void insertOrder(order order) throws Exception {
+	public void insertOrder(Orders orders) throws Exception {
 		// TODO Auto-generated method stub
 		try {
-			int result = sqlSession.insert("OrderMapper.insertOrder", order);
+			int result = sqlSession.insert("OrderMapper.insertOrder", orders);
 			if (result == 0) {
 				throw new NullPointerException();
 			}
@@ -47,11 +47,11 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<Document> selectOrder(order order) throws Exception {
-		List<Document> result = null;
+	public List<Orders> selectOrderList(Orders orders) throws Exception {
+		List<Orders> result = null;
 
 		try {
-			result = sqlSession.selectList("OrderMapper.selectOrder", order);
+			result = sqlSession.selectList("OrderMapper.selectOrderList", orders);
 			if (result == null) {
 				throw new NullPointerException();
 			}

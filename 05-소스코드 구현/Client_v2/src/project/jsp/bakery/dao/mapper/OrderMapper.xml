@@ -9,7 +9,7 @@
 <mapper namespace="OrderMapper">
 
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
-	<resultMap id="order" type="project.jsp.bakery.model.order">
+	<resultMap id="orders" type="project.jsp.bakery.model.Orders">
 		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
 		<result property="id" column="id" />
 		<result property="orderNo" column="order_no" />
@@ -23,28 +23,22 @@
 	</resultMap>
 	
 		<!-- 게시글 정보 저장하기 -->
-	<insert id="insertOrder" parameterType="project.jsp.bakery.model.order"
+	<insert id="insertOrder" parameterType="project.jsp.bakery.model.Orders"
 		useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO order(order_no,total_sum,member_id,or_reg_date,pickup_time,barcode,order_category,or_edit_time)VALUES ( #{orderNo}, #{totalSum}, #{memberId},now(),now(), #{barcode}, #{orderCategory},now())
+		INSERT INTO orders(order_no, total_sum, member_id, or_reg_date, pickup_time, barcode, order_category, or_edit_time) VALUES ( #{orderNo}, #{totalSum}, #{memberId}, now(), now(), #{barcode}, #{orderCategory}, now())
 	</insert>
 	
 	<!-- 게시물 목록을 조회한다. -->
-	<select id="selectOrder" parameterType="project.jsp.bakery.model.order"
-		resultMap="order">
+	<select id="selectOrderList" parameterType="project.jsp.bakery.model.Orders"
+		resultMap="orders">
 		SELECT id,order_no,total_sum,member_id,or_reg_date,pickup_time,
 		barcode,order_category,or_edit_time
 
-		FROM order
+		FROM orders
 
-		WHERE
-			category=#{category}
-
-		
-		ORDER BY id DESC
-		LIMIT #{limitStart},#{listCount}
 	</select>
 	
-<!-- 	<update id="updateOrder" parameterType="project.jsp.bakery.model.order">
+<!-- 	<update id="updateOrder" parameterType="project.jsp.bakery.model.Orders">
 		UPDATE bbs_document
 		SET category=#{category},
 		writer_name=#{writerName},
