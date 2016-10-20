@@ -3,8 +3,11 @@ package project.jsp.bakery.test.mybatis.Order;
 import org.apache.ibatis.session.SqlSession;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
-import project.jsp.bakery.model.Orders;
+
 import project.jsp.bakery.model.product;
+
+
+
 
 public class InsertProductItemTest {
 	public static void main(String[] args) {
