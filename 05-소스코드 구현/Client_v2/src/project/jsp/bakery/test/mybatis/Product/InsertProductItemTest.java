@@ -3,7 +3,7 @@ package project.jsp.bakery.test.mybatis.Product;
 import org.apache.ibatis.session.SqlSession;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
-import project.jsp.bakery.model.product;
+import project.jsp.bakery.model.Product0;
 
 public class InsertProductItemTest {
 	public static void main(String[] args) {
@@ -11,7 +11,7 @@ public class InsertProductItemTest {
 		/** (1) 데이터베이스 접속처리 */
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		/** (2) 데이터베이스에 저장할 product의 정보를 저장하고 있는 javabeans 객체 */
-		product product = new product();
+		Product0 product = new Product0();
 		product.setProClassify('c');	// a: 빵, b: 케잌 c: 쿠키
 		product.setProName("더블초코칩쿠키");	//품명
 		product.setProPrice(3800);				//가격
