@@ -12,11 +12,11 @@ public class InsertProductItemTest {
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		/** (2) 데이터베이스에 저장할 product의 정보를 저장하고 있는 javabeans 객체 */
 		Product product = new Product();
-		product.setProClassify('c');	// a: 빵, b: 케잌 c: 쿠키
+		product.setProClassify("c");	// a: 빵, b: 케잌 c: 쿠키
 		product.setProName("더블초코칩쿠키");	//품명
 		product.setProPrice(3800);				//가격
 		product.setProImg("/Client_v2/WebContent/assets/img/cokie/c009.jpg");
-		product.setStatus('o');	// o: 있음	x: 품절
+		product.setStatus("o");	// o: 있음	x: 품절
 		product.setContent("더블초코칩 뚜레쥬르 쿠키");
 		product.setStock(13);	//재고		
 		product.setKcal(165);	//칼로리		

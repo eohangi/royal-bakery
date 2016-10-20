@@ -7,7 +7,7 @@
 <mapper namespace="ProductMapper">
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
 	<resultMap type="project.jsp.bakery.model.Product" id="product">
-	
+
 		<result property="id" column="id" />
 		<result property="proClassify" column="pro_classify" />
 		<result property="proName" column="pro_name" />
@@ -42,16 +42,30 @@
 	<select parameterType="project.jsp.bakery.model.Product"
 		resultMap="product" id="selectProductList">
 		SELECT id, pro_classify, pro_name, pro_price,
-		pro_img, stock, status, content, kcal, na, sugar, fat, protein
+		pro_img, stock, status,
+		content, kcal, na, sugar, fat, protein
 
 		FROM
 		product
 
-		WHERE pro_classify=#{proClassify}
+		<where>
+			<if	test="proClassify != null or proName != null or proPrice > 0 or status != null">
+				<if test="proClassify !=null">
+					pro_classify LIKE concat('%',#{proClassify}, '%')
+				</if>
+				<if test="proName !=null">
+					OR pro_name LIKE concat('%',#{proName}, '%')
+				</if>
+				<if test="proPrice > 0">
+					OR pro_price between #{proPrice} and #{proPrice}
+				</if>
+				<if test="status !=null">
+					OR status LIKE concat('%',#{status}, '%')
+				</if>
+			</if>
+		</where>
 
 		ORDER BY id DESC
-		LIMIT
-		#{limitStart}, #{listCount}
 	</select>
 
 	<!-- 제품 하나에 대한 정보를 조회한다. -->
@@ -62,10 +76,10 @@
 		protein,pro_edit_date, pro_reg_date
 		FROM product
 		WHERE
-		pro_classify=#{proClassify} AND id=#{id}
+		id=#{id}
 	</select>
 
-	<!-- 전체 제품 수를 조회한다. -->
+	<!-- 전체 제품 수를 조회(카테고리별)한다. -->
 	<select parameterType="project.jsp.bakery.model.Product"
 		resultType="int" id="selectProductCount">
 		SELECT COUNT(id) FROM product
