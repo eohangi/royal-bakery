@@ -12,19 +12,22 @@
 	
 	<div class="page-header"></div>
 	<div class="loginB">
-		<form class="form1"  method="POST" action="MainIndex2.jsp">
+		<form name="myform" class="form1" method="POST" 
+		action="${pageContext.request.contextPath}/member/LoginOk.do">
 			<fieldset>
 				<legend>로그인</legend>
 			
 				<!-- 다음예제에서 반복됩니다. -->
 				<div class="form-group">
-					<label for="user_id">아이디</label> <input type="text" id="user_id"
+					<label for="mem_id">아이디</label> 
+					<input type="text" id="mem_id" name="mem_id"
 						class="form-control login_form" placeholder="아이디를 입력하세요." />
 				</div>
 
 				<div class="form-group">
-					<label for="user_pw">비밀번호</label> <input type="password"
-						id="user_pw" class="form-control login_form" placeholder="비밀번호를 입력하세요." />
+					<label for="mem_pw">비밀번호</label> <input type="password"
+						id="mem_pw" class="form-control login_form" 
+						name="mem_pw" placeholder="비밀번호를 입력하세요." />
 				</div>
 
 
@@ -39,11 +42,14 @@
 		</form>
 		<br /> <br />
 		<div class="joinB">
-			<form class="joinA">
-				<button type="button" class="btn btn-primary" onclick="location.href='ClientJoinPage.jsp'">회원가입</button>
-				<button type="button" class="btn btn-primary" onclick="location.href='Idsearch.jsp'">아이디 찾기</button>
-				<button type="button" class="btn btn-danger" onclick="location.href='Passwordsearch.jsp'">비밀번호 찾기</button>
-			</form>
+			<ul class="joinA">
+				<a href="${pageContext.request.contextPath}/Join.do"
+					 class="btn btn-warning">회원가입</a>
+				<a href="${pageContext.request.contextPath}/FindId.do"
+					class="btn btn-info">아이디 찾기</a>
+				<a href="${pageContext.request.contextPath}/FindPw.do"
+					class="btn btn-info">비밀번호 찾기</a>
+			</ul>
 		</div>
 	</div>
 

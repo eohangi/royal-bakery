@@ -24,9 +24,9 @@ import project.jsp.helper.WebHelper;
 /**
  * Servlet implementation class FindPwOk
  */
-@WebServlet("/member/FindIdOk.do")
-public class FindPwOk extends BaseController {
-	private static final long serialVersionUID = -1384505874053364104L;
+@WebServlet("/member/FindPwOk.do")
+public class FindIdOk extends BaseController {
+	private static final long serialVersionUID = -6369564966520623972L;
 	/**객체 선언*/
 	Logger logger;
 	SqlSession sqlSession;
@@ -52,29 +52,38 @@ public class FindPwOk extends BaseController {
 			web.redirect(web.getRootPath() + "/MainIndex1.do", "이미 로그인 중입니다.");
 			return null;
 		}
-		
-		
+
 		/**파라미터 받기*/
-		//입력된 메일 주소를 받는다.
+		String memname = web.getString("mem_name");
 		String email = web.getString("email");
-		logger.debug("로거.email from FindPwOk =" + email);
-		if(email == null){
+		logger.debug("로거.mem_name from FindIdOk = " + memname);
+		logger.debug("로거.email from FindIdOk =" + email);
+		if(email == null || memname == null){
 			sqlSession.close();
-			web.redirect(null, "이메일 주소를 입력해주세요");
+			web.redirect(null, "필수 입력사항을 확인해주세요.");
 			return null;
 		}
-		
-		/**임시 비번 생성*/
-		String newPassword = Util.getInstance().getRandomPassword();
 		
 		/**입력값을 자바 빈즈에 저장*/
 		Member member = new Member();
 		member.setEmail(email);
-		member.setMem_pw(newPassword);
+		member.setMem_name(memname);
+		logger.debug("Email from FindIdOk = " + email + "name from FindIdOk" + memname);
 		
-		/**서비스를 통한 비밀번호 갱신*/
+		/** 6)service를 통한 회원 인증 */
+		Member loginInfo = null;
+		// 아이디와 비번이 일치하는 회원정보를 조회하여 리턴한다.
 		try {
-			memberService.updateMemberPasswordByEmail(member);
+			loginInfo = memberService.selectLogInfo(member);
+		} catch (Exception e) {
+			sqlSession.close();
+			web.redirect(null, e.getLocalizedMessage());
+			return null;
+		}
+		
+		/**서비스를 통한 입력값 조회*/
+		try {
+			memberService.selectCountByNameEmail(member);
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());
 			e.getStackTrace();
@@ -82,21 +91,8 @@ public class FindPwOk extends BaseController {
 		} finally {
 			sqlSession.close();
 		}
-		/**발급된 비번을 메일로 발송*/
-		String sender = "Admin@RoyalBakery.com";
-		String subject = "회원님의 RoYal BaKery새로운 비밀번호 안내";
-		String content = "회원님의 새 비밀번호 <strong>" + newPassword + "</strong>입니다.";
-		try {
-			//사용자가 입력한 메일주소를 수신자로 설정하여 메일 발송하기
-			mail.sendMail(sender, email, subject, content);
-			logger.debug("보내는사람" + sender + "이메일"+email+ "받는사람"+subject + "내용"+content);
-		} catch (MessagingException e) {
-			e.printStackTrace();
-			web.redirect(null, "메일발송에 실패,관리자에게 문의바랍니다.");
-			return null;
-		}
-		/**결과 페이지 이동*/
-		//여기서는 이전 페이지로 이동함
+		
+		
 		web.redirect(null, "새로운 비밀번호발급 성공");
 		return null;
 	}

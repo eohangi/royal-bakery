@@ -20,10 +20,8 @@
 		</div>
 		<hr />
 		<br />
-		<form method="post"
-			action="${pageContext.request.contextPath}
-				//FindIdOk.do"
-			class="myform">
+		<form method="post" action="${pageContext.request.contextPath}
+				/FindIdOk.do" class="myform">
 			<div class="Search" style="height: 300px;">
 				<div class="form-group">
 					<label for="mem_name" class="col-md-2">이름*</label>

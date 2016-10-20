@@ -78,5 +78,11 @@
 	<delete id="deleteMember" parameterType="project.jsp.bakery.model.Member">
 		DELETE FROM member WHERE id=#{id};
 	</delete>
+	
+	<!-- 이름과 이메일이 일치하는 회원정보를 조회한다. -->
+	<select id="selectCountByNameEmail" parameterType="project.jsp.bakery.model.Member"
+		resultType="int">
+		select count(id) from member where mem_id=#{mem_id} AND email=#{email}
+	</select>
 
 </mapper>

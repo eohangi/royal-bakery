@@ -17,9 +17,8 @@ public class MemberServiceImpl implements MemberService {
 		this.logger = logger;
 		this.sqlSession = sqlSession;
 	}
-	
-	
-	//아이디 중복검사
+
+	// 아이디 중복검사
 	@Override
 	public void selectUserIdCount(Member member) throws Exception {
 		try {
@@ -35,8 +34,8 @@ public class MemberServiceImpl implements MemberService {
 			throw new Exception("아이디 중복검사 실패");
 		}
 	}
-	
-	//이메일 중복검사
+
+	// 이메일 중복검사
 	@Override
 	public void selectEmailCount(Member member) throws Exception {
 		try {
@@ -51,8 +50,8 @@ public class MemberServiceImpl implements MemberService {
 			throw new Exception("이메일 중복검사 실패");
 		}
 	}
-	
-	//회원가입
+
+	// 회원가입
 	@Override
 	public void insertMember(Member member) throws Exception {
 		selectUserIdCount(member);
@@ -78,7 +77,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
-	//로그인
+	// 로그인
 	@Override
 	public Member selectLogInfo(Member member) throws Exception {
 		Member result = null;
@@ -122,7 +121,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
-	//비밀번호 검사
+	// 비밀번호 검사
 	@Override
 	public void selectMemberPasswordCount(Member member) throws Exception {
 		try {
@@ -142,7 +141,7 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
-	//회원탈퇴
+	// 회원탈퇴
 	@Override
 	public void deleteMember(Member member) throws Exception {
 		try {
@@ -162,6 +161,21 @@ public class MemberServiceImpl implements MemberService {
 			sqlSession.commit();
 		}
 
+	}
+
+	@Override
+	public void selectCountByNameEmail(Member member) throws Exception {
+		try {
+			int result = sqlSession.selectOne("MemberMapper.selectCountByNameEmail", member);
+			// 중복된 데이터가 없다면?
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			throw new Exception("해당정보로 가입된 회원이 없습니다.");
+		} catch (Exception e) {
+			throw new Exception("아이디 찾기 실패");
+		}
 	}
 
 }
