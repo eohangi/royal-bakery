@@ -2,7 +2,7 @@ package project.jsp.bakery.service;
 
 import java.util.List;
 
-import project.jsp.bakery.model.Product;
+import project.jsp.bakery.model.product;
 
 public interface ProductService {
 	/**
@@ -11,7 +11,7 @@ public interface ProductService {
 	 * @return BbsDocument - 읽어 들일 게심루 일련번호가 저장된 Beans
 	 * @throws Exception
 	 */
-	public Product selectProduct (Product product) throws Exception;
+	public product selectProduct (product product) throws Exception;
 	
 	/**
 	 * 제품 목록 조회
@@ -19,7 +19,7 @@ public interface ProductService {
 	 * @return  게시물 목록
 	 * @throws Exception
 	 */
-	public List<Product> selectProductList(Product product) throws
+	public List<product> selectProductList(product product) throws
 	 Exception;
 	
 	/**
@@ -28,6 +28,6 @@ public interface ProductService {
 	 * @return
 	 * @throws Exception
 	 */
-	public int selectProductCount(Product product) throws
+	public int selectProductCount(product product) throws
 	 Exception;
 }

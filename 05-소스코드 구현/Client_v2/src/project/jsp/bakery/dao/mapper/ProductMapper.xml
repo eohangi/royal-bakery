@@ -6,7 +6,7 @@
 <!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
 <mapper namespace="ProductMapper">
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
-	<resultMap type="project.jsp.bakery.model.product" id="product">
+	<resultMap type="project.jsp.bakery.model.Product" id="product">
 	
 		<result property="id" column="id" />
 		<result property="proClassify" column="pro_classify" />
@@ -26,7 +26,7 @@
 	</resultMap>
 
 	<!-- 제품 저장하기 -->
-	<insert id="insertProduct" parameterType="project.jsp.bakery.model.product"
+	<insert id="insertProduct" parameterType="project.jsp.bakery.model.Product"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO product (
 		pro_classify, pro_name, pro_price, pro_img, stock, status, content,
@@ -39,7 +39,7 @@
 	</insert>
 
 	<!-- 제품 목록을 조회한다. -->
-	<select parameterType="project.jsp.bakery.model.product"
+	<select parameterType="project.jsp.bakery.model.Product"
 		resultMap="product" id="selectProductList">
 		SELECT id, pro_classify, pro_name, pro_price,
 		pro_img, stock, status, content, kcal, na, sugar, fat, protein
@@ -55,7 +55,7 @@
 	</select>
 
 	<!-- 제품 하나에 대한 정보를 조회한다. -->
-	<select parameterType="project.jsp.bakery.model.product"
+	<select parameterType="project.jsp.bakery.model.Product"
 		resultMap="product" id="selectProduct">
 		SELECT id, pro_classify, pro_name, pro_price,
 		pro_img, stock, status, content, kcal, na, sugar, fat,
@@ -66,7 +66,7 @@
 	</select>
 
 	<!-- 전체 제품 수를 조회한다. -->
-	<select parameterType="project.jsp.bakery.model.product"
+	<select parameterType="project.jsp.bakery.model.Product"
 		resultType="int" id="selectProductCount">
 		SELECT COUNT(id) FROM product
 		WHERE
@@ -74,12 +74,12 @@
 	</select>
 
 	<!-- 제품 삭제하기 -->
-	<delete parameterType="project.jsp.bakery.model.product" id="deleteProduct">
+	<delete parameterType="project.jsp.bakery.model.Product" id="deleteProduct">
 		DELETE FROM product WHERE id=#{id}
 	</delete>
 
 	<!-- 제품 정보 수정하기 -->
-	<update parameterType="project.jsp.bakery.model.product" id="updateProduct">
+	<update parameterType="project.jsp.bakery.model.Product" id="updateProduct">
 		UPDATE product SET
 		pro_classify=#{proClassify},
 		pro_name=#{proName},
