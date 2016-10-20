@@ -21,7 +21,7 @@ import project.jsp.helper.WebHelper;
 
 /**
  * Servlet implementation class Join
- */
+
 @WebServlet("/member/Check.do")
 public class checkmyjoin extends BaseController {
 
@@ -65,5 +65,6 @@ public class checkmyjoin extends BaseController {
 
 		return null;
 	}
-
+ 
 }
+ */

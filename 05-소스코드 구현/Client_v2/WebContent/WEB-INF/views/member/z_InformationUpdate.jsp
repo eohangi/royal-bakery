@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <%@ include file="/WEB-INF/inc/head.jsp"%>
@@ -15,31 +16,31 @@
 		<form class="form-horizontal" id="myform">
 
 			<div class="form-group">
-				<label for="user_id" class="col-md-offset-1 col-md-2">아이디*</label>
+				<label for="mem_id" class="col-md-offset-1 col-md-2">아이디*</label>
 				<div class="col-md-9">
-					<input type="text" name="user_id" id="user_id" class="form-control"
+					<input type="text" name="mem_id" id="mem_id" class="form-control"
 						disabled>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for=user_pw " class="col-md-offset-1 col-md-2">비밀번호*</label>
+				<label for=mem_pw " class="col-md-offset-1 col-md-2">비밀번호*</label>
 				<div class="col-md-9">
-					<input type="password" name="user_pw" id="user_pw"
+					<input type="password" name="mem_pw" id="mem_pw"
 						class="form-control">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="user_pw_re" class="col-md-offset-1 col-md-2">비밀번호
+				<label for="mem_pw_re" class="col-md-offset-1 col-md-2">비밀번호
 					확인*</label>
 				<div class="col-md-9">
-					<input type="password" name="user_pw_re" id="user_pw_re"
+					<input type="password" name="mem_pw_re" id="mem_pw_re"
 						class="form-control">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="name" class="col-md-offset-1 col-md-2">이름*</label>
+				<label for="mem_name" class="col-md-offset-1 col-md-2">이름*</label>
 				<div class="col-md-9">
-					<input type="text" name="name" id="name" class="form-control"
+					<input type="text" name="mem_name" id="mem_name" class="form-control"
 						disabled>
 				</div>
 			</div>
@@ -50,9 +51,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="tel" class="col-md-offset-1 col-md-2">연락처*</label>
+				<label for="phone_no" class="col-md-offset-1 col-md-2">연락처*</label>
 				<div class="col-md-9">
-					<input type="text" name="tel" id="tel" class="form-control">
+					<input type="text" name="phone_no" id="phone_no" class="form-control">
 				</div>
 			</div>
 			<div class="form-group">

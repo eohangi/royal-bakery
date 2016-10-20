@@ -1,8 +1,6 @@
 package project.jsp.bakery.controller.member;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +16,6 @@ import project.jsp.bakery.model.Member;
 import project.jsp.bakery.service.MemberService;
 import project.jsp.bakery.service.impl.MemberServiceImpl;
 import project.jsp.helper.BaseController;
-import project.jsp.helper.FileInfo;
 import project.jsp.helper.RegexHelper;
 import project.jsp.helper.UploadHelper;
 import project.jsp.helper.WebHelper;
