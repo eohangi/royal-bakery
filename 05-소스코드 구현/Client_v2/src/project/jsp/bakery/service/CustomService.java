@@ -14,7 +14,7 @@ public interface CustomService {
 	 * @throws Exception
 	 *             - 중복된 데이터인 경우 예외 발생함
 	 */
-	public void selectCustomIdCount(Custom custom) throws Exception;
+	public int selectCustomIdCount(Custom custom) throws Exception;
 
 	/**
 	 * 주문 아이템 추가
@@ -51,4 +51,6 @@ public interface CustomService {
 	public void deleteCustomItem(Custom custom) throws Exception;
 
 	public List<Custom> getCustomList(Custom custom) throws Exception;
+
+	public List<Custom> selectCustomClassCount(Custom custom) throws Exception;
 }

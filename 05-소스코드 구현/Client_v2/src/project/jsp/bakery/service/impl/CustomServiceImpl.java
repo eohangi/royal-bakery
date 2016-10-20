@@ -25,7 +25,7 @@ public class CustomServiceImpl implements CustomService {
 	}
 
 	@Override
-	public void selectCustomIdCount(Custom custom) throws Exception {
+	public int selectCustomIdCount(Custom custom) throws Exception {
 		try {
 			int result = sqlSession.selectOne("CustomMapper.selectCustomIdCount", custom);
 
@@ -39,6 +39,7 @@ public class CustomServiceImpl implements CustomService {
 			logger.error(e.getLocalizedMessage());
 			throw new Exception("아이디 중복검사에 실패했습니다.");
 		}
+		return 0;
 	}
 
 	@Override
@@ -135,6 +136,30 @@ public class CustomServiceImpl implements CustomService {
 
 		try {
 			result = sqlSession.selectList("CustomMapper.getCustomList", custom);
+
+			// 리턴값은 저장된 행의 수
+			if (result == null) {
+				// 저장된 행이 없다면 강제로 예외를 발생시킨다.
+				// --> 이 예외를 처리 가능한 catch블록으로 제어가 이동한다.
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			// 에러가 발생했으므로 SQL 수행 내역을 되돌림
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+		return result;
+	}
+
+	@Override
+	public List<Custom> selectCustomClassCount(Custom custom) throws Exception {
+		List<Custom> result = null;
+
+		try {
+			result = sqlSession.selectList("CustomMapper.selectCustomClassCount", custom);
 
 			// 리턴값은 저장된 행의 수
 			if (result == null) {

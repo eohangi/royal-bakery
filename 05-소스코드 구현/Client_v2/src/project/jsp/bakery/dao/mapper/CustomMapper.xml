@@ -20,7 +20,17 @@
 	<!-- 아이템 중복검사를 수행한다 -->
 	<select id="selectCustomIdCount" parameterType="project.jsp.bakery.model.Custom"
 		resultType="int">
-		SELECT count(id) FROM custom WHERE cu_name=#{cuName}
+		SELECT count(id) FROM custom WHERE
+		cu_name=#{cuName} ORDER BY id ASC;
+	</select>
+
+	<!-- 특정 cu_classify안의 cu_name을 출력-->
+	<select id="selectCustomClassCount" parameterType="project.jsp.bakery.model.Custom"
+		resultMap="custom">
+		select id, cu_classify, cu_name, cu_price, cu_edit_date,
+		cu_reg_date from custom where
+		cu_classify=#{cuClassify} ORDER BY id ASC;
+
 	</select>
 
 	<!-- 다중행 조회 (목록 조회)를 위한 기능 정의 <select id="메서드 이름" parameterType="파라미터로 전달될 
@@ -47,7 +57,7 @@
 		resultMap="custom">
 		<!-- "#{변수명}" 으로 표시된 곳에 파라미터로 전달된 Beans의 멤버변수값이 치환된다. -->
 		SELECT id, cu_classify, cu_name, cu_price, cu_edit_date, cu_reg_date
-		FROM custom 
+		FROM custom
 		WHERE
 		id=#{id}
 	</select>
