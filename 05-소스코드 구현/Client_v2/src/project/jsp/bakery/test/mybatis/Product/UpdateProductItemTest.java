@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Document;
-import project.jsp.bakery.model.pro;
+import project.jsp.bakery.model.Product;
 
 public class UpdateProductItemTest {
 
@@ -12,7 +12,7 @@ public class UpdateProductItemTest {
 
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 
-		pro product = new pro();
+		Product product = new Product();
 		product.setId(11);
 		product.setProClassify('a');	// a: 빵, b: 케잌 c: 쿠키
 		product.setProName("카페모카 롤브레드");	//품명

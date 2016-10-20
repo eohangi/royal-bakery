@@ -2,29 +2,29 @@ package project.jsp.bakery.service.impl;
 
 import java.util.List;
 
-import project.jsp.bakery.model.pro;
+import project.jsp.bakery.model.Product;
 import project.jsp.bakery.service.ProductService;
 
 public class ProductServiceImpl implements ProductService{
 
 	@Override
-	public pro selectProduct(pro product) throws Exception {
-		pro result =null;
+	public Product selectProduct(Product product) throws Exception {
+		Product result =null;
 		
 		
 		return result;
 	}
 
 	@Override
-	public List<pro> selectProductList(pro product) throws Exception {
-		List<pro> result= null;
+	public List<Product> selectProductList(Product product) throws Exception {
+		List<Product> result= null;
 		
 		
 		return result;
 	}
 
 	@Override
-	public int selectProductCount(pro product) throws Exception {
+	public int selectProductCount(Product product) throws Exception {
 		int result =0;
 		
 		
