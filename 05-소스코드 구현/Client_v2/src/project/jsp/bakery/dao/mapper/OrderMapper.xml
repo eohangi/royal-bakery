@@ -33,21 +33,27 @@
 		resultMap="orders">
 		SELECT id,order_no,total_sum,member_id,or_reg_date,pickup_time,
 		barcode,order_category,or_edit_time
-
 		FROM orders
 
 	</select>
 	
-<!-- 	<update id="updateOrder" parameterType="project.jsp.bakery.model.Orders">
-		UPDATE bbs_document
-		SET category=#{category},
-		writer_name=#{writerName},
-		email=#{email},
-		subject=#{subject},
-		content=#{content},
-		ip_address=#{ipAddress},
-		edit_date=now()
+	<!-- 게시물 한개을 조회한다. -->
+	<select id="selectOrder" parameterType="project.jsp.bakery.model.Orders"
+		resultMap="orders">
+		SELECT id,order_no,total_sum,member_id,or_reg_date,pickup_time,
+		barcode,order_category,or_edit_time
+		FROM orders
+		WHERE id=#{id}
+
+	</select>
+	
+ 	<update id="updateOrder" parameterType="project.jsp.bakery.model.Orders">
+		UPDATE orders
+		SET 
+		pickup_time=now(),
+		order_category=#{orderCategory},
+		or_edit_time=now()
 		WHERE id=#{id}
 	</update>
- -->
+
 </mapper>

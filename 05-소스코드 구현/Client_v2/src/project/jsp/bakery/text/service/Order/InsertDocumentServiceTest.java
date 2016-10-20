@@ -17,9 +17,9 @@ public class InsertDocumentServiceTest {
 	public static void main(String[] args) {
 		
 		Orders orders = new Orders();
-		orders.setOrderNo("1111");
-		orders.setTotalSum("1000");
-		orders.setMemberId("1");
+		orders.setOrderNo(1111);
+		orders.setTotalSum(1000);
+		orders.setMemberId(1);
 		orders.setPickupTime(null);
 		orders.setOrderCategory("reservation");
 

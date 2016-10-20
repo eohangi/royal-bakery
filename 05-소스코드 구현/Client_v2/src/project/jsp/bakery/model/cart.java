@@ -2,18 +2,18 @@ package project.jsp.bakery.model;
 
 public class cart {
 	
-	private String id;
+	private int id;
 	private String proName;
-	private String proPrice;
-	private String proCount;
+	private int proPrice;
+	private int proCount;
 	private String orderNo;
 	private String opText;
 	private String Cartcol;
-	private String OrderId;
-	public String getId() {
+	private int OrderId;
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getProName() {
@@ -22,16 +22,16 @@ public class cart {
 	public void setProName(String proName) {
 		this.proName = proName;
 	}
-	public String getProPrice() {
+	public int getProPrice() {
 		return proPrice;
 	}
-	public void setProPrice(String proPrice) {
+	public void setProPrice(int proPrice) {
 		this.proPrice = proPrice;
 	}
-	public String getProCount() {
+	public int getProCount() {
 		return proCount;
 	}
-	public void setProCount(String proCount) {
+	public void setProCount(int proCount) {
 		this.proCount = proCount;
 	}
 	public String getOrderNo() {
@@ -52,10 +52,10 @@ public class cart {
 	public void setCartcol(String cartcol) {
 		Cartcol = cartcol;
 	}
-	public String getOrderId() {
+	public int getOrderId() {
 		return OrderId;
 	}
-	public void setOrderId(String orderId) {
+	public void setOrderId(int orderId) {
 		OrderId = orderId;
 	}
 	@Override
@@ -63,7 +63,7 @@ public class cart {
 		return "cart [id=" + id + ", proName=" + proName + ", proPrice=" + proPrice + ", proCount=" + proCount
 				+ ", orderNo=" + orderNo + ", opText=" + opText + ", Cartcol=" + Cartcol + ", OrderId=" + OrderId + "]";
 	}
-
+	
 	
 	
 

@@ -2,37 +2,37 @@ package project.jsp.bakery.model;
 
 public class Orders {
 	
-	private String id;
-	private String orderNo;
-	private String totalSum;
-	private String memberId;
+	private int id;
+	private int orderNo;
+	private int totalSum;
+	private int memberId;
 	private String orRegDate;
 	private String pickupTime;
 	private String barcode;
 	private String orderCategory;
 	private String orEditTime;
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	public String getOrderNo() {
+	public int getOrderNo() {
 		return orderNo;
 	}
-	public void setOrderNo(String orderNo) {
+	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
 	}
-	public String getTotalSum() {
+	public int getTotalSum() {
 		return totalSum;
 	}
-	public void setTotalSum(String totalSum) {
+	public void setTotalSum(int totalSum) {
 		this.totalSum = totalSum;
 	}
-	public String getMemberId() {
+	public int getMemberId() {
 		return memberId;
 	}
-	public void setMemberId(String memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
 	public String getOrRegDate() {
@@ -67,11 +67,10 @@ public class Orders {
 	}
 	@Override
 	public String toString() {
-		return "order [id=" + id + ", orderNo=" + orderNo + ", totalSum=" + totalSum + ", memberId=" + memberId
+		return "Orders [id=" + id + ", orderNo=" + orderNo + ", totalSum=" + totalSum + ", memberId=" + memberId
 				+ ", orRegDate=" + orRegDate + ", pickupTime=" + pickupTime + ", barcode=" + barcode
 				+ ", orderCategory=" + orderCategory + ", orEditTime=" + orEditTime + "]";
 	}
-
 	
 	
 	

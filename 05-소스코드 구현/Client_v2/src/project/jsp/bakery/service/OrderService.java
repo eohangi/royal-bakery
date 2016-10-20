@@ -13,5 +13,9 @@ public interface OrderService {
 	
 	public List<Orders> selectOrderList(Orders orders) throws Exception;
 	
+	public Orders selectOrder(Orders orders) throws Exception;
+	
+	public void updateOrder(Orders orders) throws Exception;
+	
 
 }

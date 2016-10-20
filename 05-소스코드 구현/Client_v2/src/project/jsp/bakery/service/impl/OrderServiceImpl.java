@@ -65,6 +65,45 @@ public class OrderServiceImpl implements OrderService{
 		return result;
 		
 	}
+
+	@Override
+	public Orders selectOrder(Orders orders) throws Exception {
+		Orders result = null;
+
+		try {
+			result = sqlSession.selectOne("OrderMapper.selectOrder", orders);
+			if (result == null) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			throw new Exception("조회된 게시물이 없습니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("게시물 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public void updateOrder(Orders orders) throws Exception {
+		try {
+			int result = sqlSession.update("OrderMapper.updateOrder", orders);
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("존재하지 않는 게시물에 대한 요청입니다.");
+		} catch (Exception e) {
+			sqlSession.rollback();
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("게시물 수정에 실패했습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+		
+	}
 	
 	
 
