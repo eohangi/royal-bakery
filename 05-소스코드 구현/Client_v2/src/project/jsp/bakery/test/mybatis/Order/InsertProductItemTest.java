@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.order;
-import project.jsp.bakery.model.Product;
+import project.jsp.bakery.model.product;
 
 public class InsertProductItemTest {
 	public static void main(String[] args) {
