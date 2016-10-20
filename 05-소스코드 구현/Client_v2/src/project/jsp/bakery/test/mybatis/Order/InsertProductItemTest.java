@@ -3,7 +3,7 @@ package project.jsp.bakery.test.mybatis.Order;
 import org.apache.ibatis.session.SqlSession;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
-import project.jsp.bakery.model.order;
+import project.jsp.bakery.model.Orders;
 import project.jsp.bakery.model.product;
 
 public class InsertProductItemTest {
@@ -12,21 +12,20 @@ public class InsertProductItemTest {
 		/** (1) 데이터베이스 접속처리 */
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		/** (2) 데이터베이스에 저장할 product의 정보를 저장하고 있는 javabeans 객체 */
-		order order = new order();
-		order.setOrderNo("111");
-		order.setTotalSum("5000");
-		order.setMemberId("1");
-		order.setOrRegDate("2016-10-19");
-		order.setPickupTime("2016-10-19");
-		order.setBarcode("1233");
-		order.setOrderCategory("pay");
-		order.setOrEditTime("2016-10-19");
+		Orders orders = new Orders();
+		orders.setOrderNo("111");
+		orders.setTotalSum("5000");
+		orders.setMemberId("1");
+
+		orders.setBarcode("1233");
+		orders.setOrderCategory("pay");
+
 		
 
 		/** (3) */
 		/** 데이터 저장 기능 호출하기 + 트렌젝션 */
 		try {
-			int result = sqlSession.insert("OrderMapper.insertOrder", order);
+			int result = sqlSession.insert("OrderMapper.insertOrder", orders);
 
 			// 리턴값은 저장된 행의 수
 			if (result == 0) {
@@ -54,6 +53,6 @@ public class InsertProductItemTest {
 
 		/** (4) 저장된 데이터 출력하기 */
 		// 저장된 데이터의 식별값 (pk)은 파라미터로 전달된 beans에 보관된다.
-		System.out.println("Primay Key=" + order.getId());
+		System.out.println("Primay Key=" + orders.getId());
 	}
 }
