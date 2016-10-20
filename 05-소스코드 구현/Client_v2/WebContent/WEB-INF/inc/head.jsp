@@ -38,4 +38,5 @@
 
 <!-- 다음 우편번호 검색 스크립트 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="${pageContext.request.contextPath}/WebContent/js/daumPostCode.js"></script>
+<script
+	src="${pageContext.request.contextPath}/js/daumPostCode.js"></script>

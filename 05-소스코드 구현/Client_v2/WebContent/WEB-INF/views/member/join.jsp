@@ -45,7 +45,8 @@
 			<div class="form-group">
 				<label for='mem_name' class="col-md-2">이름*</label>
 				<div class="col-md-10">
-					<input type="text" name="mem_name" id="mem_name" class="form-control" />
+					<input type="text" name="mem_name" id="mem_name"
+						class="form-control" />
 				</div>
 			</div>
 
@@ -59,8 +60,8 @@
 			<div class="form-group">
 				<label for='phone_no' class="col-md-2">연락처*</label>
 				<div class="col-md-10">
-					<input type="tel" name="phone_no" id="phone_no" class="form-control"
-						placeholder="'-'없이 입력" />
+					<input type="tel" name="phone_no" id="phone_no"
+						class="form-control" placeholder="'-'없이 입력" />
 				</div>
 			</div>
 
@@ -89,10 +90,8 @@
 						class="form-control pull-left"
 						style='width: 120px; margin-right: 5px' />
 					<!-- 클릭 시, Javascript 함수 호출 : openDaumPostcode() -->
-					<input type='button' value='우편번호 찾기'
-						class='btn btn-warning pull-left'
+					<input type='button' value='우편번호 찾기' class='btn btn-warning'
 						onclick='execDaumPostcode("postcode", "addr1", "addr2")' />
-
 				</div>
 			</div>
 
