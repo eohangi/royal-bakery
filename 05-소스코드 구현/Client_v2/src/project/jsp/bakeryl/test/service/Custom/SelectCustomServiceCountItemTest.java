@@ -13,7 +13,8 @@ public class SelectCustomServiceCountItemTest {
 
 	public static void main(String[] args) {
 		Custom custom = new Custom();
-		custom.setCuClassify("단수");
+		custom.setCuName("모카크림");
+		;
 
 		/** (2) */
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
@@ -23,7 +24,7 @@ public class SelectCustomServiceCountItemTest {
 		CustomService customService = new CustomServiceImpl(sqlSession, logger);
 
 		/** (3) */
-//		Custom item = null;
+		// Custom item = null;
 		try {
 			customService.selectCustomIdCount(custom);
 		} catch (Exception e) {
@@ -35,7 +36,7 @@ public class SelectCustomServiceCountItemTest {
 		}
 
 		/** (4) */
-//		System.out.println(item.toString());
+		// System.out.println(item.toString());
 
 	}
 

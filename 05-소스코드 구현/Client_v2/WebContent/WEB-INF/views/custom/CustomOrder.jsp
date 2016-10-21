@@ -31,44 +31,32 @@
 					<legend>케익 선택하기</legend>
 					<h3>필수 선택 사항</h3>
 					<!-- 드롭다운  -->
-					<label name="크림">크림 선택</label> 
-					<select name="크림">
+					<label for="list">크림 선택</label> <select id="list" name="list">
 						<option>-----선택하세요-----</option>
 						<c:forEach var="custom" items="${list}">
-						<option class="text-center">${custom.cuName}</option>
+							<option class="text-center">${custom.cuName}</option>
 						</c:forEach>
-					</select> 
-					</br> 
-					<label for="size">크기 선택</label> 
-							<select name="크기">
+					</select> </br> <label for="list2">크기선택</label> <select id="list2" name="list2">
 						<option>-----선택하세요-----</option>
 						<c:forEach var="custom" items="${list2}">
-						<option class="text-center">${custom.cuName}</option>
+							<option class="text-center">${custom.cuName}</option>
 						</c:forEach>
-					</select>  </br>
-					 <label for="layer">단수 선택</label> 
-							<select name="단수">
+					</select> </br> <label for="list3">단수 선택</label> <select id="list3" name="list3">
 						<option>-----선택하세요-----</option>
 						<c:forEach var="custom" items="${list3}">
-						<option class="text-center">${custom.cuName}</option>
+							<option class="text-center">${custom.cuName}</option>
 						</c:forEach>
-					</select> 
-					 </br> 
-					 <label for="sheet">시트 선택</label> 
-							<select name="시트">
+					</select> </br> <label for="list4">시트 선택</label> <select id="list4" name="list4">
 						<option>-----선택하세요-----</option>
 						<c:forEach var="custom" items="${list4}">
-						<option class="text-center">${custom.cuName}</option>
+							<option class="text-center">${custom.cuName}</option>
 						</c:forEach>
-					</select> 
-					 </br> 
-					 <label for="candle">초 선택</label> 
-							<select name="초">
+					</select> </br> <label for="list5">초 선택</label> <select id="list5" name="list5">
 						<option>-----선택하세요-----</option>
 						<c:forEach var="custom" items="${list5}">
-						<option class="text-center">${custom.cuName}</option>
+							<option class="text-center">${custom.cuName}</option>
 						</c:forEach>
-					</select> 
+					</select>
 
 					</hr>
 					<h3>추가 사항</h3>
