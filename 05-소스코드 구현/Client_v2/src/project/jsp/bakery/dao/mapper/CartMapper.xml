@@ -9,16 +9,66 @@
 <mapper namespace="CartMapper">
 
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
-	<resultMap id="Cart" type="project.jsp.bakery.model.cart">
+	<resultMap id="cart" type="project.jsp.bakery.model.cart">
 		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
 		<result property="id" column="id" />
 		<result property="proName" column="pro_name" />
 		<result property="proPrice" column="pro_price" />
 		<result property="proCount" column="pro_count" />
 		<result property="orderNo" column="order_no" />
-		<result property="opText" column="op_text" />
-		<result property="Cartcol" column="Cartcol" />
+		<result property="cuText" column="cu_text" />
+		<result property="cuPrice" column="cu_price" />
 		<result property="OrderId" column="Order_id" />
+		<result property="EditDate" column="edit_date" />
+		<result property="RegDate" column="reg_date" />
 	</resultMap>
+
+	<select id="setCartList" parameterType="project.jsp.bakery.model.cart"
+		resultMap="cart">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT id, pro_name, pro_price, pro_count, order_no, cu_text,
+		cu_price, Order_id, edit_date, reg_date
+		FROM cart ORDER BY id ASC;
+	</select>
+
+	<insert id="insertCartItem" parameterType="project.jsp.bakery.model.cart"
+		useGeneratedKeys="true" keyProperty="cart">
+		INSERT INTO cart (pro_name,
+		pro_price, pro_count, order_no, cu_text, cu_price, Order_id,
+		edit_date, reg_date)
+		VALUES
+		(#{proName}, #{proPrice}, #{proCount},
+		#{orderNo}, #{cuText},
+		#{cuPrice}, #{OrderId},
+		#{EditDate}, #{RegDate})
+	</insert>
+
+	<!-- 단일행 조회(상세보기)를 위한 기능 정의 <select id="메서드이름" parameterType="파라미터의 데이터 
+		타입" resultMap="리턴될 Beans의 id"> -->
+	<select id="selectCartItem" parameterType="project.jsp.bakery.model.cart"
+		resultMap="cart">
+		<!-- "#{변수명}" 으로 표시된 곳에 파라미터로 전달된 Beans의 멤버변수값이 치환된다. -->
+		SELECT distinct id, pro_name, pro_price, pro_count, order_no, cu_text,
+		cu_price, Order_id, edit_date, reg_date
+		FROM cart
+		WHERE
+		id=#{id}
+	</select>
+
+	<update id="updateCartItem" parameterType="project.jsp.bakery.model.cart">
+		UPDATE cart SET
+		pro_name=#{proName}, pro_price=#{proPrice}, pro_count=#{proCount},
+		order_no=#{orderNo}, cu_text=#{cuText}, cu_price=#{cuPrice},
+		Order_id=#{OrderId}, edit_date=#{edit_date}, reg_date=#{reg_date}
+		WHERE id=#{id}
+	</update>
+
+	<delete id="deleteCartItem" parameterType="project.jsp.bakery.model.cart">
+		DELETE FROM
+		cart
+		WHERE
+		id=#{id}
+	</delete>
+
 
 </mapper>
