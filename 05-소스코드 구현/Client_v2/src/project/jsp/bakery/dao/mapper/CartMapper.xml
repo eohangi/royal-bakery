@@ -23,7 +23,7 @@
 		<result property="RegDate" column="reg_date" />
 	</resultMap>
 
-	<select id="setCartList" parameterType="project.jsp.bakery.model.cart"
+	<select id="selectCartList" parameterType="project.jsp.bakery.model.cart"
 		resultMap="cart">
 		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 		SELECT id, pro_name, pro_price, pro_count, order_no, cu_text,
@@ -59,8 +59,9 @@
 		UPDATE cart SET
 		pro_name=#{proName}, pro_price=#{proPrice}, pro_count=#{proCount},
 		order_no=#{orderNo}, cu_text=#{cuText}, cu_price=#{cuPrice},
-		Order_id=#{OrderId}, edit_date=#{edit_date}, reg_date=#{reg_date}
-		WHERE id=#{id}
+		Order_id=#{OrderId}, edit_date=#{EditDate}, reg_date=#{RegDate}
+		WHERE
+		id=#{id}
 	</update>
 
 	<delete id="deleteCartItem" parameterType="project.jsp.bakery.model.cart">

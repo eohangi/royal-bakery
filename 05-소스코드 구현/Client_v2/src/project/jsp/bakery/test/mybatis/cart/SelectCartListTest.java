@@ -25,7 +25,7 @@ public class SelectCartListTest {
 			// ProfessorMapper.selectProfessorList 기능을 호출한다.
 			// 두 번째 파라미터는 조회 조건시에 사용될 파라미터 --> Beans객체
 			// 조회 결과가 다중행을 리턴하기 때문에 List형태로 리턴된다.
-			list = sqlSession.selectList("CartMapper.setCartList", null);
+			list = sqlSession.selectList("CartMapper.selectCartList", null);
 		} catch (Exception e) {
 			System.out.println(e.getLocalizedMessage());
 			System.out.println("데이터 조회에 실패했습니다.");
