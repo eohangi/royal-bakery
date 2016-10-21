@@ -34,7 +34,7 @@
 					<label name="크림">크림 선택</label> 
 					<select name="크림">
 						<option>-----선택하세요-----</option>
-						<c:forEach var="custom" items="${list1}">
+						<c:forEach var="custom" items="${list}">
 						<option class="text-center">${custom.cuName}</option>
 						</c:forEach>
 					</select> 
