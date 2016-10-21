@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 
 <!DOCTYPE html>
@@ -18,7 +20,8 @@
 
 			<div class="box1 pull-left">
 				<p>
-					<img src="${pageContext.request.contextPath}/assets/img/choco.jpg" width="300px" height="300px" />
+					<img src="${pageContext.request.contextPath}/assets/img/choco.jpg"
+						width="300px" height="300px" />
 				<p>
 			</div>
 			<div class="clearfix">
@@ -28,36 +31,44 @@
 					<legend>케익 선택하기</legend>
 					<h3>필수 선택 사항</h3>
 					<!-- 드롭다운  -->
-					<label for="cream">크림 선택</label> <select name="cream" class="cream">
+					<label name="크림">크림 선택</label> 
+					<select name="크림">
 						<option>-----선택하세요-----</option>
-						<option value="choco">초코</option>
-						<option value="mocha">모카</option>
-						<option value="milkcream">생크림</option>
-						<option value="butter">버터크림</option>
-					</select></br> <label for="size">크기 선택</label> <select name="size" class="size">
+						<c:forEach var="custom" items="${list1}">
+						<option class="text-center">${custom.cuName}</option>
+						</c:forEach>
+					</select> 
+					</br> 
+					<label for="size">크기 선택</label> 
+							<select name="크기">
 						<option>-----선택하세요-----</option>
-						<option value="size1">1호</option>
-						<option value="size2">2호</option>
-						<option value="size3">3호</option>
-						<option value="squre">사각</option>
-					</select></br> <label for="layer">단수 선택</label> <select name="layer"
-						class="layer">
+						<c:forEach var="custom" items="${list2}">
+						<option class="text-center">${custom.cuName}</option>
+						</c:forEach>
+					</select>  </br>
+					 <label for="layer">단수 선택</label> 
+							<select name="단수">
 						<option>-----선택하세요-----</option>
-						<option value="layer1">1단 (기본)</option>
-						<option value="layer2">2단</option>
-						<option value="layer3">3단</option>
-					</select></br> <label for="sheet">시트 선택</label> <select name="sheet"
-						class="sheet">
+						<c:forEach var="custom" items="${list3}">
+						<option class="text-center">${custom.cuName}</option>
+						</c:forEach>
+					</select> 
+					 </br> 
+					 <label for="sheet">시트 선택</label> 
+							<select name="시트">
 						<option>-----선택하세요-----</option>
-						<option value="regularsheet">기본 시트</option>
-						<option value="fruitsheet">초코렛 과일 시트</option>
-					</select></br> <label for="candle">초 선택</label> <select name="candle"
-						class="candle">
+						<c:forEach var="custom" items="${list4}">
+						<option class="text-center">${custom.cuName}</option>
+						</c:forEach>
+					</select> 
+					 </br> 
+					 <label for="candle">초 선택</label> 
+							<select name="초">
 						<option>-----선택하세요-----</option>
-						<option value="freecandle">기본 초(무료)</option>
-						<option value="numcandle">숫자 초</option>
-						<option value="charcandle">알파벳 초</option>
-					</select>
+						<c:forEach var="custom" items="${list5}">
+						<option class="text-center">${custom.cuName}</option>
+						</c:forEach>
+					</select> 
 
 					</hr>
 					<h3>추가 사항</h3>
@@ -69,10 +80,6 @@
 					<input style="display: block;" type="button"
 						class="btn btn-primary col-md-offset-5" value="구매하기"
 						onclick="location.href='OrderComplete.jsp'"> <br />
-
-
-
-
 				</div>
 			</div>
 
