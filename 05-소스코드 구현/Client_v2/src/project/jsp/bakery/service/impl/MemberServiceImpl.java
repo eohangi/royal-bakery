@@ -164,11 +164,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void selectCountByNameEmail(Member member) throws Exception {
+	public Member selectCountByNameEmail(Member member) throws Exception {
+		Member loginInfo = null;
 		try {
-			int result = sqlSession.selectOne("MemberMapper.selectCountByNameEmail", member);
+			loginInfo = sqlSession.selectOne("MemberMapper.selectCountByNameEmail", member);
 			// 중복된 데이터가 없다면?
-			if (result == 0) {
+			if (loginInfo == null) {
 				throw new NullPointerException();
 			}
 		} catch (NullPointerException e) {
@@ -176,6 +177,7 @@ public class MemberServiceImpl implements MemberService {
 		} catch (Exception e) {
 			throw new Exception("아이디 찾기 실패");
 		}
+		return loginInfo;
 	}
 
 }

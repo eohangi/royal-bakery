@@ -30,9 +30,17 @@ public class FindId extends BaseController {
 			web.redirect(web.getRootPath() + "/MainIndex1.do", "이미 로그인 중입니다.");
 			return null;
 		}
+		String mem_id = web.getString("mem_id");
+		String view = "";
+		if(mem_id == null) {
+			view = "member/find_id";
+		}else {
+			view = "member/find_idOk";
+		}
 		/**4)사용할 View의 이름 리턴*/
-		return "view/member/find-id";
+		return view;
 	
 	}
 	
 }
+

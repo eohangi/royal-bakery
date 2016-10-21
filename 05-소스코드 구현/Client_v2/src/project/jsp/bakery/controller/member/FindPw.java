@@ -32,7 +32,7 @@ public class FindPw extends BaseController {
 			return null;
 		}
 		/**4)사용할 View의 이름 리턴*/
-		return "view/member/find_pw";
+		return "/member/find_pw";
 	
 	}
 	

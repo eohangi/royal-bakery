@@ -2,7 +2,6 @@ package project.jsp.bakery.controller.member;
 
 import java.io.IOException;
 
-import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,36 +16,29 @@ import project.jsp.bakery.model.Member;
 import project.jsp.bakery.service.MemberService;
 import project.jsp.bakery.service.impl.MemberServiceImpl;
 import project.jsp.helper.BaseController;
-import project.jsp.helper.MailHelper;
-import project.jsp.helper.Util;
 import project.jsp.helper.WebHelper;
 
 /**
  * Servlet implementation class FindPwOk
  */
-@WebServlet("/member/FindPwOk.do")
+@WebServlet("/member/FindIdOk.do")
 public class FindIdOk extends BaseController {
 	private static final long serialVersionUID = -6369564966520623972L;
 	/**객체 선언*/
 	Logger logger;
 	SqlSession sqlSession;
 	WebHelper web;
-	MailHelper mail;
-	Util util;
 	MemberService memberService;
-	
-
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/**객체 생성*/
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
-		mail = MailHelper.getInstance();
-		util = Util.getInstance();
 		memberService = new MemberServiceImpl(logger, sqlSession);
 		/**로그인 여부 검사*/
 		//로그인 중이라면 이 페이지를 이용할 수 없다
+		
 		if(web.getSession("loginInfo") != null){
 			sqlSession.close();
 			web.redirect(web.getRootPath() + "/MainIndex1.do", "이미 로그인 중입니다.");
@@ -70,30 +62,23 @@ public class FindIdOk extends BaseController {
 		member.setMem_name(memname);
 		logger.debug("Email from FindIdOk = " + email + "name from FindIdOk" + memname);
 		
+		Member findId = null;
 		/** 6)service를 통한 회원 인증 */
-		Member loginInfo = null;
 		// 아이디와 비번이 일치하는 회원정보를 조회하여 리턴한다.
 		try {
-			loginInfo = memberService.selectLogInfo(member);
+			findId = memberService.selectCountByNameEmail(member);
+			logger.debug("회원인증 부분 == >>>> " + findId.toString());
 		} catch (Exception e) {
 			sqlSession.close();
 			web.redirect(null, e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
-		
-		/**서비스를 통한 입력값 조회*/
-		try {
-			memberService.selectCountByNameEmail(member);
-		} catch (Exception e) {
-			web.redirect(null, e.getLocalizedMessage());
-			e.getStackTrace();
-			return null;
-		} finally {
-			sqlSession.close();
-		}
+		String FindMyId = findId.getMem_id();
+		sqlSession.close();
+		web.redirect(web.getRootPath() + "/member/FindId.do?mem_id=" + FindMyId +"&&mem_name="+ memname,null);
 		
 		
-		web.redirect(null, "새로운 비밀번호발급 성공");
 		return null;
 	}
 

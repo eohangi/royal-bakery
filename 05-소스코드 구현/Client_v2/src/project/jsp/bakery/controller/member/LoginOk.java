@@ -78,6 +78,8 @@ public class LoginOk extends BaseController {
 		}
 		
 		
+
+		
 		
 		/**
 		 * 7)프로필 이미지 처리 //프로필 이미지가 있을 경우 썸네일을 생성하여 쿠키에 별도로 저장 String profileImg

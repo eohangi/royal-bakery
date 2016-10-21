@@ -24,7 +24,7 @@ import project.jsp.helper.WebHelper;
 /**
  * Servlet implementation class FindPwOk
  */
-@WebServlet("/member/FindIdOk.do")
+@WebServlet("/member/FindPwOk.do")
 public class FindPwOk extends BaseController {
 	private static final long serialVersionUID = -1384505874053364104L;
 	/**객체 선언*/

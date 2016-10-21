@@ -57,11 +57,13 @@ public interface MemberService {
 	public void deleteMember(Member member) throws Exception;
 	
 	/***
-	 * 아이디 찾기
+	 * 아이디 찾기를 위한 이름,이메일 조회
 	 * @param member - 회원아이디,회원 이메일
+	 * @return 
 	 * @throws Exception
+	 * @return member - 이름,아이디,이메일
 	 */
-	public void selectCountByNameEmail(Member member) throws Exception;
+	public Member selectCountByNameEmail(Member member) throws Exception;
 	
 }
 	
