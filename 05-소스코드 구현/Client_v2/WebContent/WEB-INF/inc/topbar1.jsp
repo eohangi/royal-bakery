@@ -25,9 +25,9 @@
 			<li><a href="${pageContext.request.contextPath}/custom/CustomOrder.do">Order</a></li>
 			<li><a href="LoginPage.jsp">Community</a>
 				<ul class="list-unstyled">
-					<li><a href="LoginPage.jsp">공지사항</a></li>
+					<li><a href="${pageContext.request.contextPath}//">공지사항</a></li>
 
-					<li><a href="LoginPage.jsp">문의하기</a></li>
+					<li><a href="${pageContext.request.contextPath}/Inquire/MyquestionList.do">문의하기</a></li>
 				</ul></li>
 
 		</ul>
