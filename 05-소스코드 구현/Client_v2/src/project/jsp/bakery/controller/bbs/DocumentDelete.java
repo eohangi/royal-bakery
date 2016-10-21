@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DocumentDelete
  */
-@WebServlet("/DocumentDelete")
+@WebServlet("/bbs/document_delete.do")
 public class DocumentDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

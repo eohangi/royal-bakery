@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DocumentEditOk
  */
-@WebServlet("/DocumentEditOk")
+@WebServlet("/bbs/document_edit_ok.do")
 public class DocumentEditOk extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

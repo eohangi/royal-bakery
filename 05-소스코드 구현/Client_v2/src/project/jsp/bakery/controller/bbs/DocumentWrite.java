@@ -3,39 +3,43 @@ package project.jsp.bakery.controller.bbs;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class DocumentWrite
- */
-@WebServlet("/DocumentWrite")
-public class DocumentWrite extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DocumentWrite() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+import project.jsp.helper.BaseController;
+import project.jsp.helper.WebHelper;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+@WebServlet("/bbs/document_write.do")
+public class DocumentWrite extends BaseController {
+	private static final long serialVersionUID = 2980862150462009454L;
+	
+	/** 1) 사용하고자 하는 헬퍼 객체 선언 */
+	WebHelper web;
+	BBSCommon bbs;
+	
+	@Override
+	public String doRun(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
+		/** 2)사용하고자 하는 핼퍼 + 서비스 객체생성 */
+		web = WebHelper.getInstance(request, response);
+		bbs = BBSCommon.getInstance();
+		
+		/** 3) 게시판 카테고리값을 받아서 view에 전달 */
+		String category = web.getString("category");
+		request.setAttribute("category", category);
+		
+		/** 4) 존재하는 게시판인지 판별하기 */
+		try {
+			String bbsName = bbs.getBbsName(category);
+			request.setAttribute("bbsName", bbsName);
+		} catch (Exception e) {
+			web.redirect(null, e.getLocalizedMessage());
+			return null;
+		}
+		
+		return "bbs/document_write";
 	}
 
 }
