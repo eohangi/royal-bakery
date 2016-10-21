@@ -17,9 +17,9 @@ public class InsertProductItemTest {
 		orders.setOrderNo(111);
 		orders.setTotalSum(5000);
 		orders.setMemberId(1);
-
+		orders.setPickupTime(null);
 		orders.setBarcode("1233");
-		orders.setOrderCategory("pay");
+		orders.setOrderCategory("reservation");
 
 		
 
