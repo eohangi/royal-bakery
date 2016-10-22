@@ -26,7 +26,7 @@ import project.jsp.helper.WebHelper;
 /**
  * Servlet implementation class ProductBread
  */
-@WebServlet("product/productBread.do")
+@WebServlet("/product/productBread.do")
 public class ProductBread extends BaseController {
 	/**
 	 * 
