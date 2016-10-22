@@ -19,6 +19,10 @@ import project.jsp.helper.WebHelper;
 @WebServlet("/product/productlist.do")
 public class ProductList extends BaseController {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -537849709515787656L;
 	/**1. 사용할 것들 선언*/
 		
 	Logger logger;
