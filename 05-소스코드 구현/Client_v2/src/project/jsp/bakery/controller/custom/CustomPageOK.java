@@ -69,11 +69,14 @@ public class CustomPageOK extends BaseController {
 
 		Map<String, String> paramMap = upload.getParamMap();
 		String list = web.getString("list");
+		// int list = web.getInt("list");
 		String list2 = web.getString("list2");
 		String list3 = web.getString("list3");
 		String list4 = web.getString("list4");
 		String list5 = web.getString("list5");
 		String comment = web.getString("comment");
+
+		int sum2 = web.getInt("total_price");
 
 		logger.debug("list=" + list);
 		logger.debug("list2=" + list2);
@@ -112,11 +115,16 @@ public class CustomPageOK extends BaseController {
 			return null;
 		}
 
-		/** 4) 조회를 위한 Beans 생성 */
-		// --> import study.jsp.myschool.model.Department
+	
+		///////////
+		String sum = list + list2 + list3 + list4 + list5 +"_케이크/" + comment;
+	
+		/////////////
+
 		cart cart = new cart();
-		cart.setCuText(list);
-		// cart.setCuText(comment);
+		cart.setCuText(sum);
+		cart.setCuPrice(sum2);
+
 
 		/** 6 ) Service를 통한 SQL 수행 */
 

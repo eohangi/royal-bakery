@@ -35,38 +35,41 @@
 						<legend>케익 선택하기</legend>
 						<h3>필수 선택 사항</h3>
 						<!-- 드롭다운  -->
-						<label for="list">크림 선택</label> <select id="list" name="list"
-							style="width: 80px;">
-							<option class="text-center"></option>
+						<label for="list">크림 선택</label> <select id="list" name="list" class="list-option"
+							style="width: 120px;">
+							<option class="text-center" value="" data-price="0">--- 선택하세요 ---</option>
 							<c:forEach var="custom" items="${list}">
-								<option class="text-center">${custom.cuName}</option>
+								<option class="text-center" value="${custom.cuName}" data-price="${custom.cuPrice}">${custom.cuName} (+${custom.cuPrice}원)</option>
 							</c:forEach>
-						</select> </br> <label for="list2">크기선택</label> <select id="list2" name="list2"
-							style="width: 80px;">
-							<option class="text-center"></option>
+						</select> </br> <label for="list2">크기선택</label> <select id="list2" name="list2" class="list-option"
+							style="width: 120px;">
+							<option class="text-center" value="" data-price="0">--- 선택하세요 ---</option>
 							<c:forEach var="custom" items="${list2}">
-								<option class="text-center">${custom.cuName}</option>
+								<option class="text-center" value="${custom.cuName}" data-price="${custom.cuPrice}">${custom.cuName} (+${custom.cuPrice}원)</option>
 							</c:forEach>
-						</select> </br> <label for="list3">단수 선택</label> <select id="list3" name="list3"
-							style="width: 80px;">
-							<option class="text-center"></option>
+						</select> </br> <label for="list3">단수 선택</label> <select id="list3" name="list3" class="list-option"
+							style="width: 120px;">
+							<option class="text-center" value="" data-price="0">--- 선택하세요 ---</option>
 							<c:forEach var="custom" items="${list3}">
-								<option class="text-center">${custom.cuName}</option>
+								<option class="text-center" value="${custom.cuName}" data-price="${custom.cuPrice}">${custom.cuName} (+${custom.cuPrice}원)</option>
 							</c:forEach>
-						</select> </br> <label for="list4">시트 선택</label> <select id="list4" name="list4"
-							style="width: 80px;">
-							<option class="text-center"></option>
+						</select> </br> <label for="list4">시트 선택</label> <select id="list4" name="list4" class="list-option"
+							style="width: 120px;">
+							<option class="text-center" value="" data-price="0">--- 선택하세요 ---</option>
 							<c:forEach var="custom" items="${list4}">
-								<option class="text-center">${custom.cuName}</option>
+								<option class="text-center" value="${custom.cuName}" data-price="${custom.cuPrice}">${custom.cuName} (+${custom.cuPrice}원)</option>
 							</c:forEach>
-						</select> </br> <label for="list5">초 선택</label> <select id="list5" name="list5"
-							style="width: 80px;">
-							<option class="text-center"></option>
+						</select> </br> <label for="list5">초 선택</label> <select id="list5" name="list5" class="list-option"
+							style="width: 120px;">
+							<option class="text-center" value="" data-price="0">--- 선택하세요 ---</option>
 							<c:forEach var="custom" items="${list5}">
-								<option class="text-center">${custom.cuName}</option>
+								<option class="text-center" value="${custom.cuName}" data-price="${custom.cuPrice}">${custom.cuName} (+${custom.cuPrice}원)</option>
 							</c:forEach>
 						</select>
-
+						</hr>
+						<h3>총금액</h3>
+						<div class="text-center"><span id="total_price">0</span>원</div>
+						<input type="hidden" name="total_price" id="total_price_hidden"/>
 						</hr>
 						<h3>추가 사항</h3>
 						<textarea name="comment" id="comment"
@@ -88,7 +91,20 @@
 
 	</div>
 	<%@ include file="/WEB-INF/inc/Footer.jsp"%>
-
+	<script type="text/javascript">
+	// each = for문   자바스크립트를 이용하여 실시간 총금액 표현. value값을 이용해야 DB와 연결. data-~~를 이용.
+		$(function() {
+			$(".list-option").change(function() {
+				var total = 0;
+				
+				$(".list-option").find("option:selected").each(function() {
+					total += $(this).data("price");
+					$("#total_price").html(total);
+					$("#total_price_hidden").val(total);
+				});
+			});
+		});
+	</script>
 </body>
 
 </html>

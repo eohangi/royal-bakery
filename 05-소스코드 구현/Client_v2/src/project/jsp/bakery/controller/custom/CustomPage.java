@@ -159,6 +159,7 @@ public class CustomPage extends BaseController {
 		request.setAttribute("list4", list4);
 
 		request.setAttribute("list5", list5);
+
 		
 		String view = "custom/CustomOrder";
 		// "/WEB-INF/views/index.jsp"파일을 View로 사용한다.
