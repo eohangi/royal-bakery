@@ -35,27 +35,32 @@
 						<legend>케익 선택하기</legend>
 						<h3>필수 선택 사항</h3>
 						<!-- 드롭다운  -->
-						<label for="list">크림 선택</label> <select id="list" name="list">
+						<label for="list">크림 선택</label> <select id="list" name="list"
+							style="width: 80px;">
 							<option class="text-center"></option>
 							<c:forEach var="custom" items="${list}">
 								<option class="text-center">${custom.cuName}</option>
 							</c:forEach>
-						</select> </br> <label for="list2">크기선택</label> <select id="list2" name="list2">
+						</select> </br> <label for="list2">크기선택</label> <select id="list2" name="list2"
+							style="width: 80px;">
 							<option class="text-center"></option>
 							<c:forEach var="custom" items="${list2}">
 								<option class="text-center">${custom.cuName}</option>
 							</c:forEach>
-						</select> </br> <label for="list3">단수 선택</label> <select id="list3" name="list3">
+						</select> </br> <label for="list3">단수 선택</label> <select id="list3" name="list3"
+							style="width: 80px;">
 							<option class="text-center"></option>
 							<c:forEach var="custom" items="${list3}">
 								<option class="text-center">${custom.cuName}</option>
 							</c:forEach>
-						</select> </br> <label for="list4">시트 선택</label> <select id="list4" name="list4">
+						</select> </br> <label for="list4">시트 선택</label> <select id="list4" name="list4"
+							style="width: 80px;">
 							<option class="text-center"></option>
 							<c:forEach var="custom" items="${list4}">
 								<option class="text-center">${custom.cuName}</option>
 							</c:forEach>
-						</select> </br> <label for="list5">초 선택</label> <select id="list5" name="list5">
+						</select> </br> <label for="list5">초 선택</label> <select id="list5" name="list5"
+							style="width: 80px;">
 							<option class="text-center"></option>
 							<c:forEach var="custom" items="${list5}">
 								<option class="text-center">${custom.cuName}</option>
