@@ -20,11 +20,12 @@ public class MemberServiceImpl implements MemberService {
 
 	// 아이디 중복검사
 	@Override
-	public void selectUserIdCount(Member member) throws Exception {
+	public Member selectUserIdCount(Member member) throws Exception {
+		Member result = null;
 		try {
-			int result = sqlSession.selectOne("MemberMapper.selectUserIdCount", member);
+			result = sqlSession.selectOne("MemberMapper.selectUserIdCount", member);
 			// 중복된 데이터가 존재한다면?
-			if (result > 0) {
+			if (result != null) {
 				throw new NullPointerException();
 			}
 		} catch (NullPointerException e) {
@@ -33,6 +34,7 @@ public class MemberServiceImpl implements MemberService {
 			e.printStackTrace();
 			throw new Exception("아이디 중복검사 실패");
 		}
+		return result;
 	}
 
 	// 이메일 중복검사
@@ -54,7 +56,6 @@ public class MemberServiceImpl implements MemberService {
 	// 회원가입
 	@Override
 	public void insertMember(Member member) throws Exception {
-		selectUserIdCount(member);
 		selectEmailCount(member);
 
 		// 데이터 저장처리 = 가입

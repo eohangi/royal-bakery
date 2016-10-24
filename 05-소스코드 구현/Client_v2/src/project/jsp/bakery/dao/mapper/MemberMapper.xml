@@ -25,8 +25,8 @@
 
 	<!-- 아이디 중복검사를 수행한다. -->
 	<select id="selectUserIdCount" parameterType="project.jsp.bakery.model.Member"
-		resultType="int">
-		select count(id) from member where mem_id=#{mem_id}
+		resultMap="member">
+		select mem_id from member where mem_id=#{mem_id}
 	</select>
 
 	<!-- 이메일 중복검사를 수행한다. -->
