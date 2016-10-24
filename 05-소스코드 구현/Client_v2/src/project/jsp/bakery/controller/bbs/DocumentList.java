@@ -1,4 +1,4 @@
-/*package project.jsp.bakery.controller.bbs;
+package project.jsp.bakery.controller.bbs;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,7 +25,7 @@ import project.jsp.helper.WebHelper;
 public class DocumentList extends BaseController {
 	private static final long serialVersionUID = -1406637488388369047L;
 
-	*//** 1) 사용하고자 하는 핼퍼 객체 선언 *//*
+	/** 1) 사용하고자 하는 핼퍼 객체 선언 */
 	Logger logger;
 	SqlSession sqlSession;
 	WebHelper web;
@@ -39,7 +39,7 @@ public class DocumentList extends BaseController {
 			throws ServletException, IOException {
 			
 		
-		*//** 2 사용하고자 하는 핼퍼+서비스 객체 생성 *//*
+		//** 2 사용하고자 하는 핼퍼+서비스 객체 생성 *//*
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
@@ -48,11 +48,11 @@ public class DocumentList extends BaseController {
 		pageHelper = PageHelper.getInstance();
 		upload = UploadHelper.getInstance();
 		
-		*//** 3 게시판 카테고리 값을 받아서 view에 전달 *//*
+		//** 3 게시판 카테고리 값을 받아서 view에 전달 *//*
 		String category = web.getString("category");
 		request.setAttribute("category", category);
 		
-		*//** 4 존재하는 게시판인지 판별하기 *//*
+		//** 4 존재하는 게시판인지 판별하기 *//*
 		try {
 			String bbsName = bbs.getBbsName(category);
 			request.setAttribute("bbsName", bbsName);
@@ -62,7 +62,7 @@ public class DocumentList extends BaseController {
 			return null;
 		}
 		
-		*//** 5 조회할 정보에 대한 Beans 생성 *//*
+		//** 5 조회할 정보에 대한 Beans 생성 *//*
 		// 검색어
 		String keyword = web.getString("keyword");
 		
@@ -76,7 +76,7 @@ public class DocumentList extends BaseController {
 		document.setSubject(keyword);
 		document.setContent(keyword);
 		
-		*//** 게시글 목록 조회 *//*
+		//** 게시글 목록 조회 *//*
 		int totalCount = 0;
 		List<Document> documentList = null;
 		
@@ -100,21 +100,14 @@ public class DocumentList extends BaseController {
 			sqlSession.close();
 		}
 		
-		// 조회결과가 존재할 경우
-		if (documentList != null) {
-			for (int i=0; i<documentList.size(); i++) {
-				Document item = documentList.get(i);
-			}
-		}
-		
-		*//** 7) 조회 결과를 View에 전달 *//*
+			
+		//** 7) 조회 결과를 View에 전달 *//*
 		request.setAttribute("documentList", documentList);
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("pageHelper", pageHelper);
 		
-		return "";
+		return "bbs/document_list";
 		
 		
 	}
 }
-*/
