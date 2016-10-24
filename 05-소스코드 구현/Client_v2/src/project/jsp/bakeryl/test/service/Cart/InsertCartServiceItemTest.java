@@ -21,8 +21,8 @@ public class InsertCartServiceItemTest {
 		cart.setOrderNo("20111111");
 		cart.setCuText("카스테라슈크림케익");
 		cart.setCuPrice(20000);
-		cart.setEditDate("2011-11-11");
-		cart.setRegDate("2011-11-11");
+//		cart.setEditDate("2011-11-11");
+//		cart.setRegDate("2011-11-11");
 
 		/** (2) */
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();

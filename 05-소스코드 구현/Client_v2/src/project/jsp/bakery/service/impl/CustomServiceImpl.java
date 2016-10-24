@@ -68,7 +68,7 @@ public class CustomServiceImpl implements CustomService {
 
 	@Override
 	public void insertCustomItem(Custom custom) throws Exception {
-
+		// 상품을 넣기전에 중복검사
 		selectCustomIdCount(custom);
 
 		// 데이터 저장처리 = 가입

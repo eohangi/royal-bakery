@@ -10,25 +10,8 @@ public class cart {
 	private String cuText;
 	private int cuPrice;
 	private int OrderId;
-	private String EditDate;
-
-	public String getEditDate() {
-		return EditDate;
-	}
-
-	public void setEditDate(String editDate) {
-		EditDate = editDate;
-	}
-
-	public String getRegDate() {
-		return RegDate;
-	}
-
-	public void setRegDate(String regDate) {
-		RegDate = regDate;
-	}
-
 	private String RegDate;
+	private String EditDate;
 
 	public int getId() {
 		return id;
@@ -94,11 +77,27 @@ public class cart {
 		OrderId = orderId;
 	}
 
+	public String getRegDate() {
+		return RegDate;
+	}
+
+	public void setRegDate(String regDate) {
+		RegDate = regDate;
+	}
+
+	public String getEditDate() {
+		return EditDate;
+	}
+
+	public void setEditDate(String editDate) {
+		EditDate = editDate;
+	}
+
 	@Override
 	public String toString() {
 		return "cart [id=" + id + ", proName=" + proName + ", proPrice=" + proPrice + ", proCount=" + proCount
 				+ ", orderNo=" + orderNo + ", cuText=" + cuText + ", cuPrice=" + cuPrice + ", OrderId=" + OrderId
-				+ ", EditDate=" + EditDate + ", RegDate=" + RegDate + "]";
+				+ ", RegDate=" + RegDate + ", EditDate=" + EditDate + "]";
 	}
 
 }

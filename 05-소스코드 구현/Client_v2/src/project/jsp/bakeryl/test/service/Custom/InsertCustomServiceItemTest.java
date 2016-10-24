@@ -17,8 +17,8 @@ public class InsertCustomServiceItemTest {
 		custom.setCuClassify("크림");
 		custom.setCuName("모카크림");
 		custom.setCuPrice(3000);
-		custom.setCuEditDate("2016-10-11");
-		custom.setCuRegDate("2016-10-11");
+		// custom.setCuEditDate("2016-10-11");
+		// custom.setCuRegDate("2016-10-11");
 		/** (2) */
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 

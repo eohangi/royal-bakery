@@ -15,9 +15,9 @@ public class InsertCustomItemTest {
 		custom.setCuClassify("크림");
 		custom.setCuName("초코크림");
 		custom.setCuPrice(3000);
-		custom.setCuEditDate("2016-10-11");
-		custom.setCuRegDate("2016-10-11");
-		
+		// custom.setCuEditDate("2016-10-11");
+		// custom.setCuRegDate("2016-10-11");
+
 		/** (3) */
 		/** 데이터 저장 기능 호출하기 + 트렌젝션 */
 		try {

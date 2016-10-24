@@ -40,7 +40,7 @@
 		(#{proName}, #{proPrice}, #{proCount},
 		#{orderNo}, #{cuText},
 		#{cuPrice}, #{OrderId},
-		#{EditDate}, #{RegDate})
+		now(), now())
 	</insert>
 
 	<!-- 단일행 조회(상세보기)를 위한 기능 정의 <select id="메서드이름" parameterType="파라미터의 데이터 

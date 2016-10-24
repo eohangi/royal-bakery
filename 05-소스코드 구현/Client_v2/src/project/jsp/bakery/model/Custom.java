@@ -38,7 +38,6 @@ public class Custom {
 	public int getCuPrice() {
 		return cuPrice;
 	}
-
 	public void setCuPrice(int cuPrice) {
 		this.cuPrice = cuPrice;
 	}
@@ -81,5 +80,10 @@ public class Custom {
 				+ ", cuEditDate=" + cuEditDate + ", cuRegDate=" + cuRegDate + ", limitStart=" + limitStart
 				+ ", listCount=" + listCount + "]";
 	}
+
+//	public void setCuClassify(List<String> contain) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 }
