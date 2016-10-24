@@ -1,4 +1,4 @@
-package project.jsp.bakery.controller.bbs;
+/*package project.jsp.bakery.controller.bbs;
 
 import java.io.IOException;
 
@@ -25,7 +25,7 @@ import project.jsp.helper.WebHelper;
 public class DocumentRead extends BaseController {
 	private static final long serialVersionUID = 7637079432830362848L;
 	
-    /** 1) 사용할 helper 객체 선언 */
+    *//** 1) 사용할 helper 객체 선언 *//*
 	Logger logger;
 	SqlSession sqlSession;
 	WebHelper web;
@@ -46,11 +46,11 @@ public class DocumentRead extends BaseController {
 		documentService = new DocumentServiceImpl(sqlSession, logger);
 		
 		
-		/** (3) 게시판 카테고리 값을 받아서 View에 전달 */
+		*//** (3) 게시판 카테고리 값을 받아서 View에 전달 *//*
 		String category = web.getString("category");
 		request.setAttribute("category", category);
 
-		/** (4) 존재하는 게시판인지 판별하기 */
+		*//** (4) 존재하는 게시판인지 판별하기 *//*
 		try {
 			String bbsName = bbs.getBbsName(category);
 			request.setAttribute("bbsName", bbsName);
@@ -60,7 +60,7 @@ public class DocumentRead extends BaseController {
 			return null;
 		}
 
-		/** (5) 글 번호 파라미터 받기 */
+		*//** (5) 글 번호 파라미터 받기 *//*
 		int documentId = web.getInt("document_id");
 		if (documentId == 0) {
 			sqlSession.close();
@@ -74,7 +74,7 @@ public class DocumentRead extends BaseController {
 		document.setCategory(category);
 
 
-		/** (6) 게시물 일련번호를 사용한 데이터 조회 */
+		*//** (6) 게시물 일련번호를 사용한 데이터 조회 *//*
 		// 지금 읽고 있는 게시물이 저장될 객체
 		Document readDocument = null;
 		// 이전글이 저장될 객체
@@ -95,7 +95,7 @@ public class DocumentRead extends BaseController {
 			sqlSession.close();
 		}
 
-		/** (7) 읽은 데이터를 View에게 전달한다. */
+		*//** (7) 읽은 데이터를 View에게 전달한다. *//*
 		request.setAttribute("readDocument", readDocument);
 		request.setAttribute("prevDocument", prevDocument);
 		request.setAttribute("nextDocument", nextDocument);
@@ -103,4 +103,4 @@ public class DocumentRead extends BaseController {
 		return "bbs/document_read";
 	}
 
-}
+}*/
