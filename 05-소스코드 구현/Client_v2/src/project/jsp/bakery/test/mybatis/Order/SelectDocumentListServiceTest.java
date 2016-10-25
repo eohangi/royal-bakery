@@ -26,9 +26,15 @@ public class SelectDocumentListServiceTest {
 		OrderService orderService = new OrderServiceImpl(sqlSession, logger);
 
 		/** (3) */
+		
+		Orders orders = new Orders();
+		orders.setOrderCategory("reservation");
+		orders.setListCount(5);
+		orders.setListCount(5);
+		
 		List<Orders> list = null;
 		try {
-			list = orderService.selectOrderList(null);
+			list = orderService.selectOrderList(orders);
 			
 		} catch (Exception e) {
 			// TODO: handle exception

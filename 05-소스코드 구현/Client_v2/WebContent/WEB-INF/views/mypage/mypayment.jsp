@@ -40,7 +40,7 @@
 					<!--마이 페이지 안내 메시지를 감싸는 상단의 박스-->
 					<div class="payinner-content-info">
 						<p>
-						<h3>안녕하세요.강호성고객님</h3>
+						<h3>안녕하세요. ${loginInfo.name} 강호성고객님</h3>
 						</p>
 						<p>
 						<h5>마이페이지에서는 고객님의 활동 내역 및 정보를 확인할 수 있습니다.</h5>
@@ -52,7 +52,7 @@
 					<!-- 페이지에 들어갈 2가지 메뉴시작-->
 					<ul class="payinner-content-container" id="boxbody">
 						<li class="mybox" id="mybox" >
-						<a href="${pageContext.request.contextPath}/mypage/ReservationList.do">
+						<a href="${pageContext.request.contextPath}/mypage/ReservationList.do?orderCategory=reservation">
 							<p>
 								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
@@ -66,7 +66,7 @@
 
 						</li>
 						<li class="mybox" id="mybox" >
-						<a href="${pageContext.request.contextPath}/mypage/OrderList.do">
+						<a href="${pageContext.request.contextPath}/mypage/OrderList.do?orderCategory=pay">
 							<p>
 								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>

@@ -104,6 +104,22 @@ public class OrderServiceImpl implements OrderService{
 		}
 		
 	}
+
+	@Override
+	public int selectOrderCount(Orders orders) throws Exception {
+		// TODO Auto-generated method stub
+		
+		int result = 0;
+		try {
+			result = sqlSession.selectOne("OrderMapper.selectOrderCount",orders);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("게시물 수 조회에 실패했습니다.");
+		}
+		return result;
+	}
 	
 	
 

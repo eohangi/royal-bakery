@@ -11,6 +11,14 @@ public class Orders {
 	private String barcode;
 	private String orderCategory;
 	private String orEditTime;
+	
+	private String memName;
+	//private String 
+	
+	
+	private int limitStart;
+	private int listCount;
+	
 	public int getId() {
 		return id;
 	}
@@ -65,12 +73,28 @@ public class Orders {
 	public void setOrEditTime(String orEditTime) {
 		this.orEditTime = orEditTime;
 	}
+	
+	public int getLimitStart() {
+		return limitStart;
+	}
+	public void setLimitStart(int limitStart) {
+		this.limitStart = limitStart;
+	}
+	public int getListCount() {
+		return listCount;
+	}
+	public void setListCount(int listCount) {
+		this.listCount = listCount;
+	}
 	@Override
 	public String toString() {
 		return "Orders [id=" + id + ", orderNo=" + orderNo + ", totalSum=" + totalSum + ", memberId=" + memberId
 				+ ", orRegDate=" + orRegDate + ", pickupTime=" + pickupTime + ", barcode=" + barcode
-				+ ", orderCategory=" + orderCategory + ", orEditTime=" + orEditTime + "]";
+				+ ", orderCategory=" + orderCategory + ", orEditTime=" + orEditTime + ", limitStart=" + limitStart
+				+ ", listCount=" + listCount + "]";
 	}
+
+	
 	
 	
 	

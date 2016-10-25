@@ -9,7 +9,7 @@
 
 	<%@ include file="/WEB-INF/inc/topbar2.jsp"%>
 
-
+<!-- 주문제작 상세 페이지 -->
 	<div class='page-header'>
 		<h1>예약 확인</h1>
 	</div>

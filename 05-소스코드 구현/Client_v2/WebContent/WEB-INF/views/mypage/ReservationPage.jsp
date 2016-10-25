@@ -16,14 +16,12 @@
 		<div class="row">
 			<div class="join">
 
-				<!-- 가입폼 시작 -->
-				<form class="form-horizontal" id="myform" action="ReservationList.jsp">
 
 					<div class="form-group">
 						<label for="user_id" class="col-md-2">종류*</label>
 						<div class="col-md-10">
 							<input type="text" name="user_id" id="user_id"
-								class="form-control" placeholder="일 반 제 품" disabled>
+								class="form-control" placeholder=${readReservation.id}  disabled>
 						</div>
 					</div>
 					<div class="form-group">
@@ -78,12 +76,13 @@
 					<div class="form-group">
 						<div class="col-md-15">
 							<!-- 들여쓰기 -->
-							<button type="submit" class="btn btn-primary">확인</button>
+							
+							<a href="${pageContext.request.contextPath}/mypage/ReservationList.do?orderCategory=reservation"><button type="submit" class="btn btn-primary">확인</button></a>
 						</div>
 					</div>
 
-				</form>
-				<!-- 가입폼 끝 -->
+			
+
 			</div>
 		</div>
 	</div>

@@ -14,8 +14,8 @@ public class InsertProductItemTest {
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		/** (2) 데이터베이스에 저장할 product의 정보를 저장하고 있는 javabeans 객체 */
 		Orders orders = new Orders();
-		orders.setOrderNo(111);
-		orders.setTotalSum(5000);
+		orders.setOrderNo(12321);
+		orders.setTotalSum(12340);
 		orders.setMemberId(1);
 		orders.setPickupTime(null);
 		orders.setBarcode("1233");

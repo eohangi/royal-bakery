@@ -17,5 +17,7 @@ public interface OrderService {
 	
 	public void updateOrder(Orders orders) throws Exception;
 	
+	public int selectOrderCount(Orders orders) throws Exception;
+	
 
 }

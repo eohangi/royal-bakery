@@ -31,9 +31,19 @@
 	<!-- 게시물 목록을 조회한다. -->
 	<select id="selectOrderList" parameterType="project.jsp.bakery.model.Orders"
 		resultMap="orders">
-		SELECT id,order_no,total_sum,member_id,or_reg_date,pickup_time,
-		barcode,order_category,or_edit_time
+		SELECT id,order_no,total_sum,member_id,
+		DATE_FORMAT(or_reg_date, '%Y-%m-%d') AS or_reg_date,
+		DATE_FORMAT(pickup_time, '%Y-%m-%d') AS pickup_time,
+		barcode,order_category,
+		DATE_FORMAT(or_edit_time, '%Y-%m-%d') AS or_edit_time
 		FROM orders
+		
+			where
+			order_category=#{orderCategory}
+
+	
+		ORDER BY id DESC
+		LIMIT #{limitStart} , #{listCount}
 
 	</select>
 	
@@ -43,9 +53,33 @@
 		SELECT id,order_no,total_sum,member_id,or_reg_date,pickup_time,
 		barcode,order_category,or_edit_time
 		FROM orders
-		WHERE id=#{id}
+		WHERE order_category=#{orderCategory} AND id = #{id}
 
 	</select>
+	
+		<!-- 전체 게시물 수를 조회한다. -->
+	<select id="selectOrderCount" parameterType="project.jsp.bakery.model.Orders"
+		resultType="int">
+		SELECT COUNT(id)
+		FROM orders
+			<where>
+			order_category=#{orderCategory}
+		<!-- 	<if test="orderNo != null or memberId != null">
+				AND(
+				<if test="orderNo != null">
+					order_no LIKE concat('%',#{orderNo},'%')
+				</if>
+				<if test="memberId != null">
+					OR member_id LIKE concat('%',#{memberId},'%')
+				</if>
+				)
+			</if> -->
+		</where>
+		
+	</select>
+	
+	
+	
 	
  	<update id="updateOrder" parameterType="project.jsp.bakery.model.Orders">
 		UPDATE orders

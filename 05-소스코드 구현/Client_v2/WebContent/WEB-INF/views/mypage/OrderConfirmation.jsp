@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <%@ include file="/WEB-INF/inc/head.jsp"%>
-<script type="text/javascript" src="js/code39.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/code39.js"></script>
 
 </head>
 <body>
@@ -89,7 +89,7 @@
      <!-- ---------------------------------------------- -->
      <div class="col-md-offset-3 col-md-10 col-sm-12">
       <div id="externalbox" style="width: 5in;">
-       <div id="inputdata">262548</div>
+       <div id="inputdata">111111</div>
       </div>
 
       <script type="text/javascript">

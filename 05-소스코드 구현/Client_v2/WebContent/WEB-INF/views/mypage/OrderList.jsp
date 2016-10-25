@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 
 <!DOCTYPE html>
 <%@ include file="/WEB-INF/inc/head.jsp"%>
@@ -10,12 +13,13 @@
 	<%@ include file="/WEB-INF/inc/topbar2.jsp"%>
 
 
-	<div class="page-header"></div>
 	<div class="container">
-		<div class="row">
+	<h1 class="page-header">${orderName}
+		- <small>결제 목록</small>
+	</h1>
+	
 
-
-			<div class="header">
+			<!-- 			<div class="header">
 				<div class="Search">
 					<form class="form-inline">
 						<fieldset>
@@ -31,121 +35,120 @@
 
 				</div>
 
-			</div>
+			</div> -->
 			<!-- 페이지 내용 영역 -->
 			<div class="table-responsive">
-				<table class="table table-striped table-bordered table-hover">
+				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th class="text-center">번호</th>
-							<th class="text-center">종류</th>
+							<th class="text-center" style="width: 100px">번호</th>
+							<th class="text-center" style="width: 100px">종류</th>
 							<th class="text-center">상품명</th>
-							<th class="text-center">주문자</th>
-							<th class="text-center">결제 금액</th>
-							<th class="text-center">결제일</th>
-							<th class="text-center">관리</th>
+							<th class="text-center" style="width: 100px">주문자</th>
+							<th class="text-center" style="width: 100px">결제 금액</th>
+							<th class="text-center">수령일</th>
+							
 						</tr>
 					</thead>
 					<tbody>
+						<c:choose>
+							<c:when test="${fn:length(orderList)>0}">
+								<c:forEach var="order" items="${orderList}">
+									<tr>
+										<td class="text-center">${order.id}</td>
+										<td class="text-center">${order.orderNo}</td>
+										<td class="text-center">${order.barcode}</td>
+										<td class="text-center">${order.memberId}</td>
+										<td class="text-center">${order.totalSum}</td>
+										<td class="text-center">${order.orRegDate}</td>
+										
+									</tr>
+								</c:forEach>
 
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반제품</th>
-							<th class="text-center">바게트 외 3개</th>
-							<th class="text-center">이한볅</th>
-							<th class="text-center">30000원</th>
-							<th class="text-center">2016-09-24</th>
-							<th class="text-center"><a href="OrderConfirmation.jsp">보기</a></th>
-						</tr>
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반제품</th>
-							<th class="text-center">바게트 외 3개</th>
-							<th class="text-center">이한볅</th>
-							<th class="text-center">30000원</th>
-							<th class="text-center">2016-09-24</th>
-							<th class="text-center"><a href="OrderConfirmation.jsp">보기</a></th>
-						</tr>
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반제품</th>
-							<th class="text-center">바게트 외 3개</th>
-							<th class="text-center">이한볅</th>
-							<th class="text-center">30000원</th>
-							<th class="text-center">2016-09-24</th>
-							<th class="text-center"><a href="OrderConfirmation.jsp">보기</a></th>
-						</tr>
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반제품</th>
-							<th class="text-center">바게트 외 3개</th>
-							<th class="text-center">이한볅</th>
-							<th class="text-center">30000원</th>
-							<th class="text-center">2016-09-24</th>
-							<th class="text-center"><a href="OrderConfirmation.jsp">보기</a></th>
-						</tr>
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반제품</th>
-							<th class="text-center">바게트 외 3개</th>
-							<th class="text-center">이한볅</th>
-							<th class="text-center">30000원</th>
-							<th class="text-center">2016-09-24</th>
-							<th class="text-center"><a href="OrderConfirmation.jsp">보기</a></th>
-						</tr>
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반제품</th>
-							<th class="text-center">바게트 외 3개</th>
-							<th class="text-center">이한볅</th>
-							<th class="text-center">30000원</th>
-							<th class="text-center">2016-09-24</th>
-							<th class="text-center"><a href="OrderConfirmation.jsp">보기</a></th>
-						</tr>
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반제품</th>
-							<th class="text-center">바게트 외 3개</th>
-							<th class="text-center">이한볅</th>
-							<th class="text-center">30000원</th>
-							<th class="text-center">2016-09-24</th>
-							<th class="text-center"><a href="OrderConfirmation.jsp">보기</a></th>
-						</tr>
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반제품</th>
-							<th class="text-center">바게트 외 3개</th>
-							<th class="text-center">이한볅</th>
-							<th class="text-center">30000원</th>
-							<th class="text-center">2016-09-24</th>
-							<th class="text-center"><a href="OrderConfirmation.jsp">보기</a></th>
-						</tr>
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반제품</th>
-							<th class="text-center">바게트 외 3개</th>
-							<th class="text-center">이한볅</th>
-							<th class="text-center">30000원</th>
-							<th class="text-center">2016-09-24</th>
-							<th class="text-center"><a href="OrderConfirmation.jsp">보기</a></th>
-						</tr>
+							</c:when>
+
+							<c:otherwise>
+							<tr>
+								<td class="text-center" colspan="6" style="line-height: 100px;">조회된
+									글이 없습니다.</td>
+									</tr>
+							</c:otherwise>
+						</c:choose>
 					</tbody>
 				</table>
 			</div>
 
-			<ul class="pagination">
-				<li class="disabled"><a href="#">&laquo;</a></li>
-				<!-- 활성화 버튼은 아래의 구조로 구성하시면 됩니다. sr-only는 스크린리더 전용 입니다 .-->
-				<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
-			</ul>
-			<div></div>
-		</div>
+		<!-- 페이지 번호 시작 -->
+<nav class="text-center">
+	<ul class="pagination">
+		<!-- 이전 그룹으로 이동 -->
+		<c:choose>
+			<c:when test="${pageHelper.prevPage > 0}">
+				<!-- 이전 그룹에 대한 페이지 번호가 존재한다면? -->
+				<!-- 이전 그룹으로 이동하기 위한 URL을 생성해서 "prevUrl"에 저장 -->
+				<c:url var="prevUrl" value="/mypage/OrderList.do">
+					<c:param name="orderCategory" value="${orderCategory}"></c:param>
+					<%-- <c:param name="keyword" value="${keyword}"></c:param> --%>
+					<c:param name="page" value="${pageHelper.prevPage}"></c:param>
+				</c:url>
+
+				<li><a href="${prevUrl}">&laquo;</a></li>
+			</c:when>
+
+			<c:otherwise>
+				<!-- 이전 그룹에 대한 페이지 번호가 존재하지 않는다면? -->
+				<li class='disabled'><a href="#">&laquo;</a></li>
+			</c:otherwise>
+		</c:choose>
+			
+		<!-- 페이지 번호 -->
+		<!-- 현재 그룹의 시작페이지~끝페이지 사이를 1씩 증가하면서 반복 -->
+		<c:forEach var="i" begin="${pageHelper.startPage}" end="${pageHelper.endPage}" step="1">
+
+			<!-- 각 페이지 번호로 이동할 수 있는 URL을 생성하여 page_url에 저장 -->
+			<c:url var="pageUrl" value="/mypage/OrderList.do" >
+				<c:param name="orderCategory" value="${orderCategory}"></c:param>
+				<%-- <c:param name="keyword" value="${keyword}"></c:param> --%>
+				<c:param name="page" value="${i}"></c:param>
+			</c:url>
+				
+			<!-- 반복중의 페이지 번호와 현재 위치한 페이지 번호가 같은 경우에 대한 분기 -->
+			<c:choose>
+				<c:when test="${pageHelper.page == i}">
+					<li class='active'><a href="#">${i}</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="${pageUrl}">${i}</a></li>
+				</c:otherwise>
+			</c:choose>	
+
+		</c:forEach>
+			
+		<!-- 다음 그룹으로 이동 -->
+		<c:choose>
+			<c:when test="${pageHelper.nextPage > 0}">
+				<!-- 다음 그룹에 대한 페이지 번호가 존재한다면? -->
+				<!-- 다음 그룹으로 이동하기 위한 URL을 생성해서 "nextUrl"에 저장 -->
+				<c:url var="nextUrl" value="/mypage/OrderList.do">
+					<c:param name="orderCategory" value="${orderCategory}"></c:param>
+				<%-- 	<c:param name="keyword" value="${keyword}"></c:param> --%>
+					<c:param name="page" value="${pageHelper.nextPage}"></c:param>
+				</c:url>
+
+				<li><a href="${nextUrl}">&raquo;</a></li>
+			</c:when>
+
+			<c:otherwise>
+				<!-- 이전 그룹에 대한 페이지 번호가 존재하지 않는다면? -->
+				<li class='disabled'><a href="#">&raquo;</a></li>
+			</c:otherwise>
+		</c:choose>
+	</ul>
+</nav>
+<!--// 페이지 번호 끝 -->
+		
 	</div>
+
 
 	<%@ include file="/WEB-INF/inc/Footer.jsp"%>
 </body>
