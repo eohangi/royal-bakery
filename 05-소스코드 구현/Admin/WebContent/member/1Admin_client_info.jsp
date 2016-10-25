@@ -70,11 +70,15 @@ include file = "/css/common.css" %>
 		$.get("${pageContext.request.contextPath}/member/MEMBERLISTBYADMIN.do"
 				,function(json) {
 			//JSON배여과 템플릿의 결합
-			var template = Handlebars.compile($("#member_item_tmpl").html());
-			//AJAX를 통해서 읽어온 JSON을 템플릿에 병합한다.
-			var html = template(json);
-			//멤버 바디에 읽어온 내용을 추가한다.
+			var tmpl = Handlebars.compile($("#member_item_tmpl").html());
+			
+			for(int i; = 0 i<member.size(); i++){
+			var html = tmpl(json.member[i]);
 			$("#member_list_body").append(html);
+			}
+			
+			//AJAX를 통해서 읽어온 JSON을 템플릿에 병합한다.
+			//멤버 바디에 읽어온 내용을 추가한다.
 		});
 	}
 	$(function() {
@@ -125,20 +129,19 @@ include file = "/css/common.css" %>
 						</tr>
 					</thead>
 					<tbody id="member_list_body">
-						<tr>
 							<script id="member_item_tmpl" type="text/x-handlebars-template">
-									<td class="text-center">{{birthDate}}</td>
-									<td class="text-center">{{mem_Id}}</td>
-									<td class="text-center">{{mem_Name}}</td>
-									<td class="text-center">{{Gender}}</td>
-									<td class="text-center">{{Phone_no}}</td>
-									<td class="text-center">{{Reg_date}}</td>
+									<td class="text-center">${status.birthdate}</td>
+									<td class="text-center">{{mem_id}}</td>
+									<td class="text-center">{{mem_name}}</td>
+									<td class="text-center">{{gender}}</td>
+									<td class="text-center">{{phone_no}}</td>
+									<td class="text-center">{{reg_date}}</td>
 									<td class="text-center">
 									<a href="">구매내역</a></td>
 									<td class="text-center">
 									<a href="">문의내역</a></td>
+								</tr>
 						</script>
-						</tr>
 					</tbody>
 
 				</table>

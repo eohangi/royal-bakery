@@ -187,4 +187,25 @@ public class MemberServiceImpl implements MemberService {
 		return loginInfo;
 	}
 
+	@Override
+	public void updateMember(Member member) throws Exception {
+		try {
+			int result = sqlSession.update("MemberMapper.updateMember", member);
+			// 삭제된 데이터가 없다는 것은 WHERE절의 조건값이 맞지 않다는 의미.
+			// 이 경우, 첫 번째 WHERE조건에서 사용되는 ID값에 대한 회원을 찾을 수 없다는 의미.
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("해당 회원정보를 찾을 수 없습니다.");
+		} catch (Exception e) {
+			sqlSession.rollback();
+			throw new Exception("정보수정에 실패했습니다 관리자에게 문의바랍니다.");
+		} finally {
+			sqlSession.commit();
+		}
+		
+	}
+
 }

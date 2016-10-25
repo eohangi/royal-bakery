@@ -85,7 +85,14 @@
 		select mem_id,mem_name,email FROM member WHERE mem_name=#{mem_name} AND email=#{email}
 	</select>
 	
-	
+		<!-- 회원정보를 저장한다 : 가입 -->
+	<update id="updateMember" parameterType="project.jsp.bakery.model.Member">
+		update member SET 
+		mem_name=#{mem_name},email=#{email}, phone_no=#{phone_no}, 
+		birthdate=#{birthdate}, postcode=#{postcode},
+		addr1=#{addr1}, addr2=#{addr2}, gender=#{gender}
+		WHERE mem_id=#{mem_id}
+	</update>
 	
 	
 

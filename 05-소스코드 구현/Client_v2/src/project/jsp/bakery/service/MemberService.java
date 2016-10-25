@@ -66,6 +66,13 @@ public interface MemberService {
 	 */
 	public Member selectCountByNameEmail(Member member) throws Exception;
 	
+	/***
+	 * 회원정보 수정
+	 * @param member - 이름,이메일,연락처,생일,성,우편,주소1.2
+	 * @throws Exception
+	 */
+	public void updateMember(Member member) throws Exception;
+	
 }
 	
 
