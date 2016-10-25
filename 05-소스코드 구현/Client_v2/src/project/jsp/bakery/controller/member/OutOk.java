@@ -36,7 +36,7 @@ public class OutOk extends BaseController {
 	UploadHelper upload;
 	MemberService memberService;
 	DocumentService documentService;
-	CommentService commentService;
+	/*CommentService commentService;*/
 	
 	
 	@Override
@@ -48,7 +48,7 @@ public class OutOk extends BaseController {
 		upload = UploadHelper.getInstance();
 		memberService = new MemberServiceImpl(logger, sqlSession);
 		documentService = new DocumentServiceImpl(sqlSession, logger);
-		CommentService = new CommentServiceImpl(sqlSession, logger);
+		/*CommentService = new CommentServiceImpl(sqlSession, logger);*/
 		
 	/**3)로그인 여부*/
 	//로그인 중이 아니라면 탈퇴할 수 없다.
@@ -82,7 +82,7 @@ public class OutOk extends BaseController {
 		try {
 			//참조관계 해제
 			documentService.updateDocumentMemberOut(document);
-			commentService.updateCommentMemberOut(comment);
+			/*commentService.updateCommentMemberOut(comment);*/
 			//비밀번호 검사 ㅡ> 비밀번호가 잘못된 경우 예외 발생
 			memberService.selectMemberPasswordCount(member);
 			//탈퇴처리
