@@ -1,9 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <head>
 <%@ include file="/WEB-INF/inc/head.jsp"%>
+
+<!-- ajax-helper -->
+<link rel="stylesheet" href="../plugins/ajax/ajax_helper.css" />
+<script src="/WebContent/plugins/ajax/ajax_helper.js"></script>
+<!-- handlebars plugin -->
+<script src="/WebContent/plugins/handlebars/handlebars-v4.0.5.js"></script>
 
 </head>
 <body>
@@ -21,36 +29,35 @@
 		</div>
 		<div class="col-md-8">
 			<ul id="myTab" class="nav nav-tabs">
-				<li class="col-md-4 col-sm-4 active"><a data-toggle="tab" href="#bread">bread</a></li>
-				<li class="col-md-4 col-sm-4"><a data-toggle="tab" href="#cake">cake</a></li>
-				<li class="col-md-4 col-sm-4"><a data-toggle="tab" href="#cokie">cookie</a></li>
+				<li class="col-md-4 col-sm-4 active"><a id="classify_a"	data-toggle="tab" href="#bread">bread</a></li>
+				<li class="col-md-4 col-sm-4"><a id="classify_b" data-toggle="tab" href="#cake">cake</a></li>
+				<li class="col-md-4 col-sm-4"><a id="classify_c" data-toggle="tab" href="#cookie">cookie</a></li>
 			</ul>
 			<!--// 탭 메뉴 끝 -->
 
 			<!-- 탭 화면 시작 -->
 			<div class="tab-content">
 				<div class="tab-pane fade in active" id="bread">
-					<div class="view view-first">
-						<img src="img/bread/b002.jpg" style="width: 300px; height: 200px;" />
-						<div class="mask"></div>
-						<div class="mask"></div>
-						<div class="content">
-							<p>빵에대한 설명 zxcfq wef sddd ddddd dddddd dddd dsdasfav zxx</p>
-							<p>1000won</p>
-							<p>
-								<input class="pull-left" type="text"
-									placeholder=" 현재 재고량 : 15 개">
-								<!-- 갯수 -->
-								<input type="number" name="quantity" class="pull-left" min="1"
-									max="5">
-								<button onclick="cartAdd">추가</button>
-							</p>
-						</div>
-					</div>					
+					<!-- ajax를 이용한 내용영역 -->
+				</div>
+				
+				<div class="tab-pane fade" id="cake">
+					<!-- ajax를 이용한 내용영역 -->
+				</div>
+				
+				<div class="tab-pane fade" id="cookie">
+					<!-- ajax를 이용한 내용영역 -->
 				</div>
 			</div>
-
 			<!--// 탭 화면 끝 -->
+			
+			<!-- template -->
+			<script id="image_item_tmpl" type="text/x-handlebars-template">
+			</script>
+			
+			<!-- 사용자 정의 스크립트 -->
+			<script type="text/javascript">
+			</script>
 		</div>
 
 

@@ -28,9 +28,6 @@ import project.jsp.helper.WebHelper;
  */
 @WebServlet("/product/productBread.do")
 public class ProductBread extends BaseController {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -8425560016206479046L;
 	/** 1. 사용할 것들 선언 */
 
@@ -106,7 +103,7 @@ public class ProductBread extends BaseController {
 				Product item = productList.get(i);
 				String imagePath = item.getProImg();
 				if (imagePath != null) {
-					String thumbPath = upload.createThumbnail(imagePath, 480, 320, true);
+					String thumbPath = upload.createThumbnail(imagePath, 320, 320, true);
 					// 글 목록 컬렉션 내의 Beans 객체가 갖는 이미지 경로를 썸네일로 변경한다.
 					item.setProImg(thumbPath);
 					logger.debug("thumbnail create >" + item.getProImg());
