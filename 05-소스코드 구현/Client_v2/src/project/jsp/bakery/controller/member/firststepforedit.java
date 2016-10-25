@@ -19,8 +19,8 @@ import project.jsp.helper.WebHelper;
 /**
  * Servlet implementation class FindPw
  */
-@WebServlet("/member/editmemberfirst.do")
-public class editmemberfirst extends BaseController {
+@WebServlet("/member/firststepforedit.do")
+public class firststepforedit extends BaseController {
 
 	private static final long serialVersionUID = 6650343033274254630L;
 	/** (1) 사용하고자 하는 Helper + Service 객체 선언 */
@@ -44,7 +44,7 @@ public class editmemberfirst extends BaseController {
 		// 로그인 중이 아니라면 이 페이지를 동작시켜서는 안된다.
 		if (web.getSession("loginInfo") == null) {
 			sqlSession.close();
-			web.redirect(null, "로그인이 필요한 페이지 입니다.");
+			web.redirect(web.getRootPath()+"/member/Login.do", "로그인이 필요한 페이지 입니다.");
 		}
 
 		System.out.println("loginInfo=" + loginInfo);

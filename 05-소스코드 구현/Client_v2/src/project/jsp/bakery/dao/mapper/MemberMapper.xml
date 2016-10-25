@@ -55,7 +55,7 @@
 		select 
 			id,mem_name,mem_id,mem_pw,email,
 			phone_no,date_format(birthdate,'%y-%m-%d') as birthdate,addr1,addr2,
-			gender,reg_date,edit_date
+			postcode,gender,reg_date,edit_date
 			from member
 			where mem_id=#{mem_id} and mem_pw=password(#{mem_pw})
 			order by id desc limit 0,1
@@ -85,15 +85,32 @@
 		select mem_id,mem_name,email FROM member WHERE mem_name=#{mem_name} AND email=#{email}
 	</select>
 	
-		<!-- 회원정보를 저장한다 : 가입 -->
+	<!-- 회원정보를 저장한다 : 수정 -->
 	<update id="updateMember" parameterType="project.jsp.bakery.model.Member">
 		update member SET 
 		mem_name=#{mem_name},email=#{email}, phone_no=#{phone_no}, 
 		birthdate=#{birthdate}, postcode=#{postcode},
-		addr1=#{addr1}, addr2=#{addr2}, gender=#{gender}
+		addr1=#{addr1}, addr2=#{addr2}, gender=#{gender},reg_date=#{reg_date},edit_date=now()
 		WHERE mem_id=#{mem_id}
 	</update>
 	
+	<!-- 특정 회원과의 게시물 참조 해제하기 -->
+	<update id="updateDocumentMemberOut" parameterType="project.jsp.bakery.model.Member">
+		UPDATE document
+		mem_name=#{mem_name},email=#{email}, phone_no=#{phone_no}, 
+		birthdate=#{birthdate}, postcode=#{postcode},
+		addr1=#{addr1}, addr2=#{addr2}, gender=#{gender},reg_date=#{reg_date},edit_date=now()
+		WHERE mem_id=#{mem_id}
+	</update>
+	
+	<!-- 특정 회원과의 게시물 참조 해제하기 -->
+	<update id="updateCommentMemberOut" parameterType="project.jsp.bakery.model.Member">
+		update member SET 
+		mem_name=#{mem_name},email=#{email}, phone_no=#{phone_no}, 
+		birthdate=#{birthdate}, postcode=#{postcode},
+		addr1=#{addr1}, addr2=#{addr2}, gender=#{gender},reg_date=#{reg_date},edit_date=now()
+		WHERE mem_id=#{mem_id}
+	</update>
 	
 
 </mapper>

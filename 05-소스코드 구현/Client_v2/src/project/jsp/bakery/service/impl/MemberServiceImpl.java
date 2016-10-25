@@ -201,6 +201,7 @@ public class MemberServiceImpl implements MemberService {
 			throw new Exception("해당 회원정보를 찾을 수 없습니다.");
 		} catch (Exception e) {
 			sqlSession.rollback();
+			e.printStackTrace();
 			throw new Exception("정보수정에 실패했습니다 관리자에게 문의바랍니다.");
 		} finally {
 			sqlSession.commit();

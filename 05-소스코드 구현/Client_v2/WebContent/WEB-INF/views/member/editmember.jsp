@@ -18,9 +18,9 @@
 				</p>
 				<!-- 비밀번호 입력 폼 시작 -->
 				<form method="post" action="${pageContext.request.contextPath}
-				/member/MemberEdit.do" class="myform">
+				/member/secondstepforedit.do" class="myform">
 				 <div class="form-group">
-				 	<input type="text" name="mem_pw" class="form-control" />
+				 	<input type="password" name="mem_pw" class="form-control" />
 				 </div>
 				 <div class="form-group">
 				 	<button type="submit" class="btn btn-primary btn-block" >

@@ -21,8 +21,8 @@ import project.jsp.helper.WebHelper;
 /**
  * Servlet implementation class FindPwOk
  */
-@WebServlet("/member/MemberEdit.do")
-public class MemberEdit extends BaseController {
+@WebServlet("/member/secondstepforedit.do")
+public class secondstepforedit extends BaseController {
 	private static final long serialVersionUID = 2043125201428163394L;
 	
 	/**객체선언*/
@@ -48,7 +48,7 @@ public class MemberEdit extends BaseController {
 		}
 		
 		/**비밀번호 파라미터 받기*/
-		String memberPw = web.getString("member_pw");
+		String memberPw = web.getString("mem_pw");
 		logger.debug("jsp에서 날라온 비밀번호>>>>>>>>>>>>>>>>>" + memberPw);
 		
 		if(memberPw == null){
@@ -78,8 +78,7 @@ public class MemberEdit extends BaseController {
 		request.setAttribute("memberInfo", loginInfo);
 		
 		//페이지 이동
-		String view = web.getRootPath()+ "/member/InformationUpdate";
-		return view;
+		return "/member/InformationUpdate";
 	}
 	
 
