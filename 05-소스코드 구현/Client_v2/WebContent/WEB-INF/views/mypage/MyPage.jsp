@@ -38,7 +38,7 @@
 					<!-- 페이지에 들어갈 4가지 메뉴시작-->
 					<ul class="myinner-content-container" id="boxbody">
 						<li class="mybox" id="mybox" >
-						<a href="${pageContext.request.contextPath}/member/InformationUpdate.do">
+						<a href="${pageContext.request.contextPath}/WEB-INF/views/member/editmember.jsp">
 
 							<p>
 								<img style="width: 40px; height: 40px;"

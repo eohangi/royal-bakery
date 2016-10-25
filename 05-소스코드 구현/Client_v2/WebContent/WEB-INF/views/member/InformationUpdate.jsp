@@ -15,7 +15,7 @@
 
 		<!-- 가입폼 시작 -->
 		<form class="form-horizontal" id="member_edit_form" name="member_edit_form" method="post"
-			action="${pageContext.request.contextPath}/member/JoinOk.do">
+			action="${pageContext.request.contextPath}/member/">
 
 			<div class="form-group">
 				<label for='mem_id' class="col-md-2">아이디</label>
