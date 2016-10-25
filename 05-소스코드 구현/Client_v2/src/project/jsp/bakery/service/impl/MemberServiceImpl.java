@@ -169,6 +169,7 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
+	//이메일이랑 이름으로 아이디 찾기
 	@Override
 	public Member selectCountByNameEmail(Member member) throws Exception {
 		Member loginInfo = null;

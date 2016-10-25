@@ -1,38 +1,15 @@
 package project.jsp.bakery.test.dao;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
-import project.jsp.bakery.model.Member;
-import project.jsp.bakery.service.MemberService;
-import project.jsp.bakery.service.impl.MemberServiceImpl;
 
 
-public class MyBatisConnectionTest {
+public class MyBatisConnectionTest2 {
 
 	public static void main(String[] args) {
 		// 데이터베이스 접속처리
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-		MemberService memberService = new MemberServiceImpl(null, sqlSession);
-		
-		Member member = new Member();
-		
-		member.setMem_id("test1");
-		member.setMem_pw("123");
-		Member loginInfo = null;
-		
-		try {
-			loginInfo = memberService.selectLogInfo(member);
-		} catch (Exception e) {
-			sqlSession.close();
-			e.printStackTrace();
-		}
-		
-		
-		
-		
 		// 데이터베이스 접속 해제
 		sqlSession.close();
 		

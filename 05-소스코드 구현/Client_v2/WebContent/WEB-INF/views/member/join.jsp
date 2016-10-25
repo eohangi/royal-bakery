@@ -19,18 +19,19 @@
 			action="${pageContext.request.contextPath}/member/JoinOk.do">
 
 			<div class="form-group">
-				<label for='mem_id' class="col-md-2 clearfix">아이디</label>
-				<div class="input-group col-md-9 clearfix">
-					<input type="text" class="form-control" id="mem_id" name="mem_id" />
-					<span class="input-group-btn">
-						<button class="btn btn-primary" type="button" id="id_uniq_check">중복검사</button>
+				<label for='mem_id' class="col-md-2">아이디*</label>
+				<div class="col-md-8">
+					<input type="text" class="form-control pull-left" id="mem_id" name="mem_id"
+					 style="width:25%; display:inline-block; margin-right:5px;"/>
+					<span>
+						<button class="btn btn-primary pull-left" type="button" id="id_uniq_check">중복검사</button>
 					</span>
 				</div>
 			</div>
 
 
 			<div class="form-group">
-				<label for='"mem_pw"' class="col-md-2">비밀번호*</label>
+				<label for="mem_pw" class="col-md-2">비밀번호*</label>
 				<div class="col-md-10">
 					<input type="password" name="mem_pw" id="mem_pw"
 						class="form-control" />
@@ -94,7 +95,7 @@
 						class="form-control pull-left"
 						style='width: 120px; margin-right: 5px' />
 					<!-- 클릭 시, Javascript 함수 호출 : openDaumPostcode() -->
-					<input type='button' value='우편번호 찾기' class='btn btn-warning'
+					<input type='button' value='우편번호 찾기' class='btn btn-warning pull-left'
 						onclick='execDaumPostcode("postcode", "addr1", "addr2")' />
 				</div>
 			</div>
