@@ -18,7 +18,7 @@ public class UpdateCartServiceItemTest {
 		cart.setProName("초코빵");
 		cart.setProPrice(2000);
 		cart.setProCount(2);
-		cart.setOrderNo("20111111");
+		cart.setOrderNo(20111111);
 		cart.setCuText("카스테라슈크림케익");
 		cart.setCuPrice(20000);
 		cart.setEditDate("2011-11-11");
