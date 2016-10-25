@@ -42,7 +42,7 @@ public class id_unique_check extends BaseController {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
 		
-		String userId = request.getParameter("user_id");
+		String userId = request.getParameter("mem_id");
 		String result = "ok";
 	
 		logger.debug("로거.mem_name from IdUniqueCheck.do = " + userId);
