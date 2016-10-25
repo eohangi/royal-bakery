@@ -57,7 +57,16 @@
 									<tr>
 										<td class="text-center">${order.id}</td>
 										<td class="text-center">${order.orderNo}</td>
-										<td class="text-center">${order.barcode}</td>
+										<td >
+										<c:url var="orderUrl" value="/mypage/OrderConfirmation.do">
+											<c:param name="orderCategory" value="${order.orderCategory}" />
+											<c:param name="reservation_id" value="${order.id}" />
+										</c:url>
+										<a href="${orderUrl}">${order.barcode}</a>
+										
+			
+										
+										</td>
 										<td class="text-center">${order.memberId}</td>
 										<td class="text-center">${order.totalSum}</td>
 										<td class="text-center">${order.orRegDate}</td>
