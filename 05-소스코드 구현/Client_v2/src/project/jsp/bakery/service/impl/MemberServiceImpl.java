@@ -24,17 +24,22 @@ public class MemberServiceImpl implements MemberService {
 		Member result = null;
 		try {
 			result = sqlSession.selectOne("MemberMapper.selectUserIdCount", member);
-			// 중복된 데이터가 존재한다면?
+			/**
+			 * 중복된 데이터가 존재한다면?
+			 * 참이라면 result를 리턴,
+			 * 아니라면 null을 리턴
+			 * 이외의 경우 중복검사 실패.
+			 * */
 			if (result != null) {
-				throw new NullPointerException();
+					System.out.println("<<<<<<<<<<<<<<<<중복된 데이터가 존재할 경우 실행되는 if문 from IMPL>>>>>>>>>>>>>>>");
+					return result;
 			}
-		} catch (NullPointerException e) {
-			throw new Exception("이미 사용중인 아이디");
-		} catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception("아이디 중복검사 실패");
+			throw new Exception("아이디 중복검사 실패 from IMPL");
 		}
-		return result;
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<중복된 데이터가 없으면 실행될꺼야from IMPL>>>>>>>>>>>>>>>>>>>>");
+		return null;
 	}
 
 	// 이메일 중복검사

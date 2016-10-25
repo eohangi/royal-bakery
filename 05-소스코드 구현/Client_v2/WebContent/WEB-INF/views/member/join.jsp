@@ -6,58 +6,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- 스크립트 -->
-	<script type="text/javascript">
-	$(function(){
-		/**버튼클릭시 이벤트*/
-		$("#id_uniq_check").click(function(){
-			//입력값을 취득하고,내용의 존재여부를 검사한다.
-			var mem_id_val = $("#mem_id").val();
-			
-			if(!mem_id_val){	//입력되지 않았다면?
-				alert("아이디를 입력하세요")		//메세지 표시
-				$("mem_id").focus();		//커서를 강제로 넣기
-				return false;				//실행 중단.
-			}
-			
-			//위의 if문을 무사히통과 ㅡ> 내용이 존재
-			//입력된 내용을 Ajax를 통해서 웹 프로그램에게 전달한다.
-			$.get("{pageContext.request.contextPath}/member/IdUniqueCheck.do"
-					,{mem_id: mem_id_val},function(req){
-						//사용 가능한 아이디 ㅡ> req={result:ok}
-						//사용 불가능한 아이디 ㅡ> req={result:no}
-						if(req.result == 'ok'){
-							alert("사용 가능한 아이디 입니다");
-						}else{
-							alert("중복된 아이디 입니다.");
-							${"#mem_id"}.val("");
-							${"#mem_id"}.focus();
-						}
-					});//end$.get
-		});//endclick
-	});
-</script>
 <%@ include file="/WEB-INF/inc/head.jsp"%>
 </head>
 <body>
 	<%@ include file="/WEB-INF/inc/topbar1.jsp"%>
 	<div class="clientjoin">
-		<h1 class="page-header">회원가입</h1>
-
+		<div class='page-header'>
+			<h1>회원가입</h1>
+		</div>
 		<!-- 가입폼 시작 -->
 		<form class="form-horizontal" id="myform" name="myform" method="post"
 			action="${pageContext.request.contextPath}/member/JoinOk.do">
+
 			<div class="form-group">
-				<label for="mem_id" class="col-md-2">아이디*</label>
-				<div class="col-md-10">
+				<label for='mem_id' class="col-md-2 clearfix">아이디</label>
+				<div class="input-group col-md-9 clearfix">
+					<input type="text" class="form-control" id="mem_id" name="mem_id" />
 					<span class="input-group-btn">
-					<input type="text" name="mem_id" id="mem_id" class="form-control pull-left"
-						style='width: 120px; display:inline-block'/>
-					<button type="button" class="btn btn-primary btn-sm pull-left" id="id_uniq_check">
-						아이디중복검사</button>
+						<button class="btn btn-primary" type="button" id="id_uniq_check">중복검사</button>
 					</span>
 				</div>
 			</div>
+
+
 			<div class="form-group">
 				<label for='"mem_pw"' class="col-md-2">비밀번호*</label>
 				<div class="col-md-10">
@@ -108,21 +79,22 @@
 			<div class="form-group">
 				<label for='gender1' class="col-md-2">성별*</label>
 				<div class="col-md-10">
-					<label class="radio-inline pull-left"><input type="radio"
-						name="gender" id="gender1" value="M" />남자</label> <label
-						class="radio-inline pull-left"><input type="radio"
-						name="gender" id="gender2" value="F" />여자</label>
+					<label class="radio-inline"> <input type="radio"
+						name="gender" id="gender1" value="M" /> 남자
+					</label> <label class="radio-inline"> <input type="radio"
+						name="gender" id="gender2" value="F" /> 여자
+					</label>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for='postcode' class="col-md-2">우편번호</label>
+				<label for='postcode' class="col-md-2 clearfix">우편번호</label>
 				<div class="col-md-10 clearfix">
 					<input type="text" name="postcode" id="postcode"
 						class="form-control pull-left"
 						style='width: 120px; margin-right: 5px' />
 					<!-- 클릭 시, Javascript 함수 호출 : openDaumPostcode() -->
-					<input type='button' value='우편번호 찾기' class='btn btn-warning pull-left'
+					<input type='button' value='우편번호 찾기' class='btn btn-warning'
 						onclick='execDaumPostcode("postcode", "addr1", "addr2")' />
 				</div>
 			</div>
@@ -151,6 +123,38 @@
 		<!-- 가입폼 끝 -->
 	</div>
 
+		<!-- 사용자 정의 스크립트 -->
+	<script type="text/javascript">
+		$(function() {
+			/** 버튼 클릭시 이벤트 */
+			$("#id_uniq_check").click(function() {
+				// 입력값을 취득하고, 내용의 존재여부를 검사한다.
+				var mem_id_val = $("#mem_id").val();
+
+				if (!mem_id_val) { // 입력되지 않았다면?
+					alert("아이디를 입력하세요."); // <-- 메시지 표시
+					$("#mem_id").focus(); // <-- 커서를 강제로 넣기
+					return false; // <-- 실행 중단
+				}
+
+				// 위의 if문을 무사히 통과했다면 내용이 존재한다는 의미이므로,
+				// 입력된 내용을 Ajax를 사용해서 웹 프로그램에게 전달한다.
+				$.post("../api/id_unique_check.do", {
+					mem_id : mem_id_val
+				}, function(req) {
+					// 사용 가능한 아이디인 경우 --> req = { result: "OK" }
+					// 사용 불가능한 아이디인 경우 --> req = { result: "FAIL" }
+					if (req.result == 'OK') {
+						alert("사용 가능한 아이디 입니다.");
+					} else {
+						alert("이미 사용중인 아이디 입니다.");
+						$("#mem_id").val("");
+						$("#mem_id").focus();
+					}
+				}); // end $.get
+			}); // end click
+		});
+	</script>
 
 
 	<%@ include file="/WEB-INF/inc/Footer.jsp"%>
