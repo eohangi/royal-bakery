@@ -1,4 +1,4 @@
-package project.jsp.bakery.controller.bbs;
+/*package project.jsp.bakery.controller.bbs;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,7 +25,7 @@ import project.jsp.helper.WebHelper;
 public class DocumentList extends BaseController {
 	private static final long serialVersionUID = -1406637488388369047L;
 
-	/** 1) 사용하고자 하는 핼퍼 객체 선언 */
+	*//** 1) 사용하고자 하는 핼퍼 객체 선언 *//*
 	Logger logger;
 	SqlSession sqlSession;
 	WebHelper web;
@@ -111,3 +111,4 @@ public class DocumentList extends BaseController {
 		
 	}
 }
+*/
