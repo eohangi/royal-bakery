@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <!doctype html>
 <html lang="ko">
@@ -39,5 +39,9 @@
 
 <!-- 다음 우편번호 검색 스크립트 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script
-	src="${pageContext.request.contextPath}/js/daumPostCode.js"></script>
+<script src="${pageContext.request.contextPath}/js/daumPostCode.js"></script>
+
+
+<!-- ajax-helper -->
+<link rel="stylesheet" href="../plugins/ajax/ajax_helper.css" />
+<script src="../plugins/ajax/ajax_helper.js"></script>
