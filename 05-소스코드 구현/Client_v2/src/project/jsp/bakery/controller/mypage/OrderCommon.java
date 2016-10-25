@@ -2,6 +2,7 @@ package project.jsp.bakery.controller.mypage;
 
 public class OrderCommon {
 
+	//게시판 확인을 위한 페이지
 	// 싱글톤 객체 생성을 위한 준비
 	private static OrderCommon current = null;
 
