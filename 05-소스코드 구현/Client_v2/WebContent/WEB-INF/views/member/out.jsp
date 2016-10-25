@@ -17,7 +17,7 @@
 			
 			<!-- 비번입력 폼 시작 -->
 			<form id="myform" method="post"
-			action="${pageContext.request.contextPath}/OutOk.do">
+			action="${pageContext.request.contextPath}/member/OutOk.do">
 			 	<div class="form-group">
 			 		<input type="password" name="mem_pw" class="form-control" />
 			 	</div>

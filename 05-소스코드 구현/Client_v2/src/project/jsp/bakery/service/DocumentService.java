@@ -2,6 +2,7 @@ package project.jsp.bakery.service;
 
 import java.util.List;
 
+import project.jsp.bakery.model.Comment;
 import project.jsp.bakery.model.Document;
 /**
  * 게시물 관련 기능을 제공하기 위한 Service 계층

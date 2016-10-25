@@ -12,8 +12,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
+import project.jsp.bakery.model.Comment;
+import project.jsp.bakery.model.Document;
 import project.jsp.bakery.model.Member;
+import project.jsp.bakery.service.DocumentService;
 import project.jsp.bakery.service.MemberService;
+import project.jsp.bakery.service.impl.DocumentServiceImpl;
 import project.jsp.bakery.service.impl.MemberServiceImpl;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.UploadHelper;
@@ -31,6 +35,8 @@ public class OutOk extends BaseController {
 	WebHelper web;
 	UploadHelper upload;
 	MemberService memberService;
+	DocumentService documentService;
+	CommentService commentService;
 	
 	
 	@Override
@@ -41,6 +47,9 @@ public class OutOk extends BaseController {
 		web = WebHelper.getInstance(request, response);
 		upload = UploadHelper.getInstance();
 		memberService = new MemberServiceImpl(logger, sqlSession);
+		documentService = new DocumentServiceImpl(sqlSession, logger);
+		CommentService = new CommentServiceImpl(sqlSession, logger);
+		
 	/**3)로그인 여부*/
 	//로그인 중이 아니라면 탈퇴할 수 없다.
 		if(web.getSession("loginInfo") == null){
@@ -62,11 +71,18 @@ public class OutOk extends BaseController {
 		Member member = new Member();
 		member.setMem_id(loginInfo.getMem_id());
 		member.setMem_pw(userPw);
-		
-		
+	
+	//게시판 참조 관계 해제
+		Document document = new Document();
+	//덧글 참조 관계 해제
+		Comment comment = new Comment();
+		comment.setMemberId(loginInfo.getId());
 		
 	/**6)서비스를 통한 탈퇴 시도*/
 		try {
+			//참조관계 해제
+			documentService.updateDocumentMemberOut(document);
+			commentService.updateCommentMemberOut(comment);
 			//비밀번호 검사 ㅡ> 비밀번호가 잘못된 경우 예외 발생
 			memberService.selectMemberPasswordCount(member);
 			//탈퇴처리

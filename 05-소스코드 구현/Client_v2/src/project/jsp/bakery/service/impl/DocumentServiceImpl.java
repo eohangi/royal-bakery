@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.Logger;
 
+import project.jsp.bakery.model.Comment;
 import project.jsp.bakery.model.Document;
-import project.jsp.bakery.service.Comment;
 import project.jsp.bakery.service.DocumentService;
 
 
@@ -267,7 +267,5 @@ public class DocumentServiceImpl implements DocumentService {
 		} finally{
 			sqlSession.commit();
 		}
-		
 	}
-
 }
