@@ -14,17 +14,17 @@
 		<div class="carousel-inner">
 			<!-- 항목 (1) -->
 			<div class="item active">
-				<img src="${pageContext.request.contextPath}/assets/img/main1.jpg" alt="꽃(1)">
+				<img src="${pageContext.request.contextPath}/assets/img/carousel/carousel2.png" alt="빵이상의">
 
 			</div>
 			<!-- 항목 (2) -->
 			<div class="item">
-				<img src="${pageContext.request.contextPath}/assets/img/main2.jpg" alt="꽃(2)">
+				<img src="${pageContext.request.contextPath}/assets/img/carousel/carousel3.png" alt="한입">
 
 			</div>
 			<!-- 항목 (3) -->
 			<div class="item">
-				<img src="${pageContext.request.contextPath}/assets/img/main3.jpg" alt="꽃(3)">
+				<img src="${pageContext.request.contextPath}/assets/img/carousel/carousel4.png" alt="최고">
 
 			</div>
 

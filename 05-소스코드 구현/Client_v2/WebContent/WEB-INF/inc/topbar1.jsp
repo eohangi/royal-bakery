@@ -5,13 +5,25 @@
 <!doctype html>
 <div class="head">
 	<div class="banner">
-		<a href="MainIndex1.jsp"> <img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="logo">
+		<a href="${pageContext.request.contextPath}/MainIndex1.do"> 
+		<img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="logo" />
 		</a>
 	</div>
 	<div class="titlebar">
 		<ul class="list-unstyled navi">
-			<li><a href="LoginPage.jsp">Login</a></li>
-			<li><a href="${pageContext.request.contextPath}/member/Join.do">Join</a></li>
+			<c:choose>
+				<c:when test="${loginInfo == null}">
+					<li><a
+						href="${pageContext.request.contextPath}/member/Login.do">Login</a></li>
+						<li><a href="${pageContext.request.contextPath}/member/Join.do">Join</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a
+						href="${pageContext.request.contextPath}/member/LogOut.do">Logout</a></li>
+						<li><a href="${pageContext.request.contextPath}/mypage/MyPage.do">MyPage</a></li>
+				</c:otherwise>
+			</c:choose>
+
 			<li><a href="Story.jsp">Brand</a>
 				<ul class="list-unstyled">
 					<li><a href="Story.jsp">Story</a></li>
@@ -22,12 +34,14 @@
 					<li><a href="LoginPage.jsp">cake</a></li>
 					<li><a href="LoginPage.jsp">cookie</a></li>
 				</ul></li>
-			<li><a href="${pageContext.request.contextPath}/custom/CustomOrder.do">Order</a></li>
+			<li><a
+				href="${pageContext.request.contextPath}/custom/CustomOrder.do">Order</a></li>
 			<li><a href="LoginPage.jsp">Community</a>
 				<ul class="list-unstyled">
 					<li><a href="${pageContext.request.contextPath}//">공지사항</a></li>
 
-					<li><a href="${pageContext.request.contextPath}/Inquire/MyquestionList.do">문의하기</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/Inquire/MyquestionList.do">문의하기</a></li>
 				</ul></li>
 
 		</ul>

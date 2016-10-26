@@ -44,7 +44,7 @@ public class LoginOk extends BaseController {
 		if (web.getSession("loginInfo") != null) {
 			// 이미 sqlsession객체를 생성했으므로,데이터 베이스 접속을 해제해야 한다.
 			sqlSession.close();
-			web.redirect(web.getRootPath() + "index.do", "이미 로그인 하셨습니다.");
+			web.redirect(web.getRootPath() + "/MainIndex1.do", "이미 로그인 하셨습니다.");
 			return null;
 		}
 
@@ -102,12 +102,19 @@ public class LoginOk extends BaseController {
 		
 		/** 9)페이지 이동 */
 		// 이전 페이지 구하기(javascript로 이동된 경우 조회 안됨)
+		//로그인 화면에서 로그인성공후 이전 페이지로 리다이렉트했더니 login servlet으로 돌아가는 문제 발생 if조건문을 한번 더 넣어줬다
+		//로그인 화면을 따로 잡아뒀을 경우 이전 페이지 이동이 오히려 문제가 된다 로그인 화면을 제거하고,navbar에 항시 노출시키거나,이전 페이지 이동을 포기해야 한다.
+		//이전 페이지포기시 고객이 강제적으로 인덱스 페이지로 이동해야 하는 불편함을 느낄 수 있으므로 이렇게 처리했다.
+		
 		String movePage = request.getHeader("referer");
-		if (movePage == null) {
+		String breakloop = "http://localhost:8080/Client_v2/member/Login.do";
+		
+		if (movePage == null || breakloop.equals(movePage)) {
 			movePage = web.getRootPath() + "/MainIndex1.do";
 		}
+		
 		sqlSession.close();
-		web.redirect(movePage, null);
+		web.redirect(movePage, "안녕하세요"+ loginInfo.getMem_name() + "회원님");
 		return null;
 
 	}
