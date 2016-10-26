@@ -30,11 +30,11 @@ public class ProductCommon {
 			//카테고리값이 존재할 경우 게시판 이름 판별
 			if(classify != null){
 				if(classify.equals("a")){
-					productClassify = "a";
+					productClassify = "bread";
 				} else if ( classify.equals("b")){
-					productClassify= "b";
+					productClassify= "cake";
 				}  else if ( classify.equals("c")){
-					productClassify= "c";
+					productClassify= "cokie";
 				} 
 			}
 			
