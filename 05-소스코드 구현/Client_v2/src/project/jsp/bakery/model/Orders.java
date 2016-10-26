@@ -11,14 +11,35 @@ public class Orders {
 	private String barcode;
 	private String orderCategory;
 	private String orEditTime;
+	private String orType;
+	private String orName;
+	private String orTel;
 	
-	private String memName;
-	//private String 
 	
 	
 	private int limitStart;
 	private int listCount;
 	
+	
+	
+	public String getOrType() {
+		return orType;
+	}
+	public void setOrType(String orType) {
+		this.orType = orType;
+	}
+	public String getOrName() {
+		return orName;
+	}
+	public void setOrName(String orName) {
+		this.orName = orName;
+	}
+	public String getOrTel() {
+		return orTel;
+	}
+	public void setOrTel(String orTel) {
+		this.orTel = orTel;
+	}
 	public int getId() {
 		return id;
 	}
@@ -90,8 +111,8 @@ public class Orders {
 	public String toString() {
 		return "Orders [id=" + id + ", orderNo=" + orderNo + ", totalSum=" + totalSum + ", memberId=" + memberId
 				+ ", orRegDate=" + orRegDate + ", pickupTime=" + pickupTime + ", barcode=" + barcode
-				+ ", orderCategory=" + orderCategory + ", orEditTime=" + orEditTime + ", limitStart=" + limitStart
-				+ ", listCount=" + listCount + "]";
+				+ ", orderCategory=" + orderCategory + ", orEditTime=" + orEditTime + ", orType=" + orType + ", orName="
+				+ orName + ", orTel=" + orTel + ", limitStart=" + limitStart + ", listCount=" + listCount + "]";
 	}
 
 	

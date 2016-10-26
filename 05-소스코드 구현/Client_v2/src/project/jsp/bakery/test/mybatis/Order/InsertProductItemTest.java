@@ -20,6 +20,9 @@ public class InsertProductItemTest {
 		orders.setPickupTime(null);
 		orders.setBarcode("1233");
 		orders.setOrderCategory("reservation");
+		orders.setOrType("신용카드");
+		orders.setOrName("어한기");
+		orders.setOrTel("01032010999");
 
 		
 

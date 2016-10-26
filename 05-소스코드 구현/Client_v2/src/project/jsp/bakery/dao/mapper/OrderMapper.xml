@@ -20,12 +20,20 @@
 		<result property="barcode" column="barcode" />
 		<result property="orderCategory" column="order_category" />
 		<result property="orEditTime" column="or_edit_time" />
+		<result property="orType" column="or_type" />
+		<result property="orName" column="or_name" />
+		<result property="orTel" column="or_tel" />
 	</resultMap>
 	
 		<!-- 게시글 정보 저장하기 -->
 	<insert id="insertOrder" parameterType="project.jsp.bakery.model.Orders"
 		useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO orders(order_no, total_sum, member_id, or_reg_date, pickup_time, barcode, order_category, or_edit_time) VALUES ( #{orderNo}, #{totalSum}, #{memberId}, now(), #{pickupTime}, #{barcode}, #{orderCategory}, now())
+		INSERT INTO orders(order_no, total_sum, member_id, or_reg_date, 
+		pickup_time, barcode, order_category, or_edit_time,or_type,or_name,or_tel) 
+		VALUES ( 
+		#{orderNo}, #{totalSum}, #{memberId}, now(), #{pickupTime}, 
+		#{barcode}, #{orderCategory}, now(), #{orType},#{orName},#{orTel}
+		)
 	</insert>
 	
 	<!-- 게시물 목록을 조회한다. -->
@@ -36,6 +44,7 @@
 		DATE_FORMAT(pickup_time, '%Y-%m-%d') AS pickup_time,
 		barcode,order_category,
 		DATE_FORMAT(or_edit_time, '%Y-%m-%d') AS or_edit_time
+		,or_type,or_name,or_tel
 		FROM orders
 		
 			where
@@ -51,7 +60,7 @@
 	<select id="selectOrder" parameterType="project.jsp.bakery.model.Orders"
 		resultMap="orders">
 		SELECT id,order_no,total_sum,member_id,or_reg_date,pickup_time,
-		barcode,order_category,or_edit_time
+		barcode,order_category,or_edit_time,or_type,or_name,or_tel
 		FROM orders
 		WHERE order_category=#{orderCategory} AND id = #{id}
 
