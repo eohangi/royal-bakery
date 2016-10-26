@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
 		List<Product> result = null;
 		
 		try{
-			result = sqlSession.selectList("ProductMapper.selectProduct",product);
+			result = sqlSession.selectList("ProductMapper.selectProductList",product);
 			if(result == null){
 				throw new NullPointerException();
 			}

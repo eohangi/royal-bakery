@@ -61,11 +61,11 @@
 
 			<!-- template -->
 			<script id="image_item_tmpl" type="text/x-handlebars-template">
-				{{#each channel.item}}
+				{{#each item}}
 					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 						<div class="item">
 							<div class="caption">
-								<p>{{{proName}}}</p>
+								<p class="text-center"><b>{{proName}}</b></p>
 							</div>
 							<hr />
 							<div class="img">

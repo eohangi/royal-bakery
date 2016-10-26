@@ -29,8 +29,8 @@ import project.jsp.helper.WebHelper;
 /**
  * Servlet implementation class ProductBread
  */
-@WebServlet("/product/productList.do")
-public class ProductList extends BaseController {
+@WebServlet("/product/productCake.do")
+public class ProductCake extends BaseController {
 	private static final long serialVersionUID = -8425560016206479046L;
 	//** 1. 사용할 것들 선언 *//*
 
@@ -129,7 +129,7 @@ public class ProductList extends BaseController {
 		//페이지 번호 계산 결과를 Veiw에 전달
 		request.setAttribute("pageHelper", pageHelper);
 		
-		view = "menu/bread";
+		view = "menu/cake";
 
 		return view;
 	}

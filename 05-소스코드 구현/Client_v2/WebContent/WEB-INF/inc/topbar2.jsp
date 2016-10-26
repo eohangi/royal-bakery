@@ -21,8 +21,8 @@
 			<li><a href="${pageContext.request.contextPath}/product/productBread.do?classify=a">Product</a>
 				<ul class="list-unstyled">
 					<li><a href="${pageContext.request.contextPath}/product/productBread.do?classify=a">bread</a></li>
-					<li><a href="${pageContext.request.contextPath}/product/productBread.do?classify=b">cake</a></li>
-					<li><a href="${pageContext.request.contextPath}/product/productBread.do?classify=c">cookie</a></li>
+					<li><a href="${pageContext.request.contextPath}/product/productCake.do?classify=b">cake</a></li>
+					<li><a href="${pageContext.request.contextPath}/product/productCookie.do?classify=c">cookie</a></li>
 				</ul></li>
 			<li><a href="CustomOrder.jsp">Order</a></li>
 			<li><a href="Notice.jsp">Community</a>

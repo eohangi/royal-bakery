@@ -50,6 +50,6 @@ public class Index extends BaseController {
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 
 		// "/WEB-INF/views/index.jsp"파일을 View로 사용한다.
-		return "MainIndex1";
+		return "MainIndex2";
 	}
 }
