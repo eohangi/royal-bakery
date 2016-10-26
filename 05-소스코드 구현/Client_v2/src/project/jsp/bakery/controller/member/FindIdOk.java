@@ -41,7 +41,7 @@ public class FindIdOk extends BaseController {
 		
 		if(web.getSession("loginInfo") != null){
 			sqlSession.close();
-			web.redirect(web.getRootPath() + "/MainIndex1.do", "이미 로그인 중입니다.");
+			web.redirect(web.getRootPath() + "/MainIndex.do", "이미 로그인 중입니다.");
 			return null;
 		}
 

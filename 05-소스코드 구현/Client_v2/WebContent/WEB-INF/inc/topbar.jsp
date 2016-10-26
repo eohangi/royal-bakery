@@ -5,7 +5,7 @@
 <!doctype html>
 <div class="head">
 	<div class="banner">
-		<a href="${pageContext.request.contextPath}/MainIndex1.do"> 
+		<a href="${pageContext.request.contextPath}/MainIndex.do"> 
 		<img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="logo" />
 		</a>
 	</div>

@@ -44,7 +44,7 @@ public class LoginOk extends BaseController {
 		if (web.getSession("loginInfo") != null) {
 			// 이미 sqlsession객체를 생성했으므로,데이터 베이스 접속을 해제해야 한다.
 			sqlSession.close();
-			web.redirect(web.getRootPath() + "/MainIndex1.do", "이미 로그인 하셨습니다.");
+			web.redirect(web.getRootPath() + "/MainIndex.do", "이미 로그인 하셨습니다.");
 			return null;
 		}
 
@@ -110,7 +110,7 @@ public class LoginOk extends BaseController {
 		String breakloop = "http://localhost:8080/Client_v2/member/Login.do";
 		
 		if (movePage == null || breakloop.equals(movePage)) {
-			movePage = web.getRootPath() + "/MainIndex1.do";
+			movePage = web.getRootPath() + "/MainIndex.do";
 		}
 		
 		sqlSession.close();

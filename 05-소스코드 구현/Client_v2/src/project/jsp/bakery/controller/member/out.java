@@ -27,7 +27,7 @@ public class out extends BaseController {
 		/**로그인 여부 검사*/
 		//로그인 중이아니라면 이 페이지를 이용할 수 없다.
 		if(web.getSession("loginInfo") == null){
-			web.redirect(web.getRootPath() + "/MainIndex1.do", "로그인 해주세요.");
+			web.redirect(web.getRootPath() + "/MainIndex.do", "로그인 해주세요.");
 			return null;
 		}
 		

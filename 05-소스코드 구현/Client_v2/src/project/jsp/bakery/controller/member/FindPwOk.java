@@ -49,7 +49,7 @@ public class FindPwOk extends BaseController {
 		//로그인 중이라면 이 페이지를 이용할 수 없다
 		if(web.getSession("loginInfo") != null){
 			sqlSession.close();
-			web.redirect(web.getRootPath() + "/MainIndex1.do", "이미 로그인 중입니다.");
+			web.redirect(web.getRootPath() + "/MainIndex.do", "이미 로그인 중입니다.");
 			return null;
 		}
 		

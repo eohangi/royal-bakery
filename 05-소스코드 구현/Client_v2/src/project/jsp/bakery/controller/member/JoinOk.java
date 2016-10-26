@@ -48,7 +48,7 @@ public class JoinOk extends BaseController {
 		if (web.getSession("loginInfo") != null) {
 			// 이미 SqlSession 객체를 생성했으므로, 데이터베이스 접속을 해제해야 한다.
 			sqlSession.close();
-			web.redirect(web.getRootPath() + "/MainIndex1.do", "이미 로그인 하셨습니다.");
+			web.redirect(web.getRootPath() + "/MainIndex.do", "이미 로그인 하셨습니다.");
 			return null;
 		}
 			
