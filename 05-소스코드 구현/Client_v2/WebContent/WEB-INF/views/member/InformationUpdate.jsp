@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/inc/topbar2.jsp"%>
+	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="clientjoin">
 		<h1 class="page-header">회원정보수정</h1>
 

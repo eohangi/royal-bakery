@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/inc/topbar1.jsp"%>
+	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="page-header"></div>
 
 	<div class="Idsearch">

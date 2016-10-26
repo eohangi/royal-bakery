@@ -7,7 +7,7 @@
 </head>
 <body>
 	
-	<%@ include file="/WEB-INF/inc/topbar1.jsp"%>
+	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	
 	
 	<div class="page-header"></div>
@@ -43,12 +43,12 @@
 		<br /> <br />
 		<div class="joinB">
 			<ul class="joinA">
-				<a href="${pageContext.request.contextPath}/Join.do"
-					 class="btn btn-warning">회원가입</a>
-				<a href="${pageContext.request.contextPath}/FindId.do"
-					class="btn btn-info">아이디 찾기</a>
-				<a href="${pageContext.request.contextPath}/FindPw.do"
-					class="btn btn-info">비밀번호 찾기</a>
+				<li href="${pageContext.request.contextPath}/Join.do"
+					 class="btn btn-warning">회원가입</li>
+				<li href="${pageContext.request.contextPath}/FindId.do"
+					class="btn btn-info">아이디 찾기</li>
+				<li href="${pageContext.request.contextPath}/FindPw.do"
+					class="btn btn-info">비밀번호 찾기</li>
 			</ul>
 		</div>
 	</div>

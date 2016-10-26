@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/inc/topbar1.jsp"%>
+	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<!-- /.navbar-->
 	<!-- 캐러셀 내용 -->
 	<div class="carousel-contain">

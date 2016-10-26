@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/inc/topbar2.jsp"%>
+	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">

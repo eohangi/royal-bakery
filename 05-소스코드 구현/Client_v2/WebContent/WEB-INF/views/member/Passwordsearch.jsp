@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/inc/topbar2.jsp"%>
+	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 
 	<div class="Idsearch">
 		<h1>비밀번호 재설정</h1>
