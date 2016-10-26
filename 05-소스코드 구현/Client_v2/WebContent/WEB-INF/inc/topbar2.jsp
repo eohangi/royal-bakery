@@ -18,11 +18,11 @@
 				<ul class="list-unstyled">
 					<li><a href="Story.jsp">Story</a></li>
 				</ul></li>
-			<li><a href="bread.jsp">Product</a>
+			<li><a href="${pageContext.request.contextPath}/product/productBread.do?classify=a">Product</a>
 				<ul class="list-unstyled">
-					<li><a href="bread.jsp">bread</a></li>
-					<li><a href="cake.jsp">cake</a></li>
-					<li><a href="cookie.jsp">cookie</a></li>
+					<li><a href="${pageContext.request.contextPath}/product/productBread.do?classify=a">bread</a></li>
+					<li><a href="${pageContext.request.contextPath}/product/productBread.do?classify=b">cake</a></li>
+					<li><a href="${pageContext.request.contextPath}/product/productBread.do?classify=c">cookie</a></li>
 				</ul></li>
 			<li><a href="CustomOrder.jsp">Order</a></li>
 			<li><a href="Notice.jsp">Community</a>

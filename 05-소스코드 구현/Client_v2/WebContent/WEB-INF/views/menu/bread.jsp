@@ -19,7 +19,7 @@
 <script src="/WebContent/multi-column/ie-row-fix.js"></script>
 
 </head>
-<body>
+<body> 
 
 	<%@ include file="/WEB-INF/inc/topbar2.jsp"%>
 	<div class="page-header"></div>
