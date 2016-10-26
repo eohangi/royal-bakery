@@ -69,15 +69,23 @@
 							</div>
 							<hr />
 							<div class="img">
-								<a href="{{link}}"><img src="{{thumbnail}}" width="100%" /></a>
+								<a href="{{link}}"><img src="{{proImg}}" width="100%" /></a>
 							</div>
 							<div class="detail">
 								<div class="info">
-									<span><!--제품설명--></span>
+									<span>{{content}}</span>
 									<br />
-									<span><!--재고--></span>								
+									<c:choose>
+										<c:when test="${ {{status}} =='o'}">
+											<span class="text-center">현재 수량 : {{stock}}</span>	
+										</c:when>
+										<c:otherwise>
+											<span class="text-center"><b>품절 되었습니다.</b></span>	
+										</c:otherwise>
+									</c:choose>							
 								</div>	
 								<div class="order">
+
 								</div>	
 							</div>
 						</div>
