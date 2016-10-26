@@ -15,7 +15,7 @@ import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.WebHelper;
 
-@WebServlet("/MainIndex1.do")
+@WebServlet("/MainIndex.do")
 public class Index extends BaseController {
 
 	private static final long serialVersionUID = 7339298393481007666L;
@@ -49,6 +49,6 @@ public class Index extends BaseController {
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 
 		// "/WEB-INF/views/index.jsp"파일을 View로 사용한다.
-		return "MainIndex1";
+		return "MainIndex";
 	}
 }
