@@ -119,7 +119,7 @@
 
 							<p class="addquestion pull-right" id="addquestion">
 								<input type="button" class="btn btn-info" value="상담하기"
-									onclick="#">
+									onclick="location.href='Inquire.jsp'">
 							</p>
 
 						</ul>
