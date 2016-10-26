@@ -121,7 +121,7 @@ public class MemberServiceImpl implements MemberService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			sqlSession.rollback();
-			throw new Exception("비밀번호 변경에 실패했다");
+			throw new Exception("알수없는 에러,고객센터로 문의 바랍니다");
 		} finally {
 			sqlSession.commit();
 		}
@@ -182,7 +182,7 @@ public class MemberServiceImpl implements MemberService {
 		} catch (NullPointerException e) {
 			throw new Exception("해당정보로 가입된 회원이 없습니다.");
 		} catch (Exception e) {
-			throw new Exception("아이디 찾기 실패");
+			throw new Exception("아이디 찾기 실패 고객센터로 문의 바랍니다.");
 		}
 		return loginInfo;
 	}
