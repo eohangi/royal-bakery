@@ -6,7 +6,7 @@
 <div class="head">
 	<div class="banner">
 		<a href="${pageContext.request.contextPath}/MainIndex.do"> 
-		<img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="logo" />
+		<img src="${pageContext.request.contextPath}/assets/img/logo12.png" alt="logo" />
 		</a>
 	</div>
 	<div class="titlebar">
