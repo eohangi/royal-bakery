@@ -14,7 +14,7 @@ div.row {
 /****************************** banner *********************/
 .banner {
 	text-align: center;
-	background-color: #fff6cc;
+	background-color: white;
 }
 
 /**  타이틀 바 영역의 배경 색상 그라데이션 처리 */
@@ -23,8 +23,7 @@ div.row {
 	height: 45px;
 	border-bottom: 1px solid #555;
 	/** 웹킷에 대한 그라데이션 - 강의시간에는 구글 크롬만 대상으로 합니다. */
-	background-image: -webkit-linear-gradient(top, rgb(255, 246, 204) 8%,
-		rgb(255, 246, 204) 74%);
+	background-image: white;
 	text-align: -webkit-match-parent;
 }
 /** 리스트 항목 가로 배치 */

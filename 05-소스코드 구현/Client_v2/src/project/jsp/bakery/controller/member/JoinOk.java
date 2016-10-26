@@ -215,7 +215,7 @@ public class JoinOk extends BaseController {
 
 		/** (9) 가입이 완료되었으므로 메인페이지로 이동 */
 		sqlSession.close();
-		web.redirect(web.getRootPath() + "/MainIndex1.do", "회원가입이 완료되었습니다. 로그인 해 주세요.");
+		web.redirect(web.getRootPath() + "/MainIndex.do", "회원가입이 완료되었습니다. 로그인 해 주세요.");
 
 		// INSERT,UPDATE,DELETE 처리를 수행하는 action 페이지들은
 		// 자체적으로 View를 갖지 않고 결과를 확인할 수 있는
