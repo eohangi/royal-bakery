@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/inc/topbar2.jsp"%>
+	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2" id="slide1" ><h1>슬라이드1</h1></div>
