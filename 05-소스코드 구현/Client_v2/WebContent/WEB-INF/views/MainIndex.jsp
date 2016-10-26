@@ -10,14 +10,13 @@
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<!-- /.navbar-->
 	<!-- 캐러셀 내용 -->
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1500">
 		<ol class="carousel-indicators">
 		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 		    <li data-target="#myCarousel" data-slide-to="1"></li>
 		    <li data-target="#myCarousel" data-slide-to="2"></li>
-		    <li data-target="#myCarousel" data-slide-to="3"></li>
 		</ol>
-		<div class="carousel-inner">
+		<div class="carousel-inner" role="listbox">
 			<!-- 항목 (1) -->
 			<div class="item active">
 				<img
