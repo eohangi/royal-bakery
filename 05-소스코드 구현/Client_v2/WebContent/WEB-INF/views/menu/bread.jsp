@@ -88,29 +88,41 @@
 			<!-- 사용자 정의 스크립트 -->
 			<script type="text/javascript">
 			
-				/* 제품 리스트를 불러오는 메서드 정의 */
-				function get_product_list() {
-					$.get("../product/productBread.do", {
-			
-					},function(req){
-						
-					});
-				}
-			
+				
+				
 				$(function() {
+					/* 제품 리스트를 불러오는 메서드 정의 */
 					$("#classify_a").click(function(e) {
-						$.get("../product/productBread.do", {
-			
+						$.get("../product/productBread.do", {classify: a},
+						function(req){
+							//미리 준비한 HTML틀을 읽어온다.
+						 	var template = Handlebars.compile($("#image_item_tmpl").html());
+							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
+							var html = template(req);
+							//완성품을 출력한다.
+							$("#bread").append(html);
 						});
 					});
 					$("#classify_b").click(function(e) {
-						$.get("../product/productBread.do", {
-			
+						$.get("../product/productBread.do", {classify: b},
+						function(req){
+							//미리 준비한 HTML틀을 읽어온다.
+						 	var template = Handlebars.compile($("#image_item_tmpl").html());
+							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
+							var html = template(req);
+							//완성품을 출력한다.
+							$("#cake").append(html);
 						});
 					});
 					$("#classify_c").click(function(e) {
-						$.get("../product/productBread.do", {
-			
+						$.get("../product/productBread.do", {classify: c},
+						function(req){
+							//미리 준비한 HTML틀을 읽어온다.
+						 	var template = Handlebars.compile($("#image_item_tmpl").html());
+							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
+							var html = template(req);
+							//완성품을 출력한다.
+							$("#cookie").append(html);
 						});
 					});
 					

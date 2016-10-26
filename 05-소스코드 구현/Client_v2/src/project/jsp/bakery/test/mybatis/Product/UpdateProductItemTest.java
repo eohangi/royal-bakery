@@ -17,7 +17,7 @@ public class UpdateProductItemTest {
 		product.setProClassify("a");	// a: 빵, b: 케잌 c: 쿠키
 		product.setProName("카페모카 롤브레드");	//품명
 		product.setProPrice(6800);				//가격
-		product.setProImg("/Client_v2/WebContent/assets/img/braad/b011.jpg");
+		product.setProImg("/WebContent/assets/img/braad/b011.jpg");
 		product.setStatus("o");	// o: 있음	x: 품절
 		product.setContent("국내에서 직접 로스팅한 그랑드카페 원두를 곱게 갈아 넣은 향긋한 커피 내음 가득한 롤브레드");
 		product.setStock(19);	//재고		
