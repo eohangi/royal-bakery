@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 
@@ -8,54 +8,58 @@
 <body>
 
 	<%@ include file="/WEB-INF/inc/topbar2.jsp"%>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-2" id="slide1">
-				<h1>슬라이드1</h1>
-			</div>
-			<!-- 페이지 내용 영역 -->
-			<div class="col-md-8" >
-	
-				<div class="page-header">
-					<h2>1대1 문의</h2>
-				</div>
+	<h1 class="page-header">${bbsName} - <small>1대1 문의하기</small></h1>
+		
+		<form class="form-horizontal" method="post" 
+			action="${pageContext.request.contextPath}/bbs/DocumentWriteOk.do">
 			
-
-				<div class="inner final">
-				<div class="row">
-					<form class="form-horizontal" id="inquireform">
-						<div class="form-group col-md-12">
-							<label for="addr1" class="col-md-2">제목</label>
-							<div class="col-md-10">
-								<input type="text" name="addr1" id="addr1" class="form-control">
-							</div>
-						</div>
-						<div class="form-group col-md-12">
-							<label for="addr2" class="col-md-2" >내용</label>
-							<div class="col-md-10">
-								
-									<textarea name="body" id="body" 
-										class="form-control Area" rows="10" style="margin-bottom:10px;"></textarea>
-								
-							</div>
-							
-								<div class="button" style="margin-right:20px;">
-									<button type="button" class="btn btn-primary"  onclick="location.href='InquireConfirm.jsp'">제출하기</button>
-									<button type="button" class="btn btn-primary" onclick="location.href='MyquestionList.jsp'">취소</button>
-								</div>
-							
-					</form>
+			<!-- 게시판 카테고리에 대한 상태 유지 -->
+			<input type="hidden" name="category" value="${category}" />
+			<!-- 작성자, 비밀번호, 이메일은 로그인하지 않은 경우만 입력한다. -->
+			<c:if test="${loginInfo == null}">
+				<!-- 작성자 -->
+				<div class="form-group">
+					<label for="writer_name" class="col-sm-2 control-label">작성자</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="writer_name" name="writer_name">
 					</div>
 				</div>
+				<!-- 비밀번호 -->
+				<div class="form-group">
+					<label for="writer_pw" class="col-sm-2 control-label">비밀번호</label>
+					<div class="col-sm-8">
+						<input type="password" class="form-control" id="writer_pw" name="writer_pw" />
+					</div>
+				</div>
+				
+				
+			</c:if>
+			<!-- 제목 -->
+			<div class="form-group">
+				<label for="subject" class="col-sm-2 control-label">제목</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" id="subject" name="subject" />
+				</div>
 			</div>
-
-			<div class="col-md-2" id="slide2">
-				<h3>슬라이드2</h3>
+			<!-- 내용 -->
+			<div class="form-group">
+				<label for="content" class="col-sm-2 control-label">내용</label>
+				<div class="col-sm-8">
+					<textarea id="content" name="content" class="ckeditor"></textarea>
+				</div>
 			</div>
-
-		</div>
+			
+			<!-- 버튼들 -->
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-8">
+					<button type="submit" class="btn btn-primary">저장하기</button>
+					<button type="button" class="btn btn-danger" onclick="history.back();">작성취소</button>
+				</div>
+			</div>
+			
+		</form>
 	</div>
 	<%@ include file="/WEB-INF/inc/Footer.jsp"%>
 </body>
 
-</html>
+</html> --%>

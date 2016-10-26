@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 
@@ -142,4 +142,4 @@
 	<%@ include file="/WEB-INF/inc/Footer.jsp"%>
 </body>
 
-</html>
+</html> --%>

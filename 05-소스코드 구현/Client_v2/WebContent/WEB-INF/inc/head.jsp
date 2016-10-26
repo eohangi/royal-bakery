@@ -45,3 +45,6 @@
 <!-- ajax-helper -->
 <link rel="stylesheet" href="../plugins/ajax/ajax_helper.css" />
 <script src="../plugins/ajax/ajax_helper.js"></script>
+
+<!-- CKEditor -->
+<script src="http://cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
