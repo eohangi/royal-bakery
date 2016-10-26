@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/inc/topbar2.jsp"%>
+	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class='page-header'>
 		<h1>구매 내역</h1>
 	</div>
