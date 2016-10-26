@@ -13,21 +13,7 @@ public class Document {
 	private String check;
 	private int memberId;
 	
-	private int limitStart;
-	private int listCount;
-	
-	public int getLimitStart() {
-		return limitStart;
-	}
-	public void setLimitStart(int limitStart) {
-		this.limitStart = limitStart;
-	}
-	public int getListCount() {
-		return listCount;
-	}
-	public void setListCount(int listCount) {
-		this.listCount = listCount;
-	}
+
 	public int getId() {
 		return id;
 	}
@@ -98,8 +84,8 @@ public class Document {
 	public String toString() {
 		return "Document [id=" + id + ", writerName=" + writerName + ", writerPw=" + writerPw + ", subject=" + subject
 				+ ", content=" + content + ", regDate=" + regDate + ", editDate=" + editDate + ", ipAddr=" + ipAddr
-				+ ", category=" + category + ", check=" + check + ", memberId=" + memberId + ", limitStart="
-				+ limitStart + ", listCount=" + listCount + "]";
+				+ ", category=" + category + ", check=" + check + ", memberId=" + memberId + "]";
 	}
+
 	
 }

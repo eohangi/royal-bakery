@@ -32,7 +32,7 @@
 			
 			<choose>
 				<when test="memberId == 0">
-					null, password#({writerPw})
+					null, password(#{writerPw})
 				</when>
 				<otherwise>
 					#{memberId}, #{writerPw}
@@ -45,30 +45,11 @@
 	<select id="selectDocumentList"
 		parameterType="project.jsp.bakery.model.Document"
 		resultMap="document">
-		SELECT
-			category, writer_name, subject, 
-			DATE_FORMAT(reg_date, '%Y-%m-%d') AS reg_date,
-						
-		FROM document
-		
-		<where>
-			category=#{category}
-			
-			<if test="subject != null or content != null">
-				AND (
-					<if test="subject != null">
-						subject LIKE concat('%', #{subject}, '%')
-					</if>
-					
-					<if test="content != null">
-						OR content LIKE concat('%', #{content}, '%')
-					</if>
-				)
-			</if>
-		</where>
-		
-		ORDER BY id DESC
-		LIMIT #{limitStart}, #{listCount}
+		SELECT id, category, writer_name, subject,
+			   DATE_FORMAT(reg_date, '%Y-%m-%d') as reg_date
+		FROM   document
+		WHERE  category=#{category}
+		ORDER  BY id DESC
 	</select>
 	
 	<!-- 게시물 하나에 대한 정보를 조회한다. -->
@@ -76,10 +57,10 @@
 		parameterType="project.jsp.bakery.model.Document"
 		resultMap="document">
 		SELECT
-			category, writer_name, subject, content,
+			id, category, writer_name, writer_pw, subject, content,
 			DATE_FORMAT(reg_date, '%Y-%m-%d') AS reg_date,
 			DATE_FORMAT(edit_date, '%Y-%m-%d') AS edit_date,
-			ip_addr, Member_id, writer_pw
+			ip_addr, Member_id 
 		FROM document
 		WHERE category=#{category} AND id=#{id}
 	</select>
@@ -89,10 +70,10 @@
 		parameterType="project.jsp.bakery.model.Document"
 		resultMap="document">
 		SELECT
-			category, writer_name, subject, content,
+			id, category, writer_name, writer_pw, subject, content,
 			DATE_FORMAT(reg_date, '%Y-%m-%d') AS reg_date,
 			DATE_FORMAT(edit_date, '%Y-%m-%d') AS edit_date,
-			ip_addr, Member_id, writer_pw
+			ip_addr, Member_id
 		FROM document
 		WHERE category=#{category} AND id &lt; #{id}
 		ORDER BY id DESC
@@ -105,10 +86,10 @@
 		parameterType="project.jsp.bakery.model.Document"
 		resultMap="document">
 		SELECT
-			category, writer_name, subject, content,
+			id, category, writer_name, writer_pw, subject, content,
 			DATE_FORMAT(reg_date, '%Y-%m-%d') AS reg_date,
 			DATE_FORMAT(edit_date, '%Y-%m-%d') AS edit_date,
-			ip_addr, Member_id, writer_pw
+			ip_addr, Member_id
 		FROM document
 		WHERE category=#{category} AND id &gt; #{id}
 		ORDER BY id ASC
