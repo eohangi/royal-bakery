@@ -12,7 +12,7 @@
 	<div class="page-header"></div>
 	<div class="Idsearch">
 		<div class="IdsearchText">
-			<p1> <strong><비밀번호 찾기에 문제를겪고계신가요?></strong></p1>
+			<p1> <strong>비밀번호 찾기에 문제를겪고계신가요?</strong></p1>
 			<br /> <br />
 			<hr />
 			<h1>[RoyalBakery]</h1>
