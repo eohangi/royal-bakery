@@ -7,18 +7,6 @@
 <head>
 <%@ include file="/WEB-INF/inc/head.jsp"%>
 
-<!-- ajax-helper -->
-<link rel="stylesheet" href="../plugins/ajax/ajax_helper.css" />
-<script src="/WebContent/plugins/ajax/ajax_helper.js"></script>
-<!-- handlebars plugin -->
-<script src="/WebContent/plugins/handlebars/handlebars-v4.0.5.js"></script>
-
-<!-- grid 플러그인 -->
-<link rel="stylesheet" type="text/css"
-	href="/WebContent/multi-column/multi-columns-row.css" />
-<script src="/WebContent/multi-column/ie-row-fix.js"></script>
-
-
 <style>
 <!--
 content 내용 ...으로 생략 -->.content {

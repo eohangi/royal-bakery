@@ -49,14 +49,11 @@
 		<div class="carinner-content">
 			<div class="carinner-content-container" id="boxbody">
 				<div class="mybox" id="mybox">
-						<img style="width:"
-							src="${pageContext.request.contextPath}/assets/img/Index1.png">
+						<img src="${pageContext.request.contextPath}/assets/img/Index1.png">
 				</div>
 				<div class="mybox" id="mybox">
-						<img style="width:%"
-							src="${pageContext.request.contextPath}/assets/img/Index2.png">
-						<img style="width:%"
-							src="${pageContext.request.contextPath}/assets/img/Index3.png">
+						<img src="${pageContext.request.contextPath}/assets/img/Index2.png">
+						<img src="${pageContext.request.contextPath}/assets/img/Index3.png">
 				</div>
 			</div>>
 		</div>
