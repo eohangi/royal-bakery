@@ -21,26 +21,49 @@
 		<result property="OrderId" column="Order_id" />
 		<result property="EditDate" column="edit_date" />
 		<result property="RegDate" column="reg_date" />
+		<result property="memberId" column="member_id" />
 	</resultMap>
+
+	<!-- 자신의 게시물인지 검사한다. -->
+	<select id="selectCartCountByMemberId" parameterType="project.jsp.bakery.model.cart"
+		resultMap="cart">
+		<!-- SELECT COUNT(id) FROM cart WHERE member_id=#{memberId} -->
+		SELECT id, pro_name, pro_price, pro_count, order_no, cu_text,
+		cu_price, Order_id, edit_date, reg_date FROM cart WHERE
+		member_id=#{memberId}
+	</select>
+
 
 	<select id="selectCartList" parameterType="project.jsp.bakery.model.cart"
 		resultMap="cart">
 		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 		SELECT id, pro_name, pro_price, pro_count, order_no, cu_text,
-		cu_price, Order_id, edit_date, reg_date
+		cu_price, Order_id, edit_date, reg_date, member_id
 		FROM cart ORDER BY id ASC;
 	</select>
 
 	<insert id="insertCartItem" parameterType="project.jsp.bakery.model.cart"
 		useGeneratedKeys="true" keyProperty="cart">
 		INSERT INTO cart (pro_name,
-		pro_price, pro_count, order_no, cu_text, cu_price, Order_id,
-		edit_date, reg_date)
+		pro_price, pro_count, order_no, cu_text,
+		cu_price, Order_id,
+		edit_date, reg_date, member_id)
 		VALUES
-		(#{proName}, #{proPrice}, #{proCount},
+		(#{proName},
+		#{proPrice},
+		#{proCount},
 		#{orderNo}, #{cuText},
 		#{cuPrice}, #{OrderId},
-		now(), now())
+		now(), now(),
+		<choose>
+			<when test="memberId == 0">
+				null
+			</when>
+			<otherwise>
+				#{memberId}
+			</otherwise>
+		</choose>
+		)
 	</insert>
 
 	<!-- 단일행 조회(상세보기)를 위한 기능 정의 <select id="메서드이름" parameterType="파라미터의 데이터 
@@ -49,7 +72,10 @@
 		resultMap="cart">
 		<!-- "#{변수명}" 으로 표시된 곳에 파라미터로 전달된 Beans의 멤버변수값이 치환된다. -->
 		SELECT distinct id, pro_name, pro_price, pro_count, order_no, cu_text,
-		cu_price, Order_id, edit_date, reg_date
+		cu_price, Order_id, DATE_FORMAT(reg_date, '%Y-%m-%d %H:%i:%s') as
+		reg_date,
+		DATE_FORMAT(edit_date, '%Y-%m-%d %H:%i:%s') as edit_date,
+		member_id
 		FROM cart
 		WHERE
 		id=#{id}

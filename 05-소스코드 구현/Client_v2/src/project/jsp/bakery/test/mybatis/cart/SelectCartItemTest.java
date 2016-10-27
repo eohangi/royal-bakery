@@ -1,5 +1,7 @@
 package project.jsp.bakery.test.mybatis.cart;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
@@ -14,13 +16,12 @@ public class SelectCartItemTest {
 
 		/** (2) 데이터 조회 기능 호출하기 */
 		cart cart = new cart();
-		cart.setId(7);
-
+		cart.setMemberId(2);
 		// 조회결과가 저장될 Beans 선언하기
-		cart item = null;
+		List<cart> list = null;
 
 		try {
-			item = sqlSession.selectOne("CartMapper.selectCartItem", cart);
+			list = sqlSession.selectList("CartMapper.selectCartCountByMemberId", cart);
 
 		} catch (Exception e) {
 			System.out.println(e.getLocalizedMessage());
@@ -31,7 +32,9 @@ public class SelectCartItemTest {
 			sqlSession.close();
 		}
 		/** (3) 조회 결과 출력하기 */
-		System.out.println(item.toString());
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
 	}
 
 }

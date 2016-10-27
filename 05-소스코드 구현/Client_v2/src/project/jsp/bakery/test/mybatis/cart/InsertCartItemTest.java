@@ -16,11 +16,12 @@ public class InsertCartItemTest {
 		cart.setProName("슈크림빵");
 		cart.setProPrice(2000);
 		cart.setProCount(2);
-		cart.setOrderNo(20111111);
+		cart.setOrderNo("20111111");
 		cart.setCuText("카스테라슈크림케익");
 		cart.setCuPrice(20000);
 //		cart.setEditDate("2011-11-11");
 //		cart.setRegDate("2011-11-11");
+		cart.setMemberId(2);
 
 		/** (3) */
 		/** 데이터 저장 기능 호출하기 + 트렌젝션 */
