@@ -23,7 +23,6 @@ div.row {
 	height: 45px;
 	border-bottom: 1px solid #555;
 	/** 웹킷에 대한 그라데이션 - 강의시간에는 구글 크롬만 대상으로 합니다. */
-	background-image: white;
 	text-align: -webkit-match-parent;
 }
 /** 리스트 항목 가로 배치 */
@@ -41,16 +40,17 @@ div.row {
 	clear: both;
 }
 
-/** 링크의 사이즈 처리 및 텍스트 꾸밈 */
+/** 링크의 사이즈 처리 및 텍스트 꾸밈 (냅바 글자색,배경색>>>>>>>>>>>>>>>>>>>>>>)*/	
 .navi>li>a {
 	text-decoration: none;
+	background-color: #054931;
 	display: block;
 	width: auto;
 	height: 45px;
 	text-align: center;
 	font-weight: bold;
 	line-height: 45px;
-	color: black;
+	color: white;			
 	-webkit-transition: all 0.2s ease-in;
 }
 
@@ -114,12 +114,15 @@ div.row {
 	min-width: 100%;
 	height: 500px;
 }
-
+.carousel-inner>.item>img>padding-bottom{
+	height:10px;
+	background-color:#054931;
+}
 .carousel-inner .carousel-caption {
 	padding-left: 30px;
 	padding-right: 30px;
 	background-color: rgba(0, 0, 0, 0.5) !important;
-}
+}aasdNNSAJHSAD
 
 .carinner-content-container {
 	padding: 0px;
