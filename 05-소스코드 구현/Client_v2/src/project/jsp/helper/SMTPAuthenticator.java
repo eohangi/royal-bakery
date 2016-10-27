@@ -13,6 +13,6 @@ public class SMTPAuthenticator extends Authenticator {
 	@Override
     public PasswordAuthentication getPasswordAuthentication() {
 		// 자신의 Gmail 메일 주소와 비밀번호 입력.
-        return new PasswordAuthentication("자신의 Gmail 주소", "비밀번호");
+        return new PasswordAuthentication("positivenum@gmail.com", "0180qwer");
     }
 }

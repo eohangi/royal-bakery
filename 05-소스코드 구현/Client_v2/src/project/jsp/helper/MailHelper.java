@@ -49,7 +49,7 @@ public class MailHelper {
 		Properties p = new Properties();
 
 		// 본인의 Gmail 주소로 계정 설정
-		p.put("mail.smtp.user", "자신의 Gmail 주소");
+		p.put("mail.smtp.user", "positivenum@gmail.com");
 
 		// Google SMTP 서버 정보 설정 
 		p.put("mail.smtp.host", "smtp.gmail.com");

@@ -39,7 +39,7 @@
 					</div>
 				</div>
 				<div class="button">
-					<div class="form-group col-md-4 clearfix">
+					<div class="form-group">
 						<button type="submit" class="btn btn-primary btn-block"
 							style="float: right;">아이디 찾기</button>
 					</div>

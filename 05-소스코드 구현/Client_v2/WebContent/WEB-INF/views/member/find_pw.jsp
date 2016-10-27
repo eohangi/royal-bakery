@@ -19,7 +19,7 @@
 				</p>
 				<!-- 이메일 주소 입력 폼 시작 -->
 				<form method="post" action="${pageContext.request.contextPath}
-				//FindPwOk.do" class="myform">
+				/member/FindPwOk.do" class="myform">
 				 <div class="form-group">
 				 	<input type="text" name="email" class="form-control" />
 				 </div>
