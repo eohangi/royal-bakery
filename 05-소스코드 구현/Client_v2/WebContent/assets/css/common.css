@@ -143,7 +143,6 @@ div.row {
 	/** 메뉴박스4개 링크영역 확장+마우스호버*/	
 	display: inline-block;
 	text-align: center;
-	cursor: pointer;
 	padding: 0px;
 	margin: 0px;
 	border: 0px;
