@@ -43,20 +43,8 @@
 
 
 <!-- ajax-helper -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ajax/ajax_helper.css" />
-<script src="${pageContext.request.contextPath}/plugins/ajax/ajax_helper.js"></script>
+<link rel="stylesheet" href="../plugins/ajax/ajax_helper.css" />
+<script src="../plugins/ajax/ajax_helper.js"></script>
 
 <!-- CKEditor -->
 <script src="http://cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
-
-<!-- ajax-helper -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ajax/ajax_helper.css" />
-<script src="${pageContext.request.contextPath}/plugins/ajax/ajax_helper.js"></script>
-
-<!-- handlebars plugin -->
-<script src="${pageContext.request.contextPath}/plugins/handlebars/handlebars-v4.0.5.js"></script>
-
-<!-- grid 플러그인 -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/plugins/multi-column/multi-columns-row.css" />
-<script src="${pageContext.request.contextPath}/plugins/multi-column/ie-row-fix.js"></script>
