@@ -53,4 +53,6 @@ public interface CartService {
 	public List<cart> selectCartList(cart cart) throws Exception;
 
 	public List<cart> selectCartClassCount(cart cart) throws Exception;
+	
+	public List<cart> selectCartCountByMemberId(cart cart) throws Exception;
 }
