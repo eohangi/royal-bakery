@@ -44,7 +44,7 @@
 
 <!-- ajax-helper -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ajax/ajax_helper.css" />
-<script src="../plugins/ajax/ajax_helper.js"></script>
+<script src="${pageContext.request.contextPath}/plugins/ajax/ajax_helper.js"></script>
 
 <!-- CKEditor -->
 <script src="http://cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
@@ -58,5 +58,5 @@
 
 <!-- grid 플러그인 -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/multi-column/multi-columns-row.css" />
-<script src="${pageContext.request.contextPath}/multi-column/ie-row-fix.js"></script>
+	href="${pageContext.request.contextPath}/plugins/multi-column/multi-columns-row.css" />
+<script src="${pageContext.request.contextPath}/plugins/multi-column/ie-row-fix.js"></script>

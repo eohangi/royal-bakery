@@ -123,7 +123,7 @@ content 내용 ...으로 생략 -->.content {
 						var current_classify = $(this).data("classify");
 						
 						//Ajax요청을 통한학과 데이터 조회
-						$.get('../product/productList.do',{deptno:current_classify},function(json){
+						$.get('../product/productList.do',{classify:current_classify},function(json){
 							
 							//미리 준비한 HTML틀을 읽어온다.
 						 	var template = Handlebars.compile($("#image_item_tmpl").html());
@@ -134,39 +134,7 @@ content 내용 ...으로 생략 -->.content {
 						});
 					});
 						
-					$("#classify_a").click(function(e) {
-						$.get("../product/productBread.do", {classify: a},
-						function(req){
-							//미리 준비한 HTML틀을 읽어온다.
-						 	var template = Handlebars.compile($("#image_item_tmpl").html());
-							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
-							var html = template(req);
-							//완성품을 출력한다.
-							$("#bread").append(html);
-						});
-					});
-					$("#classify_b").click(function(e) {
-						$.get("../product/productBread.do", {classify: b},
-						function(req){
-							//미리 준비한 HTML틀을 읽어온다.
-						 	var template = Handlebars.compile($("#image_item_tmpl").html());
-							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
-							var html = template(req);
-							//완성품을 출력한다.
-							$("#cake").append(html);
-						});
-					});
-					$("#classify_c").click(function(e) {
-						$.get("../product/productBread.do", {classify: c},
-						function(req){
-							//미리 준비한 HTML틀을 읽어온다.
-						 	var template = Handlebars.compile($("#image_item_tmpl").html());
-							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
-							var html = template(req);
-							//완성품을 출력한다.
-							$("#cookie").append(html);
-						});
-					});
+					
 					
 					/* content 높이 설정 */
 					//content의 너비
