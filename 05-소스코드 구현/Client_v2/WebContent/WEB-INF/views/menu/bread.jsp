@@ -7,21 +7,10 @@
 <head>
 <%@ include file="/WEB-INF/inc/head.jsp"%>
 
-<!-- ajax-helper -->
-<link rel="stylesheet" href="../plugins/ajax/ajax_helper.css" />
-<script src="/WebContent/plugins/ajax/ajax_helper.js"></script>
-<!-- handlebars plugin -->
-<script src="/WebContent/plugins/handlebars/handlebars-v4.0.5.js"></script>
-
-<!-- grid 플러그인 -->
-<link rel="stylesheet" type="text/css"
-	href="/WebContent/multi-column/multi-columns-row.css" />
-<script src="/WebContent/multi-column/ie-row-fix.js"></script>
-
 
 <style>
-<!--
-content 내용 ...으로 생략 -->.content {
+<!--content 내용 ...으로 생략 -->
+.content {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -32,7 +21,9 @@ content 내용 ...으로 생략 -->.content {
 <body>
 
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
-	<div class="page-header"></div>
+	<div class="page-header">
+		<!--  menu 로고 -->
+	</div>
 
 
 	<div class="row">
@@ -44,11 +35,11 @@ content 내용 ...으로 생략 -->.content {
 		</div>
 		<div class="col-md-8">
 			<ul id="myTab" class="nav nav-tabs">
-				<li class="col-md-4 col-sm-4 active"><a data-classify="a"
+				<li class="col-md-4 col-sm-4 active text-center"><a data-classify="a"
 					data-toggle="tab" href="#list">bread</a></li>
-				<li class="col-md-4 col-sm-4"><a data-classify="b"
+				<li class="col-md-4 col-sm-4 text-center"><a data-classify="b"
 					data-toggle="tab" href="#list">cake</a></li>
-				<li class="col-md-4 col-sm-4"><a data-classify="c"
+				<li class="col-md-4 col-sm-4 text-center"><a data-classify="c"
 					data-toggle="tab" href="#list">cookie</a></li>
 			</ul>
 
@@ -135,7 +126,7 @@ content 내용 ...으로 생략 -->.content {
 						var current_classify = $(this).data("classify");
 						
 						//Ajax요청을 통한학과 데이터 조회
-						$.get('../product/productList.do',{deptno:current_classify},function(json){
+						$.get('../product/productList.do',{classify:current_classify},function(json){
 							
 							//미리 준비한 HTML틀을 읽어온다.
 						 	var template = Handlebars.compile($("#image_item_tmpl").html());
@@ -146,39 +137,6 @@ content 내용 ...으로 생략 -->.content {
 						});
 					});
 						
-					$("#classify_a").click(function(e) {
-						$.get("../product/productBread.do", {classify: a},
-						function(req){
-							//미리 준비한 HTML틀을 읽어온다.
-						 	var template = Handlebars.compile($("#image_item_tmpl").html());
-							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
-							var html = template(req);
-							//완성품을 출력한다.
-							$("#bread").append(html);
-						});
-					});
-					$("#classify_b").click(function(e) {
-						$.get("../product/productBread.do", {classify: b},
-						function(req){
-							//미리 준비한 HTML틀을 읽어온다.
-						 	var template = Handlebars.compile($("#image_item_tmpl").html());
-							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
-							var html = template(req);
-							//완성품을 출력한다.
-							$("#cake").append(html);
-						});
-					});
-					$("#classify_c").click(function(e) {
-						$.get("../product/productBread.do", {classify: c},
-						function(req){
-							//미리 준비한 HTML틀을 읽어온다.
-						 	var template = Handlebars.compile($("#image_item_tmpl").html());
-							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
-							var html = template(req);
-							//완성품을 출력한다.
-							$("#cookie").append(html);
-						});
-					});
 					
 					/* content 높이 설정 */
 					//content의 너비
