@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
+import project.jsp.bakery.model.Member;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.WebHelper;
 
@@ -30,7 +31,6 @@ public class Index extends BaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	
 
 	/** (1) 사용하고자 하는 Helper + Service 객체 선언 */
 	// --> import org.apache.logging.log4j.Logger;
@@ -42,11 +42,20 @@ public class Index extends BaseController {
 
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		/** (2) 사용하고자 하는 Helper+Service 객체 생성 */
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		web = WebHelper.getInstance(request, response);
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
+		
+
+		Member loginInfo = (Member) web.getSession("loginInfo");
+		/** (3) 로그인 여부 검사 */
+		// 로그인 중이라면 이 페이지를 동작시켜서는 안된다.
+		if (web.getSession("loginInfo") == null) {
+			sqlSession.close();
+		}
+
+		System.out.println("loginInfo=" + loginInfo);
 
 		// "/WEB-INF/views/index.jsp"파일을 View로 사용한다.
 		return "MainIndex";
