@@ -48,8 +48,25 @@
 		SELECT id, category, writer_name, subject,
 			   DATE_FORMAT(reg_date, '%Y-%m-%d') as reg_date
 		FROM   document
-		WHERE  category=#{category}
+		
+		<where>
+			category=#{category}
+			
+			<if test="subject != null or content != null">
+				AND (
+					<if test="subject != null">
+						subject LIKE concat('%', #{subject}, '%')
+					</if>
+					
+					<if test="content != null">
+						OR content LIKE concat('%', #{content}, '%')
+					</if>
+				)
+			</if>
+		</where>
+		
 		ORDER  BY id DESC
+		LIMIT #{limitStart}, #{listCount}
 	</select>
 	
 	<!-- 게시물 하나에 대한 정보를 조회한다. -->
@@ -104,7 +121,7 @@
 		<where>
 			category=#{category}
 			<if test="subject !=null or content != null">
-				ANd (
+				AND (
 					<if test="subject != null">
 						subject LIKE concat('%', #{subject}, '%')
 					</if>

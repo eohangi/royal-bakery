@@ -17,6 +17,7 @@ import project.jsp.bakery.model.Document;
 import project.jsp.bakery.service.DocumentService;
 import project.jsp.bakery.service.impl.DocumentServiceImpl;
 import project.jsp.helper.BaseController;
+import project.jsp.helper.PageHelper;
 import project.jsp.helper.WebHelper;
 
 @WebServlet("/bbs/document_list.do")
@@ -29,6 +30,7 @@ public class DocumentList extends BaseController {
 	WebHelper web;
 	BBSCommon bbs;
 	DocumentService documentService;
+	PageHelper pageHelper;
 	
 	
 	@Override
@@ -42,6 +44,7 @@ public class DocumentList extends BaseController {
 		web = WebHelper.getInstance(request, response);
 		bbs = BBSCommon.getInstance();
 		documentService = new DocumentServiceImpl(sqlSession, logger);
+		pageHelper = PageHelper.getInstance();
 		
 		//** 3 게시판 카테고리 값을 받아서 view에 전달 *//*
 		String category = web.getString("category");
@@ -58,12 +61,34 @@ public class DocumentList extends BaseController {
 		}
 		
 		/** 조회할 정보에 대한 Beans 생성 */
+		// 검색어
+		String keyword = web.getString("keyword");
+		
 		Document document = new Document();
 		document.setCategory(category);
 		
+		// 현재 페이지 수 --> 기본값은 1페이지로 설정함
+		int page = web.getInt("page", 1);
+		
+		// 제목과 내용에 대한 검색으로 활용하기 위해서 입력값을 설정한다.
+		document.setSubject(keyword);
+		document.setContent(keyword);
+		
 		/** 게시글 목록 조회 */
+		int totalCount = 0;
 		List<Document> documentList = null;
 		try {
+			// 전체 게시물 수
+			totalCount = documentService.selectDocumentCount(document);
+			
+			// 나머지 페이지 번호 계산하기
+			// --> 현재 페이지, 전체 게시물 수, 한페이지의 목록 수, 그룹갯수
+			pageHelper.pageProcess(page, totalCount, 12, 5);
+			
+			// 페이지 번호 계산 결과에서 Limit절에 필요한 값을 Beans에 추가
+			document.setLimitStart(pageHelper.getLimitStart());
+			document.setListCount(pageHelper.getListCount());
+			
 			documentList = documentService.selectDocumentList(document);
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());
@@ -73,6 +98,10 @@ public class DocumentList extends BaseController {
 		}
 		/** 조회 결과를 View에 전달 */
 		request.setAttribute("documentList", documentList);
+		// 사용자가 입력한 검색어를 View에 되돌려 준다.
+		request.setAttribute("keyword", keyword);
+		// 페이지 번호 계산 결과를 view에 전달
+		request.setAttribute("pageHelper", pageHelper);
 		
 		return "bbs/document_list";	
 		
