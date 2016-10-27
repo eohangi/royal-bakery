@@ -46,7 +46,8 @@
 			<!-- // 내용영역 구성 -->
 		</div>
 	</div>
-		<div class="carinner-content">
+		<div class="carinner-content" style="background: url('${pageContext.request.contextPath}/assets/img/background.png');
+											background-size: cover;">
 			<div class="carinner-content-container" id="boxbody">
 				<div style="padding-top: 5px" class="mybox" id="mybox">
 						<img src="${pageContext.request.contextPath}/assets/img/Index1.png">
