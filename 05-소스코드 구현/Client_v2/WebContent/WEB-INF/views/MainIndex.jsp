@@ -47,44 +47,18 @@
 		</div>
 	</div>
 		<div class="carinner-content">
-			<ul class="carinner-content-container" id="boxbody">
-				<li class="mybox" id="mybox" onclick="location.href='LoginPage.jsp'">
-					<p>
-						<img style="width: 40px; height: 40px;"
-							src="${pageContext.request.contextPath}/assets/img/search.png">
-					</p>
-					<p>
-					<h4>일반제품 예약</h4>
-					</p>
-					<p>
-					<h6></h6>
-					</p>
-				</li>
-				<li class="mybox" id="mybox" onclick="location.href='LoginPage.jsp'">
-					<p>
-						<img style="width: 40px; height: 40px;"
-							src="${pageContext.request.contextPath}/assets/img/search.png">
-					</p>
-					<p>
-					<h4>주문제작 예약</h4>
-					</p>
-					<p>
-					<h6></h6>
-					</p>
-				</li>
-				<li class="mybox" id="mybox" onclick="location.href='LoginPage.jsp'">
-					<p>
-						<img style="width: 40px; height: 40px;"
-							src="${pageContext.request.contextPath}/assets/img/search.png">
-					</p>
-					<p>
-					<h4>장바구니</h4>
-					</p>
-					<p>
-					<h6></h6>
-					</p>
-				</li>
-			</ul>
+			<div class="carinner-content-container" id="boxbody">
+				<div class="mybox" id="mybox">
+						<img style="width:"
+							src="${pageContext.request.contextPath}/assets/img/Index1.png">
+				</div>
+				<div class="mybox" id="mybox">
+						<img style="width:%"
+							src="${pageContext.request.contextPath}/assets/img/Index2.png">
+						<img style="width:%"
+							src="${pageContext.request.contextPath}/assets/img/Index3.png">
+				</div>
+			</div>>
 		</div>
 		<%@ include file="/WEB-INF/inc/Footer.jsp"%>
 </body>
