@@ -48,14 +48,14 @@
 	</div>
 		<div class="carinner-content">
 			<div class="carinner-content-container" id="boxbody">
-				<div class="mybox" id="mybox">
+				<div style="padding-top: 5px" class="mybox" id="mybox">
 						<img src="${pageContext.request.contextPath}/assets/img/Index1.png">
 				</div>
-				<div class="mybox" id="mybox">
+				<div style="margin-top: 5px" class="mybox" id="mybox">
 						<img src="${pageContext.request.contextPath}/assets/img/Index2.png">
 						<img src="${pageContext.request.contextPath}/assets/img/Index3.png">
 				</div>
-			</div>>
+			</div>
 		</div>
 		<%@ include file="/WEB-INF/inc/Footer.jsp"%>
 </body>

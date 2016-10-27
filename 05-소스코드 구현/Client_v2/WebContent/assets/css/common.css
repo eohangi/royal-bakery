@@ -22,6 +22,7 @@ div.row {
 	width: 100%;
 	height: 45px;
 	border-bottom: 1px solid #555;
+	background-color: #054931;
 	/** 웹킷에 대한 그라데이션 - 강의시간에는 구글 크롬만 대상으로 합니다. */
 	text-align: -webkit-match-parent;
 }
@@ -107,7 +108,7 @@ div.row {
 /***********************************carousel  ***********************************************/
 .carousel {
 	height: 500px;
-	margin-bottom: 60px;
+	margin-bottom:0;
 }
 
 .carousel-inner>.item>img {
@@ -137,9 +138,6 @@ div.row {
 	padding-bottom: 60px;
 }
 
-#mybox {
-	border: 1px solid #eee;
-}
 
 .carinner-content .carinner-content-container #mybox {
 	/** 메뉴박스4개 링크영역 확장+마우스호버*/	
@@ -149,7 +147,6 @@ div.row {
 	padding: 0px;
 	margin: 0px;
 	border: 0px;
-	margin: 5px;
 	height: 80%;
 	width: 80%;
 	
