@@ -4,12 +4,12 @@
 
 <!DOCTYPE html>
 <%@ include file="/WEB-INF/inc/head.jsp"%>
+<html>
+<head>
 </head>
 <body>
 
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
-	<div class="page-header"></div>
-
 	<div class="Idsearch">
 		<div class="IdsearchText">
 			<p> <h1><strong>아이디가기억나지않으세요?</strong></h1></p>
