@@ -18,6 +18,16 @@
 	href="/WebContent/multi-column/multi-columns-row.css" />
 <script src="/WebContent/multi-column/ie-row-fix.js"></script>
 
+
+<style>
+<!-- content 내용 ...으로 생략 -->
+ .content{
+ 	white-space: nowrap;
+ 	overflow: hidden;
+ 	text-overflow: ellipsis;
+ }
+</style>
+
 </head>
 <body> 
 
@@ -41,6 +51,7 @@
 				<li class="col-md-4 col-sm-4"><a id="classify_c"
 					data-toggle="tab" href="#cookie">cookie</a></li>
 			</ul>
+		
 			<!--// 탭 메뉴 끝 -->
 
 			<!-- 탭 화면 시작 -->
@@ -68,25 +79,52 @@
 								<p class="text-center"><b>{{proName}}</b></p>
 							</div>
 							<hr />
-							<div class="img">
-								<a href="{{link}}"><img src="{{proImg}}" width="100%" /></a>
-							</div>
-							<div class="detail">
-								<div class="info">
-									<span>{{content}}</span>
-									<br />
-									<c:choose>
-										<c:when test="${ {{status}} =='o'}">
-											<span class="text-center">현재 수량 : {{stock}}</span>	
-										</c:when>
-										<c:otherwise>
-											<span class="text-center"><b>품절 되었습니다.</b></span>	
-										</c:otherwise>
-									</c:choose>							
-								</div>	
-								<div class="order">
-
-								</div>	
+							<div class="over">
+								<div class="img">
+									<a href="{{link}}"><img src="{{proImg}}" width="100%" /></a>
+								</div>
+								<div class="detail">
+									<div class="info row">
+										<span class="content" id="content" style="width:50%">{{content}}</span>
+										<span style="width:50%">
+											<table>
+												<tr>
+													<th>칼로리</th>
+													<td>{{kcal}}kcal</td>
+												</tr>
+												<tr>
+													<th>나트륨</th>
+													<td>{{na}}mg</td>
+												</tr>
+												<tr>
+													<th>당</th>
+													<td>{{sugar}}g</td>
+												</tr>
+												<tr>
+													<th>지방</th>
+													<td>{{fat}}g</td>
+												</tr>
+												<tr>
+													<th>단백질</th>
+													<td>{{protein}}g</td>
+												</tr>
+											</table>
+										</span>
+										<br />
+										<c:choose>
+											<c:when test="${ {{status}} =='o'}">
+												<span class="text-center">현재 수량 : {{stock}}</span>	
+												<span class="text-center">가격 : {{proPrice}}</span>	
+											</c:when>
+											<c:otherwise>
+												<span class="text-center"><b>품절 되었습니다.</b></span>	
+											</c:otherwise>
+										</c:choose>							
+									</div>	
+									<div class="order">
+	
+									</div>	
+								</div>
 							</div>
 						</div>
 					</div>
@@ -95,8 +133,6 @@
 
 			<!-- 사용자 정의 스크립트 -->
 			<script type="text/javascript">
-			
-				
 				
 				$(function() {
 					/* 제품 리스트를 불러오는 메서드 정의 */
@@ -134,8 +170,13 @@
 						});
 					});
 					
-					/* 제품 이미지 Hover시 변환되는 스크립트 */
+					/* content 높이 설정 */
+					//content의 너비
+					var content_width = $("#content").css("width");
+					//높이설정
+					$("#content").css("height",content_width*0.8);
 					
+					/* 제품 이미지 Hover시 변환되는 스크립트 */
 					
 				});			
 			</script>
@@ -143,7 +184,7 @@
 
 
 		<!-- 슬라이드 2 -->
-		<!---------------------------------------  장바구니   ----------------------------------- -->
+		<!---------------------------------------  장바구니    ------------------------------------------->
 		<form class="form-horizontal" id="inquireform">
 
 			<div class="col-md-2" style="padding-right: 0px;">
