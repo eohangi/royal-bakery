@@ -49,12 +49,15 @@
 		<div class="carinner-content" style="background: url('${pageContext.request.contextPath}/assets/img/background.png');
 											background-size: cover;">
 			<div class="carinner-content-container" id="boxbody">
-				<div style="padding-top: 5px text-align:center" class="mybox" id="mybox">
+				<div style="padding-top: 5px" class="mybox" id="mybox">
 						<img src="${pageContext.request.contextPath}/assets/img/Index1.png">
+						<a href="${pageContext.request.contextPath}/브랜드스토리"></a>
 				</div>
-				<div style="margin-top: 5px text-align:center"" class="mybox" id="mybox">
+				<div style="margin-top: 5px" class="mybox" id="mybox">
 						<img src="${pageContext.request.contextPath}/assets/img/Index2.png">
+						<a href="${pageContext.request.contextPath}/브랜드스토리"></a>
 						<img src="${pageContext.request.contextPath}/assets/img/Index3.png">
+						<a href="${pageContext.request.contextPath}/브랜드스토리"></a>
 				</div>
 			</div>
 		</div>
