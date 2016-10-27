@@ -222,6 +222,10 @@ div.container {
 	text-align: center;
 }
 
+input #mem_.form-control{
+	width: 300px;
+}
+
 /********************** FAQ******************************/
 .tab_menu1 {
 	overflow: hidden;

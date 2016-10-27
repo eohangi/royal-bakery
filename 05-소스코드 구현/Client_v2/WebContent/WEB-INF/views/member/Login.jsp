@@ -8,13 +8,12 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
-	<div class="page-header"><h1>Login Member</h1></div>
-	<div class="loginB">
+	<div class="page-header"
+	><h1><font color="#f26b24">Login Member</font></h1></div>
+	<div class="loginB" >
 		<form name="myform" class="form1" method="POST" 
 		action="${pageContext.request.contextPath}/member/LoginOk.do">
 			<fieldset>
-				<legend>로그인</legend>
-			
 				<!-- 다음예제에서 반복됩니다. -->
 				<div class="form-group">
 					<label for="mem_id">아이디</label> 
@@ -38,7 +37,6 @@
 				</div>
 			</fieldset>
 		</form>
-		<br /> <br />
 		<div class="joinB">
 			<span class="joinA pull-left style=">
 				<a type="button" href="${pageContext.request.contextPath}/member/Join.do"

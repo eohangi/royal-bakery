@@ -12,7 +12,7 @@
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="clientjoin">
 		<div class='page-header'>
-			<h1>회원가입</h1>
+			<h1><font color="#f26b24">회원가입</font></h1>
 		</div>
 		<!-- 가입폼 시작 -->
 		<form class="form-horizontal" id="myform" name="myform" method="post"

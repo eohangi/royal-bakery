@@ -12,11 +12,11 @@
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="Idsearch">
 		<div class="IdsearchText">
-			<p> <h1><strong>아이디가기억나지않으세요?</strong></h1></p>
+			<p><h1><font color="#f26b24">아이디가기억나지않으세요?</font></h1></p>
 			<br /> <br />
 			<hr />
-			<h3>가입시 입력하셨던 이름과 이메일로</h3>
-			<h3>아이디 확인이 가능합니다.</h3>
+			<h3>가입시 입력하셨던 이름과 이메일로
+			아이디 확인이 가능합니다.</h3>
 		</div>
 		<hr />
 		<br />

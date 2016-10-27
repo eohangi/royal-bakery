@@ -12,7 +12,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<h1 class="page-header" color='#f26b24;'><strong>비밀번호 찾기</strong></h1>
+				<h1 class="page-header"><font color="#f26b24">비밀번호 찾기</font></h1>
 				<p>
 					가입시 입력한 이메일 주소를 입력하세요.
 					임시 비밀번호를 이메일로 보내드립니다.
