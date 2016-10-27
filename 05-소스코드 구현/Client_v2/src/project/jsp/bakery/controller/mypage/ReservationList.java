@@ -116,7 +116,7 @@ public class ReservationList extends BaseController {
 		}finally {
 			sqlSession.close();
 		}
-		
+		//확인차 넣은 코드
 		for (int i = 0; i < reservationList.size(); i++) {
 			System.out.println(reservationList.get(i).toString());
 		}
