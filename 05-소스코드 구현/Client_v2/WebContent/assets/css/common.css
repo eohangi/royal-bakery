@@ -67,7 +67,7 @@ div.row {
 
 /** 2depth 메뉴 컨테이너 */
 .navi>li>ul {
-	background: rgb(255, 246, 204);
+	background: rgba(5, 73, 49, 0.7);
 	width: 100%;
 	/** 타이틀바 보다 작은 값 */
 	z-index: 100;
@@ -94,14 +94,14 @@ div.row {
 	font-weight: normal;
 	font-size: 11px;
 	line-height: 30px;
-	color: black;
+	color: white;
 	text-decoration: none;
 }
 
 /* 2depth 메뉴 컨테이너 각 항목 > 링크 마우스 오버 */
 .navi ul>li>a:hover {
-	color: orange;
-	background: rgb(255, 246, 204);
+	color: black;
+	background: rgba(5, 73, 49, 0.9);
 }
 
 /***********************************carousel  ***********************************************/
