@@ -140,7 +140,7 @@ public class CustomPageOK extends BaseController {
 		/** (13) */
 		sqlSession.close();
 
-		web.redirect(web.getRootPath() + "/MainIndex1.do", "장바구니에 추가되었습니다.");
+		web.redirect(web.getRootPath() + "/MainIndex.do", "장바구니에 추가되었습니다.");
 
 		return null;
 

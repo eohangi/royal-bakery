@@ -53,7 +53,7 @@
 							</a>
 						</li>
 						<li class="mybox" id="mybox" >
-						<a href="${pageContext.request.contextPath}/mypage/MybookingList.do">
+						<a href="${pageContext.request.contextPath}/cart/Cart.do">
 							<p>
 								<img style="width: 40px; height: 40px;"
 									src="${pageContext.request.contextPath}/assets/img/search.png">
