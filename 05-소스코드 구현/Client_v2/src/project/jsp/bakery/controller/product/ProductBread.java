@@ -100,14 +100,6 @@ public class ProductBread extends BaseController {
 			sqlSession.close();
 			
 		}
-		
-		//** 처리 결과를 JSON으로 출력하기 *//*
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("rt", "OK");
-		data.put("item", productList);
-		
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.writeValue(response.getWriter(), data);
 
 		// 조회결과가 존재할 경우 --> 이미지 경로를 썸네일로 교체
 		if (productList != null) {

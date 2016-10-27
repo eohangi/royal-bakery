@@ -20,16 +20,16 @@
 
 
 <style>
-<!-- content 내용 ...으로 생략 -->
- .content{
- 	white-space: nowrap;
- 	overflow: hidden;
- 	text-overflow: ellipsis;
- }
+<!--
+content 내용 ...으로 생략 -->.content {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 </style>
 
 </head>
-<body> 
+<body>
 
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="page-header"></div>
@@ -44,27 +44,19 @@
 		</div>
 		<div class="col-md-8">
 			<ul id="myTab" class="nav nav-tabs">
-				<li class="col-md-4 col-sm-4 active"><a id="classify_a"
-					data-toggle="tab" href="#bread">bread</a></li>
-				<li class="col-md-4 col-sm-4"><a id="classify_b"
-					data-toggle="tab" href="#cake">cake</a></li>
-				<li class="col-md-4 col-sm-4"><a id="classify_c"
-					data-toggle="tab" href="#cookie">cookie</a></li>
+				<li class="col-md-4 col-sm-4 active"><a data-classify="a"
+					data-toggle="tab" href="#list">bread</a></li>
+				<li class="col-md-4 col-sm-4"><a data-classify="b"
+					data-toggle="tab" href="#list">cake</a></li>
+				<li class="col-md-4 col-sm-4"><a data-classify="c"
+					data-toggle="tab" href="#list">cookie</a></li>
 			</ul>
-		
+
 			<!--// 탭 메뉴 끝 -->
 
 			<!-- 탭 화면 시작 -->
 			<div class="tab-content">
-				<div class="tab-pane fade in active" id="bread">
-					<!-- ajax를 이용한 내용영역 -->
-				</div>
-
-				<div class="tab-pane fade" id="cake">
-					<!-- ajax를 이용한 내용영역 -->
-				</div>
-
-				<div class="tab-pane fade" id="cookie">
+				<div class="tab-pane fade" id="list">
 					<!-- ajax를 이용한 내용영역 -->
 				</div>
 			</div>
@@ -135,7 +127,25 @@
 			<script type="text/javascript">
 				
 				$(function() {
-					/* 제품 리스트를 불러오는 메서드 정의 */
+					/* 제품 리스트를 불러 */
+					/* 탭 페이지가 보여질 경우의 이벤트 */
+					// 탭 안의 모든 <a> 태그에 대한 이벤드 --> 모든 탭 페이지가 열릴 때이 이벤트가 호출됨
+					$("#myTab a").on('shown.bs.tab',function(e){
+						//data-deptno 속성의 값ㅇ르 취득한다.
+						var current_classify = $(this).data("classify");
+						
+						//Ajax요청을 통한학과 데이터 조회
+						$.get('../product/productList.do',{deptno:current_classify},function(json){
+							
+							//미리 준비한 HTML틀을 읽어온다.
+						 	var template = Handlebars.compile($("#image_item_tmpl").html());
+							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
+							var html = template(json);
+							//완성품을 출력한다.
+							$("#list").html(html);
+						});
+					});
+						
 					$("#classify_a").click(function(e) {
 						$.get("../product/productBread.do", {classify: a},
 						function(req){
@@ -172,9 +182,10 @@
 					
 					/* content 높이 설정 */
 					//content의 너비
-					var content_width = $("#content").css("width");
+					/* var content_width = $("#content").css("width");
+					
 					//높이설정
-					$("#content").css("height",content_width*0.8);
+					$("#content").css("height",content_width*0.8 + "%"); */
 					
 					/* 제품 이미지 Hover시 변환되는 스크립트 */
 					

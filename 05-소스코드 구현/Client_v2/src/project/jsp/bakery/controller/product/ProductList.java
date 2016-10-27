@@ -32,7 +32,7 @@ import project.jsp.helper.WebHelper;
 @WebServlet("/product/productList.do")
 public class ProductList extends BaseController {
 	private static final long serialVersionUID = -8425560016206479046L;
-	//** 1. 사용할 것들 선언 *//*
+	// ** 1. 사용할 것들 선언 *//*
 
 	Logger logger;
 	SqlSession sqlSession;
@@ -46,7 +46,7 @@ public class ProductList extends BaseController {
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String view = null;
 
-		//** 2.객체 생성 *//*
+		// ** 2.객체 생성 *//*
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
@@ -56,12 +56,12 @@ public class ProductList extends BaseController {
 		productService = new ProductServiceImpl(logger, sqlSession);
 		Product product = new Product();
 
-		//** 3. classify 값을 받아서 항목을 출력 *//*
+		// ** 3. classify 값을 받아서 항목을 출력 *//*
 		// a: bread , b: cake, c:cokie
 		String classify = web.getString("classify");
 		request.setAttribute("classify", classify);
 
-		//** 4. 존재하는 목록인지 판별하기 *//*
+		// ** 4. 존재하는 목록인지 판별하기 *//*
 		try {
 			String proClassify = proCommon.getProductClassify(classify);
 			request.setAttribute("proClassify", proClassify);
@@ -71,7 +71,7 @@ public class ProductList extends BaseController {
 			return null;
 		}
 
-		//** 5. 품목 조회 *//*
+		// ** 5. 품목 조회 *//*
 		int totalCount = 0;
 		List<Product> productList = null;
 
@@ -98,16 +98,8 @@ public class ProductList extends BaseController {
 			return null;
 		} finally {
 			sqlSession.close();
-			
+
 		}
-		
-		//** 처리 결과를 JSON으로 출력하기 *//*
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("rt", "OK");
-		data.put("item", productList);
-		
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.writeValue(response.getWriter(), data);
 
 		// 조회결과가 존재할 경우 --> 이미지 경로를 썸네일로 교체
 		if (productList != null) {
@@ -123,15 +115,15 @@ public class ProductList extends BaseController {
 			}
 		}
 
-		//**6. 조회 결과를 View에 전달*//*
-		request.setAttribute("productList", productList);
-		
-		//페이지 번호 계산 결과를 Veiw에 전달
-		request.setAttribute("pageHelper", pageHelper);
-		
-		view = "menu/bread";
+		// ** 처리 결과를 JSON으로 출력하기 *//*
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("rt", "OK");
+		data.put("item", productList);
 
-		return view;
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.writeValue(response.getWriter(), data);
+
+		return null;
 	}
 
 }
