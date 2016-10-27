@@ -95,8 +95,9 @@
 					<ul class="cart_button" style="height: 40px;">
 
 						<p class="continue pull-right btn-lg" id="continue">
-							<input type="button" class="btn btn-default" value="주문하기"
-								onclick="location.href='OrderComplete.jsp'">
+							
+								<button class="btn btn-default"> <a href="${pageContext.request.contextPath}/mypage/OrderComplete.do" >주문하기</a></button>
+								
 						</p>
 
 						<p class="orderall pull-right btn-lg" id="orderall">

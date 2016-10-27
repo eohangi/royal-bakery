@@ -28,14 +28,14 @@
 						<label for="writer_name" class="col-md-2">주문자</label>
 						<div class="col-md-10">
 							<input type="text" name="writer_name" id="writer_name" class="form-control"
-								placeholder="어한기" disabled>
+						        value=${OrderName}	placeholder=${OrderName} disabled>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="tel" class="col-md-2">연락처</label>
 						<div class="col-md-10">
 							<input type="text" name="tel" id="tel" class="form-control"
-								placeholder="010-3201-0999" disabled>
+							value=${OrderTel}	placeholder=${OrderTel} disabled>
 						</div>
 					</div>
 					
@@ -56,7 +56,7 @@
 						<label for="price" class="col-md-2">가격</label>
 						<div class="col-md-10">
 							<input type="text" name="price" id="price" class="form-control"
-								placeholder="20000 원" disabled>
+							value=${totalPrice}	placeholder=${totalPrice} disabled>
 						</div>
 					</div>
 
@@ -79,8 +79,7 @@
 					<div class="form-group">
 						<div class="button">
 							<!-- 들여쓰기 -->
-							<button type="button" class="btn btn-primary"
-								onclick="location.href='OrderConfirmation.jsp'">결제하기</button>
+							<button class="btn btn-default"> <a href="${pageContext.request.contextPath}/mypage/OrderConfirmation.do" >주문하기</a></button>
 							<button type="button" class="btn btn-danger"
 								onclick="location.href='CustomOrder.jsp'">취소</button>
 						</div>
