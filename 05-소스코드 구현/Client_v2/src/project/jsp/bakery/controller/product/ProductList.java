@@ -60,7 +60,7 @@ public class ProductList extends BaseController {
 		// a: bread , b: cake, c:cokie
 		String classify = web.getString("classify");
 		request.setAttribute("classify", classify);
-
+		logger.debug("[DEBUG] classify ="+classify);
 		// ** 4. 존재하는 목록인지 판별하기 *//*
 		try {
 			String proClassify = proCommon.getProductClassify(classify);

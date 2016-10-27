@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
+<html>
 <head>
 <%@ include file="/WEB-INF/inc/head.jsp"%>
 
@@ -27,16 +28,16 @@ content 내용 ...으로 생략 -->.content {
 
 
 		<!-- 페이지 내용 영역 -->
-		<div class="col-md-2" id="slide1">
+		<div class="col-md-1" id="slide1">
 			<h1>슬라이드1</h1>
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-9">
 			<ul id="myTab" class="nav nav-tabs">
-				<li class="col-md-4 col-sm-4 active"><a data-classify="a"
+				<li class="col-md-4 col-sm-4 active text-center"><a data-classify="a"
 					data-toggle="tab" href="#list">bread</a></li>
-				<li class="col-md-4 col-sm-4"><a data-classify="b"
+				<li class="col-md-4 col-sm-4 text-center"><a data-classify="b"
 					data-toggle="tab" href="#list">cake</a></li>
-				<li class="col-md-4 col-sm-4"><a data-classify="c"
+				<li class="col-md-4 col-sm-4 text-center"><a data-classify="c"
 					data-toggle="tab" href="#list">cookie</a></li>
 			</ul>
 
@@ -56,12 +57,12 @@ content 내용 ...으로 생략 -->.content {
 					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 						<div class="item">
 							<div class="caption">
-								<p class="text-center"><b>{{proName}}</b></p>
+								<p class="text-center" style="margin:15px;"><b>{{proName}}</b></p>
 							</div>
-							<hr />
+							<hr style="margin:5px" />
 							<div class="over">
 								<div class="img">
-									<a href="{{link}}"><img src="{{proImg}}" width="100%" /></a>
+									<a><img src="{{{proImg}}}" width="100%" /></a>
 								</div>
 								<div class="detail">
 									<div class="info row">
@@ -91,15 +92,13 @@ content 내용 ...으로 생략 -->.content {
 											</table>
 										</span>
 										<br />
-										<c:choose>
-											<c:when test="${ {{status}} =='o'}">
+										{{#if (eq status 'o')}}
 												<span class="text-center">현재 수량 : {{stock}}</span>	
 												<span class="text-center">가격 : {{proPrice}}</span>	
-											</c:when>
-											<c:otherwise>
+										{{else}}
 												<span class="text-center"><b>품절 되었습니다.</b></span>	
-											</c:otherwise>
-										</c:choose>							
+										{{/if}}
+																	
 									</div>	
 									<div class="order">
 	
@@ -113,13 +112,20 @@ content 내용 ...으로 생략 -->.content {
 
 			<!-- 사용자 정의 스크립트 -->
 			<script type="text/javascript">
-				
+			
+			Handlebars.registerHelper('eq', function(a, b, opts) {
+				console.log(a + "/" + b);
+			    if(a === b) // Or === depending on your needs
+			        return true;
+			    else
+			        return false;
+			});
+			
 				$(function() {
-					/* 제품 리스트를 불러 */
 					/* 탭 페이지가 보여질 경우의 이벤트 */
 					// 탭 안의 모든 <a> 태그에 대한 이벤드 --> 모든 탭 페이지가 열릴 때이 이벤트가 호출됨
-					$("#myTab a").on('shown.bs.tab',function(e){
-						//data-deptno 속성의 값ㅇ르 취득한다.
+					$("#myTab a").click(function(e){
+						//data-deptno 속성의 값을 취득한다.
 						var current_classify = $(this).data("classify");
 						
 						//Ajax요청을 통한학과 데이터 조회
