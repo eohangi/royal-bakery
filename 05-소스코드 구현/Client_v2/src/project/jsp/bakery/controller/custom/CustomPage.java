@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Custom;
+import project.jsp.bakery.model.Member;
 import project.jsp.bakery.service.CustomService;
 import project.jsp.bakery.service.impl.CustomServiceImpl;
 import project.jsp.helper.BaseController;
@@ -77,6 +78,16 @@ public class CustomPage extends BaseController {
 		// for (int z = 0; z < contain.size(); z++) {
 		// System.out.println(contain.get(z));
 		// }
+		Member loginInfo = (Member) web.getSession("loginInfo");
+		/** (3) 로그인 여부 검사 */
+		// 로그인 중이라면 이 페이지를 동작시켜서는 안된다.
+		if (web.getSession("loginInfo") == null) {
+			sqlSession.close();
+			web.redirect(web.getRootPath() + "/member/Login.do", "로그인 후에 이용 가능합니다.");
+			return null;
+		}
+
+		System.out.println("loginInfo=" + loginInfo);
 
 		Custom custom = new Custom();
 		custom.setCuClassify("크림");
@@ -103,14 +114,13 @@ public class CustomPage extends BaseController {
 		custom4.setCuClassify("시트");
 
 		List<Custom> list4 = null;
-		
+
 		////////////////////////
 
 		Custom custom5 = new Custom();
 		custom5.setCuClassify("초");
 
 		List<Custom> list5 = null;
-
 
 		try {
 			list = customService.selectCustomClassCount(custom);
@@ -120,7 +130,7 @@ public class CustomPage extends BaseController {
 			list3 = customService.selectCustomClassCount(custom3);
 
 			list4 = customService.selectCustomClassCount(custom4);
-			
+
 			list5 = customService.selectCustomClassCount(custom5);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -149,7 +159,7 @@ public class CustomPage extends BaseController {
 		for (int q = 0; q < list5.size(); q++) {
 			System.out.println(list5.get(q));
 		}
-		
+
 		request.setAttribute("list", list);
 
 		request.setAttribute("list2", list2);
@@ -160,7 +170,6 @@ public class CustomPage extends BaseController {
 
 		request.setAttribute("list5", list5);
 
-		
 		String view = "custom/CustomOrder";
 		// "/WEB-INF/views/index.jsp"파일을 View로 사용한다.
 		return view;

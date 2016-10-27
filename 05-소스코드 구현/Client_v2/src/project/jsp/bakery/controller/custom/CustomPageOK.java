@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Custom;
+import project.jsp.bakery.model.Member;
 import project.jsp.bakery.model.cart;
 import project.jsp.bakery.service.CartService;
 import project.jsp.bakery.service.CustomService;
@@ -66,6 +67,18 @@ public class CustomPageOK extends BaseController {
 		cartService = new CartServiceImpl(sqlSession, logger);
 		// --> import study.jsp.mysite.service.impl.BbsFileServiceImpl;
 		regex = RegexHelper.getInstance();
+		
+		Member loginInfo = (Member) web.getSession("loginInfo");
+		/** (3) 로그인 여부 검사 */
+		// 로그인 중이라면 이 페이지를 동작시켜서는 안된다.
+		if (web.getSession("loginInfo") == null) {
+			sqlSession.close();
+			web.redirect(web.getRootPath() + "/member/Login.do", "로그인을 먼저 해주세요.");
+			return null;
+		}
+
+		System.out.println("loginInfo=" + loginInfo);
+		
 
 		Map<String, String> paramMap = upload.getParamMap();
 		String list = web.getString("list");
@@ -122,6 +135,7 @@ public class CustomPageOK extends BaseController {
 		/////////////
 
 		cart cart = new cart();
+		cart.setMemberId(loginInfo.getId());
 		cart.setCuText(sum);
 		cart.setCuPrice(sum2);
 
