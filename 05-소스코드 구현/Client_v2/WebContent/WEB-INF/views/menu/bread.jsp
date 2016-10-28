@@ -57,8 +57,8 @@ content 내용 ...으로 생략 -->
 								<p class="text-center" style="margin:15px;"><b>{{proName}}</b></p>
 							</div>
 							<hr style="margin:5px" />
-							<div class="over">
-								<div class="img">
+							<div class="over" id="over">
+								<div class="img" id="img">
 									<a>
 										{{#if (is_null proImg)}}
 											<img src="${pageContext.request.contextPath}/asset/img/no_image.jpg" width="100%" />	
@@ -67,8 +67,8 @@ content 내용 ...으로 생략 -->
 										{{/if}}		
 									</a>
 								</div>
-								<div class="detail" style="width:100%">
-									<div class="info row">
+								<div class="detail" id="detail" style="width:100%">
+									<div class="info" style="margin:0; width:100%">
 										<div>
 											<div class="content" id="content" style="white-space: normal; word-wrap:nomal;overflow: hidden;
 												text-overflow: ellipsis; width:50%;	min-height: 50px; display:inline-block;">{{content}}</div>
@@ -100,18 +100,22 @@ content 내용 ...으로 생략 -->
 										<br />
 										<div style="display: inline-block ; width:100%;">
 											{{#if (eq status 'o')}}
-													<div style="width:50%; display:inline;" class="text-center">현재 수량 : {{stock}}</div>	
-													<div style="width:50%; display:inline;" class="text-center">가격 : {{proPrice}}</div>	
+													<div style="width:50%; display:inline;" class="text-center"><b>현재 수량 : {{stock}}</b></div>	
+													<div style="width:50%; display:inline;" class="text-center"><b>가격 : {{proPrice}}</b></div>	
 											{{else}}
 													<span class="text-center"><b>품절 되었습니다.</b></span>	
 											{{/if}}
 										</div>						
 									</div>	
-									<div class="order">
-	
-									</div>	
 								</div>
 							</div>
+							<br />
+							<div class="order" id="order">
+								<form class="row" action=""><!--여기서 장바구니로 전송-->
+									<input class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-3 col-sm-3 col-md-3 col-lg-3 pull-left text-center" style="height:30px" type="number" name="quantity" min="1" max="{{{stock}}}">
+									<button class="col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 btn btn-success btn-xs" type="submit" style="height:30px">저장</button>
+								</form>
+							</div>	
 						</div>
 					</div>
 				{{/each}}
@@ -152,20 +156,12 @@ content 내용 ...으로 생략 -->
 							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
 							var html = template(json);
 							//완성품을 출력한다.
-							$("#list").html(html);
+							$("#list").html(html).find(".detail").hide();
 						});
 					});
 						
 					
 					
-					/* content 높이 설정 */
-					//content의 너비
-					/* var content_width = $("#content").css("width");
-					
-					//높이설정
-					$("#content").css("height",content_width*0.8 + "%"); */
-					
-					/* 제품 이미지 Hover시 변환되는 스크립트 */
 					
 				});			
 			</script>
