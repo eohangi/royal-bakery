@@ -5,8 +5,7 @@
 <div class="clearfix">
 	<!-- 검색 폼  -->
 	<div class="pull-left">
-		<form method="get" action="${pageContext.request.contextPath}/bbs/document_list.do" style="width: 200px">
-			<input type="hidden" name="category" value="${category}" />
+		<form method="get" action="${pageContext.request.contextPath}/bbs.qna/document_list.do" style="width: 200px">
 			<div class="input-group">
 				<input type="text" name="keyword" class="form-control" 
 					placeholder="제목, 내용 검색" value="${keyword}"/>
@@ -17,10 +16,10 @@
 				</span>
 			</div>
 		</form>
-	</div>
+	</div> 
 	<!-- 글 쓰기 버튼 -->
 	<div class="pull-right">
-		<a href="${pageContext.request.contextPath}/bbs/document_write.do?category=${category}" class="btn btn-primary">
+		<a href="${pageContext.request.contextPath}/bbs.qna/document_write.do" class="btn btn-primary">
 			<i class="glyphicon glyphicon-pencil"></i> 글쓰기
 		</a>
 	</div>
@@ -35,8 +34,8 @@
 		<c:when test="${pagaHelper.prevPage > 0}">
 			<!-- 이전 그룹에 대한 페이지 번호가 존재한다면? -->
 			<!-- 이전 그룹으로 이동하기 위한 URL 을 생성해서 "prevUrl"에 저장 -->
-			<c:url var="prevUrl" value="/bbs/document_list.do">
-				<c:param name="category" value="${category}"></c:param>
+			<c:url var="prevUrl" value="/bbs.qna/document_list.do">
+				
 				<c:param name="keyword" value="${keyword}"></c:param>
 				<c:param name="page" value="${pageHelper.prevPage}"></c:param>				
 			</c:url>
@@ -54,8 +53,8 @@
 	<c:forEach var="i" begin="${pageHelper.startPage}" end="${pageHelper.endPage}" step="1">
 		
 		<!-- 각 페이지 번호로 이동할 수 있는 URL을 생성하여 page_url에 저장 -->
-		<c:url var="pageUrl" value="/bbs/document_list.do">
-				<c:param name="category" value="${category}"></c:param>
+		<c:url var="pageUrl" value="/bbs.qna/document_list.do">
+				
 				<c:param name="keyword" value="${keyword}"></c:param>
 				<c:param name="page" value="${i}"></c:param>				
 		</c:url>
@@ -75,8 +74,8 @@
 		<c:when test="${pagaHelper.prevPage > 0}">
 			<!-- 다음 그룹에 대한 페이지 번호가 존재한다면? -->
 			<!-- 다음 그룹으로 이동하기 위한 URL 을 생성해서 "nextUrl"에 저장 -->
-			<c:url var="nextUrl" value="/bbs/document_list.do">
-				<c:param name="category" value="${category}"></c:param>
+			<c:url var="nextUrl" value="/bbs.qna/document_list.do">
+			
 				<c:param name="keyword" value="${keyword}"></c:param>
 				<c:param name="page" value="${pageHelper.nextPage}"></c:param>				
 			</c:url>

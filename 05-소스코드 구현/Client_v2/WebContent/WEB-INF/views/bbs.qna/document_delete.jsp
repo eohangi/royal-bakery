@@ -9,11 +9,11 @@
 <body>
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="container">
-		<h1>${bbsName} - <small>글 삭제하기</small></h1>
+		<h1>문의하기 - <small>글 삭제하기</small></h1>
 		
-		<form name="myform" method="post" action="${pageContext.request.contextPath}/bbs/document_delete_ok.do">
+		<form name="myform" method="post" action="${pageContext.request.contextPath}/bbs.qna/document_delete_ok.do">
 			<!-- 카테고리와 게시글 번호 상태유지 -->
-			<input type="hidden" name="category" value="${category}" />
+			
 			<input type="hidden" name="document_id" value="${documentId}" />
 			
 			<div style='width: 300px; margin: 50px auto;'>

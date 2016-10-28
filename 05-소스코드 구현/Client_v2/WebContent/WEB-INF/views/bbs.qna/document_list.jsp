@@ -12,8 +12,7 @@
 
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="container">
-		<h1 class="page-header">${bbsName} - <small>글 목록</small></h1>
-		
+		<h1 class="page-header">문의하기 - <small>글 목록</small></h1>
 		<!-- 글 목록 시작 -->
 		
 		<div class="table-responsive">
@@ -33,7 +32,7 @@
 								<tr>
 									<td class="text-center">${document.id}</td>
 									<td>
-										<c:url var="readUrl" value="/bbs/document_read.do">
+										<c:url var="readUrl" value="/bbs.qna/document_read.do">
 											<c:param name="category" value="${document.category}" />
 											<c:param name="document_id" value="${document.id}" />
 										</c:url>
@@ -55,7 +54,7 @@
 			</table>
 		</div>
 		<!--// 글 목록 끝 -->
-		<%@ include file="/WEB-INF/inc/bbs_list_bottom.jsp" %>
+		<%@ include file="/WEB-INF/inc/bbs_qna_bottom.jsp" %>
 	</div>
 	<%@ include file="/WEB-INF/inc/Footer.jsp"%>
 </body>

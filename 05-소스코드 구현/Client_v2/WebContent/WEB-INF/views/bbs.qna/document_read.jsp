@@ -11,7 +11,7 @@
 <body>
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="container">
-		<h1 class="page-header">${bbsName} - <small>글 읽기</small></h1>
+		<h1 class="page-header">문의하기 - <small>글 읽기</small></h1>
 		
 		<!-- 제목, 작성자, 작성일시 -->
 		<div class="alert alert-info">
@@ -34,7 +34,7 @@
 					<td>
 						<c:choose>
 							<c:when test="${nextDocument != null}">
-								<c:url var="nextUrl" value="/bbs/document_read.do">
+								<c:url var="nextUrl" value="/bbs.qna/document_read.do">
 									<c:param name="category" value="${category}" />
 									<c:param name="document_id" value="${nextDocument.id}" />
 								</c:url>
@@ -51,7 +51,7 @@
 					<td>
 						<c:choose>
 							<c:when test="${prevDocument != null}">
-								<c:url var="prevUrl" value="/bbs/document_read.do">
+								<c:url var="prevUrl" value="/bbs.qna/document_read.do">
 									<c:param name="category" value="${category}" />
 									<c:param name="document_id" value="${prevDocument.id}" />
 								</c:url>
@@ -68,10 +68,10 @@
 		<!-- 버튼들 -->
 		<div class="clearfix">
 			<div class="pull-right">
-				<a href="${pageContext.request.contextPath}/bbs/document_list.do?category=${category}" class="btn btn-info">목록보기</a>
-				<a href="${pageContext.request.contextPath}/bbs/document_write.do?category=${category}" class="btn btn-primary">글쓰기</a>
-				<a href="${pageContext.request.contextPath}/bbs/document_edit.do?category=${category}&document_id=${readDocument.id}" class="btn btn-warning">수정하기</a>
-				<a href="${pageContext.request.contextPath}/bbs/document_delete.do?category=${category}&document_id=${readDocument.id}" class="btn btn-danger">삭제하기</a>		
+				<a href="${pageContext.request.contextPath}/bbs.qna/document_list.do?category=${category}" class="btn btn-info">목록보기</a>
+				<a href="${pageContext.request.contextPath}/bbs.qna/document_write.do?category=${category}" class="btn btn-primary">글쓰기</a>
+				<a href="${pageContext.request.contextPath}/bbs.qna/document_edit.do?category=${category}&document_id=${readDocument.id}" class="btn btn-warning">수정하기</a>
+				<a href="${pageContext.request.contextPath}/bbs.qna/document_delete.do?category=${category}&document_id=${readDocument.id}" class="btn btn-danger">삭제하기</a>		
 			</div>
 		</div>
 		<!-- 덧글 -->

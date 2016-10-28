@@ -45,7 +45,7 @@
 	<select id="selectDocumentList"
 		parameterType="project.jsp.bakery.model.Document"
 		resultMap="document">
-		SELECT id, category, writer_name, subject,
+		SELECT id, category, writer_name, subject, content,
 			   DATE_FORMAT(reg_date, '%Y-%m-%d') as reg_date
 		FROM   document
 		

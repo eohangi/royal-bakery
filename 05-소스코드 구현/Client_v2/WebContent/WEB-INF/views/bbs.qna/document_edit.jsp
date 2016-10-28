@@ -10,12 +10,12 @@
 <body>
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="container">
-		<h1 class="page-header">${bbsName} - <small>수정하기</small></h1>
+		<h1 class="page-header">문의하기 - <small>수정하기</small></h1>
 		
 		<form class="form-horizontal" method="post" enctype="multipart/form-data"
-			action="${pageContext.request.contextPath}/bbs/document_edit_ok.do">
+			action="${pageContext.request.contextPath}/bbs.qna/document_edit_ok.do">
 			<!-- 게시판 카테고리에 대한 상태 유지 -->
-			<input type="hidden" name="category" value="${category}" />
+			
 			<!-- 수정 대상에 대한 상태유지 -->
 			<input type="hidden" name="document_id" value="${readDocument.id}" />
 			
