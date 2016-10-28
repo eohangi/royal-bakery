@@ -28,14 +28,14 @@
 						<label for="OrderName" class="col-md-2">주문자</label>
 						<div class="col-md-10">
 							<input type="text" name="OrderName" id="OrderName" class="form-control"
-						         value="${OrderName}" >
+						         value="${OrderName}"  readonly>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="tel" class="col-md-2">연락처</label>
 						<div class="col-md-10">
 							<input type="text" name="tel" id="tel" class="form-control"
-							value="${OrderTel}"	 >
+							value="${OrderTel}"	 readonly>
 						</div>
 					</div>
 					
@@ -56,7 +56,7 @@
 						<label for="totalPrice" class="col-md-2">가격</label>
 						<div class="col-md-10">
 							<input type="text" name="totalPrice" id="totalPrice" class="form-control"
-							value="${totalPrice}"	>
+							value="${totalPrice}"	readonly>
 						</div>
 					</div>
 
