@@ -67,6 +67,15 @@
 		WHERE
 		member_id=#{memberId};
 	</select>
+	
+	<select id="selectCartTotalPrice" parameterType="project.jsp.bakery.model.cart"
+		resultType="int">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT sum(cu_price) + sum(pro_price) as total
+		FROM cart
+		WHERE order_no is null and member_id=#{memberId}
+		ORDER BY id ASC;
+	</select>
 
 	<select id="selectCartList" parameterType="project.jsp.bakery.model.cart"
 		resultMap="cart">

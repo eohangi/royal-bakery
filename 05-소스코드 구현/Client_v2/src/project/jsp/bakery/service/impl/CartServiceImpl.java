@@ -217,5 +217,21 @@ public class CartServiceImpl implements CartService {
 		}
 		return result;
 	}
+	
+	@Override
+	public int selectCartTotalPrice(cart cart) throws Exception {
+		// TODO Auto-generated method stub
+		int result = 0;
+		try {
+			result = sqlSession.selectOne("CartMapper.selectCartTotalPrice",cart);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("게시물 수 조회에 실패했습니다.");
+		}
+		return result;
+
+	}
 
 }

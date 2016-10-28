@@ -48,6 +48,8 @@ public interface CartService {
 	 *            - 아이템 번호
 	 * @throws Exception
 	 */
+	public int selectCartTotalPrice(cart cart) throws Exception;
+	
 	public void deleteCartItem(cart cart) throws Exception;
 
 	public List<cart> selectCartList(cart cart) throws Exception;
