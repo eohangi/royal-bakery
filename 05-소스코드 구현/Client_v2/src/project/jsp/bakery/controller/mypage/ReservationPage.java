@@ -81,7 +81,7 @@ public class ReservationPage extends BaseController {
 		}
 		
 		/** (5) 조회할 정보에 대한 beans 생성 */
-		
+		//url get으로 넘어오는 정보
 		int reservationId = web.getInt("reservation_id");
 		if (reservationId == 0) {
 			sqlSession.close();

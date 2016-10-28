@@ -42,4 +42,23 @@ public class OrderCommon {
 		
 		return orderName;
 	}
+	
+	public String getOrderType(String paytype) throws Exception{
+		String orderType = null;
+		
+		if(paytype != null){
+			if(paytype.equals("normal")){
+				orderType = "15분후";
+			}
+			if(paytype.equals("order")){
+				orderType = "30분후";
+			}
+			
+		}
+		if(orderType == null){
+			throw new Exception("존재하지 않는 게시판 입니다.");
+		}
+		
+		return orderType;
+	}
 }

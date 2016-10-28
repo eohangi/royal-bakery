@@ -23,16 +23,18 @@
 		<result property="orType" column="or_type" />
 		<result property="orName" column="or_name" />
 		<result property="orTel" column="or_tel" />
+		<result property="orTitle" column="or_title" />
+		<result property="orTime" column="or_time" />
 	</resultMap>
 	
 		<!-- 게시글 정보 저장하기 -->
 	<insert id="insertOrder" parameterType="project.jsp.bakery.model.Orders"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO orders(order_no, total_sum, member_id, or_reg_date, 
-		pickup_time, barcode, order_category, or_edit_time,or_type,or_name,or_tel) 
+		pickup_time, barcode, order_category, or_edit_time,or_type,or_name,or_tel,or_title,or_time) 
 		VALUES ( 
 		#{orderNo}, #{totalSum}, #{memberId}, now(), #{pickupTime}, 
-		#{barcode}, #{orderCategory}, now(), #{orType},#{orName},#{orTel}
+		#{barcode}, #{orderCategory}, now(), #{orType},#{orName},#{orTel},#{orTitle},#{orTime}
 		)
 	</insert>
 	
@@ -44,13 +46,14 @@
 		DATE_FORMAT(pickup_time, '%Y-%m-%d') AS pickup_time,
 		barcode,order_category,
 		DATE_FORMAT(or_edit_time, '%Y-%m-%d') AS or_edit_time
-		,or_type,or_name,or_tel
+		,or_type,or_name,or_tel,or_title,or_time
 		FROM orders
 		
 			where
-			order_category=#{orderCategory}
+			order_category=#{orderCategory} AND
+			member_id=#{memberId} AND
 
-	
+
 		ORDER BY id DESC
 		LIMIT #{limitStart} , #{listCount}
 
@@ -60,9 +63,13 @@
 	<select id="selectOrder" parameterType="project.jsp.bakery.model.Orders"
 		resultMap="orders">
 		SELECT id,order_no,total_sum,member_id,or_reg_date,pickup_time,
-		barcode,order_category,or_edit_time,or_type,or_name,or_tel
+		barcode,order_category,or_edit_time,or_type,or_name,or_tel,or_title,or_time
 		FROM orders
-		WHERE order_category=#{orderCategory} AND id = #{id}
+		WHERE
+		<!--  order_category=#{orderCategory} AND id = #{id} -->
+		order_category=#{orderCategory} AND
+			member_id=#{memberId} AND
+			order_no = #{orderNo}
 
 	</select>
 	

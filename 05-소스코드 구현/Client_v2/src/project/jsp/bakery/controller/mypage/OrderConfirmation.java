@@ -1,8 +1,6 @@
 package project.jsp.bakery.controller.mypage;
 
 import java.io.IOException;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,8 +31,6 @@ public class OrderConfirmation extends BaseController {
 	 * 
 	 */
 	private static final long serialVersionUID = -7381080922281498701L;
-	/** (1) 사용하고자 하는 Helper 객체 선언 */
-	// --> import org.apache.logging.log4j.Logger;
 	Logger logger;
 	// --> import org.apache.ibatis.session.SqlSession;
 	SqlSession sqlSession;
@@ -48,62 +44,99 @@ public class OrderConfirmation extends BaseController {
 	PageHelper pageHelper;
 	// --> import study.jsp.helper.Upload;
 	UploadHelper upload;
+	
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/** (2) 사용하고자 하는 Helper+Service 객체 생성 */
+		
 		// --> import org.apache.logging.log4j.LogManager;
-		logger = LogManager.getFormatterLogger(request.getRequestURI());
-		// --> import study.jsp.mysite.service.impl.MemberServiceImpl;
-		sqlSession = MyBatisConnectionFactory.getSqlSession();
-		web = WebHelper.getInstance(request, response);
-		// --> import study.jsp.mysite.service.impl.BbsDocumentServiceImpl;
-		OrderService orderService = new OrderServiceImpl(sqlSession, logger);
+				logger = LogManager.getFormatterLogger(request.getRequestURI());
+				// --> import study.jsp.mysite.service.impl.MemberServiceImpl;
+				sqlSession = MyBatisConnectionFactory.getSqlSession();
+				web = WebHelper.getInstance(request, response);
+				// --> import study.jsp.mysite.service.impl.BbsDocumentServiceImpl;
+				OrderService orderService = new OrderServiceImpl(sqlSession, logger);
 
-		pageHelper = PageHelper.getInstance();
-		
-		order = OrderCommon.getInstance();
+				pageHelper = PageHelper.getInstance();
+				
+				order = OrderCommon.getInstance();
 
-		upload = UploadHelper.getInstance();
-		/** (3) 파일이 포함된 POST 파라미터 받기 */
-		try {
-			upload.multipartRequest(request);
-		} catch (Exception e) {
-			sqlSession.close();
-			web.redirect(null, "multipart 데이터가 아닙니다.");
-			return null;
-		}
-		
-		/** (4) UploadHelper에서 텍스트 형식의 값을 추출 */
-		Map<String, String> paramMap = upload.getParamMap();
-		String writerName = paramMap.get("writer_name");
-		String tel = paramMap.get("tel");
-		String time = paramMap.get("time");
-		String price = paramMap.get("price");
-		String paytype = paramMap.get("paytype");
-		
-		// 작성자 아이피 주소 가져오기
-		String ipAddress = web.getClientIP();
-		/*// 회원 일련번호 --> 비 로그인인 경우 0
-		int memberId = 0;
-*/
-		// 로그인 한 경우, 입력하지 않은 이름, 비밀번호, 이메일을 세션정보로 대체
-		Member loginInfo = (Member) web.getSession("loginInfo");
-		if (loginInfo != null) {
-			writerName = loginInfo.getMem_name();
-			tel = loginInfo.getPhone_no();
-		}
-		
-		// 전달된 파라미터는 로그로 확인한다.
-		logger.debug("writer_name=" + writerName);
-		logger.debug("tel=" + tel);
-		logger.debug("time=" + time);
-		logger.debug("price=" + price);
-		logger.debug("paytype=" + paytype);
-		
-		Orders order = new Orders();
+				upload = UploadHelper.getInstance();
+				
+				
+				Member loginInfo = (Member) web.getSession("loginInfo");
+				
+
+				
+				String orderCategory = web.getString("OrderCategory");
+				String paytype = web.getString("paytype");
+				int OrderNo = web.getInt("OrderNo");
+				
+				
+				logger.debug("OrderCategory=" + orderCategory);
+				logger.debug("MemberId=" + loginInfo.getId());
+				logger.debug("OrderNo=" + OrderNo);
+				
+				/** (5) 조회할 정보에 대한 beans 생성 */
+				Orders orders = new Orders();
+				orders.setOrderCategory(orderCategory);
+				orders.setMemberId(loginInfo.getId());
+				orders.setOrderNo(OrderNo);
+				
+				
+				//데이터 조회
+				Orders readOrder = null;
+				
+				try {
+					// professormapper.selectprofessorlist 기능을 호출한다.
+					// 두번째 파라미터는 조회 조건시에 사용될 파라미터 --> Beans객체
+					// 조회 결과가 단일행을 리턴하기 때문에 Beans 객체 형태로 리턴된다
+					readOrder = sqlSession.selectOne("OrderMapper.selectOrder", orders);
+				} catch (Exception e) {
+					//뒤로가는 기능
+					web.redirect(null,e.getLocalizedMessage());
+					
+					return null;
+				} finally {
+					// 데이터 베이스 접속 해제하기
+					// 트라이 캣치의 파이널리는 캣치에서 리턴문보다 우선 실행된다.
+					sqlSession.close();
+				}
+				
+				String orType = readOrder.getOrType();
+				String type = null;
+				if(orType != null){
+				if(orType.equals("M")){
+					type = "신용카드";
+				}
+				if(orType.equals("F")){
+					type = "무통장입금";
+				}
+				}
+				
+				String time = readOrder.getOrTime();
+				String Time = null;
+				if(time != null){
+				if(time.equals("normal")){
+					Time = "15분후";
+				}
+				if(time.equals("order")){
+					Time = "30분후";
+				}
+				}
+				logger.debug("Time=" + Time);
+				logger.debug("type=" + type);
+				
+			//	String paytype = orders.get
+				
+				request.setAttribute("type", type);
+				request.setAttribute("Time", Time);
+				request.setAttribute("readOrder", readOrder);
+				
+				
+				
 		return "mypage/OrderConfirmation";
 	}
-	
+
 
 }

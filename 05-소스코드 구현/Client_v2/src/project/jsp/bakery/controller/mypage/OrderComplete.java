@@ -85,12 +85,12 @@ public class OrderComplete extends BaseController {
 		//결제 하기 부분에 입력한 값을 map으로 가져온다
 		//Map<String, String> paramMap = upload.getParamMap();
 		
-		
+		String Id = loginInfo.getMem_id();
+		System.out.println("Id=" + Id);
 		String OrderName = loginInfo.getMem_name();
 		String OrderTel = loginInfo.getPhone_no();
 		
-		request.setAttribute("OrderName", OrderName);
-		request.setAttribute("OrderTel", OrderTel);
+		
 		
 		
 		
@@ -106,6 +106,7 @@ public class OrderComplete extends BaseController {
 		
 		try {
 			totalPrice= cartservice.selectCartTotalPrice(cart);
+			System.out.println("totalPrice=" + totalPrice);
 		} catch (Exception e) {
 			// TODO: handle exception
 			web.redirect(null, e.getLocalizedMessage());
@@ -113,6 +114,8 @@ public class OrderComplete extends BaseController {
 		}finally {
 			sqlSession.close();
 		}
+		request.setAttribute("OrderName", OrderName);
+		request.setAttribute("OrderTel", OrderTel);
 		request.setAttribute("totalPrice", totalPrice);
 		
 		Orders payInfo = null;

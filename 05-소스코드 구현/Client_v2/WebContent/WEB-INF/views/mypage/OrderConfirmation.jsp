@@ -22,7 +22,7 @@
     <hr />
     <!-- 가입폼 시작 -->
     <form class="form-horizontal" id="myform">
-     <p>고객님의 주문이 정상적으로 처리 되었습니다.</p>
+     <p>${readOrder.orName}고객님의 주문이 정상적으로 처리 되었습니다.</p>
      <p>Royal Bakery를 선택해 주셔서 감사합니다.</p>
      <hr />
      <div class="form-group row">
@@ -56,31 +56,38 @@
       </div>
      </div>
      <div class="form-group">
-      <label for="user_id" class="col-md-2">주문자</label>
+      <label for="OrderName" class="col-md-2">주문자</label>
       <div class="col-md-10">
-       <input type="text" name="user_id" id="user_id"
-        class="form-control" placeholder="어" disabled>
+       <input type="text" name="OrderName" id="OrderName"
+        class="form-control" placeholder="${readOrder.orName}" disabled>
       </div>
      </div>
      <div class="form-group">
       <label for="name" class="col-md-2">주문일시</label>
       <div class="col-md-10">
        <input type="text" name="name" id="name" class="form-control"
-        placeholder="2016년 11월 23일 18:25" disabled>
+        placeholder="${readOrder.orRegDate}" disabled>
       </div>
      </div>
      <div class="form-group">
       <label for="name" class="col-md-2">결제방법</label>
       <div class="col-md-10">
        <input type="text" name="name" id="name" class="form-control"
-        placeholder="무통장 입금" disabled>
+        placeholder="${type}" disabled>
+      </div>
+     </div>
+       <div class="form-group">
+      <label for="Time" class="col-md-2">수령시간</label>
+      <div class="col-md-10">
+       <input type="text" name="Time" id="Time" class="form-control"
+        placeholder="${Time}" disabled>
       </div>
      </div>
      <div class="form-group">
       <label for="name" class="col-md-2">결제금액</label>
       <div class="col-md-10">
        <input type="text" name="name" id="name" class="form-control"
-        placeholder="30000원" disabled>
+        placeholder="${readOrder.totalSum}" disabled>
       </div>
      </div>
      <hr />
@@ -89,7 +96,8 @@
      <!-- ---------------------------------------------- -->
      <div class="col-md-offset-3 col-md-10 col-sm-12">
       <div id="externalbox" style="width: 5in;">
-       <div id="inputdata">111111</div>
+     <!--  랜덤 숫자값 -->
+       <div id="inputdata">${readOrder.barcode}</div>
       </div>
 
       <script type="text/javascript">

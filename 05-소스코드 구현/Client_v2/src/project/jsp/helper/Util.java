@@ -58,4 +58,29 @@ public class Util {
 
 		return password;
 	}
+	
+	/**
+	 * 랜덤한 주문번호를 생성하여 리턴한다.
+	 * @return String
+	 */
+	public String getRandomOrder() {
+		// 리턴할 문자열
+		String OrderNo = "";
+
+		// A~Z, a~z, 1~0 
+		String words = "1234567890";
+		// 글자길이
+		int words_len = words.length();
+
+		for (int i = 0; i < 7; i++) {
+			// 랜덤한 위치에서 한 글자를 추출한다.
+			int random = random(0, words_len - 1);
+			String c = words.substring(random, random + 1);
+
+			// 추출한 글자를 미리 준비한 변수에 추가한다.
+			OrderNo += c;
+		}
+
+		return OrderNo;
+	}
 }

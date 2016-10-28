@@ -18,24 +18,24 @@
 				<h1>결제 확인</h1>
 				<hr />
 				<!-- 가입폼 시작 -->
-				<form class="form-horizontal" id="myform" method="post" enctype="multipart/form-data"
-				action="${pageContext.request.contextPath}/mypage/OrderConfirmation.do">
+				<form class="form-horizontal"  method="post" 
+				action="${pageContext.request.contextPath}/mypage/OrderCompleteOk.do">
 					<p>
 						<strong>[주문 정보]</strong>
 					</p>
 					<hr />
 					<div class="form-group">
-						<label for="writer_name" class="col-md-2">주문자</label>
+						<label for="OrderName" class="col-md-2">주문자</label>
 						<div class="col-md-10">
-							<input type="text" name="writer_name" id="writer_name" class="form-control"
-						        value=${OrderName}	placeholder=${OrderName} disabled>
+							<input type="text" name="OrderName" id="OrderName" class="form-control"
+						         value="${OrderName}" >
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="tel" class="col-md-2">연락처</label>
 						<div class="col-md-10">
 							<input type="text" name="tel" id="tel" class="form-control"
-							value=${OrderTel}	placeholder=${OrderTel} disabled>
+							value="${OrderTel}"	 >
 						</div>
 					</div>
 					
@@ -53,10 +53,10 @@
 						</fieldset>
 					</div>
 					<div class="form-group">
-						<label for="price" class="col-md-2">가격</label>
+						<label for="totalPrice" class="col-md-2">가격</label>
 						<div class="col-md-10">
-							<input type="text" name="price" id="price" class="form-control"
-							value=${totalPrice}	placeholder=${totalPrice} disabled>
+							<input type="text" name="totalPrice" id="totalPrice" class="form-control"
+							value="${totalPrice}"	>
 						</div>
 					</div>
 
@@ -77,12 +77,12 @@
 					</div>
 					<hr />
 					<div class="form-group">
-						<div class="button">
+						
 							<!-- 들여쓰기 -->
-							<button class="btn btn-default"> <a href="${pageContext.request.contextPath}/mypage/OrderConfirmation.do" >주문하기</a></button>
+							<button type="submit" class="btn btn-default">주문하기</button>
 							<button type="button" class="btn btn-danger"
-								onclick="location.href='CustomOrder.jsp'">취소</button>
-						</div>
+								onclick="history.back();">취소</button>
+						
 					</div>
 
 				</form>
