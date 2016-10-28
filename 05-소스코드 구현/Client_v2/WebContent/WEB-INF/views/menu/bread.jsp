@@ -10,11 +10,8 @@
 
 <style>
 <!--
-content 내용 ...으로 생략 -->.content {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
+content 내용 ...으로 생략 -->
+ 
 </style>
 
 </head>
@@ -62,43 +59,53 @@ content 내용 ...으로 생략 -->.content {
 							<hr style="margin:5px" />
 							<div class="over">
 								<div class="img">
-									<a><img src="{{{proImg}}}" width="100%" /></a>
+									<a>
+										{{#if (is_null proImg)}}
+											<img src="${pageContext.request.contextPath}/asset/img/no_image.jpg" width="100%" />	
+										{{else}}	
+											<img src="../download.do?file={{{proImg}}}" width="100%" />	
+										{{/if}}		
+									</a>
 								</div>
-								<div class="detail">
+								<div class="detail" style="width:100%">
 									<div class="info row">
-										<span class="content" id="content" style="width:50%">{{content}}</span>
-										<span style="width:50%">
-											<table>
-												<tr>
-													<th>칼로리</th>
-													<td>{{kcal}}kcal</td>
-												</tr>
-												<tr>
-													<th>나트륨</th>
-													<td>{{na}}mg</td>
-												</tr>
-												<tr>
-													<th>당</th>
-													<td>{{sugar}}g</td>
-												</tr>
-												<tr>
-													<th>지방</th>
-													<td>{{fat}}g</td>
-												</tr>
-												<tr>
-													<th>단백질</th>
-													<td>{{protein}}g</td>
-												</tr>
-											</table>
-										</span>
+										<div>
+											<div class="content" id="content" style="white-space: normal; word-wrap:nomal;overflow: hidden;
+												text-overflow: ellipsis; width:50%;	min-height: 50px; display:inline-block;">{{content}}</div>
+											<div class="table" style="width:50%; display:inline-block;">
+												<table>
+													<tr>
+														<th>칼로리 : </th>
+														<td>{{kcal}}kcal</td>
+													</tr>
+													<tr>
+														<th>나트륨 : </th>
+														<td>{{na}}mg</td>
+													</tr>
+													<tr>
+														<th>당 : </th>
+														<td>{{sugar}}g</td>
+													</tr>
+													<tr>
+														<th>지방 : </th>
+														<td>{{fat}}g</td>
+													</tr>
+													<tr>
+														<th>단백질 : </th>
+														<td>{{protein}}g</td>
+													</tr>
+												</table>
+											</div>
+										</div>
 										<br />
-										{{#if (eq status 'o')}}
-												<span class="text-center">현재 수량 : {{stock}}</span>	
-												<span class="text-center">가격 : {{proPrice}}</span>	
-										{{else}}
-												<span class="text-center"><b>품절 되었습니다.</b></span>	
-										{{/if}}
-																	
+										<div style="display: inline-block ; width:100%;">
+											{{#if (eq status 'o')}}
+													<div style="width:50%; display:inline;" class="text-center">현재 수량 : {{stock}}</div>	
+													<div style="width:50%; display:inline;" class="text-center">가격 : {{proPrice}}</div>	
+											{{else}}
+													<span class="text-center"><b>품절 되었습니다.</b></span>	
+											{{/if}}
+										</div>						
 									</div>	
 									<div class="order">
 	
@@ -112,10 +119,19 @@ content 내용 ...으로 생략 -->.content {
 
 			<!-- 사용자 정의 스크립트 -->
 			<script type="text/javascript">
-			
+			/* 비교 메서드 */
 			Handlebars.registerHelper('eq', function(a, b, opts) {
 				console.log(a + "/" + b);
 			    if(a === b) // Or === depending on your needs
+			        return true;
+			    else
+			        return false;
+			});
+			
+			/* null 검사 메서드 */
+			Handlebars.registerHelper('is_null', function(a,  opts) {
+				console.log(a + "/" );
+			    if(a == null) // Or === depending on your needs
 			        return true;
 			    else
 			        return false;
