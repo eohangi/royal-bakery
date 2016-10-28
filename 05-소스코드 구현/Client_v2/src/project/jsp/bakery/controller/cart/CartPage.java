@@ -1,7 +1,6 @@
 package project.jsp.bakery.controller.cart;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -85,11 +84,14 @@ public class CartPage extends BaseController {
 
 		cart cart = new cart();
 		cart.setMemberId(loginInfo.getId());
+		System.out.println(cart);
 		List<cart> cartlist = null;
+	/*	System.out.println("cartlist=" + cartlist);*/
 		List<cart> cartlist2 = null;
 		try {
-			cartlist = cartService.selectCartCountByMemberId(cart);
-			cartlist2 = cartService.selectCartCountByMemberId(cart);
+			cartlist = cartService.selectCartProMemberId(cart);
+			System.out.println("cartlist=" + cartlist);
+			cartlist2 = cartService.selectCartCuMemberId(cart);
 		} catch (Exception e) {
 			// TODO: handle exception
 			web.redirect(null, e.getLocalizedMessage());
@@ -98,17 +100,21 @@ public class CartPage extends BaseController {
 			sqlSession.close();
 		}
 
+		System.out.println("cartlist=" + cartlist);
 		for (int i = 0; i < cartlist.size(); i++) {
-			System.out.println(cartlist.get(i));	
+			System.out.println(cartlist.get(i));
 		}
 
 		for (int z = 0; z < cartlist2.size(); z++) {
 			System.out.println(cartlist2.get(z));
 		}
 
+		request.setAttribute("loginInfo", loginInfo.getId());
+
 		request.setAttribute("cartlist", cartlist);
 		request.setAttribute("cartlist2", cartlist2);
 		String view = "cart/Cart";
+
 		// "/WEB-INF/views/index.jsp"파일을 View로 사용한다.
 		return view;
 	}

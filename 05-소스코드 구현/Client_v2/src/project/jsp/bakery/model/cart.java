@@ -9,6 +9,7 @@ public class cart {
 	private String orderNo;
 	private String cuText;
 	private int cuPrice;
+	private int cuCount;
 	private int OrderId;
 	private String RegDate;
 	private String EditDate;
@@ -20,6 +21,14 @@ public class cart {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getCuCount() {
+		return cuCount;
+	}
+
+	public void setCuCount(int cuCount) {
+		this.cuCount = cuCount;
 	}
 
 	public String getProName() {
@@ -105,9 +114,11 @@ public class cart {
 	@Override
 	public String toString() {
 		return "cart [id=" + id + ", proName=" + proName + ", proPrice=" + proPrice + ", proCount=" + proCount
-				+ ", orderNo=" + orderNo + ", cuText=" + cuText + ", cuPrice=" + cuPrice + ", OrderId=" + OrderId
-				+ ", RegDate=" + RegDate + ", EditDate=" + EditDate + ", memberId=" + memberId + "]";
+				+ ", orderNo=" + orderNo + ", cuText=" + cuText + ", cuPrice=" + cuPrice + ", cuCount=" + cuCount
+				+ ", OrderId=" + OrderId + ", RegDate=" + RegDate + ", EditDate=" + EditDate + ", memberId=" + memberId
+				+ "]";
 	}
+
 
 	
 

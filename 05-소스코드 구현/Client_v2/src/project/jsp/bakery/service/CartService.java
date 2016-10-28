@@ -33,7 +33,6 @@ public interface CartService {
 	 */
 	public cart selectCartItem(cart cart) throws Exception;
 
-	public int selectCartTotalPrice(cart cart) throws Exception;
 	/**
 	 * 아이템정보 수정
 	 * 
@@ -57,5 +56,7 @@ public interface CartService {
 	
 	public List<cart> selectCartCountByMemberId(cart cart) throws Exception;
 	
+	public List<cart> selectCartProMemberId(cart cart) throws Exception;
 	
+	public List<cart> selectCartCuMemberId(cart cart) throws Exception;
 }
