@@ -38,8 +38,8 @@
 				href="${pageContext.request.contextPath}/custom/CustomOrder.do">Order</a></li>
 			<li><a href="LoginPage.jsp">Community</a>
 				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath}/bbs/document_list.do?category=notice">공지사항</a></li>
-					<li><a href="${pageContext.request.contextPath}/bbs/document_list.do?category=qna">문의하기</a></li>
+					<li><a href="${pageContext.request.contextPath}/bbs.notice/document_list.do">공지사항</a></li>
+					<li><a href="${pageContext.request.contextPath}/bbs.qna/document_list.do">문의하기</a></li>
 				</ul></li>
 
 		</ul>
