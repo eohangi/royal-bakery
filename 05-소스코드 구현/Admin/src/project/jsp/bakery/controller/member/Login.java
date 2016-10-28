@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.WebHelper;
 
-@WebServlet("/member/ADMINLOGIN.do")
+@WebServlet("/ADMINLOGIN.do")
 public class Login extends BaseController {
 	private static final long serialVersionUID = 3328750502580610369L;
 	/** (1) 사용하고자 하는 Helper 객체 선언 */
