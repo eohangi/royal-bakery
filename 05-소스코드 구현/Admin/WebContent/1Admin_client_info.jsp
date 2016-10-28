@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html>
 <head>
@@ -22,22 +24,19 @@
 
 
 <style type="text/css">
-<%@ include file = "css/common.css" %>
+<%@
+include file = "/css/common.css" %>
+	/**  header*/ .header {
+	padding-top: 70px;
+}
 
-
-/**  header*/
-	.header{
-		padding-top: 70px;
-	}
-
-	.form-group{
-
-	}
-
-	.product {
-		float: right;
-	}
-
+.form-group {
+	
+}
+/**<<<<<<<<<<<<<<<<<<<<<<<<<<<<제품등록 버튼*/
+.product {
+	margin-top: 10px;
+}
 
 /** table */
 .table-responsive {
@@ -56,33 +55,32 @@
 .pagination {
 	margin: 0;
 }
-
 </style>
 </head>
 <body>
-<%@ include file = "Header.jsp" %>
+	<%@ include file="Header.jsp"%>
 	<div class="container">
 		<div class="row">
-					<div class="header">
-							<div class="Search">
-								<form class="form-inline">
-									<fieldset>
-										<div class="form-group">
-											<label class="sr-only" for="search">검색할 단어를 입력하세요.</label>
-											<input type="search" class="form-control" id="search" >
-										</div>
-										<button type="submit" class="btn btn-primary">검색</button>
-									</fieldset>
-								</form>
-
-							</div>	
-
-							<div class="product">
-								<button type="submit" class="btn btn-primary">제품등록</button>
+			<div class="header">
+				<div class="Search">
+					<form class="form-inline" method="post"
+						action="${pageContext.request.contextPath}/검색창 활성화 서브릿 주소">
+						<fieldset>
+							<div class="form-group">
+								<label class="sr-only" for="search">검색할 단어를 입력하세요.</label> <input
+									type="search" class="form-control" name="search">
 							</div>
+							<button type="submit" class="btn btn-primary">검색</button>
+						</fieldset>
+					</form>
 
-						</div>
-
+				</div>
+				<!-- <<<<<<<<<<<<<<<<<<< 제품 등록 서블릿 경로 >>>>>>>>>>>>>>>>>>>> -->
+				<div class="product">
+					<a href="${pageContext.request.contextPath}/제품등록경로"
+						class="btn btn-primary">제품등록</a>
+				</div>
+			</div>
 			<!-- 페이지 내용 영역 -->
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover">
@@ -93,90 +91,34 @@
 							<th class="text-center">이름</th>
 							<th class="text-center">성별</th>
 							<th class="text-center">연락처</th>
-							<th class="text-center">관리</th>
+							<th class="text-center">가입일자</th>
+							<th class="text-center">구매내역</th>
+							<th class="text-center">문의내역</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th class="text-center">1990-05-25</th>
-							<th class="text-center">goodluck</th>
-							<th class="text-center">이한별</th>
-							<th class="text-center">남</th>
-							<th class="text-center">010-7894-1234</th>
-							<th class="text-center"><a href="1Admin_client_info_detail.jsp">보기</a> / 예약관리</th>
-						</tr>
-						<tr>
-							<th class="text-center">1995-07-16</th>
-							<th class="text-center">good</th>
-							<th class="text-center">긁핵</th>
-							<th class="text-center">남</th>
-							<th class="text-center">010-4567-1234</th>
-							<th class="text-center">보기 / 예약관리</th>
-						</tr>
-						<tr>
-							<th class="text-center">1985-04-28</th>
-							<th class="text-center">luck</th>
-							<th class="text-center">읽핡볉</th>
-							<th class="text-center">남</th>
-							<th class="text-center">010-1237-7822</th>
-							<th class="text-center">보기 / 예약관리</th>
-						</tr>
-						<tr>
-							<th class="text-center">1985-04-28</th>
-							<th class="text-center">luck</th>
-							<th class="text-center">읽핡볉</th>
-							<th class="text-center">남</th>
-							<th class="text-center">010-1237-7822</th>
-							<th class="text-center">보기 / 예약관리</th>
-						</tr>
-						<tr>
-							<th class="text-center">1985-04-28</th>
-							<th class="text-center">luck</th>
-							<th class="text-center">읽핡볉</th>
-							<th class="text-center">남</th>
-							<th class="text-center">010-1237-7822</th>
-							<th class="text-center">보기 / 예약관리</th>
-						</tr>
-						<tr>
-							<th class="text-center">1990-05-25</th>
-							<th class="text-center">goodluck</th>
-							<th class="text-center">이한별</th>
-							<th class="text-center">남</th>
-							<th class="text-center">010-7894-1234</th>
-							<th class="text-center">보기 / 예약관리</th>
-						</tr>
-						<tr>
-							<th class="text-center">1990-05-25</th>
-							<th class="text-center">goodluck</th>
-							<th class="text-center">이한별</th>
-							<th class="text-center">남</th>
-							<th class="text-center">010-7894-1234</th>
-							<th class="text-center">보기 / 예약관리</th>
-						</tr>
-						<tr>
-							<th class="text-center">1990-05-25</th>
-							<th class="text-center">goodluck</th>
-							<th class="text-center">이한별</th>
-							<th class="text-center">남</th>
-							<th class="text-center">010-7894-1234</th>
-							<th class="text-center">보기 / 예약관리</th>
-						</tr>
-						<tr>
-							<th class="text-center">1990-05-25</th>
-							<th class="text-center">goodluck</th>
-							<th class="text-center">이한별</th>
-							<th class="text-center">남</th>
-							<th class="text-center">010-7894-1234</th>
-							<th class="text-center">보기 / 예약관리</th>
-						</tr>
-						<tr>
-							<th class="text-center">1990-05-25</th>
-							<th class="text-center">goodluck</th>
-							<th class="text-center">이한별</th>
-							<th class="text-center">남</th>
-							<th class="text-center">010-7894-1234</th>
-							<th class="text-center">보기 / 예약관리</th>
-						</tr>
+						<c:choose>
+							<c:when test=${회원목록객체 != null}>
+								<tr>
+									<th class="text-center">${회원목록객체.birthDate}</th>
+									<th class="text-center">${회원목록객체.mem_Id}</th>
+									<th class="text-center">${회원목록객체.mem_Name}</th>
+									<th class="text-center">${회원목록객체.Gender}</th>
+									<th class="text-center">${회원목록객체.Phone_no}</th>
+									<th class="text-center">${회원목록객체.Reg_date}</th>
+									<th class="text-center">
+									<button type="button"
+											href="${pageContext.request.contextPath}/구매내역.do">구매내역</button></th>
+									<th class="text-center">
+									<button type="button"
+											href="${pageContext.request.contextPath}/문의내역.do">문의내역</button></th>
+
+								</tr>
+							</c:when>
+							<c:otherwise>
+							회원이 없습니다.
+							</c:otherwise>
+						</c:choose>
 
 					</tbody>
 				</table>
@@ -196,7 +138,7 @@
 		</div>
 	</div>
 
-<%@ include file = "inc/footer.jsp" %>
+	<%@ include file="inc/footer.jsp"%>
 
 </body>
 

@@ -28,9 +28,9 @@ $(function(){
 			},
 			function(isConfirm){
 				if(isConfirm){
-					location.href="0Admin_LoginPage.jsp";
+					location.href="${pageContext.request.contextPath}/member/ADMINLOGOUT.do";
 			}else{
-				location.href="1Admin_client_info.jsp";
+				swal.close();
 			}
 			
 			});  
@@ -41,8 +41,8 @@ $(function(){
 
 	<div class="titlebar">
 		<ul class="list-unstyled navi">
-			<li><a href="#" id="logout">로그아웃</a></li>
-			<li><a href="1Admin_client_info.jsp">회원관리</a></li>
+			<li><a id="logout">로그아웃</a></li>
+			<li><a href="${pageContext.request.contextPath}/member/ADMINCLIENTINFODETAIL.do">회원관리</a></li>
 			<li><a href="2Admin_payment.jsp">예약관리</a>
 				<ul class="list-unstyled">
 					<li><a href="2Admin_payment.jsp">주문내역</a></li>

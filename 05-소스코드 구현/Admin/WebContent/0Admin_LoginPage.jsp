@@ -74,37 +74,42 @@
 	width: 60%;
 }
 </style>
+<%
+	String gotomember = "http://localhost:8080/Client_v2/member/Index.do";
+%>
 </head>
 
 <body>
 	<div class="login">
-		<form class="loginA">
+		<form name="form-group" class="loginA" method="POST"
+			action="${pageContext.request.contextPath}/member/ADMINLOGINOK.do">
 			<fieldset>
-				<legend>로그인</legend>
+				<legend>관리자 로그인 페이지</legend>
 
 				<!-- 다음예제에서 반복됩니다. -->
 				<div class="form-group">
-					<label for="user_id">아이디</label> <input type="text" id="user_id"
+					<label for="mem_id">아이디</label> <input type="text" name="mem_id"
 						class="form-control" placeholder="아이디를 입력하세요." />
 				</div>
 
 				<div class="form-group">
-					<label for="user_pw">비밀번호</label> <input type="password"
-						id="user_pw" class="form-control" placeholder="비밀번호를 입력하세요." />
+					<label for="mem_pw">비밀번호</label> <input type="password"
+						name="mem_pw" class="form-control" placeholder="비밀번호를 입력하세요." />
 				</div>
 
-
+				<div class="form-group">
+					<input type="submit" class="btn btn-primary" value="로그인" />
+				</div>
 				<!--// 여기까지 입니다. -->
-				<div class="button">
-					<label> <input type="checkbox">자동로그인 사용
-					</label>
-					<!-- 들여쓰기 -->
-					<a href="1Admin_client_info.jsp"><button type="button" class="btn btn-primary">로그인</button></a>
-				</div>
 			</fieldset>
 		</form>
-		<br /> <br />
 		
+		
+		<div>
+			<a type="button" href="<%=gotomember%>">사이트로 돌아가기</a>
+		</div>
+		<br /> <br />
+
 	</div>
 
 </body>
