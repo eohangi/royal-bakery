@@ -70,8 +70,8 @@ content 내용 ...으로 생략 -->
 								<div class="detail" id="detail" style="width:100%">
 									<div class="info" style="margin:0; width:100%">
 										<div>
-											<div class="content" id="content" style="white-space: normal; word-wrap:nomal;overflow: hidden;
-												text-overflow: ellipsis; width:50%;	min-height: 50px; display:inline-block;">{{content}}</div>
+											<div class="content" id="content" style="white-space: normal; word-wrap:nomal; overflow: hidden;
+													overflow-y:hidden; text-overflow: ellipsis; width:50%;	min-height: 50px; display:inline-block;">{{content}}</div>
 											<div class="table" style="width:50%; display:inline-block;">
 												<table>
 													<tr>
@@ -96,24 +96,24 @@ content 내용 ...으로 생략 -->
 													</tr>
 												</table>
 											</div>
-										</div>
-										<br />
-										<div style="display: inline-block ; width:100%;">
-											{{#if (eq status 'o')}}
-													<div style="width:50%; display:inline;" class="text-center"><b>현재 수량 : {{stock}}</b></div>	
-													<div style="width:50%; display:inline;" class="text-center"><b>가격 : {{proPrice}}</b></div>	
-											{{else}}
-													<span class="text-center"><b>품절 되었습니다.</b></span>	
-											{{/if}}
-										</div>						
+										</div>				
 									</div>	
 								</div>
 							</div>
 							<br />
+							<div style="display: block ; width:100%;">
+								{{#if (eq status 'o')}}
+									<div style="width:50%; display:inline;" class="text-center"><b>현재 수량 : {{stock}}</b></div>	
+									<div style="width:50%; display:inline;" class="text-center"><b>가격 : {{proPrice}}</b></div>	
+								{{else}}
+									<span class="text-center"><b>품절 되었습니다.</b></span>	
+								{{/if}}
+							</div>		
+							<br />
 							<div class="order" id="order">
 								<form class="row" action=""><!--여기서 장바구니로 전송-->
-									<input class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-3 col-sm-3 col-md-3 col-lg-3 pull-left text-center" style="height:30px" type="number" name="quantity" min="1" max="{{{stock}}}">
-									<button class="col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 btn btn-success btn-xs" type="submit" style="height:30px">저장</button>
+									<input class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left text-center" style="height:30px" type="number" name="quantity" min="1" max="{{{stock}}}">
+									<button class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 btn btn-success btn-xs" type="submit" style="height:30px">담기</button>
 								</form>
 							</div>	
 						</div>
@@ -142,13 +142,11 @@ content 내용 ...으로 생략 -->
 			});
 			
 				$(function() {
-					/* 탭 페이지가 보여질 경우의 이벤트 */
-					// 탭 안의 모든 <a> 태그에 대한 이벤드 --> 모든 탭 페이지가 열릴 때이 이벤트가 호출됨
-					$("#myTab a").click(function(e){
-						//data-deptno 속성의 값을 취득한다.
-						var current_classify = $(this).data("classify");
+					/* 페이지 생성시 기본 이벤트 */
+					//data-deptno 속성의 값을 취득한다.
+						var current_classify = $(".active > a").data("classify");
 						
-						//Ajax요청을 통한학과 데이터 조회
+						//Ajax요청을 통한 제품 데이터 조회
 						$.get('../product/productList.do',{classify:current_classify},function(json){
 							
 							//미리 준비한 HTML틀을 읽어온다.
@@ -156,13 +154,59 @@ content 내용 ...으로 생략 -->
 							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
 							var html = template(json);
 							//완성품을 출력한다.
-							$("#list").html(html).find(".detail").hide();
-						});
-					});
+							$("#list").html(html).find(".detail").hide();	
+							
+						});				 
 						
+						
+					/* 탭 페이지가 보여질 경우의 이벤트 */
+					// 탭 안의 모든 <a> 태그에 대한 이벤드 --> 모든 탭 페이지가 열릴 때이 이벤트가 호출됨
+					$("#myTab a").click(function(e){
+						//data-deptno 속성의 값을 취득한다.
+						var current_classify = $(this).data("classify");
+						
+						//Ajax요청을 통한 제품 데이터 조회
+						$.get('../product/productList.do',{classify:current_classify},function(json){
+							
+							//미리 준비한 HTML틀을 읽어온다.
+						 	var template = Handlebars.compile($("#image_item_tmpl").html());
+							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
+							var html = template(json);
+							//완성품을 출력한다.
+							$("#list").html(html).find(".detail").hide();	
+							
+						});						
+
+					});
+
+					/* hover기능 */
+					$(document).on("mouseenter",".over",
+							function(){
+								console.log("one");
+								/*마우스 커서가 올라감*/
+								
+								//detail의 높이 img높이와 동일하게 조절
+								var img_height = $(this).find("#img").css("height");
+								$(this).find("#detail").css("height",img_height);
+								
+								//hover기능 구현
+								$(this).find("#img").hide();
+								$(this).find("#detail").fadeIn(800);
+							});
 					
+					$(document).on("mouseleave",".over",
+							function(){
+						console.log("two");
+						/*마우스 커서가 빠져나감*/
+						$(this).find("#detail").hide();
+						$(this).find("#img").fadeIn(800);
+							});
 					
-					
+					/* detail height = img height proccess */
+					//ON함수를 이용한다.
+					$(document).on("method","css",function(){
+						
+					});
 				});			
 			</script>
 		</div>
