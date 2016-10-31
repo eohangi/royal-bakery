@@ -74,7 +74,7 @@
 								</div>
 								<div class="detail" id="detail" style="width:100%">
 									<div class="info" style="margin:0; width:100%; vertical-align:middle;">
-										<div class="info_2" id="info_2" style="display:inline-block" >
+										<div class="info_2" id="info_2" style="display:inline-block; width:100%;" >
 											<div class="content" id="content" style="white-space: normal; word-wrap:nomal; overflow: hidden;
 													overflow-y:hidden; text-overflow: ellipsis; width:50%;	min-height: 50px; display:inline-block;">{{content}}</div>
 											<div class="table" style="width:50%; display:inline-block;">
@@ -107,20 +107,27 @@
 							</div>
 							<br />
 							<div style="display: block ; width:100%;">
-								{{#if (eq status 'o')}}
-									<div style="width:50%; display:inline;" class="text-center"><b>현재 수량 : {{stock}}</b></div>	
-									<div style="width:50%; display:inline;" class="text-center"><b>가격 : {{proPrice}}</b></div>	
-								{{else}}
-									<span class="text-center"><b>품절 되었습니다.</b></span>	
-								{{/if}}
+							{{#if (eq status 'o')}}
+								<div style="width:50%; display:inline;" class="text-center"><b>현재 수량 : {{stock}}</b></div>	
+								<div style="width:50%; display:inline;" class="text-center"><b>가격 : {{proPrice}}</b></div>	
+								<br />
+								<div class="order" id="order">
+									<form id="put-form" method="post" class="form-inline row" action="${pageContext.request.contextPath}/product/productOk.do"><!--여기서 장바구니로 전송-->
+										<input class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left text-center" style="height:30px" type="number" name="quantity" min="1" max="{{{stock}}}">
+										<button name="{{{id}}}" id="{{{id}}}" value="{{{id}}}" class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 btn btn-success btn-xs put" type="submit" style="height:30px">담기</button>
+									</form>
+								</div>
+							{{else}}
+								<span class="text-center"><b>품절 되었습니다.</b></span>	
+								<br />
+								<div>
+									<br />
+									<input type="number" name="id" value="{{{id}}}" id="{{{id}}}" class="form-control" style="border:0; padding:0; height:0; visibility:hidden" />
+									<button class="btn btn-danger btn-xs" style="margin:auto; style="width:50%" height:30px" type="button">품절</button>
+								</div>
+							{{/if}}
 							</div>		
-							<br />
-							<div class="order" id="order">
-								<form class="row" action=""><!--여기서 장바구니로 전송-->
-									<input class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left text-center" style="height:30px" type="number" name="quantity" min="1" max="{{{stock}}}">
-									<button class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 btn btn-success btn-xs" type="submit" style="height:30px">담기</button>
-								</form>
-							</div>	
+	
 						</div>
 					</div>
 				{{/each}}
@@ -199,8 +206,10 @@
 								console.log("one");
 								/*마우스 커서가 올라감*/
 								
-								//detail의 높이 img높이와 동일하게 조절
+								//detail의 높이 img높이,너비와 동일하게 조절
 								var img_height = $(this).find("#img").css("height");
+								$(this).find("#detail").css("height",img_height);
+								var img_width = $(this).find("#img").css("width");
 								$(this).find("#detail").css("height",img_height);
 								
 								//hover기능 구현
@@ -221,6 +230,14 @@
 					$(document).on("method","css",function(){
 						
 					});
+					
+					
+					/* 장바구니 담기 동적함수 */
+					$(document).on("click",".put",function(){
+						//담기 버튼을 눌렀을 때 제품의 정보가 장바구니로
+						$.
+					});
+					
 				});			
 			</script>
 		</div>
