@@ -127,12 +127,12 @@ include file = "/css/common.css" %>
 					<tbody id="member_list_body">
 						<tr>
 							<script id="member_item_tmpl" type="text/x-handlebars-template">
-									<td class="text-center">{{member.birthDate}}</td>
-									<td class="text-center">{{member.mem_Id}}</td>
-									<td class="text-center">{{member.mem_Name}}</td>
-									<td class="text-center">{{member.Gender}}</td>
-									<td class="text-center">{{member.Phone_no}}</td>
-									<td class="text-center">{{member.Reg_date}}</td>
+									<td class="text-center">{{birthDate}}</td>
+									<td class="text-center">{{mem_Id}}</td>
+									<td class="text-center">{{mem_Name}}</td>
+									<td class="text-center">{{Gender}}</td>
+									<td class="text-center">{{Phone_no}}</td>
+									<td class="text-center">{{Reg_date}}</td>
 									<td class="text-center">
 									<a href="">구매내역</a></td>
 									<td class="text-center">

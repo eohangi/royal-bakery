@@ -65,6 +65,8 @@ public class MemberListByAdmin extends BaseController {
 			web.redirect(null, e.getLocalizedMessage());
 			return null;
 		}
+		sqlSession.close();
+		logger.debug("조회한 회원 목록>>>>>>>>>>>>>>>>>",member);
 		
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
