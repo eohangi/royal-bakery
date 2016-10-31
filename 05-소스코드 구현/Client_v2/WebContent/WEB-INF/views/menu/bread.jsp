@@ -114,7 +114,8 @@
 								<div class="order" id="order">
 									<form id="put-form" method="post" class="form-inline row" action="${pageContext.request.contextPath}/product/productOk.do"><!--여기서 장바구니로 전송-->
 										<input id="quantity" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left text-center" style="height:30px" type="number" name="quantity" min="1" max="{{{stock}}}">
-										<button name="{{{id}}}" id="{{{id}}}" value="{{{id}}}" class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 btn btn-success btn-xs put" type="submit" style="height:30px">담기</button>
+										<input type="hidden" value="{{{id}}}" id="id" name="id" />		
+										<button name="id" id="id" value="{{{id}}}" class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 btn btn-success btn-xs put" type="submit" style="height:30px">담기</button>
 									</form>
 								</div>
 							{{else}}

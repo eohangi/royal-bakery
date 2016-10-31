@@ -18,7 +18,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Product;
+import project.jsp.bakery.model.cart;
+import project.jsp.bakery.service.CartService;
 import project.jsp.bakery.service.ProductService;
+import project.jsp.bakery.service.impl.CartServiceImpl;
 import project.jsp.bakery.service.impl.ProductServiceImpl;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.WebHelper;
@@ -38,6 +41,7 @@ public class ProductOk extends BaseController {
 	Logger logger;
 	Product product;
 	ProductService productService;
+	CartService cartService;
 
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,6 +53,7 @@ public class ProductOk extends BaseController {
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		product = new Product();
 		productService = new ProductServiceImpl(logger, sqlSession);
+		cartService = new CartServiceImpl(sqlSession, logger);
 
 		//Page형식을 JSON으로 지정
 		response.setContentType("application/json");
@@ -68,12 +73,36 @@ public class ProductOk extends BaseController {
 		product.setId(id);
 
 		// javabeans
-		Product item = new Product();
+		Product it = new Product();
+
+		
+		cart item = new cart();
 
 		try {
-			item = productService.selectProduct(product);
-			item.setQuantity(quantity);
-			item.setSumPrice(item.getProPrice()*quantity);
+			//product select
+			it = productService.selectProduct(product);
+			it.setQuantity(quantity);
+			it.setSumPrice(it.getProPrice()*quantity);
+			logger.debug("[DEBUG] : product select =" +it.toString()+", quantity ="+it.getQuantity()+", sum ="+it.getSumPrice());
+			
+			//cart 값 정의
+			cart cart = new cart();
+			cart.setProId(it.getId());
+			cart.setProName(it.getProName());
+			cart.setCuPrice(it.getCuPrice());
+			cart.setProCount(it.getQuantity());
+			cart.setProPrice(it.getSumPrice());
+			
+			//cart insert
+			cartService.insertProductItem(cart);
+			logger.debug("[DEBUG] : " + cart.toString());
+			
+			//cart select
+			
+			
+			//cart delete
+			
+			
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());
 			return null;
@@ -81,7 +110,7 @@ public class ProductOk extends BaseController {
 			sqlSession.close();
 		}
 		
-		if(item.getQuantity() != 0){
+		if(it.getQuantity() != 0){
 			rt="OK";
 		}
 

@@ -28,7 +28,7 @@ public interface CartService {
 	 * @throws Exception
 	 */
 	public void insertCartItem(cart cart) throws Exception;
-
+	public void insertProductItem(cart cart) throws Exception;
 	/**
 	 * 일련번호에 의한 아이템정보 조회
 	 * 
@@ -36,6 +36,7 @@ public interface CartService {
 	 * @throws Exception
 	 */
 	public cart selectCartItem(cart cart) throws Exception;
+	public cart selectProductItem(cart cart) throws Exception; 
 
 	/**
 	 * 아이템정보 수정
@@ -59,6 +60,8 @@ public interface CartService {
 	public int selectCartTotalPrice(cart cart) throws Exception;
 	
 	public void deleteCartItem(cart cart) throws Exception;
+	
+	public void deleteProductItem(cart cart) throws Exception;
 
 	public List<cart> selectCartList(cart cart) throws Exception;
 

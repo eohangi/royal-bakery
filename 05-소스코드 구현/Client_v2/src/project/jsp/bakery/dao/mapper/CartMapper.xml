@@ -12,6 +12,7 @@
 	<resultMap id="cart" type="project.jsp.bakery.model.cart">
 		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
 		<result property="id" column="id" />
+		<result property="proId" column="pro_id" />
 		<result property="proName" column="pro_name" />
 		<result property="proPrice" column="pro_price" />
 		<result property="proCount" column="pro_count" />
@@ -123,6 +124,16 @@
 				#{memberId}
 			</otherwise>
 		</choose>
+		)
+	</insert>
+	
+	<!-- 사이드 장바구니에 제품 넣기 -->
+	<insert  id="insertProductItem" parameterType="project.jsp.bakery.model.cart"
+		useGeneratedKeys="true" keyProperty="cart">
+		INSERT INTO cart (
+			pro_id, pro_name, pro_price, pro_count, cu_price
+		) VALUES (
+			#{proId},#{proName},#{proPrice},#{proCount},#{cuPrice}
 		)
 	</insert>
 

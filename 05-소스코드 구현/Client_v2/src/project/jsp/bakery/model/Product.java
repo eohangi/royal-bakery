@@ -17,18 +17,32 @@ public class Product { // <<-- 클래스명 소문자
 	private String proEditDate;
 	private String proRegDate;
 	
+	private int cuPrice =0;
+	
 	
 	//장바구니에 담기위해 추가된 값
-	
+
 	private int quantity;  	//주문수량
 	private int sumPrice; 	//합계
-
+	
 	// 페이지 구현을 위해서 추가된 값
 	private int limitStart;
 	private int listCount;
 
+
+
+
 	// getter , setter
 
+	
+	
+	public int getCuPrice() {
+		return cuPrice;
+	}
+
+	public void setCuPrice(int cuPrice) {
+		this.cuPrice = cuPrice;
+	}
 	public int getId() {
 		return id;
 	}

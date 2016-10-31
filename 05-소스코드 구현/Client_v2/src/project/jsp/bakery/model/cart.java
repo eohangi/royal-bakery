@@ -3,6 +3,7 @@ package project.jsp.bakery.model;
 public class cart {
 
 	private int id;
+	private int proId;
 	private String proName;
 	private int proPrice;
 	private int proCount;
@@ -15,6 +16,14 @@ public class cart {
 	private String EditDate;
 	private int memberId;
 	
+	public int getProId() {
+		return proId;
+	}
+
+	public void setProId(int proId) {
+		this.proId = proId;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -114,11 +123,13 @@ public class cart {
 
 	@Override
 	public String toString() {
-		return "cart [id=" + id + ", proName=" + proName + ", proPrice=" + proPrice + ", proCount=" + proCount
-				+ ", orderNo=" + orderNo + ", cuText=" + cuText + ", cuPrice=" + cuPrice + ", cuCount=" + cuCount
-				+ ", OrderId=" + OrderId + ", RegDate=" + RegDate + ", EditDate=" + EditDate + ", memberId=" + memberId
-				+ "]";
+		return "cart [id=" + id + ", proId=" + proId + ", proName=" + proName + ", proPrice=" + proPrice + ", proCount="
+				+ proCount + ", orderNo=" + orderNo + ", cuText=" + cuText + ", cuPrice=" + cuPrice + ", cuCount="
+				+ cuCount + ", OrderId=" + OrderId + ", RegDate=" + RegDate + ", EditDate=" + EditDate + ", memberId="
+				+ memberId + "]";
 	}
+
+	
 
 	
 

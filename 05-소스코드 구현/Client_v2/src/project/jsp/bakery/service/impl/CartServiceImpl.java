@@ -185,11 +185,11 @@ public class CartServiceImpl implements CartService {
 			}
 		} catch (NullPointerException e) {
 			// 에러가 발생했으므로 SQL 수행 내역을 되돌림
-			
+
 		} catch (Exception e) {
 
 			logger.error(e.getLocalizedMessage());
-			
+
 		}
 		return result;
 	}
@@ -209,22 +209,22 @@ public class CartServiceImpl implements CartService {
 			}
 		} catch (NullPointerException e) {
 			// 에러가 발생했으므로 SQL 수행 내역을 되돌림
-			
+
 		} catch (Exception e) {
 
 			logger.error(e.getLocalizedMessage());
-			
+
 		}
 		return result;
 	}
-	
+
 	@Override
 	public int selectCartTotalPrice(cart cart) throws Exception {
 		// TODO Auto-generated method stub
 		int result = 0;
 		try {
-			result = sqlSession.selectOne("CartMapper.selectCartTotalPrice",cart);
-			
+			result = sqlSession.selectOne("CartMapper.selectCartTotalPrice", cart);
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.error(e.getLocalizedMessage());
@@ -251,7 +251,7 @@ public class CartServiceImpl implements CartService {
 		} finally {
 			sqlSession.commit();
 		}
-		
+
 	}
 
 	@Override
@@ -271,7 +271,7 @@ public class CartServiceImpl implements CartService {
 		} finally {
 			sqlSession.commit();
 		}
-		
+
 	}
 
 	@Override
@@ -289,14 +289,14 @@ public class CartServiceImpl implements CartService {
 			}
 		} catch (NullPointerException e) {
 			// 에러가 발생했으므로 SQL 수행 내역을 되돌림
-			
+
 		} catch (Exception e) {
 
 			logger.error(e.getLocalizedMessage());
 			throw new Exception("데이터 조회에 실패했습니다.");
 		}
 		return result;
-	
+
 	}
 
 	@Override
@@ -314,13 +314,64 @@ public class CartServiceImpl implements CartService {
 			}
 		} catch (NullPointerException e) {
 			// 에러가 발생했으므로 SQL 수행 내역을 되돌림
-			
+
 		} catch (Exception e) {
 
 			logger.error(e.getLocalizedMessage());
 			throw new Exception("데이터 조회에 실패했습니다.");
 		}
 		return result;
+	}
+
+	@Override
+	public void insertProductItem(cart cart) throws Exception {
+
+		// 데이터 저장처리 = 가입
+		// not null로 설정된 값이 설정되지 않았다면 예외 발생됨.
+		try {
+			int result = sqlSession.insert("CartMapper.insertProductItem", cart);
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("저장된 회원정보가 없습니다.");
+		} catch (Exception e) {
+			sqlSession.rollback();
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("제품 담기에 실패했습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+
+	}
+
+	@Override
+	public cart selectProductItem(cart cart) throws Exception {
+		cart result = null;
+		try {
+			result = sqlSession.selectOne("CartMapper.selectProductItem", cart);
+
+			// 리턴값은 저장된 행의 수
+			if (result == null) {
+				// 저장된 행이 없다면 강제로 예외를 발생시킨다.
+				// --> 이 예외를 처리 가능한 catch블록으로 제어가 이동한다.
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			// 에러가 발생했으므로 SQL 수행 내역을 되돌림
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+		return result;
+	}
+
+	@Override
+	public void deleteProductItem(cart cart) throws Exception {
+
 	}
 
 }
