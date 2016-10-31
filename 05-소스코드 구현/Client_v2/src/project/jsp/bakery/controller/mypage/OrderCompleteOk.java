@@ -1,6 +1,7 @@
 package project.jsp.bakery.controller.mypage;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -80,7 +81,8 @@ public class OrderCompleteOk extends BaseController {
 		String time = web.getString("time");
 		int totalPrice = web.getInt("totalPrice");
 		String paytype = web.getString("paytype");
-		
+		String ProName = web.getString("ProName");
+		String cuText = web.getString("cuText");
 		
 		/** (5) 주문 번호와 바코드 생성하기. */
 		String Barcode= Util.getInstance().getRandomOrder();
@@ -89,7 +91,8 @@ public class OrderCompleteOk extends BaseController {
 	
 		// 로그인 한 경우, 입력하지 않은 이름, 비밀번호, 이메일을 세션정보로 대체
 		
-		
+		logger.debug("일반제품 =" + ProName);
+		logger.debug("주문제품 =" + cuText);
 		
 		// 전달된 파라미터는 로그로 확인한다.
 		logger.debug("OrderNo=" + OrderNo);
@@ -129,17 +132,17 @@ public class OrderCompleteOk extends BaseController {
 		order.setOrTel(tel);
 		order.setOrTitle("제품 1");
 		order.setOrTime(time);
-		logger.debug("cart.ProName=" + cart.getProName());
-		logger.debug("cart.CuText=" + cart.getCuText());
+		
 		
 		try {
 			//order insert 하기
-			if(cart.getProName() != null){
+			if(ProName != null){
 			cartService.updateCartItemOrder(cart);
 			}
-			if(cart.getCuText() != null){
+			if(cuText != null){
 			cartService.updateCartItemOrder2(cart);
 			}
+			
 			orderService.insertOrder(order);
 		
 		} catch (Exception e) {
