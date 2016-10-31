@@ -22,11 +22,8 @@ import project.jsp.helper.UploadHelper;
 import project.jsp.helper.WebHelper;
 
 @WebServlet("/api/id_unique_check.do")
-public class IdUniqueCheck extends HttpServlet {
+public class IdUniqueCheck extends BaseController {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1840417626964014293L;
 
 	/** (1) 사용하고자 하는 Helper + Service 객체 선언 */
@@ -42,8 +39,7 @@ public class IdUniqueCheck extends HttpServlet {
 	MemberService memberService;
 
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
@@ -87,6 +83,7 @@ public class IdUniqueCheck extends HttpServlet {
 		JSONObject json = new JSONObject();
 		json.put("result", result);
 		response.getWriter().print(json);
+		
+		return null;
 	}
-
 }

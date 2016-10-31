@@ -1,5 +1,7 @@
 package project.jsp.bakery.service.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.Logger;
 
@@ -63,14 +65,14 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Member selectAllMember(Member member) throws Exception {
-		Member result = null;
+	public List<Member> selectAllMember() throws Exception {
+		List<Member> result = null;
 		try {
-			result = sqlSession.selectOne("MemberMapper.selectAllMember", member);
+			result = sqlSession.selectList("MemberMapper.selectAllMember");
 			
 		} catch (Exception e) {
 			logger.error(e.getLocalizedMessage());
-			throw new Exception("로그인에 실패했습니다.");
+			throw new Exception("목록조회에 실패했습니다.");
 		}
 		return result;
 	}

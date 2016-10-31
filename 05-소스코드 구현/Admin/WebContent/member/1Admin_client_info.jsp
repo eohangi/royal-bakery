@@ -13,14 +13,21 @@
 <title>Royal</title>
 
 <!-- Twitter Bootstrap3 & jQuery -->
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
+	
+<!-- AJAX HELPER -->
+<link rel="stylesheet" href="../plugins/ajax/ajax_helper.css" />
+<script
+	src="../plugins/ajax/ajax_helper.js"></script>
+	
+<!-- handlebar plugin -->
+<script
+	src="../plugins/handlebars/handlebars-v4.0.5.js"></script>
 
 
 <style type="text/css">
@@ -56,6 +63,28 @@ include file = "/css/common.css" %>
 	margin: 0;
 }
 </style>
+<!-- JSON 데이터 가져오기 스크립트 시작 -->
+<script type="text/javascript">
+	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */ 
+	function get_list() {
+		$.get("/member/MEMBERLISTBYADMIN.do",function(json) {
+			//JSON배여과 템플릿의 결합
+			var template = Handlebars.complie($("#member_item_tmpl").html());
+			//AJAX를 통해서 읽어온 JSON을 템플릿에 병합한다.
+			var html = template(json);
+			//멤버 바디에 읽어온 내용을 추가한다.
+			$("#member_list_body").append(html);
+
+		});
+
+	}
+	$(function() {
+		get_list(); //페이지가 열림과 동시에 호출된다.
+		$("#more").click(function(e) {
+			get_list(); //버튼이 클릭디면 호출된다.
+		});
+	});
+</script>
 </head>
 <body>
 	<%@ include file="../Header.jsp"%>
@@ -96,32 +125,28 @@ include file = "/css/common.css" %>
 							<th class="text-center">문의내역</th>
 						</tr>
 					</thead>
-					<tbody>
-						<c:choose>
-							<c:when test=${회원목록객체 != null}>
-								<tr>
-									<th class="text-center">${회원목록객체.birthDate}</th>
-									<th class="text-center">${회원목록객체.mem_Id}</th>
-									<th class="text-center">${회원목록객체.mem_Name}</th>
-									<th class="text-center">${회원목록객체.Gender}</th>
-									<th class="text-center">${회원목록객체.Phone_no}</th>
-									<th class="text-center">${회원목록객체.Reg_date}</th>
-									<th class="text-center">
+					<tbody id="member_list_body">
+						<tr>
+							<script id="member_item_tmpl" type="text/x-handlebars-template">
+									<td class="text-center">{{member.birthDate}}</td>
+									<td class="text-center">{{member.mem_Id}}</td>
+									<td class="text-center">{{member.mem_Name}}</td>
+									<td class="text-center">{{member.Gender}}</td>
+									<td class="text-center">{{member.Phone_no}}</td>
+									<td class="text-center">{{member.Reg_date}}</td>
+									<td class="text-center">
 									<button type="button"
-											href="${pageContext.request.contextPath}/구매내역.do">구매내역</button></th>
-									<th class="text-center">
+											href="${pageContext.request.contextPath}/구매내역.do">구매내역</button></td>
+									<td class="text-center">
 									<button type="button"
-											href="${pageContext.request.contextPath}/문의내역.do">문의내역</button></th>
-
-								</tr>
-							</c:when>
-							<c:otherwise>
-							회원이 없습니다.
-							</c:otherwise>
-						</c:choose>
-
+											href="${pageContext.request.contextPath}/문의내역.do">문의내역</button></td>
+						</script>
+						</tr>
 					</tbody>
+
 				</table>
+				<button type="button" id="more" class="btn btn-default btn-block"
+						style="margin-bottom: 15px">더 보기</button>
 			</div>
 
 			<ul class="pagination">

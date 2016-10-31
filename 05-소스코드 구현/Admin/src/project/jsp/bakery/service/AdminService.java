@@ -1,5 +1,7 @@
 package project.jsp.bakery.service;
 
+import java.util.List;
+
 import project.jsp.bakery.model.Member;
 
 //회원 관련 기능을 제공하기 위한 service 계층
@@ -26,7 +28,7 @@ public interface AdminService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Member selectAllMember(Member member) throws Exception;
+	public List<Member> selectAllMember() throws Exception;
 	
 }
 	
