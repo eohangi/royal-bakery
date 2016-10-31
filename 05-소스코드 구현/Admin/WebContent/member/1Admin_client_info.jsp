@@ -66,18 +66,16 @@ include file = "/css/common.css" %>
 <!-- JSON 데이터 가져오기 스크립트 시작 -->
 <script type="text/javascript">
 	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */ 
-	function get_list() {
+	function get_list(){
 		$.get("${pageContext.request.contextPath}/member/MEMBERLISTBYADMIN.do"
 				,function(json) {
 			//JSON배여과 템플릿의 결합
-			var template = Handlebars.complie($("#member_item_tmpl").html());
+			var template = Handlebars.compile($("#member_item_tmpl").html());
 			//AJAX를 통해서 읽어온 JSON을 템플릿에 병합한다.
 			var html = template(json);
 			//멤버 바디에 읽어온 내용을 추가한다.
 			$("#member_list_body").append(html);
-
 		});
-
 	}
 	$(function() {
 		get_list(); //페이지가 열림과 동시에 호출된다.
@@ -136,11 +134,9 @@ include file = "/css/common.css" %>
 									<td class="text-center">{{member.Phone_no}}</td>
 									<td class="text-center">{{member.Reg_date}}</td>
 									<td class="text-center">
-									<button type="button"
-											href="${pageContext.request.contextPath}/구매내역.do">구매내역</button></td>
+									<a href="">구매내역</a></td>
 									<td class="text-center">
-									<button type="button"
-											href="${pageContext.request.contextPath}/문의내역.do">문의내역</button></td>
+									<a href="">문의내역</a></td>
 						</script>
 						</tr>
 					</tbody>

@@ -35,9 +35,8 @@
 	<!-- 전체 회원 정보를 조회한다 -->
 	<select id="selectAllMember" parameterType="project.jsp.bakery.model.Member"
 	resultMap="member">
-		select * from member(
-			mem_name,mem_id, mem_pw,email, phone_no, birthdate, postcode,
-			addr1, addr2, gender, reg_date, edit_date)
+		select mem_name,mem_id, mem_pw,email, phone_no, birthdate, postcode,
+			addr1, addr2, gender, reg_date, edit_date from member
 	</select>
 	
 	<!-- 회원정보를 삭제한다//탈퇴. -->
