@@ -67,7 +67,8 @@ include file = "/css/common.css" %>
 <script type="text/javascript">
 	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */ 
 	function get_list() {
-		$.get("/member/MEMBERLISTBYADMIN.do",function(json) {
+		$.get("${pageContext.request.contextPath}/member/MEMBERLISTBYADMIN.do"
+				,function(json) {
 			//JSON배여과 템플릿의 결합
 			var template = Handlebars.complie($("#member_item_tmpl").html());
 			//AJAX를 통해서 읽어온 JSON을 템플릿에 병합한다.
