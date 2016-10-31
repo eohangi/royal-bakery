@@ -151,7 +151,7 @@
 			function bage (){
 				//data-deptno 속성의 값을 취득한다.
 					console.log("되나요");
-					var current_classify = $(".active a").data("classify");
+					var current_classify = $("li.active a").data("classify");
 					
 					//Ajax요청을 통한 제품 데이터 조회
 					$.get('../product/productList.do',{classify:current_classify},function(json){
