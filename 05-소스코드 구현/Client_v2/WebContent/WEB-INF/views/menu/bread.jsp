@@ -112,6 +112,7 @@
 								<div style="width:50%; display:inline;" class="text-center"><b>가격 : {{proPrice}}</b></div>	
 								<br />
 								<div class="order" id="order">
+									<br />
 									<form id="put-form" method="post" class="form-inline row" action="${pageContext.request.contextPath}/product/productOk.do"><!--여기서 장바구니로 전송-->
 										<input id="quantity" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left text-center" style="height:30px" type="number" name="quantity" min="1" max="{{{stock}}}">
 										<input type="hidden" value="{{{id}}}" id="id" name="id" />		
@@ -136,20 +137,20 @@
 
 			<!-- cart template -->	
 			<script id="cart_item_tmpl" type="text/x-handlebars-template">
-				{{#each item}}
+{{#each item}}			
 				<tr>
 					<th class="text-center"
 						style="width:40%; background-color:  rgba(5, 73, 49, 0.55)">{{proName}}</th>
 					<th class="text-center"
-						style="width:18%; background-color:  rgba(5, 73, 49, 0.55)">{{quantity}}</th>
+						style="width:18%; background-color:  rgba(5, 73, 49, 0.55)">{{proCount}}</th>
 					<th class="text-center"
-						style="width:32%; background-color:  rgba(5, 73, 49, 0.55)">{{sumPrice}}</th>
+						style="width:32%; background-color:  rgba(5, 73, 49, 0.55)">{{proPrice}}</th>
 					<th class="text-center"
 						style="width:10%; background-color:  rgba(5, 73, 49, 0.55)">
 						<a class="cart_delete btn btn-xs" id="cart-delete"  onclick=''><i class="glyphicon glyphicon-remove"></i></a>	
 					</th>
 				</tr>
-				{{/each}}
+{{/each}}
 			</script>
 			
 
@@ -254,7 +255,12 @@
 								alert("수량을 선택하세요.");
 								return false;
 							}
-							
+							//미리 준비한 HTML틀을 읽어온다.
+						 	var template = Handlebars.compile($("#cart_item_tmpl").html());
+							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
+							var html = template(json);
+							//완성품을 출력한다.
+							$("#cart_list").append(html);
 							
 						});
 					});

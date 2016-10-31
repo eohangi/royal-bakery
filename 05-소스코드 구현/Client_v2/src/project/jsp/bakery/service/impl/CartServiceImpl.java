@@ -364,7 +364,7 @@ public class CartServiceImpl implements CartService {
 		} catch (Exception e) {
 
 			logger.error(e.getLocalizedMessage());
-			throw new Exception("데이터 조회에 실패했습니다.");
+			throw new Exception("장바구니에 담긴 제품 조회에 실패했습니다.");
 		}
 		return result;
 	}

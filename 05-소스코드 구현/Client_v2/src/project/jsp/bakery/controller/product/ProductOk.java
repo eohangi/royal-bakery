@@ -74,8 +74,6 @@ public class ProductOk extends BaseController {
 
 		// javabeans
 		Product it = new Product();
-
-		
 		cart item = new cart();
 
 		try {
@@ -95,10 +93,11 @@ public class ProductOk extends BaseController {
 			
 			//cart insert
 			cartService.insertProductItem(cart);
-			logger.debug("[DEBUG] : " + cart.toString());
+			logger.debug("[DEBUG] : cart =  " + cart.toString());
 			
 			//cart select
-			
+			item=cartService.selectProductItem(cart);
+			logger.debug("[DEBUG] : item = " + item.toString());
 			
 			//cart delete
 			

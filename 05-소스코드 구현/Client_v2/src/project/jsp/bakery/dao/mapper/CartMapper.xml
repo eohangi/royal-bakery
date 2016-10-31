@@ -129,7 +129,7 @@
 	
 	<!-- 사이드 장바구니에 제품 넣기 -->
 	<insert  id="insertProductItem" parameterType="project.jsp.bakery.model.cart"
-		useGeneratedKeys="true" keyProperty="cart">
+		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO cart (
 			pro_id, pro_name, pro_price, pro_count, cu_price
 		) VALUES (
@@ -149,6 +149,17 @@
 		DATE_FORMAT(edit_date, '%Y-%m-%d %H:%i:%s') as
 		edit_date,
 		member_id
+		FROM cart
+		WHERE
+		id=#{id}
+	</select>
+	
+	<!-- 제품 리스트 사이드의 장바구니 구현 -->
+	<select id="selectProductItem" parameterType="project.jsp.bakery.model.cart"
+		resultMap="cart">
+		<!-- "#{변수명}" 으로 표시된 곳에 파라미터로 전달된 Beans의 멤버변수값이 치환된다. -->
+		SELECT
+			pro_name, pro_price, pro_count
 		FROM cart
 		WHERE
 		id=#{id}
