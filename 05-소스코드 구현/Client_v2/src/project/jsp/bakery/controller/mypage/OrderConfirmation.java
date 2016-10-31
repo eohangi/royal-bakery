@@ -1,6 +1,8 @@
 package project.jsp.bakery.controller.mypage;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +16,10 @@ import org.apache.logging.log4j.Logger;
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Member;
 import project.jsp.bakery.model.Orders;
+import project.jsp.bakery.model.cart;
+import project.jsp.bakery.service.CartService;
 import project.jsp.bakery.service.OrderService;
+import project.jsp.bakery.service.impl.CartServiceImpl;
 import project.jsp.bakery.service.impl.OrderServiceImpl;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.PageHelper;
@@ -38,7 +43,8 @@ public class OrderConfirmation extends BaseController {
 	WebHelper web;
 	
 	OrderCommon order;
-	
+	CartService cartService;
+
 	//OrderService orderService;
 
 	PageHelper pageHelper;
@@ -56,6 +62,7 @@ public class OrderConfirmation extends BaseController {
 				web = WebHelper.getInstance(request, response);
 				// --> import study.jsp.mysite.service.impl.BbsDocumentServiceImpl;
 				OrderService orderService = new OrderServiceImpl(sqlSession, logger);
+				cartService = new CartServiceImpl(sqlSession, logger);
 
 				pageHelper = PageHelper.getInstance();
 				
@@ -83,7 +90,14 @@ public class OrderConfirmation extends BaseController {
 				orders.setMemberId(loginInfo.getId());
 				orders.setOrderNo(OrderNo);
 				
-				
+				cart cart = new cart();
+				cart.setMemberId(loginInfo.getId());
+				cart.setOrderNo(OrderNo);
+			
+				System.out.println(cart);
+				List<cart> cartlist = null;
+			/*	System.out.println("cartlist=" + cartlist);*/
+				List<cart> cartlist2 = null;
 				//데이터 조회
 				Orders readOrder = null;
 				
@@ -92,6 +106,9 @@ public class OrderConfirmation extends BaseController {
 					// 두번째 파라미터는 조회 조건시에 사용될 파라미터 --> Beans객체
 					// 조회 결과가 단일행을 리턴하기 때문에 Beans 객체 형태로 리턴된다
 					readOrder = sqlSession.selectOne("OrderMapper.selectOrder", orders);
+					cartlist = cartService.selectCartOrder1(cart);
+					System.out.println("cartlist=" + cartlist);
+					cartlist2 = cartService.selectCartOrder2(cart);
 				} catch (Exception e) {
 					//뒤로가는 기능
 					web.redirect(null,e.getLocalizedMessage());
@@ -101,6 +118,17 @@ public class OrderConfirmation extends BaseController {
 					// 데이터 베이스 접속 해제하기
 					// 트라이 캣치의 파이널리는 캣치에서 리턴문보다 우선 실행된다.
 					sqlSession.close();
+				}
+				System.out.println("loginInfo=" + loginInfo);
+
+			
+				System.out.println("cartlist=" + cartlist);
+				for (int i = 0; i < cartlist.size(); i++) {
+					System.out.println(cartlist.get(i));
+				}
+
+				for (int z = 0; z < cartlist2.size(); z++) {
+					System.out.println(cartlist2.get(z));
 				}
 				
 				String orType = readOrder.getOrType();
@@ -131,6 +159,9 @@ public class OrderConfirmation extends BaseController {
 				
 				request.setAttribute("type", type);
 				request.setAttribute("Time", Time);
+
+				request.setAttribute("cartlist", cartlist);
+				request.setAttribute("cartlist2", cartlist2);
 				request.setAttribute("readOrder", readOrder);
 				
 				

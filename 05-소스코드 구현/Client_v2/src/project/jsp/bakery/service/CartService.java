@@ -15,6 +15,10 @@ public interface CartService {
 	 *             - 중복된 데이터인 경우 예외 발생함
 	 */
 	public int selectCartIdCount(cart cart) throws Exception;
+	
+	public List<cart> selectCartOrder1(cart cart) throws Exception;
+	
+	public List<cart> selectCartOrder2(cart cart) throws Exception;
 
 	/**
 	 * 주문 아이템 추가
@@ -40,6 +44,10 @@ public interface CartService {
 	 * @throws Exception
 	 */
 	public void updateCartItem(cart cart) throws Exception;
+	
+	public void updateCartItemOrder(cart cart) throws Exception;
+	
+	public void updateCartItemOrder2(cart cart) throws Exception;
 
 	/**
 	 * 삭제

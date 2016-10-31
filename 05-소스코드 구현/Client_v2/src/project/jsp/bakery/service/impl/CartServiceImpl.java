@@ -234,4 +234,93 @@ public class CartServiceImpl implements CartService {
 
 	}
 
+	@Override
+	public void updateCartItemOrder(cart cart) throws Exception {
+		try {
+			int result = sqlSession.update("CartMapper.updateCartItemOrder", cart);
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("변경된 장바구니가 없습니다.");
+		} catch (Exception e) {
+			sqlSession.rollback();
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("장바구니가 수정에 실패했습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+		
+	}
+
+	@Override
+	public void updateCartItemOrder2(cart cart) throws Exception {
+		try {
+			int result = sqlSession.update("CartMapper.updateCartItemOrder2", cart);
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("변경된 장바구니가 없습니다.");
+		} catch (Exception e) {
+			sqlSession.rollback();
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("장바구니가 수정에 실패했습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+		
+	}
+
+	@Override
+	public List<cart> selectCartOrder1(cart cart) throws Exception {
+		List<cart> result = null;
+
+		try {
+			result = sqlSession.selectList("CartMapper.selectCartOrder1", cart);
+
+			// 리턴값은 저장된 행의 수
+			if (result == null) {
+				// 저장된 행이 없다면 강제로 예외를 발생시킨다.
+				// --> 이 예외를 처리 가능한 catch블록으로 제어가 이동한다.
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			// 에러가 발생했으므로 SQL 수행 내역을 되돌림
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+		return result;
+	
+	}
+
+	@Override
+	public List<cart> selectCartOrder2(cart cart) throws Exception {
+		List<cart> result = null;
+
+		try {
+			result = sqlSession.selectList("CartMapper.selectCartOrder2", cart);
+
+			// 리턴값은 저장된 행의 수
+			if (result == null) {
+				// 저장된 행이 없다면 강제로 예외를 발생시킨다.
+				// --> 이 예외를 처리 가능한 catch블록으로 제어가 이동한다.
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			// 에러가 발생했으므로 SQL 수행 내역을 되돌림
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+		return result;
+	}
+
 }

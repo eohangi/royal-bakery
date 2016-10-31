@@ -25,6 +25,7 @@
 		<result property="memberId" column="member_id" />
 	</resultMap>
 
+<!-- 전체 조회 -->
 	<select id="selectCartCountByMemberId" parameterType="project.jsp.bakery.model.cart"
 		resultMap="cart">
 		<!-- SELECT COUNT(id) FROM cart WHERE member_id=#{memberId} -->
@@ -33,18 +34,35 @@
 		WHERE cu_text is not null and member_id=#{memberId};
 	</select>
 
+<!-- 장바구니에서 주문하지 않은 일반제품 조회 -->
 	<select id="selectCartProCountId" parameterType="project.jsp.bakery.model.cart"
 		resultMap="cart">
 		SELECT distinct id, pro_name, pro_price, pro_count, order_no, cu_text,
 		cu_price, cu_count, Order_id, edit_date, reg_date, member_id FROM cart
-		WHERE pro_name is not null and member_id=#{memberId};
+		WHERE pro_name is not null and member_id=#{memberId} and order_no is null;
 	</select>
 
+<!-- 장바구니에서 주문하지 않은 주문제작제품 조회 -->
 	<select id="selectCartCuCountId" parameterType="project.jsp.bakery.model.cart"
 		resultMap="cart">
 		SELECT distinct id, pro_name, pro_price, pro_count, order_no, cu_text,
 		cu_price, cu_count, Order_id, edit_date, reg_date, member_id FROM cart
-		WHERE cu_text is not null and member_id=#{memberId};
+		WHERE cu_text is not null and member_id=#{memberId} and order_no is null;
+	</select>
+	
+	<!-- 결제된 주문번호 있는 일반 상품 조회 -->
+	<select id="selectCartOrder1" parameterType="project.jsp.bakery.model.cart"
+		resultMap="cart">
+		SELECT distinct id, pro_name, pro_price, pro_count, order_no, cu_text,
+		cu_price, cu_count, Order_id, edit_date, reg_date, member_id FROM cart
+		WHERE pro_name is not null and member_id=#{memberId} and order_no =#{orderNo};
+	</select>
+	<!-- 결제된 주문번호 있는 주문제작 상품 조회 -->
+	<select id="selectCartOrder2" parameterType="project.jsp.bakery.model.cart"
+		resultMap="cart">
+		SELECT distinct id, pro_name, pro_price, pro_count, order_no, cu_text,
+		cu_price, cu_count, Order_id, edit_date, reg_date, member_id FROM cart
+		WHERE cu_text is not null and member_id=#{memberId} and order_no =#{orderNo};
 	</select>
 
 	<!-- 자신의 게시물인지 검사한다. -->
@@ -136,6 +154,22 @@
 		id=#{id}
 	</update>
 
+	<!-- 결제시 주문번호 업데이트 일반제품 -->
+	<update id="updateCartItemOrder" parameterType="project.jsp.bakery.model.cart">
+		UPDATE cart SET
+		order_no=#{orderNo}, edit_date=now()
+		WHERE 
+		pro_name is not null and member_id=#{memberId} and order_no is null;
+	</update>
+	
+	<!-- 결제시 주문번호 업데이트 주문제작제품 -->
+	<update id="updateCartItemOrder2" parameterType="project.jsp.bakery.model.cart">
+		UPDATE cart SET
+		order_no=#{orderNo}, edit_date=now()
+		WHERE 
+		cu_text is not null and member_id=#{memberId} and order_no is null;
+	</update>
+	
 	<delete id="deleteCartItem" parameterType="project.jsp.bakery.model.cart">
 		DELETE FROM
 		cart

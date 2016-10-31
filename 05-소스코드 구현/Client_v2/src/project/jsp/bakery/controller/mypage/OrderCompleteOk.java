@@ -16,7 +16,10 @@ import org.apache.logging.log4j.Logger;
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Member;
 import project.jsp.bakery.model.Orders;
+import project.jsp.bakery.model.cart;
+import project.jsp.bakery.service.CartService;
 import project.jsp.bakery.service.OrderService;
+import project.jsp.bakery.service.impl.CartServiceImpl;
 import project.jsp.bakery.service.impl.OrderServiceImpl;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.PageHelper;
@@ -44,7 +47,7 @@ public class OrderCompleteOk extends BaseController {
 	WebHelper web;
 	
 	OrderCommon order;
-	
+	CartService cartService;
 	//OrderService orderService;
 
 	PageHelper pageHelper;
@@ -61,7 +64,7 @@ public class OrderCompleteOk extends BaseController {
 		web = WebHelper.getInstance(request, response);
 		// --> import study.jsp.mysite.service.impl.BbsDocumentServiceImpl;
 		OrderService orderService = new OrderServiceImpl(sqlSession, logger);
-
+		cartService = new CartServiceImpl(sqlSession, logger);
 		pageHelper = PageHelper.getInstance();
 		
 		order = OrderCommon.getInstance();
@@ -107,6 +110,10 @@ public class OrderCompleteOk extends BaseController {
 			web.redirect(null, "지불 방식을 선택해주세요.");
 			return null;
 		}
+		
+		cart cart = new cart();
+		cart.setOrderNo(OrderNo);
+		cart.setMemberId(loginInfo.getId());
 
 		//order에 저장할 것들 beans로 묶기
 		Orders order = new Orders();
@@ -125,6 +132,8 @@ public class OrderCompleteOk extends BaseController {
 		
 		try {
 			//order insert 하기
+			cartService.updateCartItemOrder(cart);
+			cartService.updateCartItemOrder2(cart);
 			orderService.insertOrder(order);
 			//cartService.insertCartItem(cart);
 		} catch (Exception e) {

@@ -79,11 +79,13 @@ public class CartPage extends BaseController {
 			web.redirect(web.getRootPath() + "/member/Login.do", "로그인을 먼저 해주세요.");
 			return null;
 		}
+		
 
 		System.out.println("loginInfo=" + loginInfo);
 
 		cart cart = new cart();
 		cart.setMemberId(loginInfo.getId());
+	
 		System.out.println(cart);
 		List<cart> cartlist = null;
 	/*	System.out.println("cartlist=" + cartlist);*/

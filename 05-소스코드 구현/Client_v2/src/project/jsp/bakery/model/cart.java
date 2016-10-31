@@ -6,7 +6,7 @@ public class cart {
 	private String proName;
 	private int proPrice;
 	private int proCount;
-	private String orderNo;
+	private int orderNo;
 	private String cuText;
 	private int cuPrice;
 	private int cuCount;
@@ -55,13 +55,6 @@ public class cart {
 		this.proCount = proCount;
 	}
 
-	public String getOrderNo() {
-		return orderNo;
-	}
-
-	public void setOrderNo(String orderNo) {
-		this.orderNo = orderNo;
-	}
 
 	public String getCuText() {
 		return cuText;
@@ -111,6 +104,14 @@ public class cart {
 		this.memberId = memberId;
 	}
 
+	public int getOrderNo() {
+		return orderNo;
+	}
+
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
+	}
+
 	@Override
 	public String toString() {
 		return "cart [id=" + id + ", proName=" + proName + ", proPrice=" + proPrice + ", proCount=" + proCount
@@ -119,6 +120,7 @@ public class cart {
 				+ "]";
 	}
 
+	
 
 	
 
