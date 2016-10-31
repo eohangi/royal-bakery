@@ -58,7 +58,7 @@ include file = "/css/common.css" %>
 </style>
 </head>
 <body>
-	<%@ include file="Header.jsp"%>
+	<%@ include file="../Header.jsp"%>
 	<div class="container">
 		<div class="row">
 			<div class="header">
@@ -138,7 +138,7 @@ include file = "/css/common.css" %>
 		</div>
 	</div>
 
-	<%@ include file="inc/footer.jsp"%>
+	<%@ include file="../inc/footer.jsp"%>
 
 </body>
 

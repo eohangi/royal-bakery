@@ -44,7 +44,7 @@ public class LoginOk extends BaseController {
 		if (web.getSession("loginInfo") != null) {
 			// 이미 sqlsession객체를 생성했으므로,데이터 베이스 접속을 해제해야 한다.
 			sqlSession.close();
-			web.redirect(web.getRootPath() + "/member/ADMINCLIENTINFO.do", "이미 로그인 하셨습니다.");
+			web.redirect(web.getRootPath() + "/member/ADMINCLIENTINFO.do", "asd 로그인 하셨습니다.");
 			return null;
 		}
 
@@ -116,8 +116,10 @@ public class LoginOk extends BaseController {
 		//로그인 화면을 따로 잡아뒀을 경우 이전 페이지 이동이 오히려 문제가 된다 로그인 화면을 제거하고,navbar에 항시 노출시키거나,이전 페이지 이동을 포기해야 한다.
 		//이전 페이지포기시 고객이 강제적으로 인덱스 페이지로 이동해야 하는 불편함을 느낄 수 있으므로 이렇게 처리했다.
 		sqlSession.close();
-		web.redirect(web.getRootPath()+"/member/ADMINCLIENTINFO.do"
-				,"관리자님 안녕하세요");
+		String view = "Admin_frame.jsp";
+//		web.redirect(web.getRootPath() + view,"관리자님 안녕하세요");
+	//	String view = "Admin_frame";
+		web.redirect(view, "관리자님 안녕하세요");
 		return null;
 
 	}
