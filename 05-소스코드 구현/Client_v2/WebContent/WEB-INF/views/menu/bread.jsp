@@ -53,7 +53,7 @@
 			</div>
 			<!--// 탭 화면 끝 -->
 
-			<!-- template -->
+			<!-- list template -->
 			<script id="image_item_tmpl" type="text/x-handlebars-template">
 				{{#each item}}
 					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
@@ -113,7 +113,7 @@
 								<br />
 								<div class="order" id="order">
 									<form id="put-form" method="post" class="form-inline row" action="${pageContext.request.contextPath}/product/productOk.do"><!--여기서 장바구니로 전송-->
-										<input class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left text-center" style="height:30px" type="number" name="quantity" min="1" max="{{{stock}}}">
+										<input id="quantity" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left text-center" style="height:30px" type="number" name="quantity" min="1" max="{{{stock}}}">
 										<button name="{{{id}}}" id="{{{id}}}" value="{{{id}}}" class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 btn btn-success btn-xs put" type="submit" style="height:30px">담기</button>
 									</form>
 								</div>
@@ -132,6 +132,25 @@
 					</div>
 				{{/each}}
 			</script>
+
+			<!-- cart template -->	
+			<script id="cart_item_tmpl" type="text/x-handlebars-template">
+				{{#each item}}
+				<tr>
+					<th class="text-center"
+						style="width:40%; background-color:  rgba(5, 73, 49, 0.55)">{{proName}}</th>
+					<th class="text-center"
+						style="width:18%; background-color:  rgba(5, 73, 49, 0.55)">{{quantity}}</th>
+					<th class="text-center"
+						style="width:32%; background-color:  rgba(5, 73, 49, 0.55)">{{sumPrice}}</th>
+					<th class="text-center"
+						style="width:10%; background-color:  rgba(5, 73, 49, 0.55)">
+						<a class="cart_delete btn btn-xs" id="cart-delete"  onclick=''><i class="glyphicon glyphicon-remove"></i></a>	
+					</th>
+				</tr>
+				{{/each}}
+			</script>
+			
 
 			<!-- 사용자 정의 스크립트 -->
 			<script type="text/javascript">
@@ -157,7 +176,7 @@
 			
 			function bage (){
 				//data-deptno 속성의 값을 취득한다.
-					console.log("되나요");
+					console.log("list 검사");
 					var current_classify = $("li.active a").data("classify");
 					
 					//Ajax요청을 통한 제품 데이터 조회
@@ -225,17 +244,18 @@
 						$(this).find("#img").fadeIn(800);
 							});
 					
-					/* detail height = img height proccess */
-					//ON함수를 이용한다.
-					$(document).on("method","css",function(){
-						
-					});
-					
 					
 					/* 장바구니 담기 동적함수 */
 					$(document).on("click",".put",function(){
 						//담기 버튼을 눌렀을 때 제품의 정보가 장바구니로
-						$.
+						$("#put-form").ajaxForm(function(json){
+							if(json.rt ==  "FAIL"){
+								alert("수량을 선택하세요.");
+								return false;
+							}
+							
+							
+						});
 					});
 					
 				});			
@@ -252,28 +272,38 @@
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th class="text-center" colspan="2"
-								style="background-color: rgb(217, 204, 255)">장바구니</th>
+							<th class="text-center" colspan="4"
+								style="background-color:  rgba(5, 73, 49, 1)"><b style="color:'white'">장바구니</b></th>
+						</tr>
+						<tr>
+							<th class="text-center"
+								style="width:40%; background-color: rgba(5, 73, 49, 0.85)">품명</th>
+							<th class="text-center"
+								style="width:18%; background-color: rgba(5, 73, 49, 0.85)">수</th>
+							<th class="text-center"
+								style="width:32%; background-color: rgba(5, 73, 49, 0.85)">가격</th>
+							<th class="text-center"
+								style="width:10%; background-color: rgba(5, 73, 49, 0.85)"></th>
 						</tr>
 					</thead>
-					<tbody>
-
+					<tbody id="cart_list">
 						<tr>
-							<th class="text-center">
-							<th class="text-center">삭제</th>
+							<!-- cart template -->
 						</tr>
 					</tbody>
 					<tfoot>
 						<tr>
 							<th class="text-center"
-								style="background-color: rgb(209, 255, 204)"></th>
-							<th class="text-center"
-								style="background-color: rgb(209, 255, 204)">총금액</th>
+								style="background-color:  rgba(5, 73, 49, 0.7)" colspan="2">총 금액</th>
+							<th class="text-center" id="sum_price"
+								style="background-color:  rgba(5, 73, 49, 0.7)"  colspan="2">
+							<!-- sum_template -->
+							</th>
 						</tr>
 						<tr>
-							<th class="text-center" colspan="2"
-								style="background-color: rgb(209, 255, 204)">
-								<button type="submit" class="btn btn-primary" onclick=' '>예약하기</button>
+							<th class="text-center" colspan="4"
+								style="background-color:  rgba(5, 73, 49, 0.7)">
+								<button type="submit" class="btn btn-success">장바구니</button>
 							</th>
 						</tr>
 					</tfoot>

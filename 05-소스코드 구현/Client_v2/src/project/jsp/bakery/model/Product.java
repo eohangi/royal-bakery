@@ -16,6 +16,12 @@ public class Product { // <<-- 클래스명 소문자
 	private String proImg;
 	private String proEditDate;
 	private String proRegDate;
+	
+	
+	//장바구니에 담기위해 추가된 값
+	
+	private int quantity;  	//주문수량
+	private int sumPrice; 	//합계
 
 	// 페이지 구현을 위해서 추가된 값
 	private int limitStart;
@@ -25,6 +31,22 @@ public class Product { // <<-- 클래스명 소문자
 
 	public int getId() {
 		return id;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getSumPrice() {
+		return sumPrice;
+	}
+
+	public void setSumPrice(int sumPrice) {
+		this.sumPrice = sumPrice;
 	}
 
 	public int getLimitStart() {
