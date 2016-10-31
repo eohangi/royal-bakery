@@ -52,7 +52,7 @@
 					<!-- 페이지에 들어갈 2가지 메뉴시작-->
 					<ul class="payinner-content-container" id="boxbody">
 						<li class="mybox" id="mybox" >
-						<a href="${pageContext.request.contextPath}/mypage/ReservationList.do?orderCategory=reservation">
+						<a href="${pageContext.request.contextPath}/mypage/OrderList.do?orderCategory=reservation">
 							<p>
 								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
@@ -66,7 +66,7 @@
 
 						</li>
 						<li class="mybox" id="mybox" >
-						<a href="${pageContext.request.contextPath}/mypage/OrderList.do?orderCategory=pay">
+						<a href="${pageContext.request.contextPath}/mypage/ReservationList.do?orderCategory=pay">
 							<p>
 								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
