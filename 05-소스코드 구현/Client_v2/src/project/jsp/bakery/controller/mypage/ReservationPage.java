@@ -79,57 +79,7 @@ public class ReservationPage extends BaseController {
 		String orderCategory = web.getString("OrderCategory");
 		String paytype = web.getString("paytype");
 		int OrderNo = web.getInt("OrderNo");
-		
-	/*	*//** (3) 게시판 카테고리 값을 받아서 view에 전달 *//*
-		String category = web.getString("orderCategory");
-		request.setAttribute("orderCategory", category);
-		
-		*//** (4) 존재하는 게시판 인지 판별 - 이름 비교 *//*
-		try {
-			String orderName = order.getOrderName(category);
-			request.setAttribute("orderName", orderName);
-		} catch (Exception e) {
-			// TODO: handle exception
-			sqlSession.close();
-			web.redirect(null, e.getLocalizedMessage());
-			return null;
-		}
-		
-		*//** (5) 조회할 정보에 대한 beans 생성 *//*
-		//url get으로 넘어오는 정보
-		int reservationId = web.getInt("reservation_id");
-		if (reservationId == 0) {
-			sqlSession.close();
-			web.redirect(null, "글 번호가 지정되지 않았습니다.");
-			return null;
-		}
-		
-		//beans로 묶기
-		Orders orders = new Orders();
-		orders.setId(reservationId);
-		orders.setOrderCategory(category);
-		
-		//데이터 조회
-		Orders readReservation = null;
-		
-		try {
-			// professormapper.selectprofessorlist 기능을 호출한다.
-			// 두번째 파라미터는 조회 조건시에 사용될 파라미터 --> Beans객체
-			// 조회 결과가 단일행을 리턴하기 때문에 Beans 객체 형태로 리턴된다
-			readReservation = sqlSession.selectOne("OrderMapper.selectOrder", orders);
-		} catch (Exception e) {
-			//뒤로가는 기능
-			web.redirect(null,e.getLocalizedMessage());
-			
-			return null;
-		} finally {
-			// 데이터 베이스 접속 해제하기
-			// 트라이 캣치의 파이널리는 캣치에서 리턴문보다 우선 실행된다.
-			sqlSession.close();
-		}
-		
-		request.setAttribute("readReservation", readReservation);
-		*/
+
 		logger.debug("OrderCategory=" + orderCategory);
 		logger.debug("MemberId=" + loginInfo.getId());
 		logger.debug("OrderNo=" + OrderNo);
