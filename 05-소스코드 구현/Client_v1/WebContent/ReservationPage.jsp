@@ -3,84 +3,147 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 
 <!DOCTYPE html>
-<%@ include file="inc/Common.jsp"%>
+<%@ include file="/WEB-INF/inc/head.jsp"%>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/code39.js"></script>
+
 </head>
 <body>
 
-	<%@ include file="inc/Header2.jsp"%>
-	<div class='page-header'>
-		<h1>구매 내역</h1>
-	</div>
+	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
+
+	<div class="page-header"></div>
 	<div class="container">
 
 		<div class="row">
+
+
 			<div class="join">
-
+				<h1>주문 완료</h1>
+				<hr />
 				<!-- 가입폼 시작 -->
-				<form class="form-horizontal" id="myform" action="ReservationList.jsp">
-
-					<div class="form-group">
-						<label for="user_id" class="col-md-2">종류*</label>
+				<form class="form-horizontal" id="myform">
+					<p>${readOrder.orName}고객님의주문이 정상적으로 처리 되었습니다.</p>
+					<p>Royal Bakery를 선택해 주셔서 감사합니다.</p>
+					<hr />
+					<div class="form-group row">
+						<label for="user_id" class="col-md-2">상품 정보</label>
 						<div class="col-md-10">
-							<input type="text" name="user_id" id="user_id"
-								class="form-control" placeholder="일 반 제 품" disabled>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th class="text-center">품명</th>
+										<th class="text-center">수량</th>
+										<th class="text-center">가격</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:choose>
+										<c:when test="${fn:length(cartlist) > 0}">
+											<c:forEach var="cart" items="${cartlist}">
+												<tr align="center">	
+													<td width="18%" class="text-center">${cart.proName}</td>
+													<td width="18%" class="text-center">${cart.proCount}</td>
+													<td width="18%" class="text-center">${cart.proPrice}</td>
+												</tr>
+											</c:forEach>
+										</c:when>
+									</c:choose>
+									<c:choose>
+										<c:when test="${fn:length(cartlist2) > 0}">
+											<c:forEach var="cart" items="${cartlist2}">
+												<tr align="center">
+													<td width="18%" class="text-center">${cart.cuText}</td>
+													<td width="18%" class="text-center"></td>
+													<td width="18%" class="text-center">${cart.cuPrice}</td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										
+									</c:choose>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					
+					<div class="form-group">
+						<label for="OrderName" class="col-md-2">주문자</label>
+						<div class="col-md-10">
+							<input type="text" name="OrderName" id="OrderName"
+								class="form-control" placeholder="${readOrder.orName}" disabled>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="name" class="col-md-2">상품내용*</label>
+						<label for="name" class="col-md-2">주문일시</label>
 						<div class="col-md-10">
 							<input type="text" name="name" id="name" class="form-control"
-								placeholder="바게트-1개-10000원  / 크림빵-2개-20000원" disabled>
+								placeholder="${readOrder.orRegDate}" disabled>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="email" class="col-md-2">총금액*</label>
+						<label for="name" class="col-md-2">결제방법</label>
 						<div class="col-md-10">
-							<input type="text" name="email" id="email" class="form-control"
-								placeholder="20000원" disabled>
+							<input type="text" name="name" id="name" class="form-control"
+								placeholder="${type}" disabled>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="tel" class="col-md-2">주문자*</label>
+						<label for="Time" class="col-md-2">수령시간</label>
 						<div class="col-md-10">
-							<input type="text" name="tel" id="tel" class="form-control"
-								placeholder="이한볅" disabled>
+							<input type="text" name="Time" id="Time" class="form-control"
+								placeholder="${Time}" disabled>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="addr1" class="col-md-2">연락처</label>
+						<label for="name" class="col-md-2">결제금액</label>
 						<div class="col-md-10">
-							<input type="text" name="addr1" id="addr1" class="form-control"
-								placeholder="010-1234-6789" disabled>
+							<input type="text" name="name" id="name" class="form-control"
+								placeholder="${readOrder.totalSum}" disabled>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="addr2" class="col-md-2">결제방법</label>
-						<div class="col-md-10">
-							<input type="text" name="addr2" id="addr2" class="form-control"
-								placeholder="신용카드" disabled>
+					<hr />
+					<p>생성된 바코드로 매장에서 주문 수령 가능합니다.</p>
+					<hr />
+					<!-- ---------------------------------------------- -->
+					<div class="col-md-offset-3 col-md-10 col-sm-12">
+						<div id="externalbox" style="width: 5in;">
+							<!--  랜덤 숫자값 -->
+							<div id="inputdata">${readOrder.barcode}</div>
 						</div>
+
+						<script type="text/javascript">
+							/* <![CDATA[ */
+							function get_object(id) {
+								var object = null;
+								if (document.layers) {
+									object = document.layers[id];
+								} else if (document.all) {
+									object = document.all[id];
+								} else if (document.getElementById) {
+									object = document.getElementById(id);
+								}
+								return object;
+							}
+							get_object("inputdata").innerHTML = DrawCode39Barcode(
+									get_object("inputdata").innerHTML, 1);
+							/* ]]> */
+						</script>
+
+						<!-------------------------------------------------->
 					</div>
-					<div class="form-group">
-						<label for="addr2" class="col-md-2">수령일시</label>
-						<div class="col-md-10">
-							<input type="text" name="addr2" id="addr2" class="form-control"
-								placeholder="2016년9월13일15시30분" disabled>
-						</div>
+
+					<br />
+
+					<div class="button">
+						<!-- 들여쓰기 -->
+						<button type="button" class="btn btn-primary">
+							<a href="${pageContext.request.contextPath}/MainIndex.do">메인으로</a></button>
+						<button type="button" class="btn btn-danger"
+							><a href="${pageContext.request.contextPath}/product/productBread.do">계속 쇼핑하기</a></button>
+						</button>
 					</div>
-					<div class="form-group">
-						<label for="addr2" class="col-md-2">수령여부</label>
-						<div class="col-md-10">
-							<input type="text" name="addr2" id="addr2" class="form-control"
-								placeholder="수령 완료" disabled>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-15">
-							<!-- 들여쓰기 -->
-							<button type="submit" class="btn btn-primary">확인</button>
-						</div>
-					</div>
+
 
 				</form>
 				<!-- 가입폼 끝 -->

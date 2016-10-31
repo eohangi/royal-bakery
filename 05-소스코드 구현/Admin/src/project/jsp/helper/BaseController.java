@@ -70,7 +70,7 @@ public abstract class BaseController extends HttpServlet {
 
         // View의 이름을 얻기 위하여 doRun 메서드를 호출한다.
         String view = doRun(request, response);
-
+        
         // 획득한 View가 존재한다면 화면 표시
         if (view != null) {
             // View를 생성한다.

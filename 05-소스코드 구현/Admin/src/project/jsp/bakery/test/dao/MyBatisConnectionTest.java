@@ -21,8 +21,8 @@ public class MyBatisConnectionTest {
 		
 		Member member = new Member();
 		
-		member.setMem_id("admin");
-		member.setMem_pw("1234");
+		member.setMem_id("test1");
+		member.setMem_pw("123");
 		Member loginInfo = null;
 		
 		try {

@@ -51,7 +51,7 @@
 		
 			where
 			order_category=#{orderCategory} AND
-			member_id=#{memberId} AND
+			member_id=#{memberId} 
 
 
 		ORDER BY id DESC

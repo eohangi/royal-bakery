@@ -41,12 +41,14 @@
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
+						<!-- 수령 확인 버튼은 관리자페이지에서 ! -->
 							<th class="text-center" style="width: 100px">번호</th>
 							<th class="text-center" style="width: 100px">종류</th>
 							<th class="text-center">상품명</th>
 							<th class="text-center" style="width: 100px">주문자</th>
 							<th class="text-center" style="width: 100px">결제 금액</th>
 							<th class="text-center">수령일</th>
+							
 							
 						</tr>
 					</thead>
@@ -59,13 +61,13 @@
 										<td class="text-center">${reservation.orderNo}</td>
 										<td>
 										<c:url var="reservationUrl" value="/mypage/ReservationPage.do">
-											<c:param name="orderCategory" value="${reservation.orderCategory}" />
-											<c:param name="reservation_id" value="${reservation.id}" />
+											<c:param name="OrderCategory" value="${reservation.orderCategory}" />
+											<c:param name="OrderNo" value="${reservation.orderNo}" />
 										</c:url>
-										<a href="${reservationUrl}">${reservation.barcode}</a>
+										<a href="${reservationUrl}">${reservation.orTitle}</a>
 										
 										</td>
-										<td class="text-center">${reservation.memberId}</td>
+										<td class="text-center">${reservation.orName}</td>
 										<td class="text-center">${reservation.totalSum}</td>
 										<td class="text-center">${reservation.orRegDate}</td>
 										

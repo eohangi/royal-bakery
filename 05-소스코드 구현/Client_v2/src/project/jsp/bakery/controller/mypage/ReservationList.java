@@ -14,9 +14,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
+import project.jsp.bakery.model.Member;
 import project.jsp.bakery.model.Orders;
+import project.jsp.bakery.service.CartService;
 import project.jsp.bakery.service.CustomService;
 import project.jsp.bakery.service.OrderService;
+import project.jsp.bakery.service.impl.CartServiceImpl;
 import project.jsp.bakery.service.impl.CustomServiceImpl;
 import project.jsp.bakery.service.impl.OrderServiceImpl;
 import project.jsp.helper.BaseController;
@@ -45,7 +48,7 @@ public class ReservationList extends BaseController {
 	SqlSession sqlSession;
 	// --> import study.jsp.helper.WebHelper;
 	WebHelper web;
-	
+	CartService cartService;
 	OrderCommon order;
 	
 	//OrderService orderService;
@@ -66,7 +69,7 @@ public class ReservationList extends BaseController {
 		web = WebHelper.getInstance(request, response);
 		// --> import study.jsp.mysite.service.impl.BbsDocumentServiceImpl;
 		OrderService orderService = new OrderServiceImpl(sqlSession, logger);
-
+		cartService = new CartServiceImpl(sqlSession, logger);
 		pageHelper = PageHelper.getInstance();
 		
 		order = OrderCommon.getInstance();
@@ -76,7 +79,7 @@ public class ReservationList extends BaseController {
 		/** (3) 게시판 카테고리 값을 받아서 view에 전달 */
 		String category = web.getString("orderCategory");
 		request.setAttribute("orderCategory", category);
-
+		Member loginInfo = (Member) web.getSession("loginInfo");
 		/** (4) 존재하는 게시판 인지 판별 - 이름 비교 */
 		try {
 			String orderName = order.getOrderName(category);
@@ -91,23 +94,27 @@ public class ReservationList extends BaseController {
 		/** (5) 조회할 정보에 대한 beans 생성 */
 		Orders orders = new Orders();
 		orders.setOrderCategory(category);
+		//orders.setMemberId(loginInfo.getId());
+		
+		Orders order = new Orders();
+		order.setOrderCategory(category);
+		order.setMemberId(loginInfo.getId());
 		
 		int page = web.getInt("page",1);
-		
 		/** (6) 게시물 목록 조회 */
 		int totalCount = 0;
 		List<Orders> reservationList = null;
 
 		try {
+			
 			totalCount = orderService.selectOrderCount(orders);
-					
-			pageHelper.pageProcess(page, totalCount, 5, 5);
 			
-			orders.setLimitStart(pageHelper.getLimitStart());
-			orders.setListCount(pageHelper.getListCount());
+			pageHelper.pageProcess(page, totalCount, 12, 5);
 			
+			order.setLimitStart(pageHelper.getLimitStart());
+			order.setListCount(pageHelper.getListCount());
 			//orderService 는 위에 설정 된 변수이름으로 쓴다.
-			reservationList = orderService.selectOrderList(orders);
+			reservationList = orderService.selectOrderList(order);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -116,7 +123,7 @@ public class ReservationList extends BaseController {
 		}finally {
 			sqlSession.close();
 		}
-		//확인차 넣은 코드
+		
 		for (int i = 0; i < reservationList.size(); i++) {
 			System.out.println(reservationList.get(i).toString());
 		}
@@ -127,6 +134,7 @@ public class ReservationList extends BaseController {
 		request.setAttribute("pageHelper", pageHelper);
 
 		return "mypage/ReservationList";
+		
 	}
 
 }

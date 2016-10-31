@@ -46,7 +46,7 @@
 							<th class="text-center">상품명</th>
 							<th class="text-center" style="width: 100px">주문자</th>
 							<th class="text-center" style="width: 100px">결제 금액</th>
-							<th class="text-center">수령일</th>
+							<th class="text-center">예약일</th>
 							
 						</tr>
 					</thead>
@@ -59,15 +59,16 @@
 										<td class="text-center">${order.orderNo}</td>
 										<td >
 										<c:url var="orderUrl" value="/mypage/OrderConfirmation.do">
-											<c:param name="orderCategory" value="${order.orderCategory}" />
-											<c:param name="reservation_id" value="${order.id}" />
+											<c:param name="OrderCategory" value="${order.orderCategory}" />
+											<c:param name="OrderNo" value="${order.orderNo}" />
+											
 										</c:url>
-										<a href="${orderUrl}">${order.barcode}</a>
+										<a href="${orderUrl}">${order.orTitle}</a>
 										
 			
 										
 										</td>
-										<td class="text-center">${order.memberId}</td>
+										<td class="text-center">${order.orName}</td>
 										<td class="text-center">${order.totalSum}</td>
 										<td class="text-center">${order.orRegDate}</td>
 										

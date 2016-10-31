@@ -107,14 +107,14 @@ public class OrderConfirmation extends BaseController {
 					// 두번째 파라미터는 조회 조건시에 사용될 파라미터 --> Beans객체
 					// 조회 결과가 단일행을 리턴하기 때문에 Beans 객체 형태로 리턴된다
 					readOrder = sqlSession.selectOne("OrderMapper.selectOrder", orders);
-					if(cart.getProName() != null){
+					//if(cart.getProName() != null){
 					cartlist = cartService.selectCartOrder1(cart);
-					}
+					//}
 					System.out.println("cartlist=" + cartlist);
 					
-					if(cart.getCuText() != null){
+					//if(cart.getCuText() != null){
 					cartlist2 = cartService.selectCartOrder2(cart);
-					}
+					//}
 				} catch (Exception e) {
 					//뒤로가는 기능
 					web.redirect(null,e.getLocalizedMessage());
@@ -139,6 +139,7 @@ public class OrderConfirmation extends BaseController {
 				}*/
 				
 				String orType = readOrder.getOrType();
+				
 				String type = null;
 				if(orType != null){
 				if(orType.equals("M")){

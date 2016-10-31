@@ -1,6 +1,7 @@
 package project.jsp.bakery.controller.mypage;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -91,9 +92,6 @@ public class OrderComplete extends BaseController {
 		String OrderTel = loginInfo.getPhone_no();
 		
 		
-		
-		
-		
 		//장바구니에서 정보가져온거 order의 beans로 묶어서 post로 보낼 준비한다.
 		cart cart = new cart();
 		cart.setMemberId(loginInfo.getId());
@@ -104,9 +102,17 @@ public class OrderComplete extends BaseController {
 		
 		int totalPrice = 0;
 		
+		List<cart> cartlist = null;
+		/*	System.out.println("cartlist=" + cartlist);*/
+		List<cart> cartlist2 = null;
+		
 		try {
 			totalPrice= cartservice.selectCartTotalPrice(cart);
 			System.out.println("totalPrice=" + totalPrice);
+			
+			cartlist = cartservice.selectCartProMemberId(cart);
+			System.out.println("cartlist=" + cartlist);
+			cartlist2 = cartservice.selectCartCuMemberId(cart);
 		} catch (Exception e) {
 			// TODO: handle exception
 			web.redirect(null, e.getLocalizedMessage());
@@ -114,10 +120,12 @@ public class OrderComplete extends BaseController {
 		}finally {
 			sqlSession.close();
 		}
+		System.out.println("일반제품 = " + cartlist);
 		request.setAttribute("OrderName", OrderName);
 		request.setAttribute("OrderTel", OrderTel);
 		request.setAttribute("totalPrice", totalPrice);
-		
+		request.setAttribute("cartlist", cartlist);
+		request.setAttribute("cartlist2", cartlist2);
 		Orders payInfo = null;
 		
 	
