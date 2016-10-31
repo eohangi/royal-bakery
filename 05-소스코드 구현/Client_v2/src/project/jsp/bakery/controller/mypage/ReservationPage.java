@@ -167,7 +167,7 @@ public class ReservationPage extends BaseController {
 		} catch (Exception e) {
 			//뒤로가는 기능
 			web.redirect(null,e.getLocalizedMessage());
-			
+			 
 			return null;
 		} finally {
 			// 데이터 베이스 접속 해제하기
