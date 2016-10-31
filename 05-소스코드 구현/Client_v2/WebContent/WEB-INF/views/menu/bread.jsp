@@ -9,8 +9,8 @@
 <%@ include file="/WEB-INF/inc/head.jsp"%>
 
 <style>
-	.form-horizontal {
-		z-index: -6050;
+	.right-side , .form-horizontal {
+		z-index: -50;
 	}
 	
 	
@@ -47,7 +47,7 @@
 
 			<!-- 탭 화면 시작 -->
 			<div class="tab-content">
-				<div class="tab-pane fade" id="list">
+				<div class="tab-pane active" id="list">
 					<!-- ajax를 이용한 내용영역 -->
 				</div>
 			</div>
@@ -146,23 +146,32 @@
 			        return false;
 			});
 			
+			/* 페이지 생성시 기본 이벤트 */
+			
+			function bage (){
+				//data-deptno 속성의 값을 취득한다.
+					console.log("되나요");
+					var current_classify = $(".active a").data("classify");
+					
+					//Ajax요청을 통한 제품 데이터 조회
+					$.get('../product/productList.do',{classify:current_classify},function(json){
+						
+						//미리 준비한 HTML틀을 읽어온다.
+					 	var template = Handlebars.compile($("#image_item_tmpl").html());
+						//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
+						var html = template(json);
+						//완성품을 출력한다.
+						$("#list").html(html).find(".detail").hide();	
+						
+					});
+			}
+			
+			
+			/* 메서드 제작 종료 */
+			
 				$(function() {
 					/* 페이지 생성시 기본 이벤트 */
-					//data-deptno 속성의 값을 취득한다.
-						var current_classify = $(".active > a").data("classify");
-						
-						//Ajax요청을 통한 제품 데이터 조회
-						$.get('../product/productList.do',{classify:current_classify},function(json){
-							
-							//미리 준비한 HTML틀을 읽어온다.
-						 	var template = Handlebars.compile($("#image_item_tmpl").html());
-							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
-							var html = template(json);
-							//완성품을 출력한다.
-							$("#list").html(html).find(".detail").hide();	
-							
-						});				 
-						
+					bage();	 
 						
 					/* 탭 페이지가 보여질 경우의 이벤트 */
 					// 탭 안의 모든 <a> 태그에 대한 이벤드 --> 모든 탭 페이지가 열릴 때이 이벤트가 호출됨
@@ -219,7 +228,7 @@
 
 		<!-- 슬라이드 2 -->
 		<!---------------------------------------  장바구니    ------------------------------------------->
-		<div class="col-md-2" style="padding-right: 0px;">
+		<div class="col-md-2 right-side" style="padding-right: 0px;">
 		
 			<form class="form-horizontal" id="inquireform">
 
