@@ -96,19 +96,25 @@ public class OrderConfirmation extends BaseController {
 			
 				System.out.println(cart);
 				List<cart> cartlist = null;
-			/*	System.out.println("cartlist=" + cartlist);*/
 				List<cart> cartlist2 = null;
 				//데이터 조회
 				Orders readOrder = null;
 				
+				logger.debug("cart.ProName=" + cart.getProName());
+				logger.debug("cart.CuText=" + cart.getCuText());
 				try {
 					// professormapper.selectprofessorlist 기능을 호출한다.
 					// 두번째 파라미터는 조회 조건시에 사용될 파라미터 --> Beans객체
 					// 조회 결과가 단일행을 리턴하기 때문에 Beans 객체 형태로 리턴된다
 					readOrder = sqlSession.selectOne("OrderMapper.selectOrder", orders);
+					if(cart.getProName() != null){
 					cartlist = cartService.selectCartOrder1(cart);
+					}
 					System.out.println("cartlist=" + cartlist);
+					
+					if(cart.getCuText() != null){
 					cartlist2 = cartService.selectCartOrder2(cart);
+					}
 				} catch (Exception e) {
 					//뒤로가는 기능
 					web.redirect(null,e.getLocalizedMessage());
@@ -119,17 +125,18 @@ public class OrderConfirmation extends BaseController {
 					// 트라이 캣치의 파이널리는 캣치에서 리턴문보다 우선 실행된다.
 					sqlSession.close();
 				}
-				System.out.println("loginInfo=" + loginInfo);
+		//		System.out.println("loginInfo=" + loginInfo);
 
 			
-				System.out.println("cartlist=" + cartlist);
-				for (int i = 0; i < cartlist.size(); i++) {
+		//		System.out.println("cartlist=" + cartlist);
+				
+				/*for (int i = 0; i < cartlist.size(); i++) {
 					System.out.println(cartlist.get(i));
 				}
 
 				for (int z = 0; z < cartlist2.size(); z++) {
 					System.out.println(cartlist2.get(z));
-				}
+				}*/
 				
 				String orType = readOrder.getOrType();
 				String type = null;

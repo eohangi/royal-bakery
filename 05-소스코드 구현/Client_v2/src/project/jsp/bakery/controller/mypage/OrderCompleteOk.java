@@ -112,6 +112,7 @@ public class OrderCompleteOk extends BaseController {
 		}
 		
 		cart cart = new cart();
+		
 		cart.setOrderNo(OrderNo);
 		cart.setMemberId(loginInfo.getId());
 
@@ -128,14 +129,19 @@ public class OrderCompleteOk extends BaseController {
 		order.setOrTel(tel);
 		order.setOrTitle("제품 1");
 		order.setOrTime(time);
-		
+		logger.debug("cart.ProName=" + cart.getProName());
+		logger.debug("cart.CuText=" + cart.getCuText());
 		
 		try {
 			//order insert 하기
+			if(cart.getProName() != null){
 			cartService.updateCartItemOrder(cart);
+			}
+			if(cart.getCuText() != null){
 			cartService.updateCartItemOrder2(cart);
+			}
 			orderService.insertOrder(order);
-			//cartService.insertCartItem(cart);
+		
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());
 			return null;

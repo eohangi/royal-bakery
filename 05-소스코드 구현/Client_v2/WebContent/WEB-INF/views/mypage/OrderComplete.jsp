@@ -29,7 +29,11 @@
 						<div class="col-md-10">
 							<input type="text" name="OrderName" id="OrderName" class="form-control"
 						         value="${OrderName}"  readonly>
+						         
+						        <%--  <input type="hidden" name="ProName" id="ProName" class="form-control"
+						         value="${OrderName}"  > --%>
 						</div>
+						
 					</div>
 					<div class="form-group">
 						<label for="tel" class="col-md-2">연락처</label>
