@@ -9,8 +9,11 @@
 <%@ include file="/WEB-INF/inc/head.jsp"%>
 
 <style>
-<!--
-content 내용 ...으로 생략 -->
+	.form-horizontal {
+		z-index: -6050;
+	}
+	
+	
  
 </style>
 
@@ -18,7 +21,9 @@ content 내용 ...으로 생략 -->
 <body>
 
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
-	<div class="page-header"></div>
+	<div class="col-md-offset-1">
+		<h1 class="page-header"><b>Menu</b></h1>
+	</div>
 
 
 	<div class="row">
@@ -68,8 +73,8 @@ content 내용 ...으로 생략 -->
 									</a>
 								</div>
 								<div class="detail" id="detail" style="width:100%">
-									<div class="info" style="margin:0; width:100%">
-										<div>
+									<div class="info" style="margin:0; width:100%; vertical-align:middle;">
+										<div class="info_2" id="info_2" style="display:inline-block" >
 											<div class="content" id="content" style="white-space: normal; word-wrap:nomal; overflow: hidden;
 													overflow-y:hidden; text-overflow: ellipsis; width:50%;	min-height: 50px; display:inline-block;">{{content}}</div>
 											<div class="table" style="width:50%; display:inline-block;">
@@ -163,10 +168,10 @@ content 내용 ...으로 생략 -->
 					// 탭 안의 모든 <a> 태그에 대한 이벤드 --> 모든 탭 페이지가 열릴 때이 이벤트가 호출됨
 					$("#myTab a").click(function(e){
 						//data-deptno 속성의 값을 취득한다.
-						var current_classify = $(this).data("classify");
+						var select_classify = $(this).data("classify");
 						
 						//Ajax요청을 통한 제품 데이터 조회
-						$.get('../product/productList.do',{classify:current_classify},function(json){
+						$.get('../product/productList.do',{classify:select_classify},function(json){
 							
 							//미리 준비한 HTML틀을 읽어온다.
 						 	var template = Handlebars.compile($("#image_item_tmpl").html());
@@ -214,9 +219,9 @@ content 내용 ...으로 생략 -->
 
 		<!-- 슬라이드 2 -->
 		<!---------------------------------------  장바구니    ------------------------------------------->
-		<form class="form-horizontal" id="inquireform">
-
-			<div class="col-md-2" style="padding-right: 0px;">
+		<div class="col-md-2" style="padding-right: 0px;">
+		
+			<form class="form-horizontal" id="inquireform">
 
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
@@ -247,9 +252,9 @@ content 내용 ...으로 생략 -->
 						</tr>
 					</tfoot>
 				</table>
-
-			</div>
-		</form>
+			</form>
+		</div>
+		
 		<!--------------------------------------  장바구니 ------------ ------------------------- -->
 	</div>
 
