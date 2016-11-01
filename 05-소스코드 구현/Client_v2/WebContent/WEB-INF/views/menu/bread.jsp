@@ -134,24 +134,6 @@
 					</div>
 				{{/each}}
 			</script>
-
-			<!-- cart template -->	
-			<script id="cart_item_tmpl" type="text/x-handlebars-template">
-			{{#each item}}			
-				<tr>
-					<th class="text-center"
-						style="width:40%; background-color:  rgba(5, 73, 49, 0.55)">{{proName}}</th>
-					<th class="text-center"
-						style="width:18%; background-color:  rgba(5, 73, 49, 0.55)">{{proCount}}</th>
-					<th class="text-center"
-						style="width:32%; background-color:  rgba(5, 73, 49, 0.55)">{{proPrice}}</th>
-					<th class="text-center"
-						style="width:10%; background-color:  rgba(5, 73, 49, 0.55)">
-						<a style="width:100%; height:100%" class="cart_delete btn btn-xs" id="cart-delete"  onclick=''><i style="width:100%; height:100%" class="glyphicon glyphicon-remove"></i></a>	
-					</th>
-				</tr>
-			{{/each}}
-			</script>
 			
 
 			<!-- 사용자 정의 스크립트 -->
@@ -249,7 +231,6 @@
 					
 					/* 장바구니 담기 동적함수 */
 					$(document).on("click",".put",function(e){
-						e.preventDefault();
 						//담기 버튼을 눌렀을 때 제품의 정보가 장바구니로
 						$("#put-form").ajaxForm(function(json){
 							alert("bb");
@@ -271,12 +252,28 @@
 		</div>
 
 
+			<!-- cart template -->	
+			<script id="cart_item_tmpl" type="text/x-handlebars-template">
+			{{#each item}}			
+				<tr>
+					<th class="text-center"
+						style="width:40%; background-color:  rgba(5, 73, 49, 0.55)">{{proName}}</th>
+					<th class="text-center"
+						style="width:18%; background-color:  rgba(5, 73, 49, 0.55)">{{proCount}}</th>
+					<th class="text-center"
+						style="width:32%; background-color:  rgba(5, 73, 49, 0.55)">{{proPrice}}</th>
+					<th class="text-center"
+						style="width:10%; background-color:  rgba(5, 73, 49, 0.55)">
+						<a style="width:100%; height:100%" class="cart_delete btn btn-xs" id="cart-delete"  onclick=''><i style="width:100%; height:100%" class="glyphicon glyphicon-remove"></i></a>	
+					</th>
+				</tr>
+			{{/each}}
+			</script>
+
 		<!-- 슬라이드 2 -->
 		<!---------------------------------------  장바구니    ------------------------------------------->
-		<div class="col-md-2 right-side" style="padding-right: 0px;">
-		
+		<div class="col-md-2 right-side" style="padding-right: 0px;">		
 			<form class="form-horizontal" id="inquireform">
-
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
