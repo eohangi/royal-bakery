@@ -13,26 +13,24 @@
 <title>Royal</title>
 
 <!-- Twitter Bootstrap3 & jQuery -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	
+
 <!-- AJAX HELPER -->
 <link rel="stylesheet" href="../plugins/ajax/ajax_helper.css" />
-<script
-	src="../plugins/ajax/ajax_helper.js"></script>
-	
+<script src="../plugins/ajax/ajax_helper.js"></script>
+
 <!-- handlebar plugin -->
-<script
-	src="../plugins/handlebars/handlebars-v4.0.5.js"></script>
+<script src="../plugins/handlebars/handlebars-v4.0.5.js"></script>
 
 
 <style type="text/css">
-<%@
-include file = "/css/common.css" %>
+<%@include file ="/css/common.css"%>
 	/**  header*/ .header {
 	padding-top: 70px;
 }
@@ -68,19 +66,13 @@ include file = "/css/common.css" %>
 	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */ 
 	function get_list(){
 		$.get("${pageContext.request.contextPath}/member/MEMBERLISTBYADMIN.do"
-				,function(json) {
-			//JSON배여과 템플릿의 결합
-			var tmpl = Handlebars.compile($("#member_item_tmpl").html());
-			
-			for(int i; = 0 i<member.size(); i++){
-			var html = tmpl(json.member[i]);
-			$("#member_list_body").append(html);
-			}
-			
-			//AJAX를 통해서 읽어온 JSON을 템플릿에 병합한다.
-			//멤버 바디에 읽어온 내용을 추가한다.
-		});
-	}
+			,function(json) {
+				//JSON배여과 템플릿의 결합
+				var template = Handlebars.compile($("#member_item_tmpl").html());
+				var html = template(json);
+				$("#member_list_body").append(html);
+			});
+		}
 	$(function() {
 		get_list(); //페이지가 열림과 동시에 호출된다.
 		$("#more").click(function(e) {
@@ -129,24 +121,27 @@ include file = "/css/common.css" %>
 						</tr>
 					</thead>
 					<tbody id="member_list_body">
-							<script id="member_item_tmpl" type="text/x-handlebars-template">
-									<td class="text-center">${status.birthdate}</td>
-									<td class="text-center">{{mem_id}}</td>
-									<td class="text-center">{{mem_name}}</td>
-									<td class="text-center">{{gender}}</td>
-									<td class="text-center">{{phone_no}}</td>
-									<td class="text-center">{{reg_date}}</td>
+						<script id="member_item_tmpl" type="text/x-handlebars-template">
+							
+							{{#each item}}				
+								<tr>
+									<td class="text-center">${birthdate}</td>
+									<td class="text-center">${mem_id}</td>
+									<td class="text-center">${mem_name}</td>
+									<td class="text-center">${gender}</td>
+									<td class="text-center">${phone_no}</td>
+									<td class="text-center">${reg_date}</td>
 									<td class="text-center">
 									<a href="">구매내역</a></td>
 									<td class="text-center">
 									<a href="">문의내역</a></td>
 								</tr>
+							{{/each}}
 						</script>
 					</tbody>
-
 				</table>
 				<button type="button" id="more" class="btn btn-default btn-block"
-						style="margin-bottom: 15px">더 보기</button>
+					style="margin-bottom: 15px">더 보기</button>
 			</div>
 
 			<ul class="pagination">
