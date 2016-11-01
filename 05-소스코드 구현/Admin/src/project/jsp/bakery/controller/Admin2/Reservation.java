@@ -89,10 +89,11 @@ public class Reservation extends BaseController {
 
 		
 		/** (5) 조회할 정보에 대한 beans 생성 */
+		String keyword = web.getString("keyword");
 		Orders orders = new Orders();
 		orders.setOrderCategory(category);
 		//orders.setMemberId(loginInfo.getId());
-		
+		orders.setOrName(keyword);
 
 		int page = web.getInt("page",1);
 		/** (6) 게시물 목록 조회 */
@@ -103,7 +104,7 @@ public class Reservation extends BaseController {
 			
 			totalCount = orderService.selectOrderCount(orders);
 			
-			pageHelper.pageProcess(page, totalCount, 20, 5);
+			pageHelper.pageProcess(page, totalCount, 5, 5);
 			
 			orders.setLimitStart(pageHelper.getLimitStart());
 			orders.setListCount(pageHelper.getListCount());
@@ -124,7 +125,7 @@ public class Reservation extends BaseController {
 		
 		/** (7) 읽은 데이터를 view에게 전달한다. */
 		request.setAttribute("reservationList",reservationList);
-
+		request.setAttribute("keyword", keyword);
 		request.setAttribute("pageHelper", pageHelper);
 
 		

@@ -82,6 +82,13 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="name" class="col-md-2">수령일시</label>
+						<div class="col-md-10">
+							<input type="text" name="name" id="name" class="form-control"
+								placeholder="${readOrder.pickupTime}" disabled>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="name" class="col-md-2">결제방법</label>
 						<div class="col-md-10">
 							<input type="text" name="name" id="name" class="form-control"

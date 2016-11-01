@@ -47,8 +47,8 @@
 							<th class="text-center">상품명</th>
 							<th class="text-center" style="width: 100px">주문자</th>
 							<th class="text-center" style="width: 100px">결제 금액</th>
+							<th class="text-center">예약일</th>
 							<th class="text-center">수령일</th>
-							
 							
 						</tr>
 					</thead>
@@ -70,7 +70,7 @@
 										<td class="text-center">${reservation.orName}</td>
 										<td class="text-center">${reservation.totalSum}</td>
 										<td class="text-center">${reservation.orRegDate}</td>
-										
+										<td class="text-center">${reservation.pickupTime}</td>
 									</tr>
 								</c:forEach>
 

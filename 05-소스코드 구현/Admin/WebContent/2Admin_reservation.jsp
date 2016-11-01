@@ -54,7 +54,7 @@ include file = "css/common.css" %>
 
 /** table */
 .table-responsive {
-	padding-top: 100px;
+	padding-top: 40px;
 }
 
 .table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th
@@ -76,17 +76,21 @@ include file = "css/common.css" %>
 	<div class="container">
 		<div class="row">
 			<div class="header">
-				<div class="Search">
-					<form class="form-inline">
-						<fieldset>
-							<div class="form-group">
-								<label class="sr-only" for="search">검색할 단어를 입력하세요.</label> <input
-									type="search" class="form-control" id="search">
-							</div>
-							<button type="submit" class="btn btn-primary">검색</button>
-						</fieldset>
+				<div class="clearfix">
+					<h1 class="page-header pull-left col-md-offset-1">주문 내역</h1>
+				</div>
+				<div class="search col-md-offset-10">
+					<form action="${pageContext.request.contextPath}/Reservation.do"
+						method="get" style="width: 200px">
+						<input type="hidden" name="orderCategory" value="${orderCategory}" />
+						<div class="input-group">
+							<input type="text" name="keyword" class="form-control"
+								placeholder="구매자 검색" value="${keyword}" /> <span
+								class="input-group-btn">
+								<button type="submit" class="btn btn-primary">검색</button>
+							</span>
+						</div>
 					</form>
-
 				</div>
 
 			</div>
@@ -101,7 +105,6 @@ include file = "css/common.css" %>
 							<th class="text-center">주문자</th>
 							<th class="text-center">결제금액</th>
 							<th class="text-center">결제일</th>
-							<th class="text-center">수령일</th>
 							<th class="text-center">확인</th>
 						</tr>
 					</thead>
@@ -122,7 +125,6 @@ include file = "css/common.css" %>
 										<td class="text-center">${reservation.orName}</td>
 										<td class="text-center">${reservation.totalSum}</td>
 										<td class="text-center">${reservation.orRegDate}</td>
-										<td class="text-center">${reservation.orEditTime}</td>
 										<td class="text-center">
 											<button>버튼</button>
 										</td>
@@ -152,7 +154,7 @@ include file = "css/common.css" %>
 							<!-- 이전 그룹으로 이동하기 위한 URL을 생성해서 "prevUrl"에 저장 -->
 							<c:url var="prevUrl" value="/Reservation.do">
 								<c:param name="orderCategory" value="${orderCategory}"></c:param>
-								<%-- <c:param name="keyword" value="${keyword}"></c:param> --%>
+								<c:param name="keyword" value="${keyword}"></c:param>
 								<c:param name="page" value="${pageHelper.prevPage}"></c:param>
 							</c:url>
 
@@ -173,7 +175,7 @@ include file = "css/common.css" %>
 						<!-- 각 페이지 번호로 이동할 수 있는 URL을 생성하여 page_url에 저장 -->
 						<c:url var="pageUrl" value="/Reservation.do">
 							<c:param name="orderCategory" value="${orderCategory}"></c:param>
-							<%-- <c:param name="keyword" value="${keyword}"></c:param> --%>
+							<c:param name="keyword" value="${keyword}"></c:param>
 							<c:param name="page" value="${i}"></c:param>
 						</c:url>
 
@@ -196,7 +198,7 @@ include file = "css/common.css" %>
 							<!-- 다음 그룹으로 이동하기 위한 URL을 생성해서 "nextUrl"에 저장 -->
 							<c:url var="nextUrl" value="/Reservation.do">
 								<c:param name="orderCategory" value="${orderCategory}"></c:param>
-								<%-- 	<c:param name="keyword" value="${keyword}"></c:param> --%>
+								<c:param name="keyword" value="${keyword}"></c:param>
 								<c:param name="page" value="${pageHelper.nextPage}"></c:param>
 							</c:url>
 

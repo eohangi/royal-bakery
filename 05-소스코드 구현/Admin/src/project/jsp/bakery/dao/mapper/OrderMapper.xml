@@ -49,10 +49,12 @@
 		,or_type,or_name,or_tel,or_title,or_time
 		FROM orders
 		
-			where
-			order_category=#{orderCategory}
-
-	
+			<where>
+			order_category=#{orderCategory} 
+			<if test="orName !=null">
+			and or_name LIKE concat('%',#{orName},'%')
+			</if>
+			</where>
 		ORDER BY id DESC
 		LIMIT #{limitStart} , #{listCount}
 
@@ -74,18 +76,11 @@
 		SELECT COUNT(id)
 		FROM orders
 			<where>
-			order_category=#{orderCategory}
-		<!-- 	<if test="orderNo != null or memberId != null">
-				AND(
-				<if test="orderNo != null">
-					order_no LIKE concat('%',#{orderNo},'%')
-				</if>
-				<if test="memberId != null">
-					OR member_id LIKE concat('%',#{memberId},'%')
-				</if>
-				)
-			</if> -->
-		</where>
+			order_category=#{orderCategory} 
+			<if test="orName !=null">
+			and or_name LIKE concat('%',#{orName},'%')
+			</if>
+			</where>
 		
 	</select>
 	
