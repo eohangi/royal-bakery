@@ -45,8 +45,8 @@ $(function(){
 			<li><a href="${pageContext.request.contextPath}/member/ADMINCLIENTINFODETAIL.do">회원관리</a></li>
 			<li><a href="2Admin_payment.jsp">예약관리</a>
 				<ul class="list-unstyled">
-					<li><a href="2Admin_payment.jsp">주문내역</a></li>
 					<li><a href="2Admin_reservation.jsp">예약관리</a></li>
+					<li><a href="2Admin_payment.jsp">주문내역</a></li>
 				</ul></li>
 			<li><a href="3Admin_product.jsp">제품관리</a>
 				<ul class="list-unstyled">
