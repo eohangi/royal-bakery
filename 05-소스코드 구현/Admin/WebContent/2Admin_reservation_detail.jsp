@@ -31,7 +31,8 @@
 <link rel="stylesheet" href="plugins/sweetalert/sweetalert.css" />
 
 <script src="plugins/sweetalert/sweetalert.min.js"></script>
-
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/code39.js"></script>
 
 
 <script type="text/javascript">
@@ -68,13 +69,10 @@
 
 
 			<div class="join">
-				<h1>주문 완료</h1>
-				<hr />
+				
 				<!-- 가입폼 시작 -->
 				<form class="form-horizontal" id="myform">
-					<p>${readOrder.orName}고객님의주문이 정상적으로 처리 되었습니다.</p>
-					<p>Royal Bakery를 선택해 주셔서 감사합니다.</p>
-					<hr />
+			
 					<div class="form-group row">
 						<label for="user_id" class="col-md-2">상품 정보</label>
 						<div class="col-md-10">
@@ -186,11 +184,9 @@
 
 					<div class="button">
 						<!-- 들여쓰기 -->
-						<button type="button" class="btn btn-primary">
-							<a href="#">메인으로</a></button>
-						<button type="button" class="btn btn-danger"
-							><a href="#">계속 쇼핑하기</a></button>
-						</button>
+						<button type="button" class="btn btn-default">
+							<a href="${pageContext.request.contextPath}/Reservation.do?orderCategory=reservation">확인</a></button>
+
 					</div>
 
 

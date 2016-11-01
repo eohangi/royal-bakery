@@ -23,6 +23,7 @@ import project.jsp.bakery.service.impl.CartServiceImpl;
 import project.jsp.bakery.service.impl.OrderServiceImpl;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.PageHelper;
+import project.jsp.helper.PageHelper2;
 import project.jsp.helper.UploadHelper;
 import project.jsp.helper.WebHelper;
 
@@ -49,7 +50,7 @@ public class Reservation extends BaseController {
 	
 	//OrderService orderService;
 
-	PageHelper pageHelper;
+	PageHelper2 pageHelper;
 	// --> import study.jsp.helper.Upload;
 	UploadHelper upload;
 	
@@ -67,14 +68,14 @@ public class Reservation extends BaseController {
 		// --> import study.jsp.mysite.service.impl.BbsDocumentServiceImpl;
 		OrderService orderService = new OrderServiceImpl(sqlSession, logger);
 		cartService = new CartServiceImpl(sqlSession, logger);
-		pageHelper = PageHelper.getInstance();
+		pageHelper = PageHelper2.getInstance();
 		order = OrderCommon.getInstance();
 		upload = UploadHelper.getInstance();
 		
 		/** (3) 게시판 카테고리 값을 받아서 view에 전달 */
 		String category = web.getString("orderCategory");
 		request.setAttribute("orderCategory", category);
-		Member loginInfo = (Member) web.getSession("loginInfo");
+		logger.debug("카테고리"+category);
 		/** (4) 존재하는 게시판 인지 판별 - 이름 비교 */
 		try {
 			String orderName = order.getOrderName(category);
@@ -85,6 +86,7 @@ public class Reservation extends BaseController {
 			web.redirect(null, e.getLocalizedMessage());
 			return null;
 		}
+
 		
 		/** (5) 조회할 정보에 대한 beans 생성 */
 		Orders orders = new Orders();
@@ -101,7 +103,7 @@ public class Reservation extends BaseController {
 			
 			totalCount = orderService.selectOrderCount(orders);
 			
-			pageHelper.pageProcess(page, totalCount, 12, 5);
+			pageHelper.pageProcess(page, totalCount, 20, 5);
 			
 			orders.setLimitStart(pageHelper.getLimitStart());
 			orders.setListCount(pageHelper.getListCount());

@@ -142,6 +142,7 @@ include file = "css/common.css" %>
 					</tbody>
 				</table>
 			</div>
+			<!-- 페이지 번호 시작 -->
 			<nav class="text-center">
 				<ul class="pagination">
 					<!-- 이전 그룹으로 이동 -->
@@ -149,7 +150,7 @@ include file = "css/common.css" %>
 						<c:when test="${pageHelper.prevPage > 0}">
 							<!-- 이전 그룹에 대한 페이지 번호가 존재한다면? -->
 							<!-- 이전 그룹으로 이동하기 위한 URL을 생성해서 "prevUrl"에 저장 -->
-							<c:url var="prevUrl" value="/mypage/ReservationList.do">
+							<c:url var="prevUrl" value="/Reservation.do">
 								<c:param name="orderCategory" value="${orderCategory}"></c:param>
 								<%-- <c:param name="keyword" value="${keyword}"></c:param> --%>
 								<c:param name="page" value="${pageHelper.prevPage}"></c:param>
@@ -170,7 +171,7 @@ include file = "css/common.css" %>
 						end="${pageHelper.endPage}" step="1">
 
 						<!-- 각 페이지 번호로 이동할 수 있는 URL을 생성하여 page_url에 저장 -->
-						<c:url var="pageUrl" value="/mypage/ReservationList.do">
+						<c:url var="pageUrl" value="/Reservation.do">
 							<c:param name="orderCategory" value="${orderCategory}"></c:param>
 							<%-- <c:param name="keyword" value="${keyword}"></c:param> --%>
 							<c:param name="page" value="${i}"></c:param>
@@ -193,7 +194,7 @@ include file = "css/common.css" %>
 						<c:when test="${pageHelper.nextPage > 0}">
 							<!-- 다음 그룹에 대한 페이지 번호가 존재한다면? -->
 							<!-- 다음 그룹으로 이동하기 위한 URL을 생성해서 "nextUrl"에 저장 -->
-							<c:url var="nextUrl" value="/mypage/ReservationList.do">
+							<c:url var="nextUrl" value="/Reservation.do">
 								<c:param name="orderCategory" value="${orderCategory}"></c:param>
 								<%-- 	<c:param name="keyword" value="${keyword}"></c:param> --%>
 								<c:param name="page" value="${pageHelper.nextPage}"></c:param>
