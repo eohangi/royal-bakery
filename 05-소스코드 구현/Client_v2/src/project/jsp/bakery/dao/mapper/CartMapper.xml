@@ -225,6 +225,11 @@
 		WHERE
 		id=#{id}
 	</delete>
-
+	
+	<!-- 장바구니 초기화 -->
+	<delete id="resetCart" parameterType="project.jsp.bakery.model.cart">
+		DELETE FROM
+		cart
+	</delete>
 
 </mapper>

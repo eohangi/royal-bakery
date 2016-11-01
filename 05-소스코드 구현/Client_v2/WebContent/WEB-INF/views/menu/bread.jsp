@@ -12,7 +12,9 @@
 	.right-side , .form-horizontal {
 		z-index: -50;
 	}
-	
+	table.table{
+		z-index:100;
+	}
 	
  
 </style>
@@ -230,10 +232,23 @@
 					
 					
 					/* 장바구니 담기 동적함수 */
-					$(document).on("click",".put",function(e){
+					$(document).ready(function(){
+						//담기 버튼을 눌렀을 때 제품의 정보가 장바구니로
+						$.get("../product/productCart.do",{
+							memberId:0
+						},function(json){
+							
+							//미리 준비한 HTML틀을 읽어온다.
+						 	var template = Handlebars.compile($("#cart_item_tmpl").html());
+							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
+							var html = template(json);
+							//완성품을 출력한다.
+							$("#cart_list").html(html);
+						});
+					});
+					$(document).on("click",".put",function(){
 						//담기 버튼을 눌렀을 때 제품의 정보가 장바구니로
 						$("#put-form").ajaxForm(function(json){
-							alert("bb");
 							if(json.rt ==  "FAIL"){
 								alert("수량을 선택하세요.");
 								return false;

@@ -419,4 +419,25 @@ public class CartServiceImpl implements CartService {
 		
 	}
 
+	@Override
+	public void resetCart() throws Exception {
+		try {
+			int result = sqlSession.delete("CartMapper.resetCart");
+			// 삭제된 데이터가 없다는 것은 바구니가 null이라는 의미.
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("이미 삭제된 장바구니 입니다.");
+		} catch (Exception e) {
+			sqlSession.rollback();
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("장바구니 삭제에 실패했습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+		
+	}
+
 }

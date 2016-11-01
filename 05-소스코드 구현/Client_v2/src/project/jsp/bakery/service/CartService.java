@@ -76,4 +76,7 @@ public interface CartService {
 	public List<cart> selectCartCuMemberId(cart cart) throws Exception;
 	
 	public List<cart> selectProductList(cart cart) throws Exception;
+	
+	//장바구니 리셋
+	public void resetCart() throws Exception;
 }
