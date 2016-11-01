@@ -31,10 +31,10 @@
 	<insert id="insertOrder" parameterType="project.jsp.bakery.model.Orders"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO orders(order_no, total_sum, member_id, or_reg_date, 
-		pickup_time, barcode, order_category, or_edit_time,or_type,or_name,or_tel) 
+		pickup_time, barcode, order_category, or_edit_time,or_type,or_name,or_tel,or_title,or_time) 
 		VALUES ( 
 		#{orderNo}, #{totalSum}, #{memberId}, now(), #{pickupTime}, 
-		#{barcode}, #{orderCategory}, now(), #{orType},#{orName},#{orTel}
+		#{barcode}, #{orderCategory}, now(), #{orType},#{orName},#{orTel},#{orTitle},#{orTime}
 		)
 	</insert>
 	
@@ -46,7 +46,7 @@
 		DATE_FORMAT(pickup_time, '%Y-%m-%d') AS pickup_time,
 		barcode,order_category,
 		DATE_FORMAT(or_edit_time, '%Y-%m-%d') AS or_edit_time
-		,or_type,or_name,or_tel
+		,or_type,or_name,or_tel,or_title,or_time
 		FROM orders
 		
 			where
@@ -62,7 +62,7 @@
 	<select id="selectOrder" parameterType="project.jsp.bakery.model.Orders"
 		resultMap="orders">
 		SELECT id,order_no,total_sum,member_id,or_reg_date,pickup_time,
-		barcode,order_category,or_edit_time,or_type,or_name,or_tel
+		barcode,order_category,or_edit_time,or_type,or_name,or_tel,or_title,or_time
 		FROM orders
 		WHERE order_category=#{orderCategory} AND order_no = #{orderNo}
 

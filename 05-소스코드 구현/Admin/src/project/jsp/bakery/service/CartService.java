@@ -15,6 +15,10 @@ public interface CartService {
 	 *             - 중복된 데이터인 경우 예외 발생함
 	 */
 	public int selectCartIdCount(cart cart) throws Exception;
+	
+	public List<cart> selectCartOrder1(cart cart) throws Exception;
+	
+	public List<cart> selectCartOrder2(cart cart) throws Exception;
 
 	/**
 	 * 주문 아이템 추가
@@ -24,7 +28,7 @@ public interface CartService {
 	 * @throws Exception
 	 */
 	public void insertCartItem(cart cart) throws Exception;
-
+	public void insertProductItem(cart cart) throws Exception;
 	/**
 	 * 일련번호에 의한 아이템정보 조회
 	 * 
@@ -32,8 +36,8 @@ public interface CartService {
 	 * @throws Exception
 	 */
 	public cart selectCartItem(cart cart) throws Exception;
+	public cart selectProductItem(cart cart) throws Exception; 
 
-	public int selectCartTotalPrice(cart cart) throws Exception;
 	/**
 	 * 아이템정보 수정
 	 * 
@@ -41,6 +45,12 @@ public interface CartService {
 	 * @throws Exception
 	 */
 	public void updateCartItem(cart cart) throws Exception;
+	
+	public void updateCartItemOrder(cart cart) throws Exception;
+	
+	public void updateCartItemOrder2(cart cart) throws Exception;
+	
+	public void updateProductItem(cart cart) throws Exception;
 
 	/**
 	 * 삭제
@@ -49,7 +59,11 @@ public interface CartService {
 	 *            - 아이템 번호
 	 * @throws Exception
 	 */
+	public int selectCartTotalPrice(cart cart) throws Exception;
+	
 	public void deleteCartItem(cart cart) throws Exception;
+	
+	public void deleteProductItem(cart cart) throws Exception;
 
 	public List<cart> selectCartList(cart cart) throws Exception;
 
@@ -57,5 +71,9 @@ public interface CartService {
 	
 	public List<cart> selectCartCountByMemberId(cart cart) throws Exception;
 	
+	public List<cart> selectCartProMemberId(cart cart) throws Exception;
 	
+	public List<cart> selectCartCuMemberId(cart cart) throws Exception;
+	
+	public List<cart> selectProductList(cart cart) throws Exception;
 }
