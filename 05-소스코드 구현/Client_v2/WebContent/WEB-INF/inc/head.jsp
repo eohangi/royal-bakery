@@ -49,9 +49,8 @@
 <!-- CKEditor -->
 <script src="http://cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
 
-<!-- ajax-helper -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ajax/ajax_helper.css" />
-<script src="${pageContext.request.contextPath}/plugins/ajax/ajax_helper.js"></script>
+<!-- ajaxForm-helper -->
+<script src="${pageContext.request.contextPath}/plugins/ajax-form/jquery.form.min.js"></script>
 
 <!-- handlebars plugin -->
 <script src="${pageContext.request.contextPath}/plugins/handlebars/handlebars-v4.0.5.js"></script>

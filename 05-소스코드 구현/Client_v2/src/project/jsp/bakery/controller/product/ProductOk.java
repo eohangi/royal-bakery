@@ -159,7 +159,7 @@ public class ProductOk extends BaseController {
 		
 		if(it.getQuantity() != 0){
 			rt="OK";
-		}
+		}											
 
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();

@@ -248,11 +248,11 @@
 					
 					
 					/* 장바구니 담기 동적함수 */
-					$(document).on("click",".put",function(){
+					$(document).on("click",".put",function(e){
 						e.preventDefault();
-						
 						//담기 버튼을 눌렀을 때 제품의 정보가 장바구니로
 						$("#put-form").ajaxForm(function(json){
+							alert("bb");
 							if(json.rt ==  "FAIL"){
 								alert("수량을 선택하세요.");
 								return false;
