@@ -135,6 +135,7 @@ public class CustomPageOK extends BaseController {
 		/////////////
 
 		cart cart = new cart();
+
 		cart.setMemberId(loginInfo.getId());
 		cart.setCuText(sum);
 		cart.setCuPrice(sum2);

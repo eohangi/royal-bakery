@@ -23,6 +23,8 @@
 		<result property="orType" column="or_type" />
 		<result property="orName" column="or_name" />
 		<result property="orTel" column="or_tel" />
+		<result property="orTitle" column="or_title" />
+		<result property="orTime" column="or_time" />
 	</resultMap>
 	
 		<!-- 게시글 정보 저장하기 -->
@@ -62,7 +64,7 @@
 		SELECT id,order_no,total_sum,member_id,or_reg_date,pickup_time,
 		barcode,order_category,or_edit_time,or_type,or_name,or_tel
 		FROM orders
-		WHERE order_category=#{orderCategory} AND id = #{id}
+		WHERE order_category=#{orderCategory} AND order_no = #{orderNo}
 
 	</select>
 	

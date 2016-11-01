@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!doctype html>
 <html>
 <head>
@@ -101,91 +105,117 @@
 							<th class="text-center">주문자</th>
 							<th class="text-center">결제금액</th>
 							<th class="text-center">결제일</th>
-							<th class="text-center">상세보기</th>
+							<th class="text-center">수령일</th>
+							<th class="text-center">확인</th>
 						</tr>
 					</thead>
 					<tbody>
+<c:choose>
+							<c:when test="${fn:length(reservationList)>0}">
+								<c:forEach var="reservation" items="${reservationList}">
+									<tr>
+										<td class="text-center">${reservation.id}</td>
+										<td class="text-center">${reservation.orderNo}</td>
+										<td>
+										<c:url var="reservationUrl" value="/Admin2/ReservationDetail.do">
+											<c:param name="OrderCategory" value="${reservation.orderCategory}" />
+											<c:param name="OrderNo" value="${reservation.orderNo}" />
+										</c:url>
+										<a href="reservationUrl">${reservation.orTitle}</a>
+										
+										</td>
+										<td class="text-center">${reservation.orName}</td>
+										<td class="text-center">${reservation.totalSum}</td>
+										<td class="text-center">${reservation.orRegDate}</td>
+										<td class="text-center">${reservation.orEditTime}</td>
+										<td class="text-center">
+											<button>버튼</button>
+										</td>
+									</tr>
+								</c:forEach>
 
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반 제품</th>
-							<th class="text-center">바게트 외 3건</th>
-							<th class="text-center">어한기</th>
-							<th class="text-center">10000원</th>
-							<th class="text-center">2016.09.21</th>
-							<th class="text-center">보기</th>
-						</tr>
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반 제품</th>
-							<th class="text-center"><a href="2Admin_reservation_detail.jsp">바게트 외 3건</a></th>
-							<th class="text-center">어한기</th>
-							<th class="text-center">10000원</th>
-							<th class="text-center">2016.09.21</th>
-							<th class="text-center">보기</th>
-						</tr>
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반 제품</th>
-							<th class="text-center">바게트 외 3건</th>
-							<th class="text-center">어한기</th>
-							<th class="text-center">10000원</th>
-							<th class="text-center">2016.09.21</th>
-							<th class="text-center">보기</th>
-						</tr>
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반 제품</th>
-							<th class="text-center">바게트 외 3건</th>
-							<th class="text-center">어한기</th>
-							<th class="text-center">10000원</th>
-							<th class="text-center">2016.09.21</th>
-							<th class="text-center">보기</th>
-						</tr>
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반 제품</th>
-							<th class="text-center">바게트 외 3건</th>
-							<th class="text-center">어한기</th>
-							<th class="text-center">10000원</th>
-							<th class="text-center">2016.09.21</th>
-							<th class="text-center">보기</th>
-						</tr>
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반 제품</th>
-							<th class="text-center">바게트 외 3건</th>
-							<th class="text-center">어한기</th>
-							<th class="text-center">10000원</th>
-							<th class="text-center">2016.09.21</th>
-							<th class="text-center">보기</th>
-						</tr>
+							</c:when>
 
-						<tr>
-							<th class="text-center">1</th>
-							<th class="text-center">일반 제품</th>
-							<th class="text-center">바게트 외 3건</th>
-							<th class="text-center">어한기</th>
-							<th class="text-center">10000원</th>
-							<th class="text-center">2016.09.21</th>
-							<th class="text-center">보기</th>
-						</tr>
-
+							<c:otherwise>
+							<tr>
+								<td class="text-center" colspan="6" style="line-height: 100px;">조회된
+									글이 없습니다.</td>
+									</tr>
+							</c:otherwise>
+						</c:choose>
+						
 					</tbody>
 				</table>
 			</div>
+<nav class="text-center">
+	<ul class="pagination">
+		<!-- 이전 그룹으로 이동 -->
+		<c:choose>
+			<c:when test="${pageHelper.prevPage > 0}">
+				<!-- 이전 그룹에 대한 페이지 번호가 존재한다면? -->
+				<!-- 이전 그룹으로 이동하기 위한 URL을 생성해서 "prevUrl"에 저장 -->
+				<c:url var="prevUrl" value="/mypage/ReservationList.do">
+					<c:param name="orderCategory" value="${orderCategory}"></c:param>
+					<%-- <c:param name="keyword" value="${keyword}"></c:param> --%>
+					<c:param name="page" value="${pageHelper.prevPage}"></c:param>
+				</c:url>
 
-			<ul class="pagination">
-				<li class="disabled"><a href="#">&laquo;</a></li>
-				<!-- 활성화 버튼은 아래의 구조로 구성하시면 됩니다. sr-only는 스크린리더 전용 입니다 .-->
-				<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
-			</ul>
-			<div></div>
+				<li><a href="${prevUrl}">&laquo;</a></li>
+			</c:when>
+
+			<c:otherwise>
+				<!-- 이전 그룹에 대한 페이지 번호가 존재하지 않는다면? -->
+				<li class='disabled'><a href="#">&laquo;</a></li>
+			</c:otherwise>
+		</c:choose>
+			
+		<!-- 페이지 번호 -->
+		<!-- 현재 그룹의 시작페이지~끝페이지 사이를 1씩 증가하면서 반복 -->
+		<c:forEach var="i" begin="${pageHelper.startPage}" end="${pageHelper.endPage}" step="1">
+
+			<!-- 각 페이지 번호로 이동할 수 있는 URL을 생성하여 page_url에 저장 -->
+			<c:url var="pageUrl" value="/mypage/ReservationList.do" >
+				<c:param name="orderCategory" value="${orderCategory}"></c:param>
+				<%-- <c:param name="keyword" value="${keyword}"></c:param> --%>
+				<c:param name="page" value="${i}"></c:param>
+			</c:url>
+				
+			<!-- 반복중의 페이지 번호와 현재 위치한 페이지 번호가 같은 경우에 대한 분기 -->
+			<c:choose>
+				<c:when test="${pageHelper.page == i}">
+					<li class='active'><a href="#">${i}</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="${pageUrl}">${i}</a></li>
+				</c:otherwise>
+			</c:choose>	
+
+		</c:forEach>
+			
+		<!-- 다음 그룹으로 이동 -->
+		<c:choose>
+			<c:when test="${pageHelper.nextPage > 0}">
+				<!-- 다음 그룹에 대한 페이지 번호가 존재한다면? -->
+				<!-- 다음 그룹으로 이동하기 위한 URL을 생성해서 "nextUrl"에 저장 -->
+				<c:url var="nextUrl" value="/mypage/ReservationList.do">
+					<c:param name="orderCategory" value="${orderCategory}"></c:param>
+				<%-- 	<c:param name="keyword" value="${keyword}"></c:param> --%>
+					<c:param name="page" value="${pageHelper.nextPage}"></c:param>
+				</c:url>
+
+				<li><a href="${nextUrl}">&raquo;</a></li>
+			</c:when>
+
+			<c:otherwise>
+				<!-- 이전 그룹에 대한 페이지 번호가 존재하지 않는다면? -->
+				<li class='disabled'><a href="#">&raquo;</a></li>
+			</c:otherwise>
+		</c:choose>
+	</ul>
+</nav>
+<!--// 페이지 번호 끝 -->
+			
+			
 		</div>
 	</div>
 

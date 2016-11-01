@@ -108,13 +108,12 @@
 
 	<insert id="insertCartItem" parameterType="project.jsp.bakery.model.cart"
 		useGeneratedKeys="true" keyProperty="cart">
-		INSERT INTO cart ( cu_text,
-		cu_price, cu_count,
-		edit_date, reg_date,
-		member_id)
+		INSERT INTO cart (pro_price,pro_count, cu_text,
+		cu_price, Order_id,
+		edit_date, reg_date, member_id)
 		VALUES
-		( #{cuText},
-		#{cuPrice}, #{cuCount},
+		( 0,0,#{cuText},
+		#{cuPrice}, #{OrderId},
 		now(), now(),
 		<choose>
 			<when test="memberId == 0">

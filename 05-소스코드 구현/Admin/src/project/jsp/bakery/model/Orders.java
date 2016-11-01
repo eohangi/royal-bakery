@@ -14,6 +14,8 @@ public class Orders {
 	private String orType;
 	private String orName;
 	private String orTel;
+	private String orTitle;
+	private String orTime;
 	
 	
 	
@@ -22,6 +24,18 @@ public class Orders {
 	
 	
 	
+	public String getOrTitle() {
+		return orTitle;
+	}
+	public void setOrTitle(String orTitle) {
+		this.orTitle = orTitle;
+	}
+	public String getOrTime() {
+		return orTime;
+	}
+	public void setOrTime(String orTime) {
+		this.orTime = orTime;
+	}
 	public String getOrType() {
 		return orType;
 	}
@@ -112,14 +126,11 @@ public class Orders {
 		return "Orders [id=" + id + ", orderNo=" + orderNo + ", totalSum=" + totalSum + ", memberId=" + memberId
 				+ ", orRegDate=" + orRegDate + ", pickupTime=" + pickupTime + ", barcode=" + barcode
 				+ ", orderCategory=" + orderCategory + ", orEditTime=" + orEditTime + ", orType=" + orType + ", orName="
-				+ orName + ", orTel=" + orTel + ", limitStart=" + limitStart + ", listCount=" + listCount + "]";
+				+ orName + ", orTel=" + orTel + ", orTitle=" + orTitle + ", orTime=" + orTime + ", limitStart="
+				+ limitStart + ", listCount=" + listCount + "]";
 	}
 
 	
-	
-	
-	
-	
-	
 
+	
 }
