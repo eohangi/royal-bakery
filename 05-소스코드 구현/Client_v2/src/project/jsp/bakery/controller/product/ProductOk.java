@@ -2,6 +2,7 @@ package project.jsp.bakery.controller.product;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -17,6 +18,7 @@ import org.apache.logging.log4j.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
+import project.jsp.bakery.model.Member;
 import project.jsp.bakery.model.Product;
 import project.jsp.bakery.model.cart;
 import project.jsp.bakery.service.CartService;
@@ -54,7 +56,17 @@ public class ProductOk extends BaseController {
 		product = new Product();
 		productService = new ProductServiceImpl(logger, sqlSession);
 		cartService = new CartServiceImpl(sqlSession, logger);
-
+		Member loginInfo = (Member) web.getSession("loginInfo");
+		
+		// 로그인 중이라면 이 페이지를 동작시켜서는 안된다.
+		if (web.getSession("loginInfo") == null) {
+			sqlSession.close();
+			web.redirect(web.getRootPath() + "/member/Login.do", "로그인을 먼저 해주세요.");
+			return null;
+		} else{
+			logger.debug("[DEBUG] MemberInfo"+ loginInfo.toString());
+		}
+		
 		//Page형식을 JSON으로 지정
 		response.setContentType("application/json");
 		
@@ -72,10 +84,11 @@ public class ProductOk extends BaseController {
 		/** 4. 조회할 제품 선택 */
 		product.setId(id);
 
-		// javabeans
+		// javabeans & list
 		Product it = new Product();
 		cart item = new cart();
-
+		List<cart> myList =null;
+		List<cart> itemList = null;
 		try {
 			//product select
 			it = productService.selectProduct(product);
@@ -90,14 +103,49 @@ public class ProductOk extends BaseController {
 			cart.setCuPrice(it.getCuPrice());
 			cart.setProCount(it.getQuantity());
 			cart.setProPrice(it.getSumPrice());
+			cart.setMemberId(loginInfo.getId());
+			logger.debug("[DEBUG] : cart ="+ cart.toString());
 			
-			//cart insert
-			cartService.insertProductItem(cart);
-			logger.debug("[DEBUG] : cart =  " + cart.toString());
+			cart myCart = new cart();
+			myCart.setMemberId(loginInfo.getId());
+
+			//cart List
+			myList=cartService.selectProductList(myCart);
+			logger.debug("[DEBUG] : myList = "+myList.toString());
 			
-			//cart select
-			item=cartService.selectProductItem(cart);
-			logger.debug("[DEBUG] : item = " + item.toString());
+			if( myList.size()==0){
+				//insert
+				cartService.insertProductItem(cart);
+				
+				//cart select
+				item=cartService.selectProductItem(cart);
+				logger.debug("[DEBUG] : item = " + item.toString());
+			} else{
+				//List에 같은 제품이 있는지 검사하여 있다면 UPDATE를, 없다면 INSERT를 실행
+				for(int i=0; myList.size() >i; i++){
+					if(myList.get(i).getProId() == cart.getProId() ){
+						//update
+						myList.get(i).setProCount(myList.get(i).getProCount()+cart.getProCount());
+						myList.get(i).setProPrice(myList.get(i).getProPrice()+cart.getProPrice());
+						cartService.updateProductItem(myList.get(i));
+						
+						logger.debug("[DEBUG] : UPdate! = " + myList.get(i).toString());
+					}else{
+						//insert
+						cartService.insertProductItem(cart);
+						
+						//cart select
+						item=cartService.selectProductItem(cart);
+						logger.debug("[DEBUG] : item = " + item.toString());					
+						
+					}
+						
+				}
+			}
+			
+			//cart List
+			itemList=cartService.selectProductList(myCart);
+			logger.debug("[DEBUG] : itemlist = " + itemList.toString());
 			
 			//cart delete
 			
@@ -116,7 +164,7 @@ public class ProductOk extends BaseController {
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("rt", rt);
-		data.put("item", item);
+		data.put("item", itemList);
 
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(response.getWriter(), data);

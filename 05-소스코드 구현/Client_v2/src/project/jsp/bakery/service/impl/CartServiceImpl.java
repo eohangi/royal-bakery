@@ -374,4 +374,49 @@ public class CartServiceImpl implements CartService {
 
 	}
 
+	@Override
+	public List<cart> selectProductList(cart cart) throws Exception {
+		List<cart> result =null;
+		try {
+			result = sqlSession.selectList("CartMapper.selectProductList", cart);
+
+			// 리턴값은 저장된 행의 수
+			if (result == null) {
+				// 저장된 행이 없다면 강제로 예외를 발생시킨다.
+				// --> 이 예외를 처리 가능한 catch블록으로 제어가 이동한다.
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			// 에러가 발생했으므로 SQL 수행 내역을 되돌림
+
+		} catch (Exception e) {
+
+			logger.error(e.getLocalizedMessage());
+
+		}
+		
+		return result;
+	}
+
+	@Override
+	public void updateProductItem(cart cart) throws Exception {
+
+		try {
+			int result = sqlSession.update("CartMapper.updateProductItem", cart);
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("변경된 값이 없습니다.");
+		} catch (Exception e) {
+			sqlSession.rollback();
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("수량 변경에 실패했습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+		
+	}
+
 }

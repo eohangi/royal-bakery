@@ -137,7 +137,7 @@
 
 			<!-- cart template -->	
 			<script id="cart_item_tmpl" type="text/x-handlebars-template">
-{{#each item}}			
+			{{#each item}}			
 				<tr>
 					<th class="text-center"
 						style="width:40%; background-color:  rgba(5, 73, 49, 0.55)">{{proName}}</th>
@@ -147,10 +147,10 @@
 						style="width:32%; background-color:  rgba(5, 73, 49, 0.55)">{{proPrice}}</th>
 					<th class="text-center"
 						style="width:10%; background-color:  rgba(5, 73, 49, 0.55)">
-						<a class="cart_delete btn btn-xs" id="cart-delete"  onclick=''><i class="glyphicon glyphicon-remove"></i></a>	
+						<a style="width:100%; height:100%" class="cart_delete btn btn-xs" id="cart-delete"  onclick=''><i style="width:100%; height:100%" class="glyphicon glyphicon-remove"></i></a>	
 					</th>
 				</tr>
-{{/each}}
+			{{/each}}
 			</script>
 			
 
@@ -249,6 +249,8 @@
 					
 					/* 장바구니 담기 동적함수 */
 					$(document).on("click",".put",function(){
+						e.preventDefault();
+						
 						//담기 버튼을 눌렀을 때 제품의 정보가 장바구니로
 						$("#put-form").ajaxForm(function(json){
 							if(json.rt ==  "FAIL"){
@@ -260,7 +262,7 @@
 							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
 							var html = template(json);
 							//완성품을 출력한다.
-							$("#cart_list").append(html);
+							$("#cart_list").html(html);
 							
 						});
 					});

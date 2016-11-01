@@ -49,6 +49,8 @@ public interface CartService {
 	public void updateCartItemOrder(cart cart) throws Exception;
 	
 	public void updateCartItemOrder2(cart cart) throws Exception;
+	
+	public void updateProductItem(cart cart) throws Exception;
 
 	/**
 	 * 삭제
@@ -72,4 +74,6 @@ public interface CartService {
 	public List<cart> selectCartProMemberId(cart cart) throws Exception;
 	
 	public List<cart> selectCartCuMemberId(cart cart) throws Exception;
+	
+	public List<cart> selectProductList(cart cart) throws Exception;
 }

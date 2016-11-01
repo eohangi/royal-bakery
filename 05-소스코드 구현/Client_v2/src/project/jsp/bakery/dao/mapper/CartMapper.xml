@@ -32,7 +32,7 @@
 		<!-- SELECT COUNT(id) FROM cart WHERE member_id=#{memberId} -->
 		SELECT distinct id, pro_name, pro_price, pro_count, order_no, cu_text,
 		cu_price, cu_count, Order_id, edit_date, reg_date, member_id FROM cart
-		WHERE cu_text is not null and member_id=#{memberId};
+		WHERE cu_text is not null and member_id=#{memberId}
 	</select>
 
 <!-- 장바구니에서 주문하지 않은 일반제품 조회 -->
@@ -40,7 +40,7 @@
 		resultMap="cart">
 		SELECT distinct id, pro_name, pro_price, pro_count, order_no, cu_text,
 		cu_price, cu_count, Order_id, edit_date, reg_date, member_id FROM cart
-		WHERE pro_name is not null and member_id=#{memberId} and order_no is null;
+		WHERE pro_name is not null and member_id=#{memberId} and order_no is null
 	</select>
 
 <!-- 장바구니에서 주문하지 않은 주문제작제품 조회 -->
@@ -48,7 +48,7 @@
 		resultMap="cart">
 		SELECT distinct id, pro_name, pro_price, pro_count, order_no, cu_text,
 		cu_price, cu_count, Order_id, edit_date, reg_date, member_id FROM cart
-		WHERE cu_text is not null and member_id=#{memberId} and order_no is null;
+		WHERE cu_text is not null and member_id=#{memberId} and order_no is null
 	</select>
 	
 	<!-- 결제된 주문번호 있는 일반 상품 조회 -->
@@ -56,14 +56,14 @@
 		resultMap="cart">
 		SELECT distinct id, pro_name, pro_price, pro_count, order_no, cu_text,
 		cu_price, cu_count, Order_id, edit_date, reg_date, member_id FROM cart
-		WHERE pro_name is not null and member_id=#{memberId} and order_no =#{orderNo};
+		WHERE pro_name is not null and member_id=#{memberId} and order_no =#{orderNo}
 	</select>
 	<!-- 결제된 주문번호 있는 주문제작 상품 조회 -->
 	<select id="selectCartOrder2" parameterType="project.jsp.bakery.model.cart"
 		resultMap="cart">
 		SELECT distinct id, pro_name, pro_price, pro_count, order_no, cu_text,
 		cu_price, cu_count, Order_id, edit_date, reg_date, member_id FROM cart
-		WHERE cu_text is not null and member_id=#{memberId} and order_no =#{orderNo};
+		WHERE cu_text is not null and member_id=#{memberId} and order_no =#{orderNo}
 	</select>
 
 	<!-- 자신의 게시물인지 검사한다. -->
@@ -73,7 +73,7 @@
 		SELECT distinct id, pro_name, pro_price, pro_count, order_no,
 		Order_id, edit_date, reg_date, member_id FROM cart
 		WHERE
-		member_id=#{memberId};
+		member_id=#{memberId}
 	</select>
 
 	<!-- 자신의 게시물인지 검사한다. -->
@@ -84,7 +84,7 @@
 		cu_price, cu_count, Order_id,
 		edit_date, reg_date, member_id FROM cart
 		WHERE
-		member_id=#{memberId};
+		member_id=#{memberId}
 	</select>
 	
 	<select id="selectCartTotalPrice" parameterType="project.jsp.bakery.model.cart"
@@ -93,7 +93,7 @@
 		SELECT sum(cu_price) + sum(pro_price) as total
 		FROM cart
 		WHERE order_no is null and member_id=#{memberId}
-		ORDER BY id ASC;
+		ORDER BY id ASC
 	</select>
 
 	<select id="selectCartList" parameterType="project.jsp.bakery.model.cart"
@@ -103,7 +103,7 @@
 		cu_price, cu_count, Order_id, edit_date, reg_date, member_id
 		FROM cart
 		ORDER BY
-		id ASC;
+		id ASC
 	</select>
 
 	<insert id="insertCartItem" parameterType="project.jsp.bakery.model.cart"
@@ -131,9 +131,17 @@
 	<insert  id="insertProductItem" parameterType="project.jsp.bakery.model.cart"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO cart (
-			pro_id, pro_name, pro_price, pro_count, cu_price
+			pro_id, pro_name, pro_price, pro_count, cu_price, reg_date, edit_date, member_id
 		) VALUES (
-			#{proId},#{proName},#{proPrice},#{proCount},#{cuPrice}
+			#{proId},#{proName},#{proPrice},#{proCount},#{cuPrice}, now(),now(),
+		<choose>
+			<when test="memberId == 0">
+				null
+			</when>
+			<otherwise>
+				#{memberId}
+			</otherwise>
+		</choose>
 		)
 	</insert>
 
@@ -159,10 +167,21 @@
 		resultMap="cart">
 		<!-- "#{변수명}" 으로 표시된 곳에 파라미터로 전달된 Beans의 멤버변수값이 치환된다. -->
 		SELECT
-			pro_name, pro_price, pro_count
+			pro_name, pro_price, pro_count, reg_date, edit_date
 		FROM cart
 		WHERE
 		id=#{id}
+	</select>
+	
+	<!-- 제품 리스트 사이드의 장바구니 구현 -->
+	<select id="selectProductList" parameterType="project.jsp.bakery.model.cart"
+		resultMap="cart">
+		<!-- "#{변수명}" 으로 표시된 곳에 파라미터로 전달된 Beans의 멤버변수값이 치환된다. -->
+		
+		SELECT id, pro_name, pro_price, pro_count, cu_price, edit_date, reg_date, member_id
+		FROM cart
+		WHERE pro_id is not null and member_id=#{memberId} and order_no is null
+		ORDER BY edit_date DESC
 	</select>
 
 	<update id="updateCartItem" parameterType="project.jsp.bakery.model.cart">
@@ -175,13 +194,22 @@
 		WHERE
 		id=#{id}
 	</update>
+	
+	<!-- 장바구니 품목 수정 -->
+	<update id="updateProductItem" parameterType="project.jsp.bakery.model.cart">
+		UPDATE cart SET
+		pro_price=#{proPrice}, pro_count=#{proCount},
+		edit_date=now()
+		WHERE
+		id=#{id}
+	</update>
 
 	<!-- 결제시 주문번호 업데이트 일반제품 -->
 	<update id="updateCartItemOrder" parameterType="project.jsp.bakery.model.cart">
 		UPDATE cart SET
 		order_no=#{orderNo}, edit_date=now()
 		WHERE 
-		pro_name is not null and member_id=#{memberId} and order_no is null;
+		pro_name is not null and member_id=#{memberId} and order_no is null
 	</update>
 	
 	<!-- 결제시 주문번호 업데이트 주문제작제품 -->
@@ -189,7 +217,7 @@
 		UPDATE cart SET
 		order_no=#{orderNo}, edit_date=now()
 		WHERE 
-		cu_text is not null and member_id=#{memberId} and order_no is null;
+		cu_text is not null and member_id=#{memberId} and order_no is null
 	</update>
 	
 	<delete id="deleteCartItem" parameterType="project.jsp.bakery.model.cart">
