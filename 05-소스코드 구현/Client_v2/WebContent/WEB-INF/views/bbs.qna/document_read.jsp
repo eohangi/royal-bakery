@@ -26,6 +26,9 @@
 		<section style="padding: 0 10px 20px 10px">
 			${readDocument.content}
 		</section>
+		<section style="padding: 0 70px 40px 10px; background-color: #F2F2F2;" >
+			
+		</section>
 		<!-- 다음글 이전글 -->
 		<table class="table table-bordered">
 			<tbody>

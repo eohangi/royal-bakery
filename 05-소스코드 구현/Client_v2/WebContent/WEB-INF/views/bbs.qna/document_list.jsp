@@ -23,6 +23,7 @@
 						<th class="text-center">제목</th>
 						<th class="text-center" style="width: 120px">작성자</th>
 						<th class="text-center" style="width: 120px">작성일</th>
+						<th class="text-center" style="width: 100px">답변여부</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -40,13 +41,14 @@
 									</td>
 									<td class="text-center">${document.writerName}</td>
 									<td class="text-center">${document.regDate}</td>
+									<td class="text-center">${document.checks}</td>
 								</tr>
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
 							<tr>
 								<td  colspan="5" class="text-center" style="line-height: 100px;">
-									조회된 글이 없습니다.</td>
+									아직 작성된 문의 사항이 없습니다.</td>
 							</tr>
 						</c:otherwise>
 					</c:choose>

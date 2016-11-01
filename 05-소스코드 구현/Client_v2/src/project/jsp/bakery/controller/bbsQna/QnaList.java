@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Document;
+import project.jsp.bakery.model.Member;
 import project.jsp.bakery.service.DocumentService;
 import project.jsp.bakery.service.impl.DocumentServiceImpl;
 import project.jsp.helper.BaseController;
@@ -45,11 +46,27 @@ public class QnaList extends BaseController {
 		pageHelper = PageHelper.getInstance();
 		
 		
+		Member loginInfo = (Member) web.getSession("loginInfo");
+		/** (3) 로그인 여부 검사 */
+		// 로그인 중이라면 이 페이지를 동작시켜서는 안된다.
+		if (web.getSession("loginInfo") == null) {
+			sqlSession.close();
+			web.redirect(web.getRootPath() + "/member/Login.do", "로그인을 먼저 해주세요.");
+			return null;
+		}
+		
+
+		System.out.println("loginInfo=" + loginInfo);
+		
+		Document document = new Document();
+		document.setMemberId(loginInfo.getId());
+		
+		
+		
 		/** 조회할 정보에 대한 Beans 생성 */
 		// 검색어
 		String keyword = web.getString("keyword");
-		
-		Document document = new Document();
+
 		
 		// 현재 페이지 수 --> 기본값은 1페이지로 설정함
 		int page = web.getInt("page", 1);
@@ -63,7 +80,7 @@ public class QnaList extends BaseController {
 		List<Document> documentList = null;
 		try {
 			// 전체 게시물 수
-			totalCount = documentService.selectDocumentCount(document);
+			totalCount = documentService.selectMyDocumentCount(document);
 			
 			// 나머지 페이지 번호 계산하기
 			// --> 현재 페이지, 전체 게시물 수, 한페이지의 목록 수, 그룹갯수
@@ -73,7 +90,7 @@ public class QnaList extends BaseController {
 			document.setLimitStart(pageHelper.getLimitStart());
 			document.setListCount(pageHelper.getListCount());
 			
-			documentList = documentService.selectDocumentList(document);
+			documentList = documentService.selectMyDocumentList(document);
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());
 			return null;

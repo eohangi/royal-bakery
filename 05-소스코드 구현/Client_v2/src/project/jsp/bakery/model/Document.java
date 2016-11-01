@@ -10,7 +10,7 @@ public class Document {
 	private String editDate;
 	private String ipAddr;
 	private String category;
-	private String check;
+	private String checks;
 	private int memberId;
 	
 	// 페이지 구현을 위해서 추가된 값
@@ -72,11 +72,11 @@ public class Document {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getCheck() {
-		return check;
+	public String getChecks() {
+		return checks;
 	}
-	public void setCheck(String check) {
-		this.check = check;
+	public void setChecks(String checks) {
+		this.checks = checks;
 	}
 	public int getMemberId() {
 		return memberId;
@@ -100,7 +100,7 @@ public class Document {
 	public String toString() {
 		return "Document [id=" + id + ", writerName=" + writerName + ", writerPw=" + writerPw + ", subject=" + subject
 				+ ", content=" + content + ", regDate=" + regDate + ", editDate=" + editDate + ", ipAddr=" + ipAddr
-				+ ", category=" + category + ", check=" + check + ", memberId=" + memberId + ", limitStart="
+				+ ", category=" + category + ", checks=" + checks + ", memberId=" + memberId + ", limitStart="
 				+ limitStart + ", listCount=" + listCount + "]";
 	}
 

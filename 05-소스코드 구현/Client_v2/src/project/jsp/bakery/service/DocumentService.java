@@ -83,4 +83,10 @@ public interface DocumentService {
 	 * @throws Exception
 	 */
 	public void updateDocument(Document document) throws Exception;
+	
+	
+	
+	public List<Document> selectMyDocumentList(Document document) throws Exception; 
+	
+	public int selectMyDocumentCount(Document document) throws Exception;
 }
