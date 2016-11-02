@@ -42,7 +42,7 @@ $(function(){
 	<div class="titlebar">
 		<ul class="list-unstyled navi">
 			<li><a id="logout">로그아웃</a></li>
-			<li><a href="${pageContext.request.contextPath}/member/ADMINCLIENTINFODETAIL.do">회원관리</a></li>
+			<li><a href="${pageContext.request.contextPath}/member/1Admin_client_info.jsp">회원관리</a></li>
 			<li><a href="${pageContext.request.contextPath}/Reservation.do?orderCategory=reservation">예약관리</a>
 				<ul class="list-unstyled">
 					<li><a href="${pageContext.request.contextPath}/Reservation.do?orderCategory=reservation">예약관리</a></li>
