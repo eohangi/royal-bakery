@@ -63,8 +63,8 @@ public interface CartService {
 	
 	public void deleteCartItem(cart cart) throws Exception;
 	
-	public void deleteProductItem(cart cart) throws Exception;
-
+	public void deleteProduct(cart cart) throws Exception;
+	
 	public List<cart> selectCartList(cart cart) throws Exception;
 
 	public List<cart> selectCartClassCount(cart cart) throws Exception;

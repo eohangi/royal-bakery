@@ -268,7 +268,7 @@
 						var select_proId = $(this).data("proId");
 						
 						//삭제 버튼을 눌렀을 때 삭제
-						$.get("삭제 서블릿",{ proId:select_proId},function(json){
+						$.get("../product/productCartDelete.do",{ proId:select_proId},function(json){
 							//미리 준비한 HTML틀을 읽어온다.
 						 	var template = Handlebars.compile($("#cart_item_tmpl").html());
 							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.

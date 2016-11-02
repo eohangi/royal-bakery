@@ -370,11 +370,6 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void deleteProductItem(cart cart) throws Exception {
-
-	}
-
-	@Override
 	public List<cart> selectProductList(cart cart) throws Exception {
 		List<cart> result =null;
 		try {
@@ -438,6 +433,27 @@ public class CartServiceImpl implements CartService {
 			sqlSession.commit();
 		}
 		
+	}
+
+	@Override
+	public void deleteProduct(cart cart) throws Exception {
+		try {
+			int result = sqlSession.delete("CartMapper.deleteProductItem", cart);
+			// 삭제된 데이터가 없다는 것은 WHERE절의 조건값이 맞지 않다는 의미.
+			// 이 경우, 첫 번째 WHERE조건에서 사용되는 id값에 대한 회원을 찾을 수 없다는 의미
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("이미 삭제된 제품 입니다.");
+		} catch (Exception e) {
+			sqlSession.rollback();
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("장바구니에 제품 담기가 실패했습니다.");
+		} finally {
+			sqlSession.commit();
+		}
 	}
 
 }

@@ -226,6 +226,13 @@
 		id=#{id}
 	</delete>
 	
+	<delete id="deleteProduct" parameterType="project.jsp.bakery.model.cart">
+		DELETE FROM
+		cart
+		WHERE
+		pro_id=#{proId} and member_id=#{memberId}
+	</delete>
+	
 	<!-- 장바구니 초기화 -->
 	<delete id="resetCart" parameterType="project.jsp.bakery.model.cart">
 		DELETE FROM
