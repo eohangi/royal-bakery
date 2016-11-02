@@ -19,7 +19,7 @@ $(function(){
 			  confirmButtonClass: "btn-primary",
 			  confirmButtonText: "확인",
 			
-			  
+			    
 			  
 			  cancelButtonClass: "btn-danger",
 			  cancelButtonText: "취소",
