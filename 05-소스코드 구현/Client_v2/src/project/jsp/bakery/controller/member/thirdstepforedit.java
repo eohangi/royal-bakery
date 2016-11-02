@@ -54,6 +54,10 @@ public class thirdstepforedit extends BaseController {
 		String addr2 = web.getString("addr2");
 		String gender = web.getString("gender");
 		String regDate = web.getString("reg_date");
+		String mem_pw = web.getString("mem_pw");
+		String mem_pw_re = web.getString("mem_pw_re");
+		
+				
 		//로그출력
 		System.out.println("변경된값>>>>>>>>>>>>>>>>>>>>>>>>");
 		logger.debug("아이디=" + memId);
@@ -66,6 +70,20 @@ public class thirdstepforedit extends BaseController {
 		logger.debug("주소2=" + addr2);
 		logger.debug("성별=" + gender);
 		logger.debug("가입일자=" + regDate);
+		
+		if(regex.isValue(mem_pw)){
+			
+			if(!regex.isEngNum(mem_pw) || mem_pw.length() > 20) {
+				sqlSession.close();
+				web.redirect(null, "새로운 비밀번호는 숫자와 영문의 조합으로 20자 까지만 가능합니다.");
+				return null;
+			}
+			if(!mem_pw.equals(mem_pw_re)){
+				sqlSession.close();
+				web.redirect(null, "비밀번호 확인이 잘못되었습니다.");
+				return null;
+			}
+		}
 		
 		//유효성 검사
 		// 이름 검사
@@ -133,6 +151,7 @@ public class thirdstepforedit extends BaseController {
 		member.setAddr2(addr2);
 		member.setGender(gender);
 		member.setReg_date(regDate);
+		member.setMem_pw(mem_pw);
 
 		/** (8) Service를 통한 데이터베이스 저장 처리 */
 		try {

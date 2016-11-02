@@ -91,26 +91,10 @@
 		mem_name=#{mem_name},email=#{email}, phone_no=#{phone_no}, 
 		birthdate=#{birthdate}, postcode=#{postcode},
 		addr1=#{addr1}, addr2=#{addr2}, gender=#{gender},reg_date=#{reg_date},edit_date=now()
+		<if test="mem_pw !=null and mem_pw != ''">
+			,mem_pw=password(#{mem_pw})
+		</if> 
 		WHERE mem_id=#{mem_id}
 	</update>
-	
-	<!-- 특정 회원과의 게시물 참조 해제하기 -->
-	<update id="updateDocumentMemberOut" parameterType="project.jsp.bakery.model.Member">
-		UPDATE document
-		mem_name=#{mem_name},email=#{email}, phone_no=#{phone_no}, 
-		birthdate=#{birthdate}, postcode=#{postcode},
-		addr1=#{addr1}, addr2=#{addr2}, gender=#{gender},reg_date=#{reg_date},edit_date=now()
-		WHERE mem_id=#{mem_id}
-	</update>
-	
-	<!-- 특정 회원과의 게시물 참조 해제하기 -->
-	<update id="updateCommentMemberOut" parameterType="project.jsp.bakery.model.Member">
-		update member SET 
-		mem_name=#{mem_name},email=#{email}, phone_no=#{phone_no}, 
-		birthdate=#{birthdate}, postcode=#{postcode},
-		addr1=#{addr1}, addr2=#{addr2}, gender=#{gender},reg_date=#{reg_date},edit_date=now()
-		WHERE mem_id=#{mem_id}
-	</update>
-	
 
 </mapper>

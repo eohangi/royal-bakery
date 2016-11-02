@@ -27,6 +27,24 @@
 						readonly />
 				</div>
 			</div>
+			<div class="form-group">
+				<label for='mem_pw' class="col-md-2">비밀번호변경</label>
+				<div class="col-md-8">
+					<input type="password" class="form-control pull-left" id="mem_pw"
+						name="mem_pw" placeholder="변경을 원하실 경우에만 입력하세요"
+						style="width: 25%; display: inline-block; margin-right: 5px;"
+						/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for='mem_pw_re' class="col-md-2">변경한비밀번호확인</label>
+				<div class="col-md-8">
+					<input type="password" class="form-control pull-left" id="mem_pw_re"
+						name="mem_pw_re"
+						style="width: 25%; display: inline-block; margin-right: 5px;"
+						/>
+				</div>
+			</div>
 
 			<div class="form-group">
 				<label for='mem_name' class="col-md-2">이름</label>

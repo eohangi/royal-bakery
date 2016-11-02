@@ -15,7 +15,14 @@ public class Member {
 	private String gender;
 	private String reg_date;
 	private String edit_date;
+	private String mem_pw_re;
 	
+	public String getMem_pw_re() {
+		return mem_pw_re;
+	}
+	public void setMem_pw_re(String mem_pw_re) {
+		this.mem_pw_re = mem_pw_re;
+	}
 	public int getId() {
 		return id;
 	}
@@ -105,9 +112,8 @@ public class Member {
 		return "Member [id=" + id + ", mem_name=" + mem_name + ", mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", email="
 				+ email + ", phone_no=" + phone_no + ", birthdate=" + birthdate + ", postcode=" + postcode + ", addr1="
 				+ addr1 + ", addr2=" + addr2 + ", classify=" + classify + ", gender=" + gender + ", reg_date="
-				+ reg_date + ", edit_date=" + edit_date + "]";
+				+ reg_date + ", edit_date=" + edit_date + ", mem_pw_re=" + mem_pw_re + "]";
 	}
-	
 	
 	
 }
