@@ -10,7 +10,7 @@
 
 <style>
 	.right-side , .form-horizontal {
-		z-index: -50;
+		z-index: 100;
 	}
 	table.table{
 		z-index:100;
@@ -262,6 +262,23 @@
 						});
 					});
 					
+					//장바구니에서 품목 삭제
+					$(document).on("click",".cart_delete",function(){
+						//data-proId 속성의 값을 취득한다.
+						var select_proId = $(this).data("proId");
+						
+						//삭제 버튼을 눌렀을 때 삭제
+						$.get("삭제 서블릿",{ proId:select_proId},function(json){
+							//미리 준비한 HTML틀을 읽어온다.
+						 	var template = Handlebars.compile($("#cart_item_tmpl").html());
+							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
+							var html = template(json);
+							//완성품을 출력한다.
+							$("#cart_list").html(html);
+						});
+						
+					});
+					
 				});			
 			</script>
 		</div>
@@ -279,7 +296,7 @@
 						style="width:32%; background-color:  rgba(5, 73, 49, 0.55)">{{proPrice}}</th>
 					<th class="text-center"
 						style="width:10%; background-color:  rgba(5, 73, 49, 0.55)">
-						<a style="width:100%; height:100%" class="cart_delete btn btn-xs" id="cart-delete"  onclick=''><i style="width:100%; height:100%" class="glyphicon glyphicon-remove"></i></a>	
+						<a style="width:100%; height:100%" class="cart_delete btn btn-xs" id="cart-delete" data-proId="{{{proId}}}"  onclick=''><i style="width:100%; height:100%" class="glyphicon glyphicon-remove"></i></a>	
 					</th>
 				</tr>
 			{{/each}}
