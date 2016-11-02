@@ -5,9 +5,8 @@
 <script src="http://code.jquery.com/jquery.min.js"></script>
 	
 <link rel="stylesheet" href="plugins/sweetalert/sweetalert.css" />
-
 <script src="plugins/sweetalert/sweetalert.min.js"></script>
-
+<script src="plugins/sweetalert/sweetalert.js"></script>
 
 <script type="text/javascript">
 $(function(){
