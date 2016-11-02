@@ -27,7 +27,7 @@
 			${readDocument.content}
 		</section>
 		<section style="padding: 0 70px 40px 10px; background-color: #F2F2F2;" >
-			
+			${readComment.coContent}
 		</section>
 		<!-- 다음글 이전글 -->
 		<table class="table table-bordered">

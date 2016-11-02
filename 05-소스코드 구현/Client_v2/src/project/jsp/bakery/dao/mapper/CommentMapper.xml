@@ -16,4 +16,23 @@
 		<result property="documentId" column="Document_id" />
 	
 	</resultMap>
+	
+	<!-- 답변 정보 저장 -->
+	<insert id="insertComment" parameterType="project.jsp.bakery.model.Comment"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO comment (
+			co_content, co_reg_date, co_edit_date, Member_id, Document_id
+		) VALUE (
+			#{coContent}, now(), now(), #{memberId}, #{documentId}
+		)
+	
+	</insert>
+	
+	<!-- 답변 정보 조회 -->
+	<select id="selectComment" parameterType="project.jsp.bakery.model.Comment"
+		resultMap="comment">
+		SELECT  id, co_content,	Member_id, Document_id
+		FROM 	comment
+		WHERE   Member_id=#{memberId} AND Document_id=#{documentId}
+	</select>
 </mapper>
