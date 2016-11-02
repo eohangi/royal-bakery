@@ -67,10 +67,9 @@
 	function get_list(){
 		$.get("${pageContext.request.contextPath}/member/MEMBERLISTBYADMIN.do"
 			,function(json) {
-				//JSON배여과 템플릿의 결합
-				var template = Handlebars.compile($("#member_item_tmpl").html());
+				var template = Handlebars.compile($("#memberitem").html());
 				var html = template(json);
-				$("#member_list_body").append(html);
+				$("#memberlist").append(html);
 			});
 		}
 	$(function() {
@@ -100,43 +99,38 @@
 
 				</div>
 				<!-- <<<<<<<<<<<<<<<<<<< 제품 등록 서블릿 경로 >>>>>>>>>>>>>>>>>>>> -->
-				<div class="product">
-					<a href="${pageContext.request.contextPath}/제품등록경로"
-						class="btn btn-primary">제품등록</a>
-				</div>
 			</div>
 			<!-- 페이지 내용 영역 -->
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th class="text-center">생년월일</th>
-							<th class="text-center">아이디</th>
-							<th class="text-center">이름</th>
-							<th class="text-center">성별</th>
-							<th class="text-center">연락처</th>
-							<th class="text-center">가입일자</th>
-							<th class="text-center">구매내역</th>
-							<th class="text-center">문의내역</th>
+							<td class="text-center">생년월일</td>
+							<td class="text-center">아이디</td>
+							<td class="text-center">이름</td>
+							<td class="text-center">성별</td>
+							<td class="text-center">연락처</td>
+							<td class="text-center">가입일자</td>
+							<td class="text-center">구매내역</td>
+							<td class="text-center">문의내역</td>
 						</tr>
 					</thead>
-					<tbody id="member_list_body">
-						<script id="member_item_tmpl" type="text/x-handlebars-template">
-							
-							{{#each item}}				
-								<tr>
-									<td class="text-center">${birthdate}</td>
-									<td class="text-center">${mem_id}</td>
-									<td class="text-center">${mem_name}</td>
-									<td class="text-center">${gender}</td>
-									<td class="text-center">${phone_no}</td>
-									<td class="text-center">${reg_date}</td>
-									<td class="text-center">
-									<a href="">구매내역</a></td>
-									<td class="text-center">
-									<a href="">문의내역</a></td>
-								</tr>
-							{{/each}}
+					<tbody id="memberlist">
+						<script id="memberitem" type="text/x-handlebars-template">
+					{{#each member}}						
+							<tr>
+								<td class="text-center">{{birthdate}}</td>
+								<td class="text-center">{{mem_id}}</td>
+								<td class="text-center">{{mem_name}}</td>
+								<td class="text-center">{{gender}}</td>
+								<td class="text-center">{{phone_no}}</td>
+								<td class="text-center">{{reg_date}}</td>
+								<td class="text-center">
+								<a href="">구매내역</a></td>
+								<td class="text-center">
+								<a href="">문의내역</a></td>
+						</tr>
+					{{/each}}
 						</script>
 					</tbody>
 				</table>

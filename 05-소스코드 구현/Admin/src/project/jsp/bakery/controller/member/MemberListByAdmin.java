@@ -59,7 +59,7 @@ public class MemberListByAdmin extends BaseController {
 		List<Member> member = null;
 		
 		try{
-		member = adminService.selectAllMember();
+		member = adminService.selectAllMember(member);
 		} catch(Exception e){
 			sqlSession.close();
 			web.redirect(null, e.getLocalizedMessage());
@@ -71,7 +71,7 @@ public class MemberListByAdmin extends BaseController {
 		for(int i=0;i<member.size();i++){
 		System.out.println(member.get(i));
 		}
-
+		
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("member", member);

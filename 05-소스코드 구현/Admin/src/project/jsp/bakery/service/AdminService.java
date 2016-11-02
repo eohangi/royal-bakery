@@ -28,7 +28,7 @@ public interface AdminService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Member> selectAllMember() throws Exception;
+	public List<Member> selectAllMember(List<Member> member) throws Exception;
 	
 }
 	

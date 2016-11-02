@@ -39,25 +39,15 @@
 			<div class="form-group">
 				<label for='gender1' class="col-md-2">성별*</label>
 				<div class="col-md-10 pull-left">
-				<c:choose>
-					<c:when test="${memberInfo.gender =='M'}">
 					<label class="radio-inline"> 
-					<input type="radio"	name="gender" id="gender1" value="M" checked="checked"/> 남자
+					<input type="radio"	name="gender" id="gender1" value="M"
+					<c:if test="${memberInfo.gender =='M'}">checked="checked"</c:if> />남자
 					</label>
-					<label class="radio-inline"> 
-					<input type="radio"	name="gender" id="gender2" value="F" /> 여자
-					</label>
-					</c:when>
 					
-					<c:otherwise>
-					<label class="radio-inline"> 
-					<input type="radio"	name="gender" id="gender1" value="M"/> 남자
+					<label class="radio-inline">
+					<input type="radio"	name="gender" id="gender2" value="F"
+					<c:if test="${memberInfo.gender =='F'}">checked="checked"</c:if> />여자 
 					</label>
-					<label class="radio-inline"> 
-					<input type="radio"	name="gender" id="gender2" value="F" checked="checked"/> 여자
-					</label>
-					</c:otherwise>
-				</c:choose>
 				</div>
 			</div>
 

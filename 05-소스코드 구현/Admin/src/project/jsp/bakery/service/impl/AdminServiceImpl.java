@@ -65,7 +65,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<Member> selectAllMember() throws Exception {
+	public List<Member> selectAllMember(List<Member> member) throws Exception {
 		List<Member> result = null;
 		try {
 			result = sqlSession.selectList("MemberMapper.selectAllMember");
@@ -76,5 +76,4 @@ public class AdminServiceImpl implements AdminService {
 		}
 		return result;
 	}
-
 }
