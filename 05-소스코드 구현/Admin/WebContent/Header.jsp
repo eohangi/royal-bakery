@@ -5,8 +5,8 @@
 <script src="http://code.jquery.com/jquery.min.js"></script>
 	
 <link rel="stylesheet" href="plugins/sweetalert/sweetalert.css" />
-
-<script src="plugins/sweetalert/sweetalert.min.js"></script>	
+<script src="plugins/sweetalert/sweetalert.min.js"></script>
+<script src="plugins/sweetalert/sweetalert.js"></script>
 
 <script type="text/javascript">
 $(function(){
@@ -28,7 +28,7 @@ $(function(){
 			},
 			function(isConfirm){
 				if(isConfirm){
-					location.href="${pageContext.request.contextPath}/member/ADMINLOGOUT.do";
+					location.href="${pageContext.request.contextPath}/ADMINLOGOUT.do";
 			}else{
 				swal.close();
 			}

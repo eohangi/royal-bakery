@@ -19,7 +19,7 @@ import project.jsp.helper.BaseController;
 import project.jsp.helper.UploadHelper;
 import project.jsp.helper.WebHelper;
 
-@WebServlet("/member/ADMINLOGINOK.do")
+@WebServlet("/ADMINLOGINOK.do")
 public class LoginOk extends BaseController {
 	private static final long serialVersionUID = -6153454275069476233L;
 	/** 1)사용하고자 하는 Helper + Service 객체 선언 */
@@ -44,7 +44,7 @@ public class LoginOk extends BaseController {
 		if (web.getSession("loginInfo") != null) {
 			// 이미 sqlsession객체를 생성했으므로,데이터 베이스 접속을 해제해야 한다.
 			sqlSession.close();
-			web.redirect(web.getRootPath() + "/member/ADMINCLIENTINFO.do", "이미 로그인 하셨습니다.");
+			web.redirect(web.getRootPath() + "/ADMINCLIENTINFO.do", "이미 로그인 하셨습니다.");
 			return null;
 		}
 

@@ -65,7 +65,7 @@
 <script type="text/javascript">
 	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */ 
 	function get_list(){
-		$.get("${pageContext.request.contextPath}/member/MEMBERLISTBYADMIN.do"
+		$.get("${pageContext.request.contextPath}/MEMBERLISTBYADMIN.do"
 			,function(json) {
 				var template = Handlebars.compile($("#memberitem").html());
 				var html = template(json);

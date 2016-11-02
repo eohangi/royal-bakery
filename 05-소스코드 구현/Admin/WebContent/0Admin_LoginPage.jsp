@@ -82,7 +82,7 @@
 <body>
 	<div class="login">
 		<form name="form-group" class="loginA" method="POST"
-			action="${pageContext.request.contextPath}/member/ADMINLOGINOK.do">
+			action="${pageContext.request.contextPath}/ADMINLOGINOK.do">
 			<fieldset>
 				<legend>관리자 로그인 페이지</legend>
 
