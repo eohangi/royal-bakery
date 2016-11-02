@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
+<mapper namespace="DocumentMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap type="project.jsp.bakery.model.Document" id="document">
+		<result property="id" column="id" />
+		<result property="writerName" column="writer_name" />
+		<result property="writerPw" column="writer_pw" />
+		<result property="subject" column="subject" />
+		<result property="content" column="content" />
+		<result property="regDate" column="reg_date" />
+		<result property="editDate" column="edit_date" />
+		<result property="ipAddr" column="ip_addr" />
+		<result property="category" column="category" />
+		<result property="check" column="check" />
+		<result property="memberId" column="Member_id" />
+	</resultMap>
+	
+	<!-- 게시글 정보 저장하기 -->
+	<insert id="insertDocument" parameterType="project.jsp.bakery.model.Document"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO document (
+			category, writer_name, subject, content, reg_date, edit_date, ip_addr,
+			Member_id, writer_pw 
+		) VALUE (
+			#{category}, #{writerName}, #{subject}, #{content}, now(), now(), #{ipAddr},
+			
+			<choose>
+				<when test="memberId == 0">
+					null, password(#{writerPw})
+				</when>
+				<otherwise>
+					#{memberId}, #{writerPw}
+				</otherwise>
+			</choose> 
+		)
+	</insert>
+	
+	<!-- 게시물 목록 조회 -->
+	<select id="selectDocumentList"
+		parameterType="project.jsp.bakery.model.Document"
+		resultMap="document">
+		SELECT id, category, writer_name, subject,
+			   DATE_FORMAT(reg_date, '%Y-%m-%d') as reg_date
+		FROM   document
+		
+		<where>
+			category=#{category}
+			
+			<if test="subject != null or content != null">
+				AND (
+					<if test="subject != null">
+						subject LIKE concat('%', #{subject}, '%')
+					</if>
+					
+					<if test="content != null">
+						OR content LIKE concat('%', #{content}, '%')
+					</if>
+				)
+			</if>
+		</where>
+		
+		ORDER  BY id DESC
+		LIMIT #{limitStart}, #{listCount}
+	</select>
+	
+	<!-- 게시물 하나에 대한 정보를 조회한다. -->
+	<select id="selectDocument"
+		parameterType="project.jsp.bakery.model.Document"
+		resultMap="document">
+		SELECT
+			id, category, writer_name, writer_pw, subject, content,
+			DATE_FORMAT(reg_date, '%Y-%m-%d') AS reg_date,
+			DATE_FORMAT(edit_date, '%Y-%m-%d') AS edit_date,
+			ip_addr, Member_id 
+		FROM document
+		WHERE category=#{category} AND id=#{id}
+	</select>
+	
+	<!-- 이전 글 정보를 조회한다. -->
+	<select id="selectPrevDocument"
+		parameterType="project.jsp.bakery.model.Document"
+		resultMap="document">
+		SELECT
+			id, category, writer_name, writer_pw, subject, content,
+			DATE_FORMAT(reg_date, '%Y-%m-%d') AS reg_date,
+			DATE_FORMAT(edit_date, '%Y-%m-%d') AS edit_date,
+			ip_addr, Member_id
+		FROM document
+		WHERE category=#{category} AND id &lt; #{id}
+		ORDER BY id DESC
+		LIMIT 0, 1
+	</select>
+	
+	
+	<!-- 다음 글 정보를 조회한다. -->
+	<select id="selectNextDocument"
+		parameterType="project.jsp.bakery.model.Document"
+		resultMap="document">
+		SELECT
+			id, category, writer_name, writer_pw, subject, content,
+			DATE_FORMAT(reg_date, '%Y-%m-%d') AS reg_date,
+			DATE_FORMAT(edit_date, '%Y-%m-%d') AS edit_date,
+			ip_addr, Member_id
+		FROM document
+		WHERE category=#{category} AND id &gt; #{id}
+		ORDER BY id ASC
+		LIMIT 0, 1
+	</select>
+	
+	<!-- 전체 게시물 수를 조회한다. -->
+	<select id="selectDocumentCount"
+		parameterType="project.jsp.bakery.model.Document"
+		resultType="int">
+		SELECT COUNT(id) FROM document
+		<where>
+			category=#{category}
+			<if test="subject !=null or content != null">
+				AND (
+					<if test="subject != null">
+						subject LIKE concat('%', #{subject}, '%')
+					</if>
+					<if test="content != null">
+						OR content LIKE concat('%', #{content}, '%')
+					</if>
+				)
+			</if>
+		</where>
+	</select>
+	
+	<!-- 자신의 게시물인지 검사한다 -->
+	<select id="selectDocumentCountByMemberId"
+	 	parameterType="project.jsp.bakery.model.Document"
+	 	resultType="int">
+	 	SELECT COUNT(id) FROM document
+	 	WHERE category=#{category} AND id=#{id} AND Member_id=#{memberId}
+	</select>
+	
+	<!-- 비밀번호를 검사한다. -->
+	<select id="selectDocumentCountByPw"
+	 	parameterType="project.jsp.bakery.model.Document"
+	 	resultType="int">
+	 	SELECT COUNT(id) FROM document
+	 	WHERE category=#{category} AND id=#{id} AND writer_pw=password(#{writerPw})
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateDocument"
+		parameterType="project.jsp.bakery.model.Document">
+		UPDATE document SET
+			category=#{category}, writer_name=#{writerName}, 
+			subject=#{subject}, content=#{content}, ip_addr=#{ipAddr},
+			edit_date=now()
+		WHERE id=#{id}		
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteDocument"
+		parameterType="project.jsp.bakery.model.Document">
+		DELETE FROM document WHERE id=#{id}
+	</delete>
+	
+</mapper>
