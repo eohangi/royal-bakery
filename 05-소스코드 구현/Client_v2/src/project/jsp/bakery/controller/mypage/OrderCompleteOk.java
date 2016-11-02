@@ -15,13 +15,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
+import project.jsp.bakery.model.Custom;
 import project.jsp.bakery.model.Member;
 import project.jsp.bakery.model.Orders;
+import project.jsp.bakery.model.Product;
 import project.jsp.bakery.model.cart;
 import project.jsp.bakery.service.CartService;
 import project.jsp.bakery.service.OrderService;
+import project.jsp.bakery.service.ProductService;
 import project.jsp.bakery.service.impl.CartServiceImpl;
 import project.jsp.bakery.service.impl.OrderServiceImpl;
+import project.jsp.bakery.service.impl.ProductServiceImpl;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.PageHelper;
 import project.jsp.helper.UploadHelper;
@@ -54,6 +58,8 @@ public class OrderCompleteOk extends BaseController {
 	PageHelper pageHelper;
 	// --> import study.jsp.helper.Upload;
 	UploadHelper upload;
+	
+	ProductService productService;
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -67,7 +73,7 @@ public class OrderCompleteOk extends BaseController {
 		OrderService orderService = new OrderServiceImpl(sqlSession, logger);
 		cartService = new CartServiceImpl(sqlSession, logger);
 		pageHelper = PageHelper.getInstance();
-		
+		productService = new ProductServiceImpl(logger, sqlSession);
 		order = OrderCommon.getInstance();
 
 		upload = UploadHelper.getInstance();
@@ -118,6 +124,8 @@ public class OrderCompleteOk extends BaseController {
 		
 		cart.setOrderNo(OrderNo);
 		cart.setMemberId(loginInfo.getId());
+		
+		Product count = new Product();
 
 		//order에 저장할 것들 beans로 묶기
 		Orders order = new Orders();
@@ -133,8 +141,25 @@ public class OrderCompleteOk extends BaseController {
 		order.setOrTitle("제품 1");
 		order.setOrTime(time);
 		
-		
+		List<cart> cartlist = null;
+		Product item = null;
 		try {
+			cartlist = cartService.selectCartProMemberId(cart);
+			
+			for (int i = 0; i < cartlist.size(); i++) {
+				count.setProName(cartlist.get(i).getProName());
+				item = productService.selectProductOneName(count);
+				int usestock = item.getStock();
+				int buystock = cartlist.get(i).getProCount();
+				int totalStock = usestock-buystock;
+				count.setStock(totalStock);	
+				productService.updateProductStock(count);
+				System.out.println("제품 1개 SELECT = ["+i+"]"+item);
+				System.out.println("제품 수량 = ["+i+"]"+usestock);
+				System.out.println("장바구니의 수량 = ["+i+"]"+buystock);
+				System.out.println("총 합산 수량 = ["+i+"]"+totalStock);
+			}
+			
 			//order insert 하기
 			if(ProName != null){
 			cartService.updateCartItemOrder(cart);

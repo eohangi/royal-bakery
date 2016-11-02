@@ -110,5 +110,24 @@
 		pro_edit_date=now()
 		WHERE id=#{id}
 	</update>
+	
+	<!-- 제품 정보 수정하기 한기 -->
+	<update parameterType="project.jsp.bakery.model.Product" id="updateProductStock">
+		UPDATE product SET
+		stock=#{stock},
+		pro_edit_date=now()
+		WHERE pro_name=#{proName}
+	</update>
+	
+	<!-- 제품 하나에 대한 정보를 조회한다. 한기-->
+	<select parameterType="project.jsp.bakery.model.Product"
+		resultMap="product" id="selectProductOneName">
+		SELECT id, pro_classify, pro_name, pro_price,
+		pro_img, stock, status, content, kcal, na, sugar, fat,
+		protein,pro_edit_date, pro_reg_date
+		FROM product
+		WHERE
+		pro_name=#{proName}
+	</select>
 
 </mapper>

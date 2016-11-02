@@ -80,4 +80,48 @@ public class ProductServiceImpl implements ProductService {
 		return result;
 	}
 
+	/*한기 수량 업데이트*/
+	@Override
+	public void updateProductStock(Product product) throws Exception {
+		// TODO Auto-generated method stub
+		try {
+			int result = sqlSession.update("ProductMapper.updateProductStock", product);
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("변경된 값이 없습니다.");
+		} catch (Exception e) {
+			sqlSession.rollback();
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("수량 변경에 실패했습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+	}
+
+	/*한기 수량 셀렉트*/
+	@Override
+	public Product selectProductOneName(Product product) throws Exception {
+		// TODO Auto-generated method stub
+		Product result = null;
+
+		try {
+			result = sqlSession.selectOne("ProductMapper.selectProductOneName", product);
+			if (result == null) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			throw new Exception("조회된 제품이 없습니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("제품 조회에 실패했습니다.");
+		}
+
+		return result;
+		
+	}
+
 }

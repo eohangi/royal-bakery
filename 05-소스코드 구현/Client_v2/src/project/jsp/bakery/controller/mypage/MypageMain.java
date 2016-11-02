@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
+import project.jsp.bakery.model.Member;
 import project.jsp.bakery.service.CustomService;
 import project.jsp.bakery.service.impl.CustomServiceImpl;
 import project.jsp.helper.BaseController;
@@ -64,6 +65,10 @@ public class MypageMain extends BaseController {
 		pageHelper = PageHelper.getInstance();
 
 		upload = UploadHelper.getInstance();
+		
+Member loginInfo = (Member) web.getSession("loginInfo");
+		
+		request.setAttribute("login", loginInfo.getMem_name());
 		// "/WEB-INF/views/index.jsp"파일을 View로 사용한다.
 		return "mypage/MyPage";
 	}

@@ -13,6 +13,9 @@ public interface ProductService {
 	 */
 	public Product selectProduct (Product product) throws Exception;
 	
+	/*한기 빵 갯수 셀렉트*/
+	public Product selectProductOneName(Product product) throws Exception;
+	
 	/**
 	 * 제품 목록 조회
 	 * @param product - Classify 정보가 저장된 Beans
@@ -29,5 +32,9 @@ public interface ProductService {
 	 * @throws Exception
 	 */
 	public int selectProductCount(Product product) throws
+	 Exception;
+	
+	/*한기 빵 갯수 업데이트*/
+	public void updateProductStock(Product product) throws
 	 Exception;
 }
