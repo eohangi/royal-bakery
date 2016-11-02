@@ -73,7 +73,6 @@ public class ProductCart extends BaseController {
 
 		// javabeans & list
 		List<cart> myList =null;
-		List<cart> itemList = null;
 		
 		//memberId 에 값 입력
 		memberId=loginInfo.getId();
@@ -87,12 +86,6 @@ public class ProductCart extends BaseController {
 			//cart List
 			myList=cartService.selectProductList(myCart);
 			logger.debug("[DEBUG] : myList = "+myList.toString());
-			
-			
-			
-			//cart List
-			itemList=cartService.selectProductList(myCart);
-			logger.debug("[DEBUG] : itemlist = " + itemList.toString());
 			
 			//cart delete
 			
