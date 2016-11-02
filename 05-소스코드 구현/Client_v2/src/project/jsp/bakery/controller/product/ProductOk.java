@@ -123,13 +123,14 @@ public class ProductOk extends BaseController {
 			} else{
 				//List에 같은 제품이 있는지 검사하여 있다면 UPDATE를, 없다면 INSERT를 실행
 				for(int i=0; myList.size() >i; i++){
-					if(myList.get(i).getProId() == cart.getProId() ){
+					if(myList.get(i).getProId() == cart.getProId() && myList.get(i).getMemberId() == cart.getMemberId()){
+						logger.debug("[DEBUG] : Before UPdate! = " + myList.get(i).toString());
 						//update
 						myList.get(i).setProCount(myList.get(i).getProCount()+cart.getProCount());
 						myList.get(i).setProPrice(myList.get(i).getProPrice()+cart.getProPrice());
 						cartService.updateProductItem(myList.get(i));
 						
-						logger.debug("[DEBUG] : UPdate! = " + myList.get(i).toString());
+						logger.debug("[DEBUG] : After UPdate! = " + myList.get(i).toString());
 						
 						break;
 					}else{

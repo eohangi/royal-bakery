@@ -200,7 +200,7 @@
 		pro_price=#{proPrice}, pro_count=#{proCount},
 		edit_date=now()
 		WHERE
-		id=#{id}
+		pro_id=#{proId} and member_id=#{memberId}
 	</update>
 
 	<!-- 결제시 주문번호 업데이트 일반제품 -->

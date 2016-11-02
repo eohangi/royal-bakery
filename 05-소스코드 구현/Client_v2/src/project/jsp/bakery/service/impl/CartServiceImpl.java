@@ -438,7 +438,7 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public void deleteProduct(cart cart) throws Exception {
 		try {
-			int result = sqlSession.delete("CartMapper.deleteProductItem", cart);
+			int result = sqlSession.delete("CartMapper.deleteProduct", cart);
 			// 삭제된 데이터가 없다는 것은 WHERE절의 조건값이 맞지 않다는 의미.
 			// 이 경우, 첫 번째 WHERE조건에서 사용되는 id값에 대한 회원을 찾을 수 없다는 의미
 			if (result == 0) {
