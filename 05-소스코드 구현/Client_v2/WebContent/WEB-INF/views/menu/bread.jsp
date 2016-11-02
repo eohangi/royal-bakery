@@ -178,12 +178,29 @@
 					});
 			}
 			
+			function show_cart(){
+				console.log("cart 검사");
+				//페이지가 시작 됐을 때 제품의 정보가 장바구니로
+				$.get("../product/productCart.do",{
+					memberId:0
+				},function(json){
+					
+					//미리 준비한 HTML틀을 읽어온다.
+				 	var template = Handlebars.compile($("#cart_item_tmpl").html());
+					//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
+					var html = template(json);
+					//완성품을 출력한다.
+					$("#cart_list").html(html);
+				})
+				
+			}
 			
 			/* 메서드 제작 종료 */
 			
 				$(function() {
 					/* 페이지 생성시 기본 이벤트 */
-					bage();	 
+					bage();	 	//리스트 뷰
+					show_cart();//장바구니 뷰
 						
 					/* 탭 페이지가 보여질 경우의 이벤트 */
 					// 탭 안의 모든 <a> 태그에 대한 이벤드 --> 모든 탭 페이지가 열릴 때이 이벤트가 호출됨
@@ -232,8 +249,8 @@
 					
 					
 					/* 장바구니 담기 동적함수 */
-					/* $(document).ready(function(){
-						//담기 버튼을 눌렀을 때 제품의 정보가 장바구니로
+					/*  $(document).ready(function(){
+						//페이지가 시작 됐을 때 제품의 정보가 장바구니로
 						$.get("../product/productCart.do",{
 							memberId:0
 						},function(json){
@@ -245,7 +262,7 @@
 							//완성품을 출력한다.
 							$("#cart_list").html(html);
 						});
-					}); */
+					});  */
 					$(document).on("click",".put",function(){
 						//담기 버튼을 눌렀을 때 제품의 정보가 장바구니로
 						$("#put-form").ajaxForm(function(json){
