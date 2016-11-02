@@ -246,26 +246,12 @@ public class DocumentServiceImpl implements DocumentService {
 		sqlSession.update("DocumentMapper.updateDocumentMemberOut", document);
 		} catch(Exception e) {
 			logger.error(e.getLocalizedMessage());
-			throw new Exception("참조관계 해제에 실패했습니다.");
+			e.printStackTrace();
+			throw new Exception("참조관계 해제에 실패했습니다. from docu impl");
 		}finally {
 			sqlSession.commit();
 		}
 	}
 
-	//코멘트 참조관계 해제
-	@Override
-	public void updateCommentMemberOut(Comment comment) throws Exception {
-		try{
-			//코멘트 기능은 관리자만 쓴다.관리자는 일반회원과 DB table을 공유한다.
-			//그러므로 코멘트테이블은 member테이블의 id값을 참조받는다
-			//그러므로 멤버 탈퇴를 위해서는 관리자만 쓰는 기능이라도 둘의 참조관계를 해제하는 작업이 필요하다.
-			sqlSession.update("DocumentMapper.updateCommentMemberOut", comment);
-		} catch(Exception e) {
-			sqlSession.rollback();
-			logger.error(e.getLocalizedMessage());
-			throw new Exception("참조관계 해제 실패");
-		} finally{
-			sqlSession.commit();
-		}
-	}
+	
 }

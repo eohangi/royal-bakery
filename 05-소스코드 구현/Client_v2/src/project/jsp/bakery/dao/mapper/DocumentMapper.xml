@@ -218,15 +218,9 @@
 	<!-- 특정 회원과의 게시물 참조 해제하기 -->
 	<update id="updateDocumentMemberOut" parameterType="project.jsp.bakery.model.Member">
 		UPDATE document
-		SET    memer_id = null,edit_date=now()
-		WHERE  member_id=#{memberId} 
+		SET    Member_id = null, edit_date=now()
+		WHERE  Member_id=#{memberId} 
 	</update>
 	
-	<!-- 특정 회원과의 게시물 참조 해제하기 -->
-	<update id="updateCommentMemberOut" parameterType="project.jsp.bakery.model.Member">
-		UPDATE comment
-		SET    member_id =null,edit_date=now()
-		WHERE  member_id = #{memberId}
-	</update>
 	
 </mapper>

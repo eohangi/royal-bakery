@@ -35,4 +35,11 @@
 		FROM 	comment
 		WHERE   Member_id=#{memberId} AND Document_id=#{documentId}
 	</select>
+	
+	<!-- 특정 회원과의 게시물 참조 해제하기 -->
+	<update id="updateCommentMemberOut" parameterType="project.jsp.bakery.model.Member">
+		UPDATE comment
+		SET    Member_id =null,co_edit_date=now()
+		WHERE  Member_id = #{memberId}
+	</update>
 </mapper>

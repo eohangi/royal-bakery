@@ -12,13 +12,18 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<h1 class="page-header"><font color="#f26b24">회원정보 수정</font></h1>
+				<h1 class="page-header"><font color="#f26b24">본인확인이 필요한 요청입니다.</font></h1>
 				<p>
 					본인 확인을 위해 비밀번호를 다시한번 입력해 주세요.  
 				</p>
 				<!-- 비밀번호 입력 폼 시작 -->
-				<form method="post" action="${pageContext.request.contextPath}
-				/member/secondstepforedit.do" class="myform">
+				<form method="post"
+				<c:if test="${update=='soo'}">
+				action="${pageContext.request.contextPath}/member/secondstepforedit.do"</c:if>
+				<c:if test="${update=='tal'}">
+				action="${pageContext.request.contextPath}/member/outOk.do"</c:if>
+				class="myform">
+				
 				 <div class="form-group">
 				 	<input type="password" name="mem_pw" class="form-control" />
 				 </div>

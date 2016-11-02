@@ -48,6 +48,8 @@ public class firststepforedit extends BaseController {
 		}
 
 		System.out.println("loginInfo=" + loginInfo);
+		String update = web.getString("update");
+		request.setAttribute("update", update);
 
 		// "/WEB-INF/views/index.jsp"파일을 View로 사용한다.
 		return "/member/editmember";
