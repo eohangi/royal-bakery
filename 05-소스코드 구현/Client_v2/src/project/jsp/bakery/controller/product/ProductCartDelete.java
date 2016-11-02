@@ -90,10 +90,8 @@ public class ProductCartDelete extends BaseController {
 
 			// cart delete
 
-		} catch (
-
-		Exception e) {
-			web.redirect(null, e.getLocalizedMessage());
+		} catch (Exception e) {
+			web.printJsonRt(e.getLocalizedMessage());
 			return null;
 		} finally {
 			sqlSession.close();

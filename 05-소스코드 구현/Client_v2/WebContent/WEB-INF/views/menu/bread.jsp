@@ -265,7 +265,8 @@
 					//장바구니에서 품목 삭제
 					$(document).on("click",".cart_delete",function(){
 						//data-proId 속성의 값을 취득한다.
-						var select_proId = $(this).data("proId");
+						var select_proId = $(this).data("proid");
+						console.log(select_proId);
 						
 						//삭제 버튼을 눌렀을 때 삭제
 						$.get("../product/productCartDelete.do",{ proId:select_proId},function(json){
@@ -296,7 +297,7 @@
 						style="width:32%; background-color:  rgba(5, 73, 49, 0.55)">{{proPrice}}</th>
 					<th class="text-center"
 						style="width:10%; background-color:  rgba(5, 73, 49, 0.55)">
-						<a style="width:100%; height:100%" class="cart_delete btn btn-xs" id="cart-delete" data-proId="{{{proId}}}"  onclick=''><i style="width:100%; height:100%" class="glyphicon glyphicon-remove"></i></a>	
+						<a style="width:100%; height:100%" class="cart_delete btn btn-xs" id="cart-delete" data-proid="{{{proId}}}"  onclick=''><i style="width:100%; height:100%" class="glyphicon glyphicon-remove"></i></a>	
 					</th>
 				</tr>
 			{{/each}}

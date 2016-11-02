@@ -153,7 +153,7 @@ public class ProductOk extends BaseController {
 			
 			
 		} catch (Exception e) {
-			web.redirect(null, e.getLocalizedMessage());
+			web.printJsonRt(e.getLocalizedMessage());
 			return null;
 		} finally {
 			sqlSession.close();

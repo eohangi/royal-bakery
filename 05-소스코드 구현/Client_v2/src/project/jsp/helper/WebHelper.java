@@ -4,11 +4,15 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class WebHelper {
 
@@ -363,5 +367,20 @@ public class WebHelper {
 			ip = request.getRemoteAddr();
 		}
 		return ip;
+	}
+	/**
+	 * 결과 메시지를 JSON 으로 출력한다.
+	 * JSON Api에서 web.redirect() 기능을 대체할 용도.
+	 * @param rt = JSON에 포함할 메시지 내용
+	 */
+	public void printJsonRt(String rt) {
+		Map<String, String> data = new HashMap<String, String>();
+		data.put("rt",rt);
+		ObjectMapper mapper = new ObjectMapper();
+		try{
+			mapper.writeValue(response.getWriter(), data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
