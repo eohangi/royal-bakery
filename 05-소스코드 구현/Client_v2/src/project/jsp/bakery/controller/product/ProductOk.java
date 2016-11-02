@@ -67,8 +67,8 @@ public class ProductOk extends BaseController {
 			logger.debug("[DEBUG] MemberInfo"+ loginInfo.toString());
 		}
 		
-		//Page형식을 JSON으로 지정
-		response.setContentType("application/json");
+		/*//Page형식을 JSON으로 지정
+		response.setContentType("application/json");*/
 		
 		/** 3. data값 받기 */
 		int id = web.getInt("id");	//제품 id
@@ -130,14 +130,16 @@ public class ProductOk extends BaseController {
 						cartService.updateProductItem(myList.get(i));
 						
 						logger.debug("[DEBUG] : UPdate! = " + myList.get(i).toString());
+						
+						break;
 					}else{
 						//insert
 						cartService.insertProductItem(cart);
 						
 						//cart select
 						item=cartService.selectProductItem(cart);
-						logger.debug("[DEBUG] : item = " + item.toString());					
-						
+						logger.debug("[DEBUG] : INSERT! item = " + item.toString());					
+						break;
 					}
 						
 				}

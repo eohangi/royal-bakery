@@ -106,7 +106,7 @@ public class ProductCart extends BaseController {
 		
 		if(itemList.size()!= 0){
 			rt="OK";
-		}											
+		}
 
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();

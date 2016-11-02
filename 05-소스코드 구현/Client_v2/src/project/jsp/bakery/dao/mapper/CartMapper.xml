@@ -166,7 +166,7 @@
 		resultMap="cart">
 		<!-- "#{변수명}" 으로 표시된 곳에 파라미터로 전달된 Beans의 멤버변수값이 치환된다. -->
 		SELECT
-			pro_name, pro_price, pro_count, reg_date, edit_date
+			pro_id, pro_name, pro_price, pro_count, reg_date, edit_date
 		FROM cart
 		WHERE
 		id=#{id}
@@ -177,7 +177,7 @@
 		resultMap="cart">
 		<!-- "#{변수명}" 으로 표시된 곳에 파라미터로 전달된 Beans의 멤버변수값이 치환된다. -->
 		
-		SELECT id, pro_name, pro_price, pro_count, cu_price, edit_date, reg_date, member_id
+		SELECT id, pro_id, pro_name, pro_price, pro_count, cu_price, edit_date, reg_date, member_id
 		FROM cart
 		WHERE pro_id is not null and member_id=#{memberId} and order_no is null
 		ORDER BY edit_date DESC

@@ -232,7 +232,7 @@
 					
 					
 					/* 장바구니 담기 동적함수 */
-					$(document).ready(function(){
+					/* $(document).ready(function(){
 						//담기 버튼을 눌렀을 때 제품의 정보가 장바구니로
 						$.get("../product/productCart.do",{
 							memberId:0
@@ -245,7 +245,7 @@
 							//완성품을 출력한다.
 							$("#cart_list").html(html);
 						});
-					});
+					}); */
 					$(document).on("click",".put",function(){
 						//담기 버튼을 눌렀을 때 제품의 정보가 장바구니로
 						$("#put-form").ajaxForm(function(json){
