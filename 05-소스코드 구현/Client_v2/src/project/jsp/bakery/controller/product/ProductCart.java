@@ -97,14 +97,14 @@ public class ProductCart extends BaseController {
 			sqlSession.close();
 		}
 		
-		if(itemList.size()!= 0){
+		
 			rt="OK";
-		}
+		
 
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("rt", rt);
-		data.put("item", itemList);
+		data.put("item", myList);
 
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(response.getWriter(), data);
