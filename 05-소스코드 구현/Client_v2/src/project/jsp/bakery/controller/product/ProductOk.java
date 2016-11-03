@@ -118,15 +118,15 @@ public class ProductOk extends BaseController {
 			logger.debug("[DEBUG] : myList = " + myList.toString());
 
 			// 목록중에 재고량 보다 주문량이 많으면 false
-			/*for (int i = 0; i < itemList.size(); i++) {
-				if (it.getId() == itemList.get(i).getProId()) {
-					if (it.getStock() < (itemList.get(i).getProCount()+cart.getProCount())) {
+			for (int i = 0; i < myList.size(); i++) {
+				if (it.getId() == myList.get(i).getProId()) {
+					if (it.getStock() < (myList.get(i).getProCount()+cart.getProCount())) {
 						sqlSession.close();
 						web.redirect(web.getRootPath() + "/product/productBread.do", "재고가 모자랍니다.");
 						return null;
 					}
 				}
-			}*/
+			}
 
 			if (myList.size() == 0) {
 				// insert
