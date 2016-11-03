@@ -115,7 +115,8 @@
 	<update parameterType="project.jsp.bakery.model.Product" id="updateProductStock">
 		UPDATE product SET
 		stock=#{stock},
-		pro_edit_date=now()
+		pro_edit_date=now(),
+		status=#{status}
 		WHERE pro_name=#{proName}
 	</update>
 	

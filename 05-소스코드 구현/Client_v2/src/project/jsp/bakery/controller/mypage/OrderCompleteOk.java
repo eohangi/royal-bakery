@@ -159,20 +159,34 @@ public class OrderCompleteOk extends BaseController {
 				int buystock = cartlist.get(i).getProCount();
 				int totalStock = usestock-buystock;
 				
+				if(totalStock <0){
+					String url = "%s/product/productBread.do";
+					url = String.format(url, web.getRootPath());
+					web.redirect(url, arrName[i]+ "재고가 없습니다. 상품 구매 페이지로 이동합니다.");
+					return null;
+				}
+				
+				
 				arrName[i] = cartlist.get(i).getProName();
 				arrStock[i] = totalStock;
 				//count.setStock(i);	
 				//productService.updateProductStock(count);
 				
-				System.out.println("제품 1개 SELECT = ["+i+"]"+item);
-				System.out.println("제품 수량 = ["+i+"]"+usestock);
-				System.out.println("장바구니의 수량 = ["+i+"]"+buystock);
-				System.out.println("총 합산 수량 = ["+i+"]"+totalStock);
+				System.out.println("제품 1개 SELECT["+i+"]  =  "+item);
+				System.out.println("제품 수량["+i+"]  = "+usestock);
+				System.out.println("장바구니의 수량["+i+"]  = "+buystock);
+				System.out.println("총 합산 수량["+i+"]  = "+totalStock);
 			}
 			System.out.println("이름들 출력 : " + Arrays.toString(arrName));
-			System.out.println("가격들 출력 : " + Arrays.toString(arrStock));
+			System.out.println("수량들 출력 : " + Arrays.toString(arrStock));
 			for (int i = 0; i < cartlist.size(); i++) {
 				System.out.println("배열에 담긴 select 각각의 품목 갯수 : "+arrStock[i]);
+				if(arrStock[i] == 0){
+					count.setStatus("x");
+				}else{
+					count.setStatus("o");
+				}
+				System.out.println("제품 1개 status["+i+"]  = "+count.getStatus());
 				count.setProName(arrName[i]);
 				count.setStock(arrStock[i]);	
 				productService.updateProductStock(count);
