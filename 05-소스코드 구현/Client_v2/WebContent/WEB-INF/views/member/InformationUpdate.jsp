@@ -138,7 +138,6 @@
 	<%@ include file="/WEB-INF/inc/Footer.jsp"%>
 </body>
 <script type="text/javascript">
-String get_gender = request.getParameter("gender");
 </script>
 
 </html>

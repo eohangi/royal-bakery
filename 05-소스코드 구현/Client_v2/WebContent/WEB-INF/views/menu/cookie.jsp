@@ -40,9 +40,9 @@ table.table {
 			<ul id="myTab" class="nav nav-tabs">
 				<li class="col-md-4 col-sm-4 text-center"><a
 					data-classify="a" data-toggle="tab" href="#list">bread</a></li>
-				<li class="col-md-4 col-sm-4 active text-center"><a data-classify="b"
+				<li class="col-md-4 col-sm-4 text-center"><a data-classify="b"
 					data-toggle="tab" href="#list">cake</a></li>
-				<li class="col-md-4 col-sm-4 text-center"><a data-classify="c"
+				<li class="col-md-4 col-sm-4 active text-center"><a data-classify="c"
 					data-toggle="tab" href="#list">cookie</a></li>
 			</ul>
 
@@ -368,7 +368,7 @@ table.table {
 						<tr>
 							<th class="text-center" colspan="4"
 								style="background-color: rgba(5, 73, 49, 0.7)">
-								<button type="submit" class="btn btn-success">장바구니</button>
+								<a href="${pageContext.request.contextPath}/cart/Cart.do"><button type="button" class="btn btn-success">장바구니</button></a>
 							</th>
 						</tr>
 					</tfoot>

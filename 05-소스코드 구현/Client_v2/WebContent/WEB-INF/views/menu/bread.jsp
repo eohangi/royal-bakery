@@ -368,7 +368,7 @@ table.table {
 						<tr>
 							<th class="text-center" colspan="4"
 								style="background-color: rgba(5, 73, 49, 0.7)">
-								<button type="submit" class="btn btn-success">장바구니</button>
+								<a href="${pageContext.request.contextPath}/cart/Cart.do"><button type="button" class="btn btn-success">장바구니</button></a>
 							</th>
 						</tr>
 					</tfoot>
