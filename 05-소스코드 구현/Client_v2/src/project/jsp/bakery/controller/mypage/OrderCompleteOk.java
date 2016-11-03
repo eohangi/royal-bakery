@@ -3,6 +3,7 @@ package project.jsp.bakery.controller.mypage;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -143,23 +144,39 @@ public class OrderCompleteOk extends BaseController {
 		
 		List<cart> cartlist = null;
 		Product item = null;
+		
 		try {
 			cartlist = cartService.selectCartProMemberId(cart);
-			
+			int a = cartlist.size();
+			System.out.println("select 품목 갯수 : "+a);
+			int[] arrStock = new int[a];
+			String[] arrName = new String[a];
 			for (int i = 0; i < cartlist.size(); i++) {
 				count.setProName(cartlist.get(i).getProName());
+				arrName[i] = cartlist.get(i).getProName();
 				item = productService.selectProductOneName(count);
 				int usestock = item.getStock();
 				int buystock = cartlist.get(i).getProCount();
 				int totalStock = usestock-buystock;
-				count.setStock(totalStock);	
-				productService.updateProductStock(count);
+				
+				arrName[i] = cartlist.get(i).getProName();
+				arrStock[i] = totalStock;
+				//count.setStock(i);	
+				//productService.updateProductStock(count);
+				
 				System.out.println("제품 1개 SELECT = ["+i+"]"+item);
 				System.out.println("제품 수량 = ["+i+"]"+usestock);
 				System.out.println("장바구니의 수량 = ["+i+"]"+buystock);
 				System.out.println("총 합산 수량 = ["+i+"]"+totalStock);
 			}
-			
+			System.out.println("이름들 출력 : " + Arrays.toString(arrName));
+			System.out.println("가격들 출력 : " + Arrays.toString(arrStock));
+			for (int i = 0; i < cartlist.size(); i++) {
+				System.out.println("배열에 담긴 select 각각의 품목 갯수 : "+arrStock[i]);
+				count.setProName(arrName[i]);
+				count.setStock(arrStock[i]);	
+				productService.updateProductStock(count);
+			}
 			//order insert 하기
 			if(ProName != null){
 			cartService.updateCartItemOrder(cart);
