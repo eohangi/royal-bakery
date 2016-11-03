@@ -331,7 +331,7 @@ table.table {
 		<!-- 슬라이드 2 -->
 		<!---------------------------------------  장바구니    ------------------------------------------->
 		<div class="col-md-2 right-side" style="padding-right: 0px;">
-			<form class="form-horizontal" id="inquireform">
+			<form class="form-horizontal right-side" id="inquireform">
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
@@ -382,7 +382,7 @@ table.table {
 		$(function() {
 			/* 장바구니 스크롤 애니매이션 기능 */
 			$(window).scroll(function() {
-				$("#inquireform").animate({
+				$(".right-side").animate({
 					"top" : $(this).scrollTop()
 				},
 					{
