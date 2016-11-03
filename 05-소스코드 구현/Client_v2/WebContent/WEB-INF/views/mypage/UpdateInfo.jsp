@@ -25,7 +25,7 @@
 				<!-- 해당 페이지의 이름을 보여주는 내용을 감싸는 박스 -->
 				<div class="page-name">
 					<h1>
-						<strong>｜결제확인</strong>
+						<strong>｜정보 수정</strong>
 					</h1>
 				</div>
 				<!-- /해당 페이지의 이름을 보여주는 내용을 감싸는 박스 -->
@@ -50,31 +50,31 @@
 
 
 					<!-- 페이지에 들어갈 2가지 메뉴시작-->
-					<ul class="payinner-content-container clearfix" id="boxbody">
+					<ul class="payinner-content-container" id="boxbody">
 						<li class="mybox" id="mybox" >
-						<a href="${pageContext.request.contextPath}/mypage/OrderList.do?orderCategory=reservation">
+						<a href="${pageContext.request.contextPath}/member/firststepforedit.do?update=soo">
 							<p>
 								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
 							<p>
-							<h4>예약확인</h4>
+							<h4>개인정보 수정</h4>
 							</p>
 							<p>
-							<h6>고객님이 결제하신 상품을 확인 할 수 있습니다.</h6>
+							<h6>본인확인 후에 정보변경이 가능합니다.</h6>
 							</p>
 							</a>
 
 						</li>
 						<li class="mybox" id="mybox" >
-						<a href="${pageContext.request.contextPath}/mypage/ReservationList.do?orderCategory=pay">
+						<a href="${pageContext.request.contextPath}/member/firststepforedit.do?update=tal">
 							<p>
 								<img style="width: 40px; height: 40px;" src="${pageContext.request.contextPath}/assets/img/search.png">
 							</p>
 							<p>
-							<h4>구매내역</h4>
+							<h4>회원 탈퇴</h4>
 							</p>
 							<p>
-							<h6>고객님이 받아가신 상품을 확인 할 수 있습니다.</h6>
+							<h6>본인확인 후에 탈퇴가 가능합니다.</h6>
 							</p>
 							</a>
 						</li>
