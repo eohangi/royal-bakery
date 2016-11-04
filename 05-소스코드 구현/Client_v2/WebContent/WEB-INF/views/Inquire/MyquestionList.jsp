@@ -114,12 +114,12 @@
 
 							<p class="removequestion pull-left" id="removequestion">
 								<input type="button" class="btn btn-warning" value="삭제하기"
-									onclick="#">
+									onclick="">
 							</p>
 
 							<p class="addquestion pull-right" id="addquestion">
 								<input type="button" class="btn btn-info" value="상담하기"
-									onclick="#">
+									onclick="">
 							</p>
 
 						</ul>
