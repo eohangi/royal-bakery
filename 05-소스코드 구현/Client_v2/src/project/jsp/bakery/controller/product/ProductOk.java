@@ -61,7 +61,7 @@ public class ProductOk extends BaseController {
 		// 로그인 중이라면 이 페이지를 동작시켜서는 안된다.
 		if (web.getSession("loginInfo") == null) {
 			sqlSession.close();
-			web.redirect(web.getRootPath() + "/member/Login.do", "로그인을 먼저 해주세요.");
+			web.printJsonRt("Not_Login");
 			return null;
 		} else {
 			logger.debug("[DEBUG] MemberInfo" + loginInfo.toString());
@@ -122,7 +122,7 @@ public class ProductOk extends BaseController {
 				if (it.getId() == myList.get(i).getProId()) {
 					if (it.getStock() < (myList.get(i).getProCount()+cart.getProCount())) {
 						sqlSession.close();
-						web.redirect(web.getRootPath() + "/product/productBread.do", "재고가 모자랍니다.");
+						web.printJsonRt("Not_enough");
 						return null;
 					}
 				}

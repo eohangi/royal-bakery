@@ -58,6 +58,14 @@ public class ProductCart extends BaseController {
 		cartService = new CartServiceImpl(sqlSession, logger);
 		Member loginInfo = (Member) web.getSession("loginInfo");
 		
+		//login 상태가 아니면 실행을 종료한다.
+		if (web.getSession("loginInfo") == null) {
+			sqlSession.close();
+			web.printJsonRt("Not_Login");
+			return null;
+		} else {
+			logger.debug("[DEBUG] MemberInfo" + loginInfo.toString());
+		}
 		
 		//Page형식을 JSON으로 지정
 		response.setContentType("application/json");
