@@ -67,18 +67,16 @@ table.table {
 							<hr style="margin:5px" />
 							<div class="over" id="over">
 								<div class="img" id="img">
-									<a>
 										{{#if (is_null proImg)}}
 											<img src="${pageContext.request.contextPath}/asset/img/no_image.jpg" width="100%" />	
 										{{else}}	
 											<img src="../download.do?file={{{proImg}}}" width="100%" />	
 										{{/if}}		
-									</a>
 								</div>
 								<div class="detail" id="detail" style="width:100%">
-									<div class="info" style="margin:0; width:100%; vertical-align:middle;">
+									<div class="info" style="margin:0; padding-top:20%; width:100%; vertical-align:middle;">
 										<div class="info_2" id="info_2" style="display:inline-block; width:100%;" >
-											<div class="content" id="content" style="white-space: normal; word-wrap:nomal; overflow: hidden;
+											<div class="content" id="content" style="padding-right:5px;white-space: normal; word-wrap:nomal; overflow: hidden;
 													overflow-y:hidden; text-overflow: ellipsis; width:50%;	min-height: 50px; display:inline-block;">{{content}}</div>
 											<div class="table" style="width:50%; display:inline-block;">
 												<table>
@@ -111,8 +109,8 @@ table.table {
 							<br />
 							<div style="display: block ; width:100%;">
 							{{#if (eq status 'o')}}
-								<div style="width:50%; display:inline;" class="text-center"><b>현재 수량 : {{stock}}</b></div>	
-								<div style="width:50%; display:inline;" class="text-center"><b>가격 : {{proPrice}}</b></div>	
+								<div style="width:50%" class="text-left pull-left"><b>현재 수량 : {{stock}}</b></div>	
+								<div style="width:50%" class="text-left pull-left"><b>가격 : {{proPrice}}</b></div>	
 								<br />
 								<div class="order" id="order">
 									<br />

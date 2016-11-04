@@ -111,8 +111,8 @@ table.table {
 							<br />
 							<div style="display: block ; width:100%;">
 							{{#if (eq status 'o')}}
-								<div style="width:50%; display:inline;" class="text-center"><b>현재 수량 : {{stock}}</b></div>	
-								<div style="width:50%; display:inline;" class="text-center"><b>가격 : {{proPrice}}</b></div>	
+								<div style="width:50%" class="text-left pull-left"><b>현재 수량 : {{stock}}</b></div>	
+								<div style="width:50%" class="text-left pull-left"><b>가격 : {{proPrice}}</b></div>
 								<br />
 								<div class="order" id="order">
 									<br />
