@@ -41,8 +41,7 @@ public class MemberListByAdmin extends BaseController {
 	AdminService adminService;
 
 	@Override
-	public String doRun(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
+	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String view = null;
 
 		// ** 2.객체 생성 *//*
@@ -55,23 +54,38 @@ public class MemberListByAdmin extends BaseController {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
-		
+
+		Member member2 = new Member();
 		List<Member> member = null;
-		
-		try{
-		member = adminService.selectAllMember(member);
-		} catch(Exception e){
+		List<Member> Newmember = null;
+		int page = web.getInt("page", 1);
+		try {
+			Newmember = adminService.selectAllMember(member);
+			int total = member.size();
+			logger.debug("total = " + total);
+			// 전체 게시물 수
+			// 나머지 페이지 번호 계산하기
+			// --> 현재 페이지, 전체 게시물 수, 한 페이지의 목록 수, 그룹갯수
+			pageHelper.pageProcess(page, total, 10, 5);
+
+			// 페이지 번호 계산 결과에서 Limit절에 필요한 값을 Beans에 추가
+			member2.setLimitStart(pageHelper.getLimitStart());
+			member2.setListCount(pageHelper.getListCount());
+			logger.debug(pageHelper.toString());
+			member = adminService.selectAllMember(member2);
+			
+		} catch (Exception e) {
 			sqlSession.close();
 			web.redirect(null, e.getLocalizedMessage());
 			return null;
 		}
 		sqlSession.close();
-		logger.debug("조회한 회원 목록>>>>>>>>>>>>>>>>>",member);
+		logger.debug("조회한 회원 목록>>>>>>>>>>>>>>>>>", member);
 
-		for(int i=0;i<member.size();i++){
-		System.out.println(member.get(i));
+		for (int i = 0; i < member.size(); i++) {
+			System.out.println(member.get(i));
 		}
-		
+
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("member", member);

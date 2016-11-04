@@ -15,6 +15,8 @@ public class Member {
 	private String gender;
 	private String reg_date;
 	private String edit_date;
+	private int limitStart;
+	private int listCount;
 	
 	public int getId() {
 		return id;
@@ -100,14 +102,25 @@ public class Member {
 	public void setEdit_date(String edit_date) {
 		this.edit_date = edit_date;
 	}
+	public int getLimitStart() {
+		return limitStart;
+	}
+	public void setLimitStart(int limitStart) {
+		this.limitStart = limitStart;
+	}
+	public int getListCount() {
+		return listCount;
+	}
+	public void setListCount(int listCount) {
+		this.listCount = listCount;
+	}
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", mem_name=" + mem_name + ", mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", email="
 				+ email + ", phone_no=" + phone_no + ", birthdate=" + birthdate + ", postcode=" + postcode + ", addr1="
 				+ addr1 + ", addr2=" + addr2 + ", classify=" + classify + ", gender=" + gender + ", reg_date="
-				+ reg_date + ", edit_date=" + edit_date + "]";
+				+ reg_date + ", edit_date=" + edit_date + ", limitStart=" + limitStart + ", listCount=" + listCount
+				+ "]";
 	}
 	
-	
-	
-}
+	}
