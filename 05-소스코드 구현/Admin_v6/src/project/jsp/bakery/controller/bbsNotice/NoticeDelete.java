@@ -1,4 +1,4 @@
-package project.jsp.bakery.controller.bbs;
+package project.jsp.bakery.controller.bbsNotice;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -19,15 +19,14 @@ import project.jsp.helper.BaseController;
 import project.jsp.helper.WebHelper;
 
 
-@WebServlet("/bbs/document_delete.do")
-public class DocumentDelete extends BaseController {
-	private static final long serialVersionUID = 1661776226423457729L;
-
+@WebServlet("/bbs/notice_delete.do")
+public class NoticeDelete extends BaseController {
+	private static final long serialVersionUID = 5730641630115614854L;
+	
 	/** 사용하고자 하는 핼퍼 객체 선언 */
 	Logger logger;
 	SqlSession sqlSession;
 	WebHelper web;
-	BBSCommon bbs;
 	DocumentService documentService;
 	
 	@Override
@@ -38,22 +37,8 @@ public class DocumentDelete extends BaseController {
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
-		bbs = BBSCommon.getInstance();
 		documentService = new DocumentServiceImpl(sqlSession, logger);
 				
-		/** 게시판 카테고리 값을 받아서 뷰에 전달*/
-		String category = web.getString("category");
-		request.setAttribute("category", category);
-		
-		/** 존재하는 게시판인지 판별 */
-		try {
-			String bbsName = bbs.getBbsName(category);
-			request.setAttribute("bbsName", bbsName);
-		} catch (Exception e) {
-			sqlSession.close();
-			web.redirect(null, e.getLocalizedMessage());
-			return null;
-		}
 		
 		/** 게시글 번호 받기 */
 		int documentId = web.getInt("document_id");
@@ -66,7 +51,7 @@ public class DocumentDelete extends BaseController {
 		// 파라미터를 Beans로 묶기
 		Document document = new Document();
 		document.setId(documentId);
-		document.setCategory(category);
+		document.setCategory("notice");
 		
 		// 로그인 한 경우 현재 회원의 일련번호를 추가한다. (비로그인시 0 으로 설정됨)
 		Member loginInfo = (Member) web.getSession("loginInfo");
@@ -93,7 +78,7 @@ public class DocumentDelete extends BaseController {
 		// 상태유지를 위하여 게시글 일련번호를 View에 전달한다.
 		request.setAttribute("documentId", documentId);
 		
-		return "bbs/document_delete";
+		return "bbs/notice_delete";
 	}
-
+	
 }

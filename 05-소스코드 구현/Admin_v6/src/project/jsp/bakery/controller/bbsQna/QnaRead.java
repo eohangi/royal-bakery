@@ -1,4 +1,4 @@
-package project.jsp.bakery.controller.bbs;
+package project.jsp.bakery.controller.bbsQna;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -11,21 +11,25 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
+import project.jsp.bakery.model.Comment;
 import project.jsp.bakery.model.Document;
+import project.jsp.bakery.service.CommentService;
 import project.jsp.bakery.service.DocumentService;
+import project.jsp.bakery.service.impl.CommentServiceImpl;
 import project.jsp.bakery.service.impl.DocumentServiceImpl;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.WebHelper;
 
-@WebServlet("/bbs/document_read.do")
-public class DocumentRead extends BaseController {
-	private static final long serialVersionUID = -6535882412503359263L;
+@WebServlet("/bbs/qna_read.do")
+public class QnaRead extends BaseController {
+	private static final long serialVersionUID = -6903511539824546062L;
+	
 	/** 1) 사용하고자 하는 핼퍼 객체 선언 */
 	Logger logger;
 	SqlSession sqlSession;
 	WebHelper web;
-	BBSCommon bbs;
 	DocumentService documentService;
+	CommentService CommentService;
 	
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) 
@@ -36,26 +40,14 @@ public class DocumentRead extends BaseController {
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
-		bbs = BBSCommon.getInstance();
 		documentService = new DocumentServiceImpl(sqlSession, logger);
-		
-		//** 3 게시판 카테고리 값을 받아서 view에 전달 *//*
-		String category = web.getString("category");
-		request.setAttribute("category", category);
-		
-		//** 4 존재하는 게시판인지 판별하기 *//*
-		try {
-			String bbsName = bbs.getBbsName(category);
-			request.setAttribute("bbsName", bbsName);
-		} catch (Exception e) {
-			sqlSession.close();
-			web.redirect(null, e.getLocalizedMessage());
-			return null;
-		}
-		
+		CommentService = new CommentServiceImpl(sqlSession, logger);
+			
 		/** 글 번호 파라미터 받기 */
 		int documentId = web.getInt("document_id");
+				
 		logger.debug("documentId=" + documentId);
+	
 		
 		if (documentId == 0) {
 			web.redirect(null, "글 번호가 지정되지 않았습니다.");
@@ -66,17 +58,21 @@ public class DocumentRead extends BaseController {
 		// 파라미터를 Beans 로 묶기
 		Document document = new Document();
 		document.setId(documentId);
-		document.setCategory(category);
+		document.setCategory("qna");
 		
+		Comment comment = new Comment();
+		comment.setDocumentId(documentId);
+		comment.setMemberId(1);
 		/** 게시물 일련번호를 사용한 데이터 조회 */
 		Document readDocument = null;
 		Document prevDocument = null;
 		Document nextDocument = null;
-		
+		Comment readComment = null;
 		try {
 			readDocument = documentService.selectDocument(document);
 			prevDocument = documentService.selectPrevDocument(document);
 			nextDocument = documentService.selectNextDocument(document);
+			readComment = CommentService.selectComment(comment);
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());
 			return null;
@@ -88,8 +84,9 @@ public class DocumentRead extends BaseController {
 		request.setAttribute("readDocument", readDocument);
 		request.setAttribute("prevDocument", prevDocument);
 		request.setAttribute("nextDocument", nextDocument);
+		request.setAttribute("readComment", readComment);
 		
-		return "bbs/document_read";	
+		return "bbs/qna_read";	
 		
 	}
 }

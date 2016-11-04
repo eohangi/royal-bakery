@@ -1,4 +1,4 @@
-package project.jsp.bakery.controller.bbs;
+package project.jsp.bakery.controller.bbsNotice;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -17,75 +17,62 @@ import project.jsp.bakery.service.impl.DocumentServiceImpl;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.WebHelper;
 
-@WebServlet("/bbs/document_edit.do")
-public class DocumentEdit extends BaseController {
-	private static final long serialVersionUID = 5432123621005890965L;
-	
+@WebServlet("/bbs/notice_read.do")
+public class NoticeRead extends BaseController {
+	private static final long serialVersionUID = 6385945489516499024L;
+
 	/** 1) 사용하고자 하는 핼퍼 객체 선언 */
 	Logger logger;
 	SqlSession sqlSession;
 	WebHelper web;
-	BBSCommon bbs;
 	DocumentService documentService;
-	
+
 	@Override
-	public String doRun(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-			
-		
-		//** 2 사용하고자 하는 핼퍼+서비스 객체 생성 *//*
+	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// ** 2 사용하고자 하는 핼퍼+서비스 객체 생성 *//*
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
-		bbs = BBSCommon.getInstance();
 		documentService = new DocumentServiceImpl(sqlSession, logger);
-		
-		//** 3 게시판 카테고리 값을 받아서 view에 전달 *//*
-		String category = web.getString("category");
-		request.setAttribute("category", category);
-		
-		//** 4 존재하는 게시판인지 판별하기 *//*
-		try {
-			String bbsName = bbs.getBbsName(category);
-			request.setAttribute("bbsName", bbsName);
-		} catch (Exception e) {
-			sqlSession.close();
-			web.redirect(null, e.getLocalizedMessage());
-			return null;
-		}
-		
+
 		/** 글 번호 파라미터 받기 */
 		int documentId = web.getInt("document_id");
 		logger.debug("documentId=" + documentId);
-		
+
 		if (documentId == 0) {
 			web.redirect(null, "글 번호가 지정되지 않았습니다.");
 			sqlSession.close();
 			return null;
 		}
-		
+
 		// 파라미터를 Beans 로 묶기
 		Document document = new Document();
 		document.setId(documentId);
-		document.setCategory(category);
-		
+		document.setCategory("notice");
+
 		/** 게시물 일련번호를 사용한 데이터 조회 */
 		Document readDocument = null;
-				
+		Document prevDocument = null;
+		Document nextDocument = null;
+
 		try {
 			readDocument = documentService.selectDocument(document);
+			prevDocument = documentService.selectPrevDocument(document);
+			nextDocument = documentService.selectNextDocument(document);
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());
 			return null;
 		} finally {
 			sqlSession.close();
 		}
-		
+
 		/** 읽은 데이터를 view에게 전달한다. */
 		request.setAttribute("readDocument", readDocument);
-		
-		
-		return "bbs/document_edit";	
-		
+		request.setAttribute("prevDocument", prevDocument);
+		request.setAttribute("nextDocument", nextDocument);
+
+		return "bbs/notice_read";
+
 	}
 }

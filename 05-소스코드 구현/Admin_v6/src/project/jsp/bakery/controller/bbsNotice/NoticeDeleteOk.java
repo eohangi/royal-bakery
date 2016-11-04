@@ -1,4 +1,4 @@
-package project.jsp.bakery.controller.bbs;
+package project.jsp.bakery.controller.bbsNotice;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -19,15 +19,14 @@ import project.jsp.helper.BaseController;
 import project.jsp.helper.UploadHelper;
 import project.jsp.helper.WebHelper;
 
-@WebServlet("/bbs/document_delete_ok.do")
-public class DocumentDeleteOk extends BaseController {
-	private static final long serialVersionUID = -4791807590110054126L;
-
+@WebServlet("/bbs/notice_delete_ok.do")
+public class NoticeDeleteOk extends BaseController {
+	private static final long serialVersionUID = -699149227726897668L;
+	
 	/** 사용하고자 하는 핼퍼 객체 선언 */
 	Logger logger;
 	SqlSession sqlSession;
 	WebHelper web;
-	BBSCommon bbs;
 	UploadHelper upload;
 	DocumentService documentService;
 	
@@ -39,24 +38,12 @@ public class DocumentDeleteOk extends BaseController {
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
-		bbs = BBSCommon.getInstance();
 		upload = UploadHelper.getInstance();
 		documentService = new DocumentServiceImpl(sqlSession, logger);
 		
-		/** 게시판 카테고리 값을 받아서 뷰에 전달 */
-		String category = web.getString("category");
-		request.setAttribute("category", category);
 		
-		/** 존재하는 게시판인지 판별 */
-		try {
-			String bbsName = bbs.getBbsName(category);
-			request.setAttribute("bbsName", bbsName);
-		} catch (Exception e) {
-			sqlSession.close();
-			web.redirect(null, e.getLocalizedMessage());
-			return null;
-		}
 		
+
 		/** 게시글 번호와 비밀번호 받기 */
 		int documentId = web.getInt("document_id");
 		String writerPw = web.getString("writer_pw");
@@ -73,7 +60,7 @@ public class DocumentDeleteOk extends BaseController {
 		/** 파라미터를 Beans로 묶기 */
 		Document document = new Document(); // 게시글 데이터 삭제용
 		document.setId(documentId);
-		document.setCategory(category);
+		document.setCategory("notice");
 		document.setWriterPw(writerPw);
 		
 		/** 데이터 삭제 처리 */
@@ -97,8 +84,8 @@ public class DocumentDeleteOk extends BaseController {
 			sqlSession.close();
 		}
 		/** 페이지 이동 */
-		String url = "%s/bbs/document_list.do?category=%s";
-		url = String.format(url, web.getRootPath(), category);
+		String url = "%s/bbs/notice_list.do";
+		url = String.format(url, web.getRootPath());
 		
 		web.redirect(url, "삭제되었습니다.");
 		

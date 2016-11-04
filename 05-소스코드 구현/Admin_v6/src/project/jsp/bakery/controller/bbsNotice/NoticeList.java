@@ -1,4 +1,4 @@
-package project.jsp.bakery.controller.bbs;
+package project.jsp.bakery.controller.bbsNotice;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,20 +20,18 @@ import project.jsp.helper.BaseController;
 import project.jsp.helper.PageHelper;
 import project.jsp.helper.WebHelper;
 
-@WebServlet("/bbs/document_list.do")
-public class DocumentList extends BaseController {
-	private static final long serialVersionUID = -1406637488388369047L;
-
+@WebServlet("/bbs/notice_list.do")
+public class NoticeList extends BaseController {
+	private static final long serialVersionUID = 7292980119884032404L;
+	
 	/** 1) 사용하고자 하는 핼퍼 객체 선언 */
 	Logger logger;
 	SqlSession sqlSession;
 	WebHelper web;
-	BBSCommon bbs;
 	DocumentService documentService;
 	PageHelper pageHelper;
-	
-	
 	@Override
+	
 	public String doRun(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 			
@@ -42,31 +40,18 @@ public class DocumentList extends BaseController {
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
-		bbs = BBSCommon.getInstance();
 		documentService = new DocumentServiceImpl(sqlSession, logger);
 		pageHelper = PageHelper.getInstance();
 		
-		//** 3 게시판 카테고리 값을 받아서 view에 전달 *//*
-		String category = web.getString("category");
-		request.setAttribute("category", category);
-		
-		//** 4 존재하는 게시판인지 판별하기 *//*
-		try {
-			String bbsName = bbs.getBbsName(category);
-			request.setAttribute("bbsName", bbsName);
-		} catch (Exception e) {
-			sqlSession.close();
-			web.redirect(null, e.getLocalizedMessage());
-			return null;
-		}
 		
 		/** 조회할 정보에 대한 Beans 생성 */
 		// 검색어
 		String keyword = web.getString("keyword");
 		
 		Document document = new Document();
-		document.setCategory(category);
 		
+		
+		document.setCategory("notice");
 		// 현재 페이지 수 --> 기본값은 1페이지로 설정함
 		int page = web.getInt("page", 1);
 		
@@ -96,6 +81,11 @@ public class DocumentList extends BaseController {
 		} finally {
 			sqlSession.close();
 		}
+		
+		
+		
+		
+		request.setAttribute("category", document);
 		/** 조회 결과를 View에 전달 */
 		request.setAttribute("documentList", documentList);
 		// 사용자가 입력한 검색어를 View에 되돌려 준다.
@@ -103,7 +93,7 @@ public class DocumentList extends BaseController {
 		// 페이지 번호 계산 결과를 view에 전달
 		request.setAttribute("pageHelper", pageHelper);
 		
-		return "bbs/document_list";	
+		return "bbs/notice_list";	
 		
 	}
 }

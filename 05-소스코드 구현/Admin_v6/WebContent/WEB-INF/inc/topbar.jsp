@@ -55,10 +55,8 @@ $(function(){
 				</ul></li>
 			<li><a href="4Admin_com_info.jsp">게시판관리</a>
 				<ul class="list-unstyled">
-					<li><a href="4Admin_com_info.jsp">회사소개 관리</a></li>
-					<li><a href="4Admin_QA.jsp">문의사항</a></li>
-					<li><a href="4Admin_information.jsp">공지사항 관리</a></li>
-					<li><a href="4Admin_banner.jsp">배너 관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/bbs/qna_list.do">문의사항</a></li>
+					<li><a href="${pageContext.request.contextPath}/bbs/notice_list.do">공지사항 관리</a></li>
 				</ul></li>
 		</ul>
 	</div>

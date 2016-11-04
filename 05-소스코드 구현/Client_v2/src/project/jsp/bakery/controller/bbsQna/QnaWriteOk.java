@@ -118,6 +118,7 @@ public class QnaWriteOk extends BaseController {
 		document.setContent(content);
 		document.setIpAddr(ipAddr);
 		document.setMemberId(memberId);
+		document.setChecks("답변대기");
 		logger.debug("document >> " + document.toString());
 		
 		/** 서비스를 통한 게시물 저장 */

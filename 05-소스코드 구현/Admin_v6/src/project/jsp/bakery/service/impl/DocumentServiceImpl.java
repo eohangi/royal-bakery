@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.Logger;
 
+import project.jsp.bakery.model.Comment;
 import project.jsp.bakery.model.Document;
 import project.jsp.bakery.service.DocumentService;
 
@@ -200,4 +201,57 @@ public class DocumentServiceImpl implements DocumentService {
 		return result;
 	}
 
+	@Override
+	public List<Document> selectMyDocumentList(Document document) throws Exception {
+		List<Document> result = null;
+
+		try {
+			result = sqlSession.selectList("DocumentMapper.selectMyDocumentList", document);
+			if (result == null) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			throw new Exception("조회된 글 목록이 없습니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("글 목록 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public int selectMyDocumentCount(Document document) throws Exception {
+		int result = 0;
+
+		try {
+			// 게시물 수가 0건인 경우도 있으므로,
+			// 결과값이 0인 경우에 대한 예외를 발생시키지 않는다.
+			result = sqlSession.selectOne("DocumentMapper.selectMyDocumentCount", document);
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("게시물 수 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+	
+	
+	//문서 참조관계 해제
+	@Override
+	public void updateDocumentMemberOut(Document document) throws Exception {
+		try{
+			//게시글을 작성한 적이 없는 회원도 있을 수 있기 때문에,
+			//NullPointException을 발생시키지 않는다.
+		sqlSession.update("DocumentMapper.updateDocumentMemberOut", document);
+		} catch(Exception e) {
+			logger.error(e.getLocalizedMessage());
+			e.printStackTrace();
+			throw new Exception("참조관계 해제에 실패했습니다. from docu impl");
+		}finally {
+			sqlSession.commit();
+		}
+	}
+
+	
 }

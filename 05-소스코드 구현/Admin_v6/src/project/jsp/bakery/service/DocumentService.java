@@ -2,6 +2,7 @@ package project.jsp.bakery.service;
 
 import java.util.List;
 
+import project.jsp.bakery.model.Comment;
 import project.jsp.bakery.model.Document;
 /**
  * 게시물 관련 기능을 제공하기 위한 Service 계층
@@ -83,4 +84,20 @@ public interface DocumentService {
 	 * @throws Exception
 	 */
 	public void updateDocument(Document document) throws Exception;
+	
+	
+	
+	public List<Document> selectMyDocumentList(Document document) throws Exception; 
+	
+	public int selectMyDocumentCount(Document document) throws Exception;
+	
+	/***
+	 * 회원과의 게시물의 참조관계를 해제한다.
+	 * @param document - 게시물 데이터
+	 * @throws Exception
+	 */
+	
+	public void updateDocumentMemberOut(Document document) throws Exception;
+	
+	
 }
