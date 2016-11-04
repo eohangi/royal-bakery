@@ -24,10 +24,10 @@ DROP TABLE IF EXISTS `comment`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '고유번호\n',
-  `Member_id` int(11) NOT NULL COMMENT '관리자 고유번호',
+  `Member_id` int(11) DEFAULT NULL COMMENT '관리자 고유번호',
   `co_content` text NOT NULL COMMENT '답변 내용',
   `co_edit_date` datetime NOT NULL COMMENT '수정일',
-  `Document_id` int(11) NOT NULL,
+  `Document_id` int(11) DEFAULT NULL,
   `co_reg_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_comment_Member1_idx` (`Member_id`),
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-21 16:27:15
+-- Dump completed on 2016-11-04  9:29:05

@@ -32,12 +32,12 @@ CREATE TABLE `document` (
   `edit_date` datetime NOT NULL COMMENT '수정일',
   `ip_addr` varchar(255) NOT NULL COMMENT '아이피 주소',
   `category` varchar(45) NOT NULL COMMENT '질문/ 공지사항',
-  `check` char(1) DEFAULT NULL COMMENT '답변 유무\n\n기본값 N',
-  `Member_id` int(11) NOT NULL,
+  `checks` char(1) DEFAULT NULL COMMENT '답변 유무\n\n기본값 N',
+  `Member_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_Document_Member1_idx` (`Member_id`),
   CONSTRAINT `fk_Document_Member1` FOREIGN KEY (`Member_id`) REFERENCES `member` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +46,7 @@ CREATE TABLE `document` (
 
 LOCK TABLES `document` WRITE;
 /*!40000 ALTER TABLE `document` DISABLE KEYS */;
+INSERT INTO `document` VALUES (1,'확인중','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','안녕','<p>안녕</p>\r\n','2016-11-02 18:23:38','2016-11-02 18:23:58','0:0:0:0:0:0:0:1','qna',NULL,NULL),(2,'확인중','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','asdf','<p>asdf</p>\r\n','2016-11-02 18:24:58','2016-11-02 18:25:40','0:0:0:0:0:0:0:1','qna',NULL,NULL);
 /*!40000 ALTER TABLE `document` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-21 16:27:16
+-- Dump completed on 2016-11-04  9:29:06
