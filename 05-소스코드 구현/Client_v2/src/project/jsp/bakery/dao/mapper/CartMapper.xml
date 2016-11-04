@@ -106,14 +106,14 @@
 		id ASC
 	</select>
 
-	<insert id="insertCartItem" parameterType="project.jsp.bakery.model.cart"
+<insert id="insertCartItem" parameterType="project.jsp.bakery.model.cart"
 		useGeneratedKeys="true" keyProperty="cart">
 		INSERT INTO cart (pro_price,pro_count, cu_text,
-		cu_price, Order_id,
+		cu_price, cu_count,
 		edit_date, reg_date, member_id)
 		VALUES
 		( 0,0,#{cuText},
-		#{cuPrice}, #{OrderId},
+		#{cuPrice}, 1,
 		now(), now(),
 		<choose>
 			<when test="memberId == 0">
@@ -125,6 +125,7 @@
 		</choose>
 		)
 	</insert>
+	
 	
 	<!-- 사이드 장바구니에 제품 넣기 -->
 	<insert  id="insertProductItem" parameterType="project.jsp.bakery.model.cart"

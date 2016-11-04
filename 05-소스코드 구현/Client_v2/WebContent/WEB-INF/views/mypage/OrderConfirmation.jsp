@@ -23,7 +23,7 @@
 				<hr />
 				<!-- 가입폼 시작 -->
 				<form class="form-horizontal" id="myform">
-					<p>${readOrder.orName}고객님의주문이 정상적으로 처리 되었습니다.</p>
+					<p>${readOrder.orName}고객님의주문이정상적으로 처리 되었습니다.</p>
 					<p>Royal Bakery를 선택해 주셔서 감사합니다.</p>
 					<hr />
 					<div class="form-group row">
@@ -41,7 +41,7 @@
 									<c:choose>
 										<c:when test="${fn:length(cartlist) > 0}">
 											<c:forEach var="cart" items="${cartlist}">
-												<tr align="center">	
+												<tr align="center">
 													<td width="18%" class="text-center">${cart.proName}</td>
 													<td width="18%" class="text-center">${cart.proCount}</td>
 													<td width="18%" class="text-center">${cart.proPrice}</td>
@@ -54,11 +54,11 @@
 											<c:forEach var="cart" items="${cartlist2}">
 												<tr align="center">
 													<td width="18%" class="text-center">${cart.cuText}</td>
-													<td width="18%" class="text-center"></td>
-													<td width="18%" class="text-center">${cart.cuPrice}</td>
-												</tr>
+													<td width="18%" class="text-center">${cart.cuCount}</td>
+													<td width="18%" class="text-center">${cart.cuPrice}</tr>
 											</c:forEach>
-										</c:when>
+		
+																				</c:when>
 										
 									</c:choose>
 								</tbody>
@@ -138,9 +138,12 @@
 					<div class="button">
 						<!-- 들여쓰기 -->
 						<button type="button" class="btn btn-primary">
-							<a href="${pageContext.request.contextPath}/MainIndex.do">메인으로</a></button>
-						<button type="button" class="btn btn-danger"
-							><a href="${pageContext.request.contextPath}/product/productBread.do">계속 쇼핑하기</a></button>
+							<a href="${pageContext.request.contextPath}/MainIndex.do">메인으로</a>
+						</button>
+						<button type="button" class="btn btn-danger">
+							<a
+								href="${pageContext.request.contextPath}/product/productBread.do">계속 쇼핑하기</a>
+						</button>
 						</button>
 					</div>
 

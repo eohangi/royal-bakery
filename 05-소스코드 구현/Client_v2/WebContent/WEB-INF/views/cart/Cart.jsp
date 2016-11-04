@@ -75,7 +75,7 @@
 												<tr align="center">
 													<td><input type="checkbox" value="담기"></td>
 													<td width="18%" class="text-center">${cart.cuText}</td>
-													<td width="18%" class="text-center"></td>
+													<td width="18%" class="text-center">${cart.cuCount}</td>
 													<td width="18%" class="text-center">${cart.cuPrice}</td>
 												</tr>
 											</c:forEach>

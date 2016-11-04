@@ -130,7 +130,7 @@ public class CustomPageOK extends BaseController {
 
 	
 		///////////
-		String sum = list + list2 + list3 + list4 + list5 +"_케이크/" + comment;
+		String sum = list +"/"+ list2 +"/"+ list3 +"/"+ list4 +"/"+ list5 +"케이크/" + comment;
 	
 		/////////////
 
