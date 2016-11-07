@@ -28,7 +28,24 @@ public interface AdminService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Member> selectAllMember(List<Member> member) throws Exception;
+	public List<Member> selectAllMember(Member member) throws Exception;
+	
+	/**
+	 *  총멤버인원 계산해서 페이지헬퍼구현하게
+	 * @param member
+	 * @return 
+	 * @throws Exception
+	 */
+	public int CountMember (Member member) throws Exception;
+	
+	
+	/***
+	 * 그...멤버 한명 정보 조회랑 탈퇴기능하려고
+	 * @param keyword - 뭐든 받는다 이름 혹은 아이디 전번 이메일 폰번호 같은거
+	 * @return - 조회된 멤버 있으면 그멤버 모든정보 돌려드림 
+	 * @throws Exception
+	 */
+	public Member HandleMember (Member member) throws Exception;
 	
 }
 	

@@ -51,8 +51,23 @@
 					$("#memberlist").append(html);
 				});
 	}
+	function get_mem(){
+		$("#search").ajaxForm(json){
+			var temp = Handlebars.compile($("#item").html());
+			var html2 = temp(json);
+			$("#member").append(html2);
+			$("#keyword").trigger('reset');
+		}
+				
+		
+	}
+	
 	$(function() {
 		get_list(); //페이지가 열림과 동시에 호출된다.
+		$("#keyword").click(function(){
+			get_mem();
+		});
+		
 	});
 </script>
 </head>
@@ -62,19 +77,59 @@
 		<div class="row">
 			<div class="header">
 				<div class="Search">
-					<form class="form-inline" method="post"
-						action="${pageContext.request.contextPath}/검색창 활성화 서브릿 주소">
+					<form class="form-inline" method="post" id="search"
+						action="${pageContext.request.contextPath}/SEARCHMEMBER.do">
 						<fieldset>
 							<div class="form-group">
-								<label class="sr-only" for="search">검색할 단어를 입력하세요.</label> <input
-									type="search" class="form-control" name="search">
+								<label class="sr-only" for="search">검색할 회원아이디를 입력하세요</label> <input
+									type="search" class="form-control" id="keyword" name="keyword">
 							</div>
 							<button type="submit" class="btn btn-primary">검색</button>
 						</fieldset>
 					</form>
-
+				<c:choose>
+					<c:when test="${resultmember =! null}">
+				<!-- 검색 후 노출될 에이잭스 -->
+				<div class="table-responsive-ajax">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<td class="text-center">생년월일</td>
+							<td class="text-center">아이디</td>
+							<td class="text-center">이름</td>
+							<td class="text-center">성별</td>
+							<td class="text-center">연락처</td>
+							<td class="text-center">가입일자</td>
+							<td class="text-center">구매내역</td>
+							<td class="text-center">문의내역</td>
+							<td class="text-center">회원탈퇴</td>
+						</tr>
+					</thead>
+					<tbody id="member">
+						<script id="item" type="text/x-handlebars-template">
+					{{#each resultmember}}						
+							<tr>
+								<td class="text-center">{{birthdate}}</td>
+								<td class="text-center">{{mem_id}}</td>
+								<td class="text-center">{{mem_name}}</td>
+								<td class="text-center">{{gender}}</td>
+								<td class="text-center">{{phone_no}}</td>
+								<td class="text-center">{{reg_date}}</td>
+								<td class="text-center">
+								<a href="">구매내역</a></td>
+								<td class="text-center">
+								<a href="">문의내역</a></td>
+								<td class="text-center">회원탈퇴</td>
+						</tr>
+					{{/each}}
+						</script>
+					</tbody>
+				</table>
+			</div>
+				<!-- //검색 -->
+				</c:when>
+				</c:choose>
 				</div>
-				<!-- <<<<<<<<<<<<<<<<<<< 제품 등록 서블릿 경로 >>>>>>>>>>>>>>>>>>>> -->
 			</div>
 			<!-- 페이지 내용 영역 -->
 			<div class="table-responsive">
