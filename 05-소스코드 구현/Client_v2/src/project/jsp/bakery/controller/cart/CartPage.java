@@ -1,7 +1,9 @@
 package project.jsp.bakery.controller.cart;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Custom;
@@ -59,6 +63,10 @@ public class CartPage extends BaseController {
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		/** (2) 페이지 형식 지정 + 사용하고자 하는 Helper+Service 객체 생성 */
+		// 페이지 형식을 JSON으로 설정한다.
+		response.setContentType("application/json");
+
 		/** (2) 사용하고자 하는 Helper+Service 객체 생성 */
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		web = WebHelper.getInstance(request, response);
@@ -76,19 +84,19 @@ public class CartPage extends BaseController {
 		// 로그인 중이라면 이 페이지를 동작시켜서는 안된다.
 		if (web.getSession("loginInfo") == null) {
 			sqlSession.close();
-			web.redirect(web.getRootPath() + "/member/Login.do", "로그인을 먼저 해주세요.");
+			web.printJsonRt("Not_Login");
 			return null;
 		}
-		
 
 		System.out.println("loginInfo=" + loginInfo);
 
 		cart cart = new cart();
+		cart.setMemberId(web.getInt("memberId"));
 		cart.setMemberId(loginInfo.getId());
-	
+
 		System.out.println(cart);
 		List<cart> cartlist = null;
-	/*	System.out.println("cartlist=" + cartlist);*/
+		/* System.out.println("cartlist=" + cartlist); */
 		List<cart> cartlist2 = null;
 		try {
 			cartlist = cartService.selectCartProMemberId(cart);
@@ -96,7 +104,7 @@ public class CartPage extends BaseController {
 			cartlist2 = cartService.selectCartCuMemberId(cart);
 		} catch (Exception e) {
 			// TODO: handle exception
-			web.redirect(null, e.getLocalizedMessage());
+			web.printJsonRt("Data_fail");
 			return null;
 		} finally {
 			sqlSession.close();
@@ -113,12 +121,24 @@ public class CartPage extends BaseController {
 
 		request.setAttribute("loginInfo", loginInfo.getId());
 
-		request.setAttribute("cartlist", cartlist);
-		request.setAttribute("cartlist2", cartlist2);
-		String view = "cart/Cart";
+	/*	request.setAttribute("cartlist", cartlist);
+		request.setAttribute("cartlist2", cartlist2);*/
 
-		// "/WEB-INF/views/index.jsp"파일을 View로 사용한다.
-		return view;
+		// ** 처리 결과를 JSON으로 출력하기 *//*
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("rt", "OK");
+		data.put("item", cartlist);
+		data.put("item2", cartlist2);
+
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.writeValue(response.getWriter(), data);
+		
+		/*
+		 String view = "cart/Cart";
+		 * 
+		 * // "/WEB-INF/views/index.jsp"파일을 View로 사용한다. return view;
+		 */
+		return null;
 	}
 
 }

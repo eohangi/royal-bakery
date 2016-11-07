@@ -6,10 +6,68 @@
 
 <!DOCTYPE html>
 <%@ include file="/WEB-INF/inc/head.jsp"%>
+
 </head>
 <body>
 
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
+
+	<script id="cart_item_tmpl" type="text/x-handlebars-template">								
+								{{#each item}}		
+								
+									<tr align="center">
+										<td width="18%" class="text-center">{{proName}}</td>
+										<td width="18%" class="text-center">{{proCount}}</td>
+										<td width="18%" class="text-center">{{proPrice}}</td>
+									</tr>
+						
+								{{/each}}
+								{{#each item2}}	
+								
+									<tr align="center">
+										<td width="18%" class="text-center">{{cuText}}</td>
+										<td width="18%" class="text-center">{{cuCount}}</td>
+										<td width="18%" class="text-center">{{cuPrice}}</td>
+									</tr>
+						
+								{{/each}}
+
+	</script>
+	<script type="text/javascript">
+		/* 새로운 메서드 정의 */
+
+
+		/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 */
+		function get_list() {
+			$.get("../cart/Cart.do", {
+				memberId : 0
+			}, function(json) {
+				console.log("hello");
+				if (json.rt == "Not_Login") {
+					alert("로그인이 필요합니다.");
+					window.location = "../member/Login.do";
+					return false;
+				}
+				if (json.rt == "Data_fail") {
+					alert("장바구니 조회에 실패하였습니다.");
+					return false;
+				}
+				// JSON배열과 템플릿의 결합
+				// var tmpl = $("#dept_item_tmpl").tmpl(req.item);
+				// 미리 준비한 HTML틀을 읽어온다.
+				var template = Handlebars.compile($("#cart_item_tmpl").html());
+				// Ajax를 통해서 읽어온 JSON을 템플릿에 병합한다.
+				var html = template(json);
+				// #result에 읽어온 내용을 추가한다.
+				$("#cart_list_body").html(html);
+			});
+		}
+
+		$(function() {
+			get_list();
+
+		});
+	</script>
 
 	<div class="container">
 
@@ -49,40 +107,15 @@
 							<table class="table table-hover">
 								<thead style="background-color: #eee">
 									<tr align="center">
-										<td width="10%">전체선택<br /> <input type="checkbox"
-											value="담기"></td>
-										<td width="18%" align="center">상 품</td>
-										<td width="18%" align="center">수 량</td>
-										<td width="18%" align="center">가 격</td>
+										<td width="32%" align="center">상 품</td>
+										<td width="32%" align="center">수 량</td>
+										<td width="32%" align="center">가 격</td>
 									</tr>
 								</thead>
-								<tbody>
-									<c:choose>
-										<c:when test="${fn:length(cartlist) > 0}">
-											<c:forEach var="cart" items="${cartlist}">
-												<tr align="center">
-													<td><input type="checkbox" value="담기"></td>
-													<td width="18%" class="text-center">${cart.proName}</td>
-													<td width="18%" class="text-center">${cart.proCount}</td>
-													<td width="18%" class="text-center">${cart.proPrice}</td>
-												</tr>
-											</c:forEach>
-										</c:when>
-									</c:choose>
-									<c:choose>
-										<c:when test="${fn:length(cartlist2) > 0}">
-											<c:forEach var="cart" items="${cartlist2}">
-												<tr align="center">
-													<td><input type="checkbox" value="담기"></td>
-													<td width="18%" class="text-center">${cart.cuText}</td>
-													<td width="18%" class="text-center">${cart.cuCount}</td>
-													<td width="18%" class="text-center">${cart.cuPrice}</td>
-												</tr>
-											</c:forEach>
-										</c:when>
-									
-									</c:choose>
+								<tbody id="cart_list_body">
+									<!-- Ajax로 로드한 결과가 표시될 곳 -->
 								</tbody>
+
 							</table>
 						</li>
 					</ul>
@@ -90,9 +123,11 @@
 					<ul class="cart_button" style="height: 40px;">
 
 						<p class="continue pull-right btn-lg" id="continue">
-							
-								<button class="btn btn-default"> <a href="${pageContext.request.contextPath}/mypage/OrderComplete.do" >주문하기</a></button>
-								
+							<button class="btn btn-default">
+								<a
+									href="${pageContext.request.contextPath}/mypage/OrderComplete.do">주문하기</a>
+							</button>
+
 						</p>
 
 						<p class="orderall pull-right btn-lg" id="orderall">
@@ -100,10 +135,7 @@
 								onclick="location.href='bread.jsp'">
 						</p>
 
-						<p class="remove pull-left btn-lg" id="remove">
-							<input type="button" class="btn btn-default" value="선택 삭제"
-								onclick="location.href='#'">
-						</p>
+
 
 					</ul>
 					<!-- /페이지에 들어갈 2가지 메뉴시작-->

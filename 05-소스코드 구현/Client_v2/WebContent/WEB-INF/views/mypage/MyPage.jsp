@@ -71,7 +71,7 @@
 							</a>
 						</li>
 						<li class="mybox " style="width:22%;" id="mybox" >
-						<a href="${pageContext.request.contextPath}/cart/Cart.do" class="a">
+						<a href="${pageContext.request.contextPath}/cart/CartView.do" class="a">
 							<p>
 								<img style="width: 40px; height: 40px;"
 									src="${pageContext.request.contextPath}/assets/img/search.png">
