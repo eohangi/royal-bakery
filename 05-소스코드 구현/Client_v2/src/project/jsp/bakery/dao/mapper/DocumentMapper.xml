@@ -25,10 +25,10 @@
 	<insert id="insertDocument" parameterType="project.jsp.bakery.model.Document"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO document (
-			category, writer_name, subject, content, reg_date, edit_date, ip_addr,
+			category, writer_name, subject, content, reg_date, edit_date, ip_addr, checks,
 			Member_id, writer_pw 
 		) VALUE (
-			#{category}, #{writerName}, #{subject}, #{content}, now(), now(), #{ipAddr},
+			#{category}, #{writerName}, #{subject}, #{content}, now(), now(), #{ipAddr}, #{checks},
 			
 			<choose>
 				<when test="memberId == 0">

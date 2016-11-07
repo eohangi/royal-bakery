@@ -59,6 +59,7 @@ public class QnaList extends BaseController {
 		document.setContent(keyword);
 		document.setCategory("qna");
 		
+				
 		/** 게시글 목록 조회 */
 		int totalCount = 0;
 		List<Document> documentList = null;

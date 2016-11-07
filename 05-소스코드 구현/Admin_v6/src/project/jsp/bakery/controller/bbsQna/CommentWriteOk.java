@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Comment;
+import project.jsp.bakery.model.Document;
 import project.jsp.bakery.service.CommentService;
 import project.jsp.bakery.service.impl.CommentServiceImpl;
 import project.jsp.helper.BaseController;
@@ -33,23 +34,34 @@ public class CommentWriteOk extends BaseController {
 		//** 객체 생성 *//*
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
-		WebHelper.getInstance(request, response);
+		web = WebHelper.getInstance(request, response);
 		commentService = new CommentServiceImpl(sqlSession, logger);
 		
 		//** 파라미터 받기 *//*
-		int documentId = web.getInt("Document_id");
+		
+		int documentId = 0;
 		int memberId = web.getInt("Member_id");
-		String coContent = web.getString("co_content");
+		String content = web.getString("content");
 		
+		Document docInfo = (Document) web.getSession("docInfo");
+			Document temp = new Document();
+			temp.setId(documentId);
+			
+			documentId = docInfo.getId();
+			
+	
 		// 파라미터 로그로 확인
-		logger.debug("Document_id=" + documentId);
+		logger.debug("document_id=" + documentId);
 		logger.debug("Member_id=" + memberId);
-		logger.debug("co_content=" + coContent);
+		logger.debug("co_content=" + content);
 		
+				
 		//** 파라미터를 빈즈로 묶기*//*
+		
+		
 		Comment comment = new Comment();
 		comment.setDocumentId(documentId);
-		comment.setCoContent(coContent);
+		comment.setCoContent(content);
 		comment.setMemberId(1);
 		
 		/** 서비스를 통한 게시물 저장 */

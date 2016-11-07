@@ -62,6 +62,7 @@ public class QnaRead extends BaseController {
 		Comment comment = new Comment();
 		comment.setDocumentId(documentId);
 		comment.setMemberId(1);
+		
 		/** 게시물 일련번호를 사용한 데이터 조회 */
 		Document readDocument = null;
 		Document prevDocument = null;

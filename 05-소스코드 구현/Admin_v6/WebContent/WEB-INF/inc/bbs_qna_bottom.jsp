@@ -5,7 +5,7 @@
 <div class="clearfix">
 	<!-- 검색 폼  -->
  	<div class="pull-left">
-		<form method="get" action="${pageContext.request.contextPath}/bbs.notice/document_list.do" style="width: 200px">
+		<form method="get" action="${pageContext.request.contextPath}/bbs/qna_list.do" style="width: 200px">
 			
 			<div class="input-group">
 				<input type="text" name="keyword" class="form-control" 
