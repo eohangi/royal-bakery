@@ -66,14 +66,14 @@ table.table {
 							</div>
 							<hr style="margin:5px" />
 							<div class="over" id="over">
-								<div class="img" id="img">
+								<div class="img" id="img" style="opecity:1; position:absolute">
 										{{#if (is_null proImg)}}
 											<img src="${pageContext.request.contextPath}/asset/img/no_image.jpg" width="100%" />	
 										{{else}}	
 											<img src="../download.do?file={{{proImg}}}" width="100%" />	
 										{{/if}}		
 								</div>
-								<div class="detail" id="detail" style="width:100%">
+								<div class="detail" id="detail" style="position:absolute; index:100; width:100%">
 									<div class="info" style="margin:0; padding-top:20%; width:100%; vertical-align:middle;">
 										<div class="info_2" id="info_2" style="display:inline-block; width:100%;" >
 											<div class="content" id="content" style="padding-right:5px;white-space: normal; word-wrap:nomal; overflow: hidden;
@@ -240,7 +240,7 @@ table.table {
 							$(this).find("#detail").css("height", img_height);
 			
 							//hover기능 구현
-							$(this).find("#img").hide();
+							$(this).find("#img").css("opecity","0");
 							$(this).find("#detail").fadeIn(800);
 						});
 			
@@ -249,7 +249,7 @@ table.table {
 							console.log("two");
 							/*마우스 커서가 빠져나감*/
 							$(this).find("#detail").hide();
-							$(this).find("#img").fadeIn(800);
+							$(this).find("#img").css("opecity","1");
 						});
 			
 			
