@@ -139,16 +139,32 @@ public class OrderCompleteOk extends BaseController {
 		order.setOrType(paytype);
 		order.setOrName(OrderName);
 		order.setOrTel(tel);
-		order.setOrTitle("제품 1");
+		
 		order.setOrTime(time);
 		
 		List<cart> cartlist = null;
+		List<cart> cartlist2 = null;
 		Product item = null;
-		
+		String OrName =null;
 		try {
 			cartlist = cartService.selectCartProMemberId(cart);
+			cartlist2 = cartService.selectCartCuMemberId(cart);
 			int a = cartlist.size();
-			System.out.println("select 품목 갯수 : "+a);
+			int b = cartlist2.size();
+			int c= a+b;
+			System.out.println("일반 제품 select 품목 갯수 : "+a);
+			System.out.println("주문 제품 select 품목 갯수 : "+b);
+			System.out.println("총 select 품목 갯수 : "+c);
+			if(a !=0){
+				OrName = cartlist.get(0).getProName()+"외"+c+"개";
+				
+			}else if(b !=0){
+				OrName = cartlist2.get(0).getProName()+" 외 "+c+" 개";
+			}else if(a!=0&&b!=0){
+				OrName = cartlist.get(0).getProName()+" 외 "+c+" 개";
+			}
+			System.out.println("주문 취합된 이름 = "+OrName);
+			order.setOrTitle(OrName);
 			int[] arrStock = new int[a];
 			String[] arrName = new String[a];
 			for (int i = 0; i < cartlist.size(); i++) {
