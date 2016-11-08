@@ -76,9 +76,9 @@
 	});//end function
 	
 	$(function(){
-		$(document).on('submit','#outok',function(e){
-			e.preventDefault();
-			var mem_id = $("#outok")
+		$(document).on("click","#outok",function(e){
+			var mem_id = $("#outok").val();
+			console.log("동적 클릭 이벤트 발생시 >>>>>>>>>>>>>>>>>>>>>>>>"+mem_id);
 			swal({
 				  title: "회원탈퇴",
 				  text: "정말 탈퇴시키겠습니까?",
@@ -156,7 +156,7 @@
 								<a href="">문의내역</a></td>
 								<td class="text-center">
 								<button type="submit" id="outok" name="outok" 
-								">회원탈퇴
+								value="{{resultmember.mem_id}}">회원탈퇴
 								</button></td>
 						</tr>
 						</script>

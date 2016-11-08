@@ -78,4 +78,6 @@
 <script
 	src="${pageContext.request.contextPath}/assets/plugins/handlebars/handlebars-v4.0.5.js"></script>
 
-
+<!-- 스윗알럿 -->
+<script src="${pageContext.request.contextPath}/assets/plugins/sweetalert/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/sweetalert/sweetalert.css">

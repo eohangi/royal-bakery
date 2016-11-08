@@ -57,6 +57,7 @@ public class AdminServiceImpl implements AdminService {
 			throw new Exception("이미 탈퇴한 회원 입니다.");
 		} catch (Exception e) {
 			sqlSession.rollback();
+			e.printStackTrace();
 			throw new Exception("회원탈퇴에 실패했습니다.");
 		} finally {
 			sqlSession.commit();

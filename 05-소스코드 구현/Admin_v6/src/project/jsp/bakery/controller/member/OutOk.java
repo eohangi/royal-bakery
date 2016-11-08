@@ -82,7 +82,6 @@ public class OutOk extends BaseController {
 			//참조관계 해제
 			documentService.updateDocumentMemberOut(document);
 			commentService.updateCommentMemberOut(comment);
-			/*commentService.updateCommentMemberOut(comment);*/
 			//탈퇴처리
 			memberService.deleteMember(member);
 		} catch (Exception e) {
