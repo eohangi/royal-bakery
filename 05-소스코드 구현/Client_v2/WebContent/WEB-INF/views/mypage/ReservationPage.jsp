@@ -54,7 +54,7 @@
 											<c:forEach var="cart" items="${cartlist2}">
 												<tr align="center">
 													<td width="18%" class="text-center">${cart.cuText}</td>
-													<td width="18%" class="text-center"></td>
+													<td width="18%" class="text-center">${cart.cuCount}</td>
 													<td width="18%" class="text-center">${cart.cuPrice}</td>
 												</tr>
 											</c:forEach>

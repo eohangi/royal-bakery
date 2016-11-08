@@ -51,6 +51,7 @@
 							</div>
 
 						</div>
+					</div>
 						<div class="form-group">
 							<label for="tel" class="col-md-2">연락처</label>
 							<div class="col-md-10">

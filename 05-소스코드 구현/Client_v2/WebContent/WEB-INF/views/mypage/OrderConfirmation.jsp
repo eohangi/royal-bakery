@@ -23,7 +23,7 @@
 				<hr />
 				<!-- 가입폼 시작 -->
 				<form class="form-horizontal" id="myform">
-					<p>${readOrder.orName}고객님의주문이정상적으로 처리 되었습니다.</p>
+					<p>${readOrder.orName}고객님의주문이정상적으로처리되었습니다.</p>
 					<p>Royal Bakery를 선택해 주셔서 감사합니다.</p>
 					<hr />
 					<div class="form-group row">
@@ -55,18 +55,19 @@
 												<tr align="center">
 													<td width="18%" class="text-center">${cart.cuText}</td>
 													<td width="18%" class="text-center">${cart.cuCount}</td>
-													<td width="18%" class="text-center">${cart.cuPrice}</tr>
+													<td width="18%" class="text-center">${cart.cuPrice}</td>
+												</tr>
 											</c:forEach>
-		
-																				</c:when>
-										
+
+										</c:when>
+
 									</c:choose>
 								</tbody>
 							</table>
 						</div>
 					</div>
 
-					
+
 					<div class="form-group">
 						<label for="OrderName" class="col-md-2">주문자</label>
 						<div class="col-md-10">
@@ -126,8 +127,8 @@
 								return object;
 							}
 							get_object("inputdata").innerHTML = DrawCode39Barcode(
-									get_object("inputdata").innerHTML, 1);
-							/* ]]> */
+								get_object("inputdata").innerHTML, 1);
+								/* ]]> */
 						</script>
 
 						<!-------------------------------------------------->
@@ -137,14 +138,14 @@
 
 					<div class="button">
 						<!-- 들여쓰기 -->
-						<button type="button" class="btn btn-primary">
-							<a href="${pageContext.request.contextPath}/MainIndex.do">메인으로</a>
-						</button>
-						<button type="button" class="btn btn-danger">
-							<a
-								href="${pageContext.request.contextPath}/product/productBread.do">계속 쇼핑하기</a>
-						</button>
-						</button>
+
+						<a href="${pageContext.request.contextPath}/MainIndex.do">
+							<button type="button" class="btn btn-primary">메인으로</button>
+						</a> <a
+							href="${pageContext.request.contextPath}/product/productBread.do">
+							<button type="button" class="btn btn-danger">계속쇼핑하기</button>
+						</a>
+
 					</div>
 
 

@@ -24,9 +24,9 @@
 				</c:otherwise>
 			</c:choose>
 
-			<li><a href="Story.jsp">Brand</a>
+			<li><a href="${pageContext.request.contextPath}/story.do">Brand</a>
 				<ul class="list-unstyled">
-					<li><a href="Story.jsp">Story</a></li>
+					<li><a href="${pageContext.request.contextPath}/story.do">Story</a></li>
 				</ul></li>
 			<li><a href="${pageContext.request.contextPath}/product/productBread.do">Product</a>
 				<ul class="list-unstyled">
