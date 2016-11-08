@@ -16,18 +16,20 @@
 								{{#each item}}		
 								
 									<tr align="center">
-										<td width="18%" class="text-center">{{proName}}</td>
-										<td width="18%" class="text-center">{{proCount}}</td>
-										<td width="18%" class="text-center">{{proPrice}}</td>
+										<td width="23%" class="text-center">{{proName}}</td>
+										<td width="23%" class="text-center">{{proCount}}</td>
+										<td width="23%" class="text-center">{{proPrice}}</td>
+										<td><a class="cart_delete btn btn-xs" id="cart-delete" data-id="{{{id}}}"  onclick=''><i class="glyphicon glyphicon-remove"></i></a></td>
 									</tr>
 						
 								{{/each}}
 								{{#each item2}}	
 								
 									<tr align="center">
-										<td width="18%" class="text-center">{{cuText}}</td>
-										<td width="18%" class="text-center">{{cuCount}}</td>
-										<td width="18%" class="text-center">{{cuPrice}}</td>
+										<td width="23%" class="text-center">{{cuText}}</td>
+										<td width="23%" class="text-center">{{cuCount}}</td>
+										<td width="23%" class="text-center">{{cuPrice}}</td>
+								<td><a class="cart_delete btn btn-xs" id="cart-delete" data-id="{{{id}}}"  onclick=''><i class="glyphicon glyphicon-remove"></i></a></td>
 									</tr>
 						
 								{{/each}}
@@ -35,7 +37,6 @@
 	</script>
 	<script type="text/javascript">
 		/* 새로운 메서드 정의 */
-
 
 		/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 */
 		function get_list() {
@@ -65,6 +66,28 @@
 
 		$(function() {
 			get_list();
+			//장바구니에서 품목 삭제
+			$(document).on(
+					"click",
+					".cart_delete",
+					function() {
+						//data-proId 속성의 값을 취득한다.
+						var id = $(this).data("id");
+						console.log(id);
+
+						//삭제 버튼을 눌렀을 때 삭제
+						$.get("../cart/CartItemDelete.do", {
+							id : id
+						}, function(json) {
+							//미리 준비한 HTML틀을 읽어온다.
+							var template = Handlebars.compile($("#cart_item_tmpl").html());
+							// Ajax를 통해서 읽어온 JSON을 템플릿에 병합한다.
+							var html = template(json);
+							// #result에 읽어온 내용을 추가한다.
+							$("#cart_list_body").html(html);
+						});
+
+					});
 
 		});
 	</script>
@@ -107,9 +130,10 @@
 							<table class="table table-hover">
 								<thead style="background-color: #eee">
 									<tr align="center">
-										<td width="32%" align="center">상 품</td>
-										<td width="32%" align="center">수 량</td>
-										<td width="32%" align="center">가 격</td>
+										<td width="23%" align="center">상 품</td>
+										<td width="23%" align="center">수 량</td>
+										<td width="23%" align="center">가 격</td>
+										<td width="23%" align="center">예약취소</td>
 									</tr>
 								</thead>
 								<tbody id="cart_list_body">

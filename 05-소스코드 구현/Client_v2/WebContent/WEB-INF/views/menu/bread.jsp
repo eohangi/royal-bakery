@@ -114,7 +114,7 @@ table.table {
 								<br />
 								<div class="order" id="order">
 									<br />
-									<form id="put-form" method="post" class="form-inline row" action="${pageContext.request.contextPath}/product/productOk.do"><!--여기서 장바구니로 전송-->
+									<form id="put-form" method="post" class="form-inline row put-form" action="${pageContext.request.contextPath}/product/productOk.do"><!--여기서 장바구니로 전송-->
 										<input id="quantity" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left text-center" style="height:30px" type="number" name="quantity" min="1" max="{{{stock}}}">
 										<input type="hidden" value="{{{id}}}" id="id" name="id" />		
 										<button name="id" id="id" value="{{{id}}}" class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 btn btn-success btn-xs put" type="submit" style="height:30px">담기</button>
@@ -194,6 +194,13 @@ table.table {
 						var html = template(json);
 						//완성품을 출력한다.
 						$("#cart_list").html(html);
+												
+						/* 총합계 */
+						//Ajax를 통해서 값을 불러온다.
+						var html = json.sum;
+						//완성품을 출력한다.
+						$("#sum_price").html(html);
+						
 					})
 			
 				}
@@ -336,7 +343,13 @@ table.table {
 					</th>
 				</tr>
 			{{/each}}
-			</script>
+		</script>
+		
+		<!-- cart template -->
+		<script id="sum_price_template" type="text/x-handlebars-template">
+				{{sum}}
+		</script>
+			
 
 		<!-- 슬라이드 2 -->
 		<!---------------------------------------  장바구니    ------------------------------------------->
