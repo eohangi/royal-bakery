@@ -98,48 +98,32 @@ div.content {
 			<div class="sidebar1"></div>
 			<!-- 페이지 내용 영역 -->
 			<div class="content">
-				<h2 class="page-header "
-					style="text-align: left; padding-left: 30px">| Q n A 게시판</h2>
-				<!-- 제목, 작성자, 작성일시 -->
-				<div class="alert alert-info">
-					<h3 style="margin: 0">${readDocument.subject}<br /> <small>${readDocument.writerName}
-							/ 작성일시 : ${readDocument.regDate} </small>
-					</h3>
-				</div>
-				<!-- 내용 -->
-				<section style="padding: 0 10px 20px 10px">
-					${readDocument.content}
-				</section>
-				<section style="padding: 0 70px 40px 10px; background-color: #F2F2F2;" >
-					${readComment.coContent}
-				</section>
-			</div>
-			<form class="form-horizontal" id="myform" action="${pageContext.request.contextPath}/bbs/comment_write_ok.do">
+				<h2 class="page-header" style="text-align: left; padding-left: 30px">| Q n A 게시판</h2>
+				<form class="form-horizontal" method="post" id="myform" action="${pageContext.request.contextPath}/bbs/comment_write_ok.do">
 					<div class="form-group">
-						<label for="homepage" class="col-md-offset-2 col-md-10 text-left" >공지사항</label>
+						<label for="homepage" class="col-md-offset-2 col-md-10 text-left" >답변하기</label>
 					</div>
-
-							
 					<div class="form-group">
 						<label for="info" class="col-md-2">내용</label>
 						<div class="col-md-9">
 							<textarea id="content" name="content" class="ckeditor"></textarea>
+							<input type="hidden" value="${Document_id}" name="Document_id" id="Document_id" />
 						</div>
 					</div>
-		
+					
+					
 					<div class="form-group">
-						
 						<div class="clearfix">
 						<div class="col-md-offset-8 col-md-1" style="padding-left:-7px;">
 							<button id="cancel" type="button" class="btn btn-warning pull-left" onclick="history.back()" >작성취소</button>
 						</div>
 						<div class="col-md-1" style="padding-left:50px;">
-							<button type="submit" id="ok" class="btn btn-primary pull-left" >저장하기</button>
+							<button type="submit" id="ok" class="btn btn-primary pull-left" >답변저장</button>
 						</div>
 						</div>
 					</div>
-		
 				</form>	
+			</div>
 			<div class="sidebar2"></div>
 		</div>
 	</div>

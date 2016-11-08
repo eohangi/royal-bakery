@@ -151,39 +151,11 @@ div.content {
 						</tr>
 					</tbody>
 				</table>
-				
-				<form class="form-horizontal" id="myform" action="${pageContext.request.contextPath}/bbs/comment_write_ok.do">
-					<div class="form-group">
-						<label for="homepage" class="col-md-offset-2 col-md-10 text-left" >답변 작성</label>
-					</div>
-
-							
-					<div class="form-group">
-						<label for="info" class="col-md-2">내용</label>
-						<div class="col-md-9">
-							<textarea id="content" name="content" class="ckeditor"></textarea>
-						</div>
-					</div>
-		
-					<div class="form-group">
-						
-						<div class="clearfix">
-						<div class="col-md-offset-8 col-md-1" style="padding-left:-7px;">
-							<button id="cancel" type="button" class="btn btn-warning pull-left" onclick="history.back()" >작성취소</button>
-						</div>
-						<div class="col-md-1" style="padding-left:50px;">
-							<button type="submit" id="ok" class="btn btn-primary pull-left" >저장하기</button>
-						</div>
-						</div>
-					</div>
-		
-				</form>
-				
 				<!-- 버튼들 -->
 				<div class="clearfix">
 					<div class="pull-right">
 						<a href="${pageContext.request.contextPath}/bbs/qna_list.do" class="btn btn-info">목록보기</a> 
-		
+						<a href="${pageContext.request.contextPath}/bbs/comment_write.do?Document_id=${readDocument.id}" class="btn btn-success">답변하기</a> 
 						
 					</div>
 				</div>
