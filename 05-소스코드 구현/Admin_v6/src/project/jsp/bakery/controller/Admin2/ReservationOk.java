@@ -74,16 +74,23 @@ public class ReservationOk extends BaseController {
 		orders.setOrderCategory(orderCategory);
 		
 		try {
-			
+			orderService.updateOrder(orders);
 		} catch (Exception e) {
 			// TODO: handle exception
+			web.redirect(null, e.getLocalizedMessage());
+			return null;
+		}finally {
+			sqlSession.close();
 		}
+	
 		
 		
+		String url = "%s/Reservation.do?orderCategory=%s";
+		url = String.format(url, web.getRootPath(), orders.getOrderCategory());
+		//페이지 이동시키는 부분
+		web.redirect(url, "결제 완료 했습니다.");
 		
 		
-		/** 저장 완료 후 읽기 페이지로 이동하기 */
-		web.redirect(null, "결제 완료 했습니다.");
 		
 		return null;
 	}
