@@ -39,13 +39,12 @@
 					<div class="thumbnail col-md-6" style="width: 300; , height: 300;">
 
 						<p class="intro">
-							<strong> &#60;회사 소개 &#62;</strong> <br>
-							<br> 갓 구운 신선함이 매장을 가득 채웁니다.<br>
-							<br> 오븐에서 방금 꺼낸 빵이 가장 맛있다는 것을 알기에, 뚜레쥬르는 지금도 더욱 따뜻하고 촉촉한 갓
-							구운 빵을 제공하기 위해 끊임없이 노력합니다. 매장에서 직접 굽는 것에 그치지 않고, 언제라도 따끈한 빵을 만날 수
-							있게 더욱 자주 굽고, 고객들이 필요한 시간에 맞춰 굽는 등 세심하고 배려가 담긴 서비스도 준비하고 있습니다. 갓
-							구워낸 빵은 고소한 향기와 따스한 온기로 매장을 가득 채우고, 고객들에게는 가장 맛있는 빵을 맛보는 행복을
-							선물합니다.
+							<strong> &#60;회사 소개 &#62;</strong> <br> <br> 갓 구운 신선함이
+							매장을 가득 채웁니다.<br> <br> 오븐에서 방금 꺼낸 빵이 가장 맛있다는 것을 알기에,
+							뚜레쥬르는 지금도 더욱 따뜻하고 촉촉한 갓 구운 빵을 제공하기 위해 끊임없이 노력합니다. 매장에서 직접 굽는 것에
+							그치지 않고, 언제라도 따끈한 빵을 만날 수 있게 더욱 자주 굽고, 고객들이 필요한 시간에 맞춰 굽는 등 세심하고
+							배려가 담긴 서비스도 준비하고 있습니다. 갓 구워낸 빵은 고소한 향기와 따스한 온기로 매장을 가득 채우고,
+							고객들에게는 가장 맛있는 빵을 맛보는 행복을 선물합니다.
 						</p>
 						<br> <br>선별된 좋은 재료를 사용하여 더욱 건강한 제품을 제공하고자 합니다.<br>
 						<br>
@@ -65,19 +64,17 @@
 				<div class="inner-content row">
 
 					<div class="thumbnail col-md-6">
-						<img src="${pageContext.request.contextPath}/assets/img/Map.jpg" alt="사진" style="width: 90%;">
+						<img src="${pageContext.request.contextPath}/assets/img/map2.jpg"
+							alt="사진" style="width: 90%;">
 					</div>
-					<div class="thumbnail col-md-6">
-
-
-
-						<p class="address">주소 : 청주시 흥덕구 가경동</p>
-						<p class="tel">전화 : 02-223-1255</p>
-
-						<p class="page">홈페이지 : www.naver.com</p>
+					<div class="thumbnail col-md-6" style="height: 230px;">
+						<br> <br> <br>
+						<p class="address">도로명주소 : 서울시 서초구 서초대로 77길 3 아라타워 1층 뚜레쥬르
+							지번주소 : 서울시 서초구 서초동 1317-20 아라타워 1층</p>
+						<p class="tel">전화 : 02-0000-0000</p>
 
 						<p class="intro">
-							<strong>(임시)</strong>찾아오시는길.
+							<strong>찾아오시는길.</strong>
 						</p>
 
 					</div>
