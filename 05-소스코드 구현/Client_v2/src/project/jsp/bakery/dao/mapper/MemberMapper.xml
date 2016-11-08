@@ -61,6 +61,18 @@
 			order by id desc limit 0,1
 	</select>
 	
+		<!-- 아이디가 일치하는 회원정보를 조회한다. -->
+	<select id="selectone" parameterType="project.jsp.bakery.model.Member"
+	resultMap="member">
+		select 
+			id,mem_name,mem_id,mem_pw,email,
+			phone_no,date_format(birthdate,'%y-%m-%d') as birthdate,addr1,addr2,
+			postcode,gender,reg_date,edit_date
+			from member
+			where mem_id=#{mem_id}
+			order by id desc limit 0,1
+	</select>
+	
 	<!-- 비밀번호 재발급// 이메일주소가 일치하는 비밀번호를 변경한다. -->
 	<update id="updateMemberPasswordByEmail" parameterType="project.jsp.bakery.model.Member">
 	UPDATE member SET mem_pw = password(#{mem_pw}), edit_date=now()

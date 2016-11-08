@@ -93,6 +93,7 @@ public class AdminServiceImpl implements AdminService {
 		return result;
 	}
 
+	//특정한 회원의 모든정보 가져오기
 	@Override
 	public Member HandleMember(Member member) throws Exception {
 		Member result = null;
@@ -101,8 +102,6 @@ public class AdminServiceImpl implements AdminService {
 			logger.debug("서비스에서>>>>>>>>>>>>>>>>"+member);
 			
 			// 조회된 데이터가 없다는 것 ㅡ where절 조건에 맞는 데이터가 없다.
-			// ㅡ>where절은 classify의 값이 1인 회원중에서 아이디와 비밀번호가 일치하는 항목을 지정,
-			// 조회된 데이터가 없다는 것은 아이디나 비밀번호가 잘못되었음을 의미한다.
 			if (result == null) {
 				throw new NullPointerException();
 			}

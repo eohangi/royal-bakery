@@ -59,7 +59,7 @@
 	$(function(){
 		$("#search").submit(function(e){
 			e.preventDefault();
-			word = $("input[name='keyword']").val();
+			var word = $("input[name='keyword']").val();
 			if(!word){
 				alert("검색어를 입력하세요");
 				$("input[name='keyword']").focus();
@@ -75,6 +75,36 @@
 		});//end submit
 	});//end function
 	
+	$(function(){
+		$(document).on('submit','#outok',function(e){
+			e.preventDefault();
+			var mem_id = $("#outok")
+			swal({
+				  title: "회원탈퇴",
+				  text: "정말 탈퇴시키겠습니까?",
+				  type: "warning",
+				  showCancelButton: true,
+				  confirmButtonClass: "btn-primary",
+				  confirmButtonText: "확인",
+				
+				    
+				  
+				  cancelButtonClass: "btn-danger",
+				  cancelButtonText: "취소",
+				  closeOnConfirm: false,
+				  closeOnCancel: false
+				},
+				function(isConfirm){
+					if(isConfirm){
+						location.href="${pageContext.request.contextPath}/OUTOK.do?mem_id="+mem_id;
+				}else{
+					swal.close();
+				}
+				
+				});  
+		});
+	});
+	
 </script>
 </head>
 <body>
@@ -86,8 +116,9 @@
 					<form class="form-inline" method="post" id="search" action="">
 						<fieldset>
 							<div class="form-group">
-								<label class="sr-only" for="search">검색할 회원아이디를 입력하세요</label> <input
-									type="search" class="form-control" id="keyword" name="keyword">
+								<label class="sr-only" for="search"></label> <input
+									type="search" class="form-control" id="keyword" name="keyword" 
+									placeholder="검색할 회원의 아이디를 입력하세요.">
 							</div>
 							<button type="submit" class="btn btn-primary">검색</button>
 						</fieldset>
@@ -123,7 +154,10 @@
 								<a href="">구매내역</a></td>
 								<td class="text-center">
 								<a href="">문의내역</a></td>
-								<td class="text-center">회원탈퇴</td>
+								<td class="text-center">
+								<button type="submit" id="outok" name="outok" 
+								">회원탈퇴
+								</button></td>
 						</tr>
 						</script>
 					</tbody>
