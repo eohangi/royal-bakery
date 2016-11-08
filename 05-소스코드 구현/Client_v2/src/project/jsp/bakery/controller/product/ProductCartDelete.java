@@ -71,7 +71,7 @@ public class ProductCartDelete extends BaseController {
 		/** 4. cart에 조건값 저장 */
 		cart.setProId(proId);
 		cart.setMemberId(loginInfo.getId());
-		
+
 		cart myCart = new cart();
 		myCart.setMemberId(loginInfo.getId());
 
@@ -79,10 +79,9 @@ public class ProductCartDelete extends BaseController {
 		List<cart> myList = null;
 		try {
 			logger.debug("[DEBUG] : cart =" + cart.toString());
-			
+
 			// 조건에 맞는 값 데이터 베이스에서 삭제
 			cartService.deleteProduct(cart);
-			
 
 			// cart List조회
 			myList = cartService.selectProductList(myCart);
@@ -97,11 +96,20 @@ public class ProductCartDelete extends BaseController {
 			sqlSession.close();
 		}
 
+		int sum = 0;
+
+		// 리스트 총 합계
+
+		for (int i = 0; i < myList.size(); i++) {
+			sum += myList.get(i).getProPrice();
+		}
+
 		rt = "OK";
 
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("rt", rt);
+		data.put("sum", sum);
 		data.put("item", myList);
 
 		ObjectMapper mapper = new ObjectMapper();

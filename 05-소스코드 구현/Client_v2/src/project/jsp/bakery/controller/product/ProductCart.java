@@ -104,7 +104,14 @@ public class ProductCart extends BaseController {
 		} finally {
 			sqlSession.close();
 		}
+
+		int sum =0;
 		
+		// 리스트 총 합계
+		
+		for (int i = 0; i < myList.size(); i++) {
+			sum += myList.get(i).getProPrice();
+		}
 		
 			rt="OK";
 		
@@ -112,6 +119,7 @@ public class ProductCart extends BaseController {
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("rt", rt);
+		data.put("sum", sum);
 		data.put("item", myList);
 
 		ObjectMapper mapper = new ObjectMapper();

@@ -60,25 +60,23 @@ table.table {
 			<script id="image_item_tmpl" type="text/x-handlebars-template">
 				{{#each item}}
 					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-						<div class="item">
-							<div class="caption">
+						<div class="item" style="position: relative">
+							<div class="caption" style="position: relative">
 								<p class="text-center" style="margin:15px;"><b>{{proName}}</b></p>
 							</div>
 							<hr style="margin:5px" />
-							<div class="over" id="over">
-								<div class="img" id="img">
-									<a>
+							<div class="over" id="over" style="position: relative">
+								<div class="img" id="img" style="position:relative">
 										{{#if (is_null proImg)}}
 											<img src="${pageContext.request.contextPath}/asset/img/no_image.jpg" width="100%" />	
 										{{else}}	
 											<img src="../download.do?file={{{proImg}}}" width="100%" />	
 										{{/if}}		
-									</a>
 								</div>
-								<div class="detail" id="detail" style="width:100%">
-									<div class="info" style="margin:0; width:100%; vertical-align:middle;">
+								<div class="detail" id="detail" style=" opacity:0.95; position:absolute; background-color:white; width:100%; top:0;     z-index: 300;">
+									<div class="info" style="margin:0; padding-top:20%; width:100%; vertical-align:middle;">
 										<div class="info_2" id="info_2" style="display:inline-block; width:100%;" >
-											<div class="content" id="content" style="white-space: normal; word-wrap:nomal; overflow: hidden;
+											<div class="content" id="content" style="padding-right:5px;white-space: normal; word-wrap:nomal; overflow: hidden;
 													overflow-y:hidden; text-overflow: ellipsis; width:50%;	min-height: 50px; display:inline-block;">{{content}}</div>
 											<div class="table" style="width:50%; display:inline-block;">
 												<table>
@@ -109,14 +107,14 @@ table.table {
 								</div>
 							</div>
 							<br />
-							<div style="display: block ; width:100%;">
+							<div style="display: block ; width:100%; position:relative">
 							{{#if (eq status 'o')}}
 								<div style="width:50%" class="text-left pull-left"><b>현재 수량 : {{stock}}</b></div>	
-								<div style="width:50%" class="text-left pull-left"><b>가격 : {{proPrice}}</b></div>
+								<div style="width:50%" class="text-left pull-left"><b>가격 : {{proPrice}}</b></div>	
 								<br />
 								<div class="order" id="order">
 									<br />
-									<form id="put-form" method="post" class="form-inline row" action="${pageContext.request.contextPath}/product/productOk.do"><!--여기서 장바구니로 전송-->
+									<form id="put-form" method="post" class="form-inline row put-form" action="${pageContext.request.contextPath}/product/productOk.do"><!--여기서 장바구니로 전송-->
 										<input id="quantity" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left text-center" style="height:30px" type="number" name="quantity" min="1" max="{{{stock}}}">
 										<input type="hidden" value="{{{id}}}" id="id" name="id" />		
 										<button name="id" id="id" value="{{{id}}}" class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 btn btn-success btn-xs put" type="submit" style="height:30px">담기</button>
@@ -196,6 +194,13 @@ table.table {
 						var html = template(json);
 						//완성품을 출력한다.
 						$("#cart_list").html(html);
+												
+						/* 총합계 */
+						//Ajax를 통해서 값을 불러온다.
+						var html = json.sum+"원";
+						//완성품을 출력한다.
+						$("#sum_price").html(html);
+						
 					})
 			
 				}
@@ -242,7 +247,6 @@ table.table {
 							$(this).find("#detail").css("height", img_height);
 			
 							//hover기능 구현
-							$(this).find("#img").hide();
 							$(this).find("#detail").fadeIn(800);
 						});
 			
@@ -250,8 +254,7 @@ table.table {
 						function() {
 							console.log("two");
 							/*마우스 커서가 빠져나감*/
-							$(this).find("#detail").hide();
-							$(this).find("#img").fadeIn(800);
+							$(this).find("#detail").fadeOut(800);
 						});
 			
 			
@@ -284,7 +287,7 @@ table.table {
 							}
 							if(json.rt == "Not_enough"){
 								alert("재고가 없습니다.");
-								widow.location="../product/productBread.do";
+								$("#put-form").trigger('reset');
 								return false;
 							}
 							//미리 준비한 HTML틀을 읽어온다.
@@ -294,6 +297,13 @@ table.table {
 							//완성품을 출력한다.
 							$("#cart_list").html(html);
 							$("#put-form").trigger('reset');
+							
+							
+							/* 총합계 */
+							//Ajax를 통해서 값을 불러온다.
+							var html = json.sum+"원";
+							//완성품을 출력한다.
+							$("#sum_price").html(html);
 						});
 					});
 			
@@ -313,6 +323,13 @@ table.table {
 							var html = template(json);
 							//완성품을 출력한다.
 							$("#cart_list").html(html);
+							
+							
+							/* 총합계 */
+							//Ajax를 통해서 값을 불러온다.
+							var html = json.sum+"원";
+							//완성품을 출력한다.
+							$("#sum_price").html(html);
 						});
 			
 					});
@@ -329,16 +346,22 @@ table.table {
 					<th class="text-center"
 						style="width:40%; background-color:  rgba(5, 73, 49, 0.55)">{{proName}}</th>
 					<th class="text-center"
-						style="width:18%; background-color:  rgba(5, 73, 49, 0.55)">{{proCount}}</th>
+						style="width:18%; background-color:  rgba(5, 73, 49, 0.55)">{{proCount}}개</th>
 					<th class="text-center"
-						style="width:32%; background-color:  rgba(5, 73, 49, 0.55)">{{proPrice}}</th>
+						style="width:32%; background-color:  rgba(5, 73, 49, 0.55)">{{proPrice}}원</th>
 					<th class="text-center"
 						style="width:10%; background-color:  rgba(5, 73, 49, 0.55)">
 						<a style="width:100%; height:100%" class="cart_delete btn btn-xs" id="cart-delete" data-proid="{{{proId}}}"  onclick=''><i style="width:100%; height:100%" class="glyphicon glyphicon-remove"></i></a>	
 					</th>
 				</tr>
 			{{/each}}
-			</script>
+		</script>
+		
+		<!-- cart template -->
+		<script id="sum_price_template" type="text/x-handlebars-template">
+				{{sum}}
+		</script>
+			
 
 		<!-- 슬라이드 2 -->
 		<!---------------------------------------  장바구니    ------------------------------------------->
@@ -380,7 +403,7 @@ table.table {
 						<tr>
 							<th class="text-center" colspan="4"
 								style="background-color: rgba(5, 73, 49, 0.7)">
-								<a href="${pageContext.request.contextPath}/cart/Cart.do"><button type="button" class="btn btn-success">장바구니</button></a>
+								<a href="${pageContext.request.contextPath}/cart/CartView.do"><button type="button" class="btn btn-success">장바구니</button></a>
 							</th>
 						</tr>
 					</tfoot>
