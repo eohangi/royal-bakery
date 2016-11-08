@@ -65,4 +65,44 @@ public class CommentServiceImpl implements CommentService {
 			}
 		}
 
+		@Override
+		public void deleteComment(Comment commnet) throws Exception {
+			
+			try {
+				int result = sqlSession.delete("CommentMapper.deleteComment", commnet);
+				if (result == 0) {
+					throw new NullPointerException();
+				}
+			} catch (NullPointerException e) {
+				throw new Exception("존재하지 않는 답변 대한 요청입니다.");
+			} catch (Exception e) {
+				sqlSession.close();
+				logger.error(e.getLocalizedMessage());
+				throw new Exception("답변 삭제에 실패했습니다.");
+			} finally {
+				sqlSession.commit();
+			}
+			
+		}
+
+		@Override
+		public void updateComment(Comment comment) throws Exception {
+			try {
+				int result = sqlSession.update("CommentMapper.updateComment", comment);
+				if (result == 0) {
+					throw new NullPointerException();
+				}
+			} catch (NullPointerException e) {
+				sqlSession.rollback();
+				throw new Exception("존재하지 않는 답변에 대한 요청입니다.");
+			} catch (Exception e) {
+				sqlSession.rollback();
+				logger.error(e.getLocalizedMessage());
+				throw new Exception("답변 수정에 실패했습니다.");
+			} finally {
+				sqlSession.commit();
+			}
+			
+		}
+
 }

@@ -71,7 +71,7 @@ div.content {
 								<th class="text-center  col-md-4">제목</th>
 								<th class="text-center  col-md-2">등록일</th>
 								<th class="text-center  col-md-1">답변 유무</th>
-								<th class="text-center  col-md-2">답변하기</th>
+								<th class="text-center  col-md-2"></th>
 							</tr>
 						</thead>
 
@@ -91,7 +91,7 @@ div.content {
 												<c:param name="category" value="${document.category}" />
 												<c:param name="document_id" value="${document.id}" />
 												</c:url>
-												<a href="${readUrl}"><input type="button" value="답변하기"
+												<a href="${readUrl}"><input type="button" value="문의조회"
 												class="btn btn-default" /></a>
 											</td>
 										</tr>

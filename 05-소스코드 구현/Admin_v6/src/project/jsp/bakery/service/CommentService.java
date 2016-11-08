@@ -16,6 +16,20 @@ public interface CommentService {
 	 */
 	public Comment selectComment(Comment comment) throws Exception;
 	
+	/**
+	 * 답변을 삭제한다.
+	 * @param document - 게시물 데이터
+	 * @throws Exception
+	 */
+	public void deleteComment(Comment commnet) throws Exception;
+	
+	/**
+	 * 답변을 수정한다.
+	 * @param document - 게시물 데이터
+	 * @throws Exception
+	 */
+	public void updateComment(Comment comment) throws Exception;
+	
 	/***
 	 * 회원과 덧글간의 참조관계를 해제한다.
 	 * @param comment - 게시물 데이터
