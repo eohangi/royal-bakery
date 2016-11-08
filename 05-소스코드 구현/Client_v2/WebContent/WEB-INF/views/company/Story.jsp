@@ -33,25 +33,27 @@
 				<div class="inner-content row">
 
 					<div class="thumbnail col-md-6">
-						<img src="img/2.jpg" alt="사진" style="width: 90%;">
+						<img src="${pageContext.request.contextPath}/assets/img/brand.jpg"
+							alt="사진" style="width: 500; , height: 300">
 					</div>
-					<div class="thumbnail col-md-6">
-
-
-
-						<p class="address">주소 : 청주시 흥덕구 가경동</p>
-						<p class="tel">전화 : 02-223-1255</p>
-
-						<p class="page">홈페이지 : www.naver.com</p>
+					<div class="thumbnail col-md-6" style="width: 300; , height: 300;">
 
 						<p class="intro">
-							회사 소개 <br /> 노을이 지는 도심의 야경은 정말 아름답습니다.</br/> 특히 붉은 빛을 내뿜는 모습은 인류의
-							문명사회를 한눈에 볼 수 있어요! 다른 나라를 여행중에 야경을 만난다면, 우리나라에서는 볼 수 없는 이국적인 모습에
-							흠뻑 취해 볼 수 도 있습니다. 누구나 한번쯤은 어느 유명 가수의 노래 가사처럼 '초원 위의 그림 같은 집'을
-							꿈꿔봤을 겁니다. 어쩌면 '초원 위의 그림 같은 집'에 사는 것을 인생의 마지막 목표로 삼고, 오늘 하루도 열심히
-							일하면서 살아가는 이들도 많을 텐데요. 요즘 갑갑한 아파트를 벗어나 탁 트인 자연 속에서 자신만의 '그림 같은 집'을
-							꾸리고자 하는 분들이 늘어나고 있습니다.
+							<strong> &#60;회사 소개 &#62;</strong> <br> <br> 갓 구운 신선함이
+							매장을 가득 채웁니다.<br> <br> 오븐에서 방금 꺼낸 빵이 가장 맛있다는 것을 알기에,
+							뚜레쥬르는 지금도 더욱 따뜻하고 촉촉한 갓 구운 빵을 제공하기 위해 끊임없이 노력합니다. 매장에서 직접 굽는 것에
+							그치지 않고, 언제라도 따끈한 빵을 만날 수 있게 더욱 자주 굽고, 고객들이 필요한 시간에 맞춰 굽는 등 세심하고
+							배려가 담긴 서비스도 준비하고 있습니다. 갓 구워낸 빵은 고소한 향기와 따스한 온기로 매장을 가득 채우고,
+							고객들에게는 가장 맛있는 빵을 맛보는 행복을 선물합니다.
 						</p>
+						<br> <br>선별된 좋은 재료를 사용하여 더욱 건강한 제품을 제공하고자 합니다.<br>
+						<br>
+						<p>소중한 가족과 이웃에게 드리는 빵이기에, 뚜레쥬르의 빵과 케이크는 들어가는 모든 재료를 하나 하나 꼼꼼히
+							선별해서 사용합니다. 빵에 들어가는 소량의 소금도 미네랄이 많은 신안의 고급 천일염을 사용하는 고집부터, 빵에 가장
+							많이 쓰이는 우유와 치즈를 유기농 우유, 자연치즈로 바꿔보기도 하고, 각 지역의 싱싱한 제철 식재와 과일 등 자연의
+							기운을 담은 순수한 재료를 사용하는 등. 항상 좋은 재료가 기본이 되는 건강하고 정직한 빵과 케이크를 만들고자 노력
+							합니다.</p>
+
 
 					</div>
 					<!-- thumbnail 종료 -->
@@ -62,19 +64,17 @@
 				<div class="inner-content row">
 
 					<div class="thumbnail col-md-6">
-						<img src="img/Map.jpg" alt="사진" style="width: 90%;">
+						<img src="${pageContext.request.contextPath}/assets/img/map2.jpg"
+							alt="사진" style="width: 90%;">
 					</div>
-					<div class="thumbnail col-md-6">
-
-
-
-						<p class="address">주소 : 청주시 흥덕구 가경동</p>
-						<p class="tel">전화 : 02-223-1255</p>
-
-						<p class="page">홈페이지 : www.naver.com</p>
+					<div class="thumbnail col-md-6" style="height: 230px;">
+						<br> <br> <br>
+						<p class="address">도로명주소 : 서울시 서초구 서초대로 77길 3 아라타워 1층 뚜레쥬르
+							지번주소 : 서울시 서초구 서초동 1317-20 아라타워 1층</p>
+						<p class="tel">전화 : 02-0000-0000</p>
 
 						<p class="intro">
-							<strong>(임시)</strong>찾아오시는길.
+							<strong>찾아오시는길.</strong>
 						</p>
 
 					</div>

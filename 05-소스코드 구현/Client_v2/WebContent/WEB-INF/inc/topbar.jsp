@@ -5,8 +5,9 @@
 <!doctype html>
 <div class="head">
 	<div class="banner">
-		<a href="${pageContext.request.contextPath}/MainIndex.do"> 
-		<img src="${pageContext.request.contextPath}/assets/img/logo12.png" alt="logo" />
+		<a href="${pageContext.request.contextPath}/MainIndex.do"> <img
+			src="${pageContext.request.contextPath}/assets/img/logo12.png"
+			alt="logo" />
 		</a>
 	</div>
 	<div class="titlebar">
@@ -15,31 +16,39 @@
 				<c:when test="${loginInfo == null}">
 					<li><a
 						href="${pageContext.request.contextPath}/member/Login.do">Login</a></li>
-						<li><a href="${pageContext.request.contextPath}/member/Join.do">Join</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/member/Join.do">Join</a></li>
 				</c:when>
 				<c:otherwise>
 					<li><a
 						href="${pageContext.request.contextPath}/member/LogOut.do">Logout</a></li>
-						<li><a href="${pageContext.request.contextPath}/mypage/MyPage.do">MyPage</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/mypage/MyPage.do">MyPage</a></li>
 				</c:otherwise>
 			</c:choose>
 
-			<li><a href="Story.jsp">Brand</a>
+			<li><a
+				href="${pageContext.request.contextPath}/company/Story.do">Brand</a>
+			</li>
+			<li><a
+				href="${pageContext.request.contextPath}/product/productBread.do">Product</a>
 				<ul class="list-unstyled">
-					<li><a href="Story.jsp">Story</a></li>
-				</ul></li>
-			<li><a href="${pageContext.request.contextPath}/product/productBread.do">Product</a>
-				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath}/product/productBread.do">bread</a></li>
-					<li><a href="${pageContext.request.contextPath}/product/productCake.do">cake</a></li>
-					<li><a href="${pageContext.request.contextPath}/product/productCookie.do">cookie</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/product/productBread.do">bread</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/product/productCake.do">cake</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/product/productCookie.do">cookie</a></li>
 				</ul></li>
 			<li><a
 				href="${pageContext.request.contextPath}/custom/CustomOrder.do">Order</a></li>
-			<li><a href="${pageContext.request.contextPath}/bbs.notice/document_list.do">Community</a>
+			<li><a
+				href="${pageContext.request.contextPath}/bbs.notice/document_list.do">Community</a>
 				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath}/bbs.notice/document_list.do">공지사항</a></li>
-					<li><a href="${pageContext.request.contextPath}/bbs.qna/document_list.do">문의하기</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/bbs.notice/document_list.do">공지사항</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/bbs.qna/document_list.do">문의하기</a></li>
 				</ul></li>
 
 		</ul>
