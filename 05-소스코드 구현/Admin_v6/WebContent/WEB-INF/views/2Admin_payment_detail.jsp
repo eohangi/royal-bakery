@@ -3,47 +3,15 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-<!DOCTYPE html>
-<html lang="ko">
-<meta charset="utf-8" />   
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-<title>Royal</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
-
-<script src="http://code.jquery.com/jquery.min.js"></script>
-
-<!-- Latest compiled and minified JavaScript -->
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!doctype html>
+<html>
+<head>
+<%@ include file="/WEB-INF/inc/head.jsp"%>
+<!-- 바코드 부분 -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/code39.js"></script>
-
-
-<!-- jQuery Framework 참조하기 -->
-<script src="http://code.jquery.com/jquery.min.js"></script>
-
-
-<!--  sweet alert -->
-<link rel="stylesheet" href="plugins/sweetalert/sweetalert.css" />
-
-<script src="plugins/sweetalert/sweetalert.min.js"></script>
-
-<script type="text/javascript">
-
-</script>
-
-
-
+	src="${pageContext.request.contextPath}/assets/js/code39.js"></script>
 <style type="text/css">
-<%@ include file = "css/common.css" %>
+
 .join {
 	margin: auto; align : center;
 	width: 70%;
@@ -61,7 +29,7 @@
 </style>
 </head>
 <body>
-<%@ include file = "Header.jsp" %>
+	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class='page-header'>
 		<h1>결제 상세 정보</h1>
 	</div>
@@ -103,7 +71,7 @@
 											<c:forEach var="cart" items="${cartlist2}">
 												<tr align="center">
 													<td width="18%" class="text-center">${cart.cuText}</td>
-													<td width="18%" class="text-center"></td>
+													<td width="18%" class="text-center">${cart.cuCount}</td>
 													<td width="18%" class="text-center">${cart.cuPrice} 원</td>
 												</tr>
 											</c:forEach>
@@ -205,7 +173,7 @@
 		</div>
 	</div>
 
-<%@ include file = "inc/footer.jsp" %>
+<%@ include file="/WEB-INF/inc/footer.jsp"%>
 
 </body>
 

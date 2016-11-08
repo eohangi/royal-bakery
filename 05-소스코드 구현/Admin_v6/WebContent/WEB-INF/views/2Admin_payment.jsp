@@ -1,31 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 
-<title>My JSP Page</title>
-<!-- Twitter Bootstrap3 & jQuery -->
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
-<script src="http://code.jquery.com/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<!-- jQuery Framework 참조하기 -->
-<script src="http://code.jquery.com/jquery.min.js"></script>
-
+<%@ include file="/WEB-INF/inc/head.jsp"%>
 <style type="text/css">
-<%@
-include file = "css/common.css" %>
+
 	.header {
 	padding-top: 70px;
 }
@@ -58,7 +42,7 @@ include file = "css/common.css" %>
 </style>
 </head>
 <body>
-	<%@ include file="Header.jsp"%>
+<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="container">
 		<div class="row">
 
@@ -202,7 +186,7 @@ include file = "css/common.css" %>
 		</div>
 	</div>
 
-	<%@ include file="inc/footer.jsp"%>
+		<%@ include file="/WEB-INF/inc/footer.jsp"%>
 
 </body>
 
