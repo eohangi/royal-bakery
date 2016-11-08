@@ -121,6 +121,20 @@ public class OrderServiceImpl implements OrderService{
 		return result;
 	}
 	
+	@Override
+	public void updateOrderMemberOut(Orders orders) throws Exception {
+		// TODO Auto-generated method stub
+		try {
+			sqlSession.update("OrderMapper.updateOrderMemberOut", orders);
+			
+		}catch (Exception e) {
+			sqlSession.rollback();
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("참조관계 해제에 실패했습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+	}
 	
 
 }

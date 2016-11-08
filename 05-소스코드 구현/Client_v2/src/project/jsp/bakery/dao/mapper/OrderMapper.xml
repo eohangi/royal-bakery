@@ -105,5 +105,13 @@
 		or_edit_time=now()
 		WHERE id=#{id}
 	</update>
+	
+	<update id="updateOrderMemberOut" parameterType="project.jsp.bakery.model.Orders">
+		UPDATE orders
+		SET 
+		member_id=NULL,
+		or_edit_time=now()
+		WHERE member_id=${memberId}
+	</update> 
 
 </mapper>
