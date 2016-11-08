@@ -156,11 +156,18 @@ public class OrderCompleteOk extends BaseController {
 			System.out.println("주문 제품 select 품목 갯수 : "+b);
 			System.out.println("총 select 품목 갯수 : "+c);
 			if(a !=0){
+				System.out.println("일반제품만 주문");
 				OrName = cartlist.get(0).getProName()+"외"+c+"개";
 				
 			}else if(b !=0){
-				OrName = cartlist2.get(0).getProName()+" 외 "+c+" 개";
+				System.out.println("제작제품만 주문");
+				OrName = "제작제품 외 "+c+" 개";
+				if(b==1){
+					OrName = "제작제품 "+c+" 개";
+				}
+				
 			}else if(a!=0&&b!=0){
+				System.out.println("둘다 주문");
 				OrName = cartlist.get(0).getProName()+" 외 "+c+" 개";
 			}
 			System.out.println("주문 취합된 이름 = "+OrName);
