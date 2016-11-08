@@ -15,12 +15,15 @@ import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Comment;
 import project.jsp.bakery.model.Document;
 import project.jsp.bakery.model.Member;
+import project.jsp.bakery.model.Orders;
 import project.jsp.bakery.service.AdminService;
 import project.jsp.bakery.service.CommentService;
 import project.jsp.bakery.service.DocumentService;
+import project.jsp.bakery.service.OrderService;
 import project.jsp.bakery.service.impl.AdminServiceImpl;
 import project.jsp.bakery.service.impl.CommentServiceImpl;
 import project.jsp.bakery.service.impl.DocumentServiceImpl;
+import project.jsp.bakery.service.impl.OrderServiceImpl;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.UploadHelper;
 import project.jsp.helper.WebHelper;
@@ -52,6 +55,7 @@ public class OutOk extends BaseController {
 		memberService = new AdminServiceImpl(logger, sqlSession);
 		documentService = new DocumentServiceImpl(sqlSession, logger);
 		commentService = new CommentServiceImpl(sqlSession, logger);
+		OrderService orderService = new OrderServiceImpl(sqlSession, logger);
 		
 	/**4)파라미터 받기 */
 		String mem_id = request.getParameter("mem_id");
@@ -76,12 +80,17 @@ public class OutOk extends BaseController {
 	//덧글 참조 관계 해제를 위한 아이디값 받기 
 		Comment comment = new Comment();
 		comment.setMemberId(member.getId());
+	//주문 참조 관계 해제를 위한 아이디값 받기
+		Orders orders = new Orders();
+		orders.setMemberId(member.getId());
+		
 		
 	/**6)서비스를 통한 탈퇴 시도*/
 		try {
 			//참조관계 해제
 			documentService.updateDocumentMemberOut(document);
 			commentService.updateCommentMemberOut(comment);
+			orderService.updateOrderMemberOut(orders);
 			//탈퇴처리
 			memberService.deleteMember(member);
 		} catch (Exception e) {
