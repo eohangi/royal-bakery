@@ -39,9 +39,9 @@ public class SerchMember extends BaseController {
 	AdminService adminService;
 
 	@Override
-	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String view = null;
-
+	public String doRun(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		System.out.println("이게 실행되나 안되나??????????????????????");
 		// ** 2.객체 생성 *//*
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
@@ -52,7 +52,7 @@ public class SerchMember extends BaseController {
 		response.setContentType("application/json");
 		
 		/**파라미터 받기(검색어)*/
-		String keyword =web.getString("keyword");
+		String keyword =request.getParameter("keyword");
 		logger.debug("키워드로 날라온값>>>>>>>>>>>>>>>>"+keyword);
 		Member member = new Member();
 		member.setMem_id(keyword);
@@ -62,7 +62,7 @@ public class SerchMember extends BaseController {
 		
 		try {
 		member = adminService.HandleMember(member);
-		logger.debug("조회된 회원>>>>>>>>>>>>>>>>"+member);
+		logger.debug("회원찾기>>>>>>>>>>>>>>>>"+member);
 			
 		}catch (Exception e) {
 			e.printStackTrace();

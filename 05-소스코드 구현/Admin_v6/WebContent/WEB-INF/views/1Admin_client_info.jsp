@@ -43,6 +43,11 @@
 <!-- JSON 데이터 가져오기 스크립트 시작 -->
 <script type="text/javascript">
 	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */
+	$(function() {
+		get_list(); //페이지가 열림과 동시에 호출된다.
+	});
+	
+	
 	function get_list() {
 		$.get("${pageContext.request.contextPath}/MEMBERLISTBYADMIN.do",
 				function(json) {
@@ -51,24 +56,25 @@
 					$("#memberlist").append(html);
 				});
 	}
-	function get_mem(){
-		$("#search").ajaxForm(json){
-			var temp = Handlebars.compile($("#item").html());
-			var html2 = temp(json);
-			$("#member").append(html2);
-			$("#keyword").trigger('reset');
-		}
-				
-		
-	}
+	$(function(){
+		$("#search").submit(function(e){
+			e.preventDefault();
+			word = $("input[name='keyword']").val();
+			if(!word){
+				alert("검색어를 입력하세요");
+				$("input[name='keyword']").focus();
+				return false;
+			}
+			$.post("${pageContext.request.contextPath}/SEARCHMEMBER.do",
+					{keyword:word},
+					function(json){
+						var temp = Handlebars.compile($("#item").html());
+						var html2 = temp(json);
+						$("#member").append(html2);
+					});//end json
+		});//end submit
+	});//end function
 	
-	$(function() {
-		get_list(); //페이지가 열림과 동시에 호출된다.
-		$("#keyword").click(function(){
-			get_mem();
-		});
-		
-	});
 </script>
 </head>
 <body>
@@ -77,8 +83,7 @@
 		<div class="row">
 			<div class="header">
 				<div class="Search">
-					<form class="form-inline" method="post" id="search"
-						action="${pageContext.request.contextPath}/SEARCHMEMBER.do">
+					<form class="form-inline" method="post" id="search" action="">
 						<fieldset>
 							<div class="form-group">
 								<label class="sr-only" for="search">검색할 회원아이디를 입력하세요</label> <input
@@ -107,21 +112,19 @@
 					</thead>
 					<tbody id="member">
 						<script id="item" type="text/x-handlebars-template">
-					{{#each resultmember}}						
 							<tr>
-								<td class="text-center">{{birthdate}}</td>
-								<td class="text-center">{{mem_id}}</td>
-								<td class="text-center">{{mem_name}}</td>
-								<td class="text-center">{{gender}}</td>
-								<td class="text-center">{{phone_no}}</td>
-								<td class="text-center">{{reg_date}}</td>
+								<td class="text-center">{{resultmember.birthdate}}</td>
+								<td class="text-center">{{resultmember.mem_id}}</td>
+								<td class="text-center">{{resultmember.mem_name}}</td>
+								<td class="text-center">{{resultmember.gender}}</td>
+								<td class="text-center">{{resultmember.phone_no}}</td>
+								<td class="text-center">{{resultmember.reg_date}}</td>
 								<td class="text-center">
 								<a href="">구매내역</a></td>
 								<td class="text-center">
 								<a href="">문의내역</a></td>
 								<td class="text-center">회원탈퇴</td>
 						</tr>
-					{{/each}}
 						</script>
 					</tbody>
 				</table>
