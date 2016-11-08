@@ -97,13 +97,13 @@
 	
 	
 	
- 	<update id="updateOrder" parameterType="project.jsp.bakery.model.Orders">
+	<update id="updateOrder" parameterType="project.jsp.bakery.model.Orders">
 		UPDATE orders
 		SET 
 		pickup_time=now(),
-		order_category="pay",
+		order_category=#{orderCategory},
 		or_edit_time=now()
-		WHERE order_category=#{orderCategory} and order_no = #{orderNo}
+		WHERE id=#{id}
 	</update>
-
+	
 </mapper>
