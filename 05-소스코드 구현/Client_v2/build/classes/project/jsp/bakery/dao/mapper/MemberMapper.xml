@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- 김양수 -->
+ 
+<mapper namespace="MemberMapper">
+	<resultMap id="member" type="project.jsp.bakery.model.Member">
+		<result property="id" column="id"/>
+		<result property="mem_name" column="mem_name"/>
+		<result property="mem_id" column="mem_id"/>
+		<result property="mem_pw" column="mem_pw"/>
+		<result property="email" column="email"/>
+		<result property="phone_no" column="phone_no"/>
+		<result property="birthdate" column="birthdate"/>
+		<result property="postcode" column="postcode"/>
+		<result property="addr1" column="addr1"/>
+		<result property="addr2" column="addr2"/>
+		<result property="classify" column="classify"/>
+		<result property="gender" column="gender"/>
+		<result property="reg_date" column="reg_date"/>
+		<result property="edit_date" column="edit_date"/>
+	</resultMap>
+
+	<!-- 아이디 중복검사를 수행한다. -->
+	<select id="selectUserIdCount" parameterType="project.jsp.bakery.model.Member"
+		resultMap="member">
+		select mem_id from member where mem_id=#{mem_id}
+	</select>
+
+	<!-- 이메일 중복검사를 수행한다. -->
+	<select id="selectEmailCount" parameterType="project.jsp.bakery.model.Member"
+		resultType="int">
+		select count(id) from member where email=#{email}
+	</select>
+
+	<!-- 회원정보를 저장한다 : 가입 -->
+	<insert id="insertMember" parameterType="project.jsp.bakery.model.Member"
+		useGeneratedKeys="true" keyProperty="id">
+		Insert into member(
+		mem_name,mem_id, mem_pw,
+		email, phone_no, birthdate, postcode,
+		addr1, addr2, gender, reg_date, edit_date)
+		values(
+		#{mem_name},#{mem_id},password(#{mem_pw}),
+		#{email},#{phone_no},#{birthdate},#{postcode},
+		#{addr1},#{addr2},#{gender},now(),now()
+		)
+	</insert>
+
+	<!-- 아이디와 비밀번호가 일치하는 회원정보를 조회한다. -->
+	<select id="selectLoginInfo" parameterType="project.jsp.bakery.model.Member"
+	resultMap="member">
+		select 
+			id,mem_name,mem_id,mem_pw,email,
+			phone_no,date_format(birthdate,'%y-%m-%d') as birthdate,addr1,addr2,
+			postcode,gender,reg_date,edit_date
+			from member
+			where mem_id=#{mem_id} and mem_pw=password(#{mem_pw})
+			order by id desc limit 0,1
+	</select>
+	
+		<!-- 아이디가 일치하는 회원정보를 조회한다. -->
+	<select id="selectone" parameterType="project.jsp.bakery.model.Member"
+	resultMap="member">
+		select 
+			id,mem_name,mem_id,mem_pw,email,
+			phone_no,date_format(birthdate,'%y-%m-%d') as birthdate,addr1,addr2,
+			postcode,gender,reg_date,edit_date
+			from member
+			where mem_id=#{mem_id}
+			order by id desc limit 0,1
+	</select>
+	
+	<!-- 비밀번호 재발급// 이메일주소가 일치하는 비밀번호를 변경한다. -->
+	<update id="updateMemberPasswordByEmail" parameterType="project.jsp.bakery.model.Member">
+	UPDATE member SET mem_pw = password(#{mem_pw}), edit_date=now()
+	WHERE email=#{email};	
+	</update>
+	
+	<!-- 현재 로그인 중인 회원의 비밀번호를 검사한다. -->
+	<select id="selectMemberPasswordCount" parameterType="project.jsp.bakery.model.Member"
+		resultType="int">
+		SELECT count(id) FROM member
+		WHERE id=#{id} and mem_pw=password(#{mem_pw});
+	</select>
+	
+	<!-- 회원정보를 삭제한다//탈퇴. -->
+	<delete id="deleteMember" parameterType="project.jsp.bakery.model.Member">
+		DELETE FROM member WHERE id=#{id};
+	</delete>
+	
+	<!-- 이름과 이메일이 일치하는 회원정보를 조회한다. -->
+	<select id="selectCountByNameEmail" parameterType="project.jsp.bakery.model.Member"
+		resultMap="member">
+		select mem_id,mem_name,email FROM member WHERE mem_name=#{mem_name} AND email=#{email}
+	</select>
+	
+	<!-- 회원정보를 저장한다 : 수정 -->
+	<update id="updateMember" parameterType="project.jsp.bakery.model.Member">
+		update member SET 
+		mem_name=#{mem_name},email=#{email}, phone_no=#{phone_no}, 
+		birthdate=#{birthdate}, postcode=#{postcode},
+		addr1=#{addr1}, addr2=#{addr2}, gender=#{gender},reg_date=#{reg_date},edit_date=now()
+		<if test="mem_pw !=null and mem_pw != ''">
+			,mem_pw=password(#{mem_pw})
+		</if> 
+		WHERE mem_id=#{mem_id}
+	</update>
+
+</mapper>

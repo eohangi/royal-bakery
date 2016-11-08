@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 이 파일의 경로를 config.xml에 명시해야 한다. -->
+
+<!-- Professor 테이블에 대한 CRUD 기능을 구현하기 위한 Mapper -->
+<mapper namespace="OrderMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="orders" type="project.jsp.bakery.model.Orders">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="id" column="id" />
+		<result property="orderNo" column="order_no" />
+		<result property="totalSum" column="total_sum" />
+		<result property="memberId" column="member_id" />
+		<result property="orRegDate" column="or_reg_date" />
+		<result property="pickupTime" column="pickup_time" />
+		<result property="barcode" column="barcode" />
+		<result property="orderCategory" column="order_category" />
+		<result property="orEditTime" column="or_edit_time" />
+		<result property="orType" column="or_type" />
+		<result property="orName" column="or_name" />
+		<result property="orTel" column="or_tel" />
+		<result property="orTitle" column="or_title" />
+		<result property="orTime" column="or_time" />
+	</resultMap>
+	
+		<!-- 게시글 정보 저장하기 -->
+	<insert id="insertOrder" parameterType="project.jsp.bakery.model.Orders"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO orders(order_no, total_sum, member_id, or_reg_date, 
+		pickup_time, barcode, order_category, or_edit_time,or_type,or_name,or_tel,or_title,or_time) 
+		VALUES ( 
+		#{orderNo}, #{totalSum}, #{memberId}, now(), #{pickupTime}, 
+		#{barcode}, #{orderCategory}, now(), #{orType},#{orName},#{orTel},#{orTitle},#{orTime}
+		)
+	</insert>
+	
+	<!-- 게시물 목록을 조회한다. -->
+	<select id="selectOrderList" parameterType="project.jsp.bakery.model.Orders"
+		resultMap="orders">
+		SELECT id,order_no,total_sum,member_id,
+		DATE_FORMAT(or_reg_date, '%Y-%m-%d') AS or_reg_date,
+		DATE_FORMAT(pickup_time, '%Y-%m-%d') AS pickup_time,
+		barcode,order_category,
+		DATE_FORMAT(or_edit_time, '%Y-%m-%d') AS or_edit_time
+		,or_type,or_name,or_tel,or_title,or_time
+		FROM orders
+		
+			where
+			order_category=#{orderCategory} AND
+			member_id=#{memberId} 
+
+
+		ORDER BY id DESC
+		LIMIT #{limitStart} , #{listCount}
+
+	</select>
+	
+	<!-- 게시물 한개을 조회한다. -->
+	<select id="selectOrder" parameterType="project.jsp.bakery.model.Orders"
+		resultMap="orders">
+		SELECT id,order_no,total_sum,member_id,or_reg_date,pickup_time,
+		barcode,order_category,or_edit_time,or_type,or_name,or_tel,or_title,or_time
+		FROM orders
+		WHERE
+		<!--  order_category=#{orderCategory} AND id = #{id} -->
+		order_category=#{orderCategory} AND
+			member_id=#{memberId} AND
+			order_no = #{orderNo}
+
+	</select>
+	
+		<!-- 전체 게시물 수를 조회한다. -->
+	<select id="selectOrderCount" parameterType="project.jsp.bakery.model.Orders"
+		resultType="int">
+		SELECT COUNT(id)
+		FROM orders
+			<where>
+			order_category=#{orderCategory}
+		<!-- 	<if test="orderNo != null or memberId != null">
+				AND(
+				<if test="orderNo != null">
+					order_no LIKE concat('%',#{orderNo},'%')
+				</if>
+				<if test="memberId != null">
+					OR member_id LIKE concat('%',#{memberId},'%')
+				</if>
+				)
+			</if> -->
+		</where>
+		
+	</select>
+	
+	
+	
+	
+	<update id="updateOrder" parameterType="project.jsp.bakery.model.Orders">
+		UPDATE orders
+		SET 
+		pickup_time=now(),
+		order_category=#{orderCategory},
+		or_edit_time=now()
+		WHERE id=#{id}
+	</update>
+
+</mapper>
