@@ -62,6 +62,7 @@
 										</c:when>
 
 									</c:choose>
+									
 								</tbody>
 							</table>
 						</div>
