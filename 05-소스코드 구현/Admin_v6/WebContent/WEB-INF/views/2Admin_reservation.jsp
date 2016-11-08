@@ -96,7 +96,7 @@
 										<td class="text-center">${reservation.totalSum}</td>
 										<td class="text-center">${reservation.orRegDate}</td>
 										<td class="text-center">
-											<button>버튼</button>
+											<a href="${pageContext.request.contextPath}/ReservationOk.do?order_no=${reservation.orderNo}&orderCategory=${reservation.orderCategory}"><button>버튼</button></a>
 										</td>
 									</tr>
 								</c:forEach>

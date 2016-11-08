@@ -101,9 +101,9 @@
 		UPDATE orders
 		SET 
 		pickup_time=now(),
-		order_category=#{orderCategory},
+		order_category="pay",
 		or_edit_time=now()
-		WHERE id=#{id}
+		WHERE order_category=#{orderCategory} and order_no = #{orderNo}
 	</update>
 
 </mapper>
