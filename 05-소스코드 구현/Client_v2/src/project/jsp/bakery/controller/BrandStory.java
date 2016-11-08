@@ -15,9 +15,6 @@ import project.jsp.helper.BaseController;
 @WebServlet("/story.do")
 public class BrandStory extends BaseController {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3620795657672923316L;
 
 	@Override
