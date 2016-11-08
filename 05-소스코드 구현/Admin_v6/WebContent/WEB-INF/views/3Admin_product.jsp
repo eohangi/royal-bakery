@@ -1,64 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 
-<title>My JSP Page</title>
-<!-- Twitter Bootstrap3 & jQuery -->
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
-<script src="http://code.jquery.com/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	
-	<!-- jQuery Framework 참조하기 -->
-<script src="http://code.jquery.com/jquery.min.js"></script>
-	
-<link rel="stylesheet" href="plugins/sweetalert/sweetalert.css" />
-
-<script src="plugins/sweetalert/sweetalert.min.js"></script>	
-
-<script type="text/javascript">
-$(function(){
-	$("#delete").click(function(){
-			swal({
-			  title: "삭제",
-			  text: "이 회원을 삭제 하겠습니까?",
-			  type: "warning",
-			  showCancelButton: true,
-			  confirmButtonClass: "btn-primary",
-			  confirmButtonText: "삭제",
-			
-			  
-			  
-			  cancelButtonClass: "btn-danger",
-			  cancelButtonText: "취소",
-			  closeOnConfirm: false,
-			  closeOnCancel: false
-			},
-			function(isConfirm){
-				if(isConfirm){
-					location.href="3Admin_order.jsp";
-				}else{
-				location.href="3Admin_order.jsp";
-				}
-			
-			});  
-	});
-});
-</script>
-
+<%@ include file="/WEB-INF/inc/head.jsp"%>
 <style type="text/css">
 
-<%@ include file = "css/common.css" %>
-/**  header*/
 .header {
 	padding-top: 70px;
 }
@@ -66,9 +17,9 @@ $(function(){
 .form-group {
 	
 }
-
+/**<<<<<<<<<<<<<<<<<<<<<<<<<<<<제품등록 버튼*/
 .product {
-	float: right;
+	margin-top: 10px;
 }
 
 /** table */
@@ -88,139 +39,246 @@ $(function(){
 .pagination {
 	margin: 0;
 }
-
 </style>
+<!-- JSON 데이터 가져오기 스크립트 시작 -->
+<script type="text/javascript">
+	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */
+	$(function() {
+		get_list(); //페이지가 열림과 동시에 호출된다.
+	});
+	
+	
+	function get_list() {
+		$.get("${pageContext.request.contextPath}/MEMBERLISTBYADMIN.do",
+				function(json) {
+					var template = Handlebars.compile($("#memberitem").html());
+					var html = template(json);
+					$("#memberlist").append(html);
+				});
+	}
+	$(function(){
+		$("#search").submit(function(e){
+			e.preventDefault();
+			var word = $("input[name='keyword']").val();
+			if(!word){
+				alert("검색어를 입력하세요");
+				$("input[name='keyword']").focus();
+				return false;
+			}
+			$.post("${pageContext.request.contextPath}/SEARCHMEMBER.do",
+					{keyword:word},
+					function(json){
+						var temp = Handlebars.compile($("#item").html());
+						var html2 = temp(json);
+						$("#member").append(html2);
+					});//end json
+		});//end submit
+	});//end function
+	
+	//한종이 참고해
+	$(function(){
+		$(document).on("click","#outok",function(e){
+			var mem_id = $("#outok").val();
+			console.log("동적 클릭 이벤트 발생시 >>>>>>>>>>>>>>>>>>>>>>>>"+mem_id);
+			swal({
+				  title: "회원탈퇴",
+				  text: "정말 탈퇴시키겠습니까?",
+				  type: "warning",
+				  showCancelButton: true,
+				  confirmButtonClass: "btn-primary",
+				  confirmButtonText: "확인",
+				
+				    
+				  
+				  cancelButtonClass: "btn-danger",
+				  cancelButtonText: "취소",
+				  closeOnConfirm: false,
+				  closeOnCancel: false
+				},
+				function(isConfirm){
+					if(isConfirm){
+						location.href="${pageContext.request.contextPath}/OUTOK.do?mem_id="+mem_id;
+				}else{
+					swal.close();
+				}
+				
+				});  
+		});
+	});
+	
+</script>
 </head>
 <body>
-<%@ include file = "Header.jsp" %>
+	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="container">
 		<div class="row">
 			<div class="header">
 				<div class="Search">
-					<form class="form-inline">
+					<form class="form-inline" method="post" id="search" action="">
 						<fieldset>
 							<div class="form-group">
-								<label class="sr-only" for="search">검색할 단어를 입력하세요.</label> <input
-									type="search" class="form-control" id="search">
+								<label class="sr-only" for="search"></label> <input
+									type="search" class="form-control" id="keyword" name="keyword" 
+									placeholder="검색할 회원의 아이디를 입력하세요.">
 							</div>
 							<button type="submit" class="btn btn-primary">검색</button>
 						</fieldset>
 					</form>
-
+				<c:choose>
+					<c:when test="${resultmember =! null}">
+				<!-- 검색 후 노출될 에이잭스 -->
+				<div class="table-responsive-ajax">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<td class="text-center">이미지</td>
+							<td class="text-center">분류</td>
+							<td class="text-center">제품이름</td>
+							<td class="text-center">제품가격</td>
+							<td class="text-center">수량</td>
+							<td class="text-center">품절상태</td>
+							<td class="text-center">제품설명</td>
+							<td class="text-center">칼로리</td>
+							<td class="text-center">나트륨</td>
+							<td class="text-center">설탕</td>
+							<td class="text-center">지방</td>
+							<td class="text-center">단백질</td>
+							<td class="text-center">최종수정일</td>
+							<td class="text-center">입력일</td>
+						</tr>
+					</thead>
+					<tbody id="member">
+						<script id="item" type="text/x-handlebars-template">
+							<tr>
+								<td class="text-center">{{proImg}}</td>
+								<td class="text-center">{{proClassify}}</td>
+								<td class="text-center">{{proName}}</td>
+								<td class="text-center">{{proPrice}}</td>
+								<td class="text-center">{{stock}}</td>
+								<td class="text-center">{{stuatus}}</td>
+								<td class="text-center">{{content}}</td>
+								<td class="text-center">{{kcal}}</td>
+								<td class="text-center">{{na}}</td>
+								<td class="text-center">{{sugar}}</td>
+								<td class="text-center">{{fat}}</td>
+								<td class="text-center">{{protein}}</td>
+								<td class="text-center">{{proEditDate}}</td>
+								<td class="text-center">{{proRegDate}}</td>								
+								<td class="text-center">
+								<a href="">수정</a></td>
+								<td class="text-center">
+								<a href="">삭제</a></td>
+						</tr>
+						</script>
+					</tbody>
+				</table>
+			</div>
+				<!-- //검색 -->
+				</c:when>
+				</c:choose>
 				</div>
-
-				<div class="product">
-					<button type="submit" class="btn btn-primary"><a href="3Admin_product_create.jsp">제품등록</a></button>
-				</div>
-
 			</div>
 			<!-- 페이지 내용 영역 -->
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th class="text-center">상태</th>
-							<th class="text-center">제품명</th>
-							<th class="text-center">상세 분류</th>
-							<th class="text-center">가격</th>
-							<th class="text-center">수량</th>
-							<th class="text-center">관리</th>
+							<td class="text-center">생년월일</td>
+							<td class="text-center">아이디</td>
+							<td class="text-center">이름</td>
+							<td class="text-center">성별</td>
+							<td class="text-center">연락처</td>
+							<td class="text-center">가입일자</td>
+							<td class="text-center">구매내역</td>
+							<td class="text-center">문의내역</td>
 						</tr>
 					</thead>
-					<tbody>
-
-						<tr>
-							<th class="text-center">판매중</th>
-							<th class="text-center">초코 쿠키</th>
-							<th class="text-center">쿠키</th>
-							<th class="text-center">1000 원</th>
-							<th class="text-center">10개</th>
-							<th class="text-center"><a href="3Admin_product_update.jsp">수정</a> / <a href="#" id="delete">삭제</a></th>
+					<tbody id="memberlist">
+						<script id="memberitem" type="text/x-handlebars-template">
+					{{#each member}}						
+							<tr>
+								<td class="text-center">{{birthdate}}</td>
+								<td class="text-center">{{mem_id}}</td>
+								<td class="text-center">{{mem_name}}</td>
+								<td class="text-center">{{gender}}</td>
+								<td class="text-center">{{phone_no}}</td>
+								<td class="text-center">{{reg_date}}</td>
+								<td class="text-center">
+								<a href="">수정</a></td>
+								<td class="text-center">
+								<a href="">삭제</a></td>
 						</tr>
-						<tr>
-							<th class="text-center">판매중</th>
-							<th class="text-center">초코 쿠키</th>
-							<th class="text-center">쿠키</th>
-							<th class="text-center">1000 원</th>
-							<th class="text-center">10개</th>
-							<th class="text-center">수정 / 삭제</th>
-						</tr>
-						<tr>
-							<th class="text-center">판매중</th>
-							<th class="text-center">초코 쿠키</th>
-							<th class="text-center">쿠키</th>
-							<th class="text-center">1000 원</th>
-							<th class="text-center">10개</th>
-							<th class="text-center">수정 / 삭제</th>
-						</tr>
-						<tr>
-							<th class="text-center">판매중</th>
-							<th class="text-center">초코 쿠키</th>
-							<th class="text-center">쿠키</th>
-							<th class="text-center">1000 원</th>
-							<th class="text-center">10개</th>
-							<th class="text-center">수정 / 삭제</th>
-						</tr>
-						<tr>
-							<th class="text-center">판매중</th>
-							<th class="text-center">초코 쿠키</th>
-							<th class="text-center">쿠키</th>
-							<th class="text-center">1000 원</th>
-							<th class="text-center">10개</th>
-							<th class="text-center">수정 / 삭제</th>
-						</tr>
-						<tr>
-							<th class="text-center">판매중</th>
-							<th class="text-center">초코 쿠키</th>
-							<th class="text-center">쿠키</th>
-							<th class="text-center">1000 원</th>
-							<th class="text-center">10개</th>
-							<th class="text-center">수정 / 삭제</th>
-						</tr>
-						<tr>
-							<th class="text-center">판매중</th>
-							<th class="text-center">초코 쿠키</th>
-							<th class="text-center">쿠키</th>
-							<th class="text-center">1000 원</th>
-							<th class="text-center">10개</th>
-							<th class="text-center">수정 / 삭제</th>
-						</tr>
-						<tr>
-							<th class="text-center">판매중</th>
-							<th class="text-center">초코 쿠키</th>
-							<th class="text-center">쿠키</th>
-							<th class="text-center">1000 원</th>
-							<th class="text-center">10개</th>
-							<th class="text-center">수정 / 삭제</th>
-						</tr>
-						<tr>
-							<th class="text-center">판매중</th>
-							<th class="text-center">초코 쿠키</th>
-							<th class="text-center">쿠키</th>
-							<th class="text-center">1000 원</th>
-							<th class="text-center">10개</th>
-							<th class="text-center">수정 / 삭제</th>
-						</tr>
-
+					{{/each}}
+						</script>
 					</tbody>
 				</table>
 			</div>
 
-			<ul class="pagination">
-				<li class="disabled"><a href="#">&laquo;</a></li>
-				<!-- 활성화 버튼은 아래의 구조로 구성하시면 됩니다. sr-only는 스크린리더 전용 입니다 .-->
-				<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
-			</ul>
+			    <!-- 페이지 번호 시작 -->
+                  <nav class="text-center">
+                     <ul class="pagination">
+                        <!-- 이전 그룹으로 이동 -->
+                        <c:choose>
+                           <c:when test="${pageHelper.prevPage > 0}">
+                              <!-- 이전 그룹에 대한 페이지 번호가 존재한다면? -->
+                              <!-- 이전 그룹으로 이동하기 위한 URL을 생성해서 "prevUrl"에 저장 -->
+                              <c:url var="prevUrl" value="/MEMBERLISTBYADMIN.do">                                 
+                                 <c:param name="page" value="${pageHeler.prevPage}"></c:param>
+                              </c:url>
+                              
+                              <li><a href="${prevUrl}">&laquo;</a></li>
+                           </c:when>
+                           
+                           <c:otherwise>
+                              <!-- 이전 그룹에 대한 페이지 번호가 존재하지 않는다면? -->
+                              <li class="disabled"><a href="#">&laquo;</a></li>
+                           </c:otherwise>
+                        </c:choose>
+                        
+                        <!-- 페이지 번호 -->
+                        <!-- 현재 그룹의 시작페이지~끝페이지 사이를 1씩 증가하면서 반복 -->
+                        <c:forEach var="i" begin="${pageHelper.startPage}" end="${pageHelper.endPage}" step="1">
+                           <!-- 각 페이지 번호로 이동할 수 있는 URL을 생성하여 page_url 에 저장 -->
+                           <c:url var="pageUrl" value="/MEMBERLISTBYADMIN.do">                              
+                              <c:param name="page" value="${i}"></c:param>
+                           </c:url>
+                           
+                        <!-- 반복중의 페이지 번호와 현재 위치한 페이지 번호가 같은 경우에 대한 분기 -->
+                           <c:choose>
+                              <c:when test="${pageHelper.page == i}">
+                                 <li class="active"><a href="#">${i}</a></li>
+                              </c:when>
+                              <c:otherwise>
+                                 <li><a href="${pageUrl}">${i}</a></li>
+                              </c:otherwise>
+                           </c:choose>
+                        </c:forEach>
+                        
+                        <!-- 다음 그룹으로 이동 -->
+                        <c:choose>
+                           <c:when test="${pageHelper.nextPage > 0}">
+                              <!-- 다음 그룹에 대한 페이지 번호가 존재한다면? -->
+                              <!-- 다음 그룹으로 이동하기 위한 URL을 생성해서 "nextUrl"에 저장 -->
+                              <c:url var="nextUrl" value="/MEMBERLISTBYADMIN.do">                                 
+                                 <c:param name="page" value="${pageHelper.nextPage}"></c:param>
+                              </c:url>
+                              
+                              <li><a href="${nextUrl}">&raquo;</a></li>      
+                           </c:when>
+                           
+                           <c:otherwise>
+                              <!-- 이전 그룹에 대한 페이지 번호가 존재하지 않는다면? -->
+                              <li class="disabled"><a href="#">&raquo;</a></li>
+                           </c:otherwise>
+                        </c:choose>
+                     </ul>
+                  </nav>                  
+                  <!-- // 페이지 번호 끝 -->
 			<div></div>
 		</div>
 	</div>
 
-<%@ include file = "inc/footer.jsp" %>
+	<%@ include file="/WEB-INF/inc/footer.jsp"%>
 
 </body>
 
