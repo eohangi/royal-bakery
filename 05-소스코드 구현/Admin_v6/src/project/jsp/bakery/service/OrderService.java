@@ -19,5 +19,7 @@ public interface OrderService {
 	
 	public int selectOrderCount(Orders orders) throws Exception;
 	
+	public void updateOrderMemberOut(Orders orders) throws Exception;
+	
 
 }
