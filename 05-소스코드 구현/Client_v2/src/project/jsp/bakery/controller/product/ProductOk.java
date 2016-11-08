@@ -57,7 +57,7 @@ public class ProductOk extends BaseController {
 		productService = new ProductServiceImpl(logger, sqlSession);
 		cartService = new CartServiceImpl(sqlSession, logger);
 		Member loginInfo = (Member) web.getSession("loginInfo");
-
+		
 		// 로그인 중이라면 이 페이지를 동작시켜서는 안된다.
 		if (web.getSession("loginInfo") == null) {
 			sqlSession.close();
@@ -179,10 +179,15 @@ public class ProductOk extends BaseController {
 		if (it.getQuantity() != 0) {
 			rt = "OK";
 		}
+		
+		int sum =0;
+		
+		// 리스트 총 합계
 
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("rt", rt);
+		data.put("sum", sum);
 		data.put("item", itemList);
 
 		ObjectMapper mapper = new ObjectMapper();
