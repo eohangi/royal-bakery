@@ -75,6 +75,7 @@
 		});//end submit
 	});//end function
 	
+	//한종이 참고해
 	$(function(){
 		$(document).on("click","#outok",function(e){
 			var mem_id = $("#outok").val();
