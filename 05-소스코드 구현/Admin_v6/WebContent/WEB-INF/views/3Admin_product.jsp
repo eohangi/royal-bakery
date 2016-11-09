@@ -44,18 +44,30 @@
 <script type="text/javascript">
 	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */
 	$(function() {
-		get_list(); //페이지가 열림과 동시에 호출된다.
+		page(); //페이지가 열림과 동시에 호출된다.
 	});
 	
 	
-	function get_list() {
-		$.get("${pageContext.request.contextPath}/MEMBERLISTBYADMIN.do",
-				function(json) {
-					var template = Handlebars.compile($("#memberitem").html());
-					var html = template(json);
-					$("#memberlist").append(html);
-				});
+	function page() {
+		//data-deptno 속성의 값을 취득한다.
+		console.log("list 검사");
+		var current_classify = $("li.active a").data("classify");
+
+		//Ajax요청을 통한 제품 데이터 조회
+		$.get('../product/productList.do', {
+			classify : current_classify
+		}, function(json) {
+
+			//미리 준비한 HTML틀을 읽어온다.
+			var template = Handlebars.compile($("#image_item_tmpl").html());
+			//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
+			var html = template(json);
+			//완성품을 출력한다.
+			$("#list").html(html).find(".detail").hide();
+
+		});
 	}
+	
 	$(function(){
 		$("#search").submit(function(e){
 			e.preventDefault();
@@ -179,36 +191,64 @@
 				</div>
 			</div>
 			<!-- 페이지 내용 영역 -->
+			<div class="col-md-1" id="slide1">
+			<h1>슬라이드1</h1>
+		</div>
+		<div class="col-md-9">
+			<ul id="myTab" class="nav nav-tabs">
+				<li class="col-md-4 col-sm-4 active text-center">
+				<a data-classify="a" data-toggle="tab" href="#list">bread</a></li>
+				<li class="col-md-4 col-sm-4 text-center">
+				<a data-classify="b" data-toggle="tab" href="#list">cake</a></li>
+				<li class="col-md-4 col-sm-4 text-center">
+				<a data-classify="c" data-toggle="tab" href="#list">cookie</a></li>
+			</ul>
+			
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
+					<thead>
 						<tr>
-							<td class="text-center">생년월일</td>
-							<td class="text-center">아이디</td>
-							<td class="text-center">이름</td>
-							<td class="text-center">성별</td>
-							<td class="text-center">연락처</td>
-							<td class="text-center">가입일자</td>
-							<td class="text-center">구매내역</td>
-							<td class="text-center">문의내역</td>
+							<td class="text-center">이미지</td>
+							<td class="text-center">분류</td>
+							<td class="text-center">제품이름</td>
+							<td class="text-center">제품가격</td>
+							<td class="text-center">수량</td>
+							<td class="text-center">품절상태</td>
+							<td class="text-center">제품설명</td>
+							<td class="text-center">칼로리</td>
+							<td class="text-center">나트륨</td>
+							<td class="text-center">설탕</td>
+							<td class="text-center">지방</td>
+							<td class="text-center">단백질</td>
+							<td class="text-center">최종수정일</td>
+							<td class="text-center">입력일</td>
 						</tr>
 					</thead>
-					<tbody id="memberlist">
-						<script id="memberitem" type="text/x-handlebars-template">
-					{{#each member}}						
+					<tbody id="member">
+						<script id="item" type="text/x-handlebars-template">
 							<tr>
-								<td class="text-center">{{birthdate}}</td>
-								<td class="text-center">{{mem_id}}</td>
-								<td class="text-center">{{mem_name}}</td>
-								<td class="text-center">{{gender}}</td>
-								<td class="text-center">{{phone_no}}</td>
-								<td class="text-center">{{reg_date}}</td>
+						{{#each itemlist}}
+								<td class="text-center">{{itemlist.proImg}}</td>
+								<td class="text-center">{{itemlist.proClassify}}</td>
+								<td class="text-center">{{itemlist.proName}}</td>
+								<td class="text-center">{{itemlist.proPrice}}</td>
+								<td class="text-center">{{itemlist.stock}}</td>
+								<td class="text-center">{{itemlist.stuatus}}</td>
+								<td class="text-center">{{itemlist.content}}</td>
+								<td class="text-center">{{itemlist.kcal}}</td>
+								<td class="text-center">{{itemlist.na}}</td>
+								<td class="text-center">{{itemlist.sugar}}</td>
+								<td class="text-center">{{itemlist.fat}}</td>
+								<td class="text-center">{{itemlist.protein}}</td>
+								<td class="text-center">{{itemlist.proEditDate}}</td>
+								<td class="text-center">{{itemlist.proRegDate}}</td>								
 								<td class="text-center">
 								<a href="">수정</a></td>
 								<td class="text-center">
 								<a href="">삭제</a></td>
 						</tr>
-					{{/each}}
+						{{/each}}
 						</script>
 					</tbody>
 				</table>
