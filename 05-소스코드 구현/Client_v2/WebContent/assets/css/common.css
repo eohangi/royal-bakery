@@ -6,6 +6,10 @@
 	margin-right: 0;
 }
 
+#top_line{
+	margin :0;
+}
+
 div.row {
 	margin-right: 0;
 	margin-bottom: 50px;

@@ -4,12 +4,13 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <!doctype html>
 <div class="head">
-	<div class="banner">
+	<div class="banner" style="background-color: #054931; width:100%">
 		<a href="${pageContext.request.contextPath}/MainIndex.do"> <img
 			src="${pageContext.request.contextPath}/assets/img/logo12.png"
 			alt="logo" />
 		</a>
 	</div>
+	<hr id="top_line" />
 	<div class="titlebar">
 		<ul class="list-unstyled navi">
 			<c:choose>

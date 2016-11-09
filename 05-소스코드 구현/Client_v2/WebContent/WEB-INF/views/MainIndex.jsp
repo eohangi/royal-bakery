@@ -46,20 +46,12 @@
 			<!-- // 내용영역 구성 -->
 		</div>
 	</div>
-		<div class="carinner-content" style="background: url('${pageContext.request.contextPath}/assets/img/background.png');
-											background-size: cover;">
-			<div class="carinner-content-container" id="boxbody">
-				<div style="padding-top: 0px; width: 100%; height: 450px;" class="mybox" id="mybox">
-						<img src="${pageContext.request.contextPath}/assets/img/Index1.png" style="height: 450px; width: 1170px;">
-						<a href="${pageContext.request.contextPath}/브랜드스토리"></a>
-				</div>
-				<div style="margin-top: 0px; width: 100%; height: 300px;" class="mybox" id="mybox">
-						<img src="${pageContext.request.contextPath}/assets/img/Index2.png" style="height: 350px;">
-						<a href="${pageContext.request.contextPath}/브랜드스토리"></a>
-						<img src="${pageContext.request.contextPath}/assets/img/Index3.png" style="height: 350px;">
-						<a href="${pageContext.request.contextPath}/브랜드스토리"></a>
-				</div>
-			</div>
+		<div class="carinner-content" 
+		style="height: 463px; width: 100%;
+				
+				background: url('${pageContext.request.contextPath}/assets/img/background.png');
+				background-size: cover;">
+			
 		</div>
 		<%@ include file="/WEB-INF/inc/Footer.jsp"%>
 </body>
