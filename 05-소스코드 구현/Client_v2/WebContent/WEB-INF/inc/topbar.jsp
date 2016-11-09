@@ -4,7 +4,7 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <!doctype html>
 <div class="head">
-	<div class="banner" style="background-color: #054931; width:100%">
+	<div class="banner" style="background-color: #054931; width:100%; height:187px;">
 		<a href="${pageContext.request.contextPath}/MainIndex.do"> <img
 			src="${pageContext.request.contextPath}/assets/img/logo12.png"
 			alt="logo" />
