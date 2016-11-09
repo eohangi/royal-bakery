@@ -78,11 +78,11 @@
 			}, function(json) {
 
 				//미리 준비한 HTML틀을 읽어온다.
-				var template = Handlebars.compile($("#image_item_tmpl").html());
+				var template = Handlebars.compile($("#item_tmpl").html());
 				//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
 				var html = template(json);
 				//완성품을 출력한다.
-				$("#list").html(html).find(".detail").hide();
+				$("#list").html(html);
 
 		});
 	});
@@ -105,7 +105,6 @@
 						$("#member").append(html2);
 					});//end json
 		});//end submit
-	}); //end function
 	
 	
 	
@@ -220,7 +219,7 @@
 							</tr>
 						</thead>
 						<tbody id="product">
-							<script id="item" type="text/x-handlebars-template">
+							<script id="item_tmpl" type="text/x-handlebars-template">
 							<tr>
 						{{#each itemlist}}
 								<td class="text-center">

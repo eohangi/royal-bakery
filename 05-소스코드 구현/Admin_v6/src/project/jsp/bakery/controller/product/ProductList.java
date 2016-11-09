@@ -118,7 +118,7 @@ public class ProductList extends BaseController {
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("rt", "OK");
-		data.put("item", productList);
+		data.put("itemlist", productList);
 
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(response.getWriter(), data);

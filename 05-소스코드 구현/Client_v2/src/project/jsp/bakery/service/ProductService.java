@@ -25,6 +25,7 @@ public interface ProductService {
 	public List<Product> selectProductList(Product product) throws
 	 Exception;
 	
+	
 	/**
 	 * 전체 제품 수 조회
 	 * @param document
@@ -37,4 +38,6 @@ public interface ProductService {
 	/*한기 빵 갯수 업데이트*/
 	public void updateProductStock(Product product) throws
 	 Exception;
+	
+	
 }
