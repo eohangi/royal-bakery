@@ -42,7 +42,6 @@ div.content {
 
 </head>
 <body>
-	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 
 	<div class="container">
 		<div class="row">

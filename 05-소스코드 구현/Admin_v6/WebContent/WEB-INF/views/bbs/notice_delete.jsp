@@ -7,7 +7,6 @@
 <%@ include file="/WEB-INF/inc/topbar.jsp"%>
 </head>
 <body>
-	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="container">
 		<h1>공지사항 - <small>글 삭제하기</small></h1>
 		

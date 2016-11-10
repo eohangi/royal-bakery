@@ -6,61 +6,6 @@
 <head>
 <%@ include file="/WEB-INF/inc/topbar.jsp"%>
 
-<link rel="stylesheet" href="plugins/sweetalert/sweetalert.css" />
-
-<script src="plugins/sweetalert/sweetalert.min.js"></script>
-
-<script type="text/javascript">
-	$(function() {
-		$("#cancel").click(function() {
-			swal({
-				title : "취소",
-				text : "답변을 취소 하겠습니까?",
-				type : "warning",
-				showCancelButton : true,
-				confirmButtonClass : "btn-primary",
-				confirmButtonText : "확인",
-
-				cancelButtonClass : "btn-danger",
-				cancelButtonText : "취소",
-				closeOnConfirm : false,
-				closeOnCancel : false
-			}, function(isConfirm) {
-				if (isConfirm) {
-					location.href = "4Admin_QA.jsp";
-				} else {
-					location.href = "4Admin_QA_detail.jsp";
-				}
-
-			});
-		});
-
-		$("#ok").click(function() {
-			swal({
-				title : "답변",
-				text : "답변 하겠습니까?",
-				type : "warning",
-				showCancelButton : true,
-				confirmButtonClass : "btn-primary",
-				confirmButtonText : "확인",
-
-				cancelButtonClass : "btn-danger",
-				cancelButtonText : "취소",
-				closeOnConfirm : false,
-				closeOnCancel : false
-			}, function(isConfirm) {
-				if (isConfirm) {
-					location.href = "4Admin_QA.jsp";
-				} else {
-					location.href = "4Admin_QA_detail.jsp";
-				}
-
-			});
-		});
-	});
-</script>
-
-
 <style type="text/css">
 div.container {
 	min-height: auto;
@@ -92,7 +37,6 @@ div.content {
 </style>
 </head>
 <body>
-	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="container">
 		<div class="row">
 			<div class="sidebar1"></div>
