@@ -63,7 +63,13 @@ public class ProductSelect extends BaseController {
 		product.setProName(keyword);
 		
 		//이름으로 빵 조회
+		try{
 		product = productService.SelectProductNyname(product);
+		}catch(Exception e){
+			web.redirect(null, "알수없는오류 from servlet");
+		}finally{
+			sqlSession.close();
+		}
 		
 		// 조회결과가 존재할 경우 --> 이미지 경로를 썸네일로 교체
 		if (product != null) {
@@ -79,9 +85,10 @@ public class ProductSelect extends BaseController {
 
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("itemlist", product);
+		data.put("resultmember", member);
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(response.getWriter(), data);
+
 
 		return null;
 	}

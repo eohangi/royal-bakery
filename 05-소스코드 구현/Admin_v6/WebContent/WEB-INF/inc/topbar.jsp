@@ -37,8 +37,8 @@ $(function(){
 
 	<div class="titlebar">
 		<ul class="list-unstyled navi">
-			<li><a id="logout">로그아웃</a></li>
-			<li><a href="${pageContext.request.contextPath}/member/1Admin_client_info.jsp">회원관리</a></li>
+			<li><a id="logout" style="cursor:pointer">로그아웃</a></li>
+			<li><a href="${pageContext.request.contextPath}/1Adminclientinfo.do">회원관리</a></li>
 			<li><a href="${pageContext.request.contextPath}/Reservation.do?orderCategory=reservation">예약관리</a>
 				<ul class="list-unstyled">
 					<li><a href="${pageContext.request.contextPath}/Reservation.do?orderCategory=reservation">예약관리</a></li>
