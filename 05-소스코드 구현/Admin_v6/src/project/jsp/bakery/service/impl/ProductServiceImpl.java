@@ -71,7 +71,7 @@ public class ProductServiceImpl implements ProductService {
 		try {
 			//게시물 수가 0건인 경우도 있으므로,
 			//결과값이 0 인 경우에 대한 예외를 발생시키지 않는다.
-			result = sqlSession.selectOne("ProductMapper.selectMemberCount", product);
+			result = sqlSession.selectOne("ProductMapper.selectProductCount", product);
 		} catch (Exception e) {
 			logger.error(e.getLocalizedMessage());
 			throw new Exception("제품 수 조회에 실패했습니다.");

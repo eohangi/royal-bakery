@@ -41,13 +41,7 @@
 	<!-- 제품 목록을 조회한다. -->
 	<select parameterType="project.jsp.bakery.model.Product"
 		resultMap="product" id="selectProductList">
-		SELECT id, pro_classify, pro_name, pro_price,
-		pro_img, stock, status,
-		content, kcal, na, sugar, fat, protein
-
-		FROM
-		product
-
+		SELECT * FROM product
 		<where>
 			<if	test="proClassify != null or proName != null or proPrice > 0 or status != null">
 				<if test="proClassify !=null">

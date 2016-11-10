@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<%@ include file="/WEB-INF/inc/head.jsp"%>
 
 <style type="text/css">
 .login {

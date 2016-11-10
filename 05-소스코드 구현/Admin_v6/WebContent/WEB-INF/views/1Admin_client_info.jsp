@@ -7,7 +7,7 @@
 <html>
 <head>
 
-<%@ include file="/WEB-INF/inc/head.jsp"%>
+<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 <style type="text/css">
 
 .header {
@@ -109,7 +109,6 @@
 </script>
 </head>
 <body>
-	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="container">
 		<div class="row">
 			<div class="header">

@@ -6,7 +6,7 @@
 <!doctype html>
 <html>
 <head>
-<%@ include file="/WEB-INF/inc/head.jsp"%>
+<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 <!-- 바코드 부분 -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/js/code39.js"></script>

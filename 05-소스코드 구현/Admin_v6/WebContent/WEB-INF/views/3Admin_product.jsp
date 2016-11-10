@@ -7,7 +7,7 @@
 <html>
 <head>
 
-<%@ include file="/WEB-INF/inc/head.jsp"%>
+<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 <style type="text/css">
 .header {
 	padding-top: 70px;
@@ -47,7 +47,7 @@
 		var current_classify = $("li.active a").data("classify");
 	
 		//Ajax요청을 통한 제품 데이터 조회
-		$.get('../product/productList.do', {
+		$.get('${pageContext.request.contextPath}/PRODUCTLIST.do', {
 			classify : current_classify
 		}, function(json) {
 	
@@ -62,7 +62,7 @@
 	
 	
 	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */
-	$(function() {
+	$(function(){
 		page(); //페이지가 열림과 동시에 호출된다.
 		
 		$("#myTab a").click(function(e) {
@@ -70,7 +70,7 @@
 			var select_classify = $(this).data("classify");
 
 			//Ajax요청을 통한 제품 데이터 조회
-			$.get('../product/productList.do', {
+			$.get('${pageContext.request.contextPath}/PRODUCTLIST.do', {
 				classify : select_classify
 			}, function(json) {
 
@@ -80,6 +80,7 @@
 				var html = template(json);
 				//완성품을 출력한다.
 				$("#product").html(html);
+			});
 		});
 		
 			$("#search").submit(function(e){
@@ -96,17 +97,16 @@
 							var temp = Handlebars.compile($("#item").html());
 							var html2 = temp(json);
 							$("#member").append(html2);
-						});//end json
+				});//end json
 			});
-			
-	}
+		});
+	
 	
 	
 	
 </script>
 </head>
 <body>
-	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="container">
 		<div class="row">
 			<div class="header">
@@ -179,8 +179,6 @@
 			</div>
 			<!-- 페이지 내용 영역 -->
 			<div class="col-md-1" id="slide1">
-				<h1>슬라이드1</h1>
-			</div>
 			<div class="col-md-9">
 				<ul id="myTab" class="nav nav-tabs">
 					<li class="col-md-4 col-sm-4 active text-center"><a
@@ -217,7 +215,7 @@
 							<tr>
 						{{#each itemlist}}
 								<td class="text-center">
-								<img src="../download.do?file={{{proImg}}}" width="100%" />	
+								<img src="{{proImg}}" width="100%" />	
 								</td>
 								<td class="text-center">{{proClassify}}</td>
 								<td class="text-center">{{proName}}</td>
@@ -252,7 +250,7 @@
 							<c:when test="${pageHelper.prevPage > 0}">
 								<!-- 이전 그룹에 대한 페이지 번호가 존재한다면? -->
 								<!-- 이전 그룹으로 이동하기 위한 URL을 생성해서 "prevUrl"에 저장 -->
-								<c:url var="prevUrl" value="/MEMBERLISTBYADMIN.do">
+								<c:url var="prevUrl" value="${pageContext.request.contextPath}/PRODUCTLIST.do">
 									<c:param name="page" value="${pageHeler.prevPage}"></c:param>
 								</c:url>
 
@@ -270,7 +268,7 @@
 						<c:forEach var="i" begin="${pageHelper.startPage}"
 							end="${pageHelper.endPage}" step="1">
 							<!-- 각 페이지 번호로 이동할 수 있는 URL을 생성하여 page_url 에 저장 -->
-							<c:url var="pageUrl" value="/MEMBERLISTBYADMIN.do">
+							<c:url var="pageUrl" value="${pageContext.request.contextPath}/PRODUCTLIST.do">
 								<c:param name="page" value="${i}"></c:param>
 							</c:url>
 
@@ -290,7 +288,7 @@
 							<c:when test="${pageHelper.nextPage > 0}">
 								<!-- 다음 그룹에 대한 페이지 번호가 존재한다면? -->
 								<!-- 다음 그룹으로 이동하기 위한 URL을 생성해서 "nextUrl"에 저장 -->
-								<c:url var="nextUrl" value="/MEMBERLISTBYADMIN.do">
+								<c:url var="nextUrl" value="${pageContext.request.contextPath}/PRODUCTLIST.do">
 									<c:param name="page" value="${pageHelper.nextPage}"></c:param>
 								</c:url>
 
@@ -308,6 +306,7 @@
 				<div></div>
 			</div>
 		</div>
+</div>
 
 		<%@ include file="/WEB-INF/inc/footer.jsp"%>
 </body>
