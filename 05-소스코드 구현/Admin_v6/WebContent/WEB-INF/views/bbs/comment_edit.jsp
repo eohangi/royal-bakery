@@ -114,23 +114,23 @@ $(function(){
 			<div class="sidebar1"></div>
 			<!-- 페이지 내용 영역 -->
 			<div class="content">
-				<h2 class="page-header " style = "text-align : left; padding-left : 30px" >| 공지사항 작성 </h2>
-				<form class="form-horizontal" id="myform" action="${pageContext.request.contextPath}/bbs/notice_write_ok.do">
+				<h2 class="page-header " style = "text-align : left; padding-left : 30px" >| 답변내용 수정 </h2>
+				<form class="form-horizontal" id="myform" method="post" action="${pageContext.request.contextPath}/bbs/comment_edit_ok.do">
+					
+					<!-- 수정대상에 대한 상태유지 -->
+					<input type="hidden" name="comment_id" value="${readComment.id}" />
+					<input type="hidden" name="domment_id" value="${documentId}" />
+					
 					<div class="form-group">
-						<label for="homepage" class="col-md-offset-2 col-md-10 text-left" >공지사항</label>
+						<label for="homepage" class="col-md-offset-2 col-md-10 text-left" >답변 수정</label>
 					</div>
 
-					<div class="form-group">
-						<label for="info" class="col-md-2">제목</label>
-						<div class="col-md-9">
-							<input type="text" name="subject" id="subject" class="form-control" style="margin: 0px;" >
-						</div>
-					</div>
-		
+							
 					<div class="form-group">
 						<label for="info" class="col-md-2">내용</label>
 						<div class="col-md-9">
-							<textarea id="content" name="content" class="ckeditor"></textarea>
+							<textarea id="content" name="content" class="ckeditor">
+								${readComment.coContent}</textarea>
 						</div>
 					</div>
 		
@@ -141,7 +141,7 @@ $(function(){
 							<button id="cancel" type="button" class="btn btn-warning pull-left" onclick="history.back()" >작성취소</button>
 						</div>
 						<div class="col-md-1" style="padding-left:50px;">
-							<button type="submit" id="ok" class="btn btn-primary pull-left" >저장하기</button>
+							<button type="submit" id="ok" class="btn btn-primary pull-left" >수정하기</button>
 						</div>
 						</div>
 					</div>

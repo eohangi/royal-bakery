@@ -24,10 +24,10 @@ public class CommentWrite extends BaseController {
 		
 		web = WebHelper.getInstance(request, response);
 		
-		int documentId = web.getInt("Document_id");
+		int documentId = web.getInt("document_id");
 		
 		System.out.println(documentId);
-		request.setAttribute("Document_id", documentId);
+		request.setAttribute("documentId", documentId);
 
 		
 		return "bbs/comment_write";

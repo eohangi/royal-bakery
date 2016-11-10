@@ -12,17 +12,16 @@ import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Comment;
-import project.jsp.bakery.model.Document;
 import project.jsp.bakery.service.CommentService;
 import project.jsp.bakery.service.impl.CommentServiceImpl;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.WebHelper;
 
+@WebServlet("/bbs/comment_edit.do")
+public class CommentEdit extends BaseController {
+	private static final long serialVersionUID = 1121004661967392160L;
 
-@WebServlet("/bbs/comment_write_ok.do")
-public class CommentWriteOk extends BaseController {
-	private static final long serialVersionUID = -6514612938000369644L;
-	// ** 객체 선언 *//*
+	/** 1) 사용하고자 하는 핼퍼 객체 선언 */
 	Logger logger;
 	SqlSession sqlSession;
 	WebHelper web;
@@ -30,51 +29,47 @@ public class CommentWriteOk extends BaseController {
 
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ** 객체 생성 *//*
+
+		// ** 2 사용하고자 하는 핼퍼+서비스 객체 생성 *//*
+		/** 사용하고자 하는 핼퍼 + 서비스 객체 생성 */
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
 		commentService = new CommentServiceImpl(sqlSession, logger);
-		System.out.println("hello");
-		// ** 파라미터 받기 *//*
-	
 
-		int documentId = web.getInt("documentId");
-		System.out.println("documentId=" + documentId);
-		//int memberId = web.getInt("Member_id");
-		String coContent = web.getString("content");
+		int commentId = web.getInt("comment_id");
+		int documentId = web.getInt("document_id");
 
-		// 파라미터 로그로 확인
-		logger.debug("document_id=" + documentId);
-		//logger.debug("Member_id=" + memberId);
-		logger.debug("co_content=" + coContent);
+		logger.debug("comment_id=" + commentId);
 
-		// ** 파라미터를 빈즈로 묶기*//*
-		Document document = new Document();
-		document.setCategory("qna");
-		
-		Comment comment = new Comment();
-		comment.setDocumentId(documentId);
-		comment.setCoContent(coContent);
-		comment.setMemberId(1);
-		
-
-		/** 서비스를 통한 게시물 저장 */
-		try {
-			commentService.insertComment(comment);
-		} catch (Exception e) {
+		if (commentId == 0) {
+			web.redirect(null, "답변 번호가 지정되지 않았습니다.");
 			sqlSession.close();
-			web.redirect(null, e.getLocalizedMessage());
 			return null;
 		}
 
-		/** 저장후 읽기 페이지로 이동하기 */
-		// 읽어들일 게시물을 식별하기 위한 게시물 일련번호 값을 전달해야 한다.
-		String url = "%s/bbs/qna_list.do";
-		url = String.format(url, web.getRootPath());
-		web.redirect(url, "답변이 등록되었습니다.");
-		
-		return null;
+		Comment comment = new Comment();
+		comment.setId(commentId);
+		comment.setDocumentId(documentId);
+		comment.setMemberId(1);
+
+		/** 답변 일련번호를 사용한 데이터 조회 */
+		Comment readComment = null;
+
+		try {
+			readComment = commentService.selectComment(comment);
+		} catch (Exception e) {
+			web.redirect(null, e.getLocalizedMessage());
+			return null;
+		} finally {
+			sqlSession.close();
+		}
+
+		/** 읽은 데이터를 View에 전달 */
+		request.setAttribute("readComment", readComment);
+		request.setAttribute("documentId", documentId);
+
+		return "bbs/comment_edit";
 	}
 
 }

@@ -7,7 +7,7 @@
 <html>
 <head>
 
-<%@ include file="/WEB-INF/inc/head.jsp"%>
+<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 
 <style type="text/css">
 div.container {

@@ -253,5 +253,35 @@ public class DocumentServiceImpl implements DocumentService {
 		}
 	}
 
+	@Override
+	public Document selectMyPrevDocument(Document document) throws Exception {
+		Document result = null;
+
+		try {
+			// 이전글이 없는 경우도 있으므로, 리턴값이 null인 경우 예외를 발생하지 않는다.
+			result = sqlSession.selectOne("DocumentMapper.selectMyPrevDocument", document);
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("이전글 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public Document selectMyNextDocument(Document document) throws Exception {
+
+		Document result = null;
+		try {
+			// 다음글이 없는 경우도 있으므로, 리턴값이 null인 경우 예외를 발생하지 않는다.
+			result = sqlSession.selectOne("DocumentMapper.selectMyNextDocument", document);
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("다음글 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
 	
 }

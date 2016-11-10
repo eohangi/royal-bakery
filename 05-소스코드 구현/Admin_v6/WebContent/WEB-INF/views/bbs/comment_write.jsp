@@ -4,7 +4,7 @@
 <!doctype html>
 <html>
 <head>
-<%@ include file="/WEB-INF/inc/head.jsp"%>
+<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 
 <link rel="stylesheet" href="plugins/sweetalert/sweetalert.css" />
 
@@ -107,7 +107,7 @@ div.content {
 						<label for="info" class="col-md-2">내용</label>
 						<div class="col-md-9">
 							<textarea id="content" name="content" class="ckeditor"></textarea>
-							<input type="hidden" value="${Document_id}" name="Document_id" id="Document_id" />
+							<input type="hidden" value="${documentId}" name="documentId" id="documentId" />
 						</div>
 					</div>
 					

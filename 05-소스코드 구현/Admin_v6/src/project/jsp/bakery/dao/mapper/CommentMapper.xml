@@ -40,7 +40,7 @@
 	<update id="updateComment"
 		parameterType="project.jsp.bakery.model.Comment">
 		UPDATE comment SET
-			content=#{content}, edit_date=now()
+			co_content=#{coContent}, co_edit_date=now()
 		WHERE id=#{id}		
 	</update>
 	

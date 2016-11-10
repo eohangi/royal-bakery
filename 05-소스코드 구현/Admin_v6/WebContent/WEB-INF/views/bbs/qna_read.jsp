@@ -4,7 +4,7 @@
 <!doctype html>
 <html>
 <head>
-<%@ include file="/WEB-INF/inc/head.jsp"%>
+<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 
 <link rel="stylesheet" href="plugins/sweetalert/sweetalert.css" />
 
@@ -154,9 +154,25 @@ div.content {
 				<!-- 버튼들 -->
 				<div class="clearfix">
 					<div class="pull-right">
-						<a href="${pageContext.request.contextPath}/bbs/qna_list.do" class="btn btn-info">목록보기</a> 
-						<a href="${pageContext.request.contextPath}/bbs/comment_write.do?Document_id=${readDocument.id}" class="btn btn-success">답변하기</a> 
-						
+						<a href="${pageContext.request.contextPath}/bbs/qna_list.do" class="btn btn-info">목록보기</a>
+							<c:choose>
+								<c:when test="${readComment.coContent != null}">
+									<c:url var="editUrl" value="/bbs/comment_edit.do">
+										<c:param name="document_id" value="${readDocument.id}" />
+										<c:param name="comment_id" value="${readComment.id}" />
+									</c:url>
+									<a href="${editUrl}" class="btn btn-warning">답변수정</a>
+									<c:url var="deleteUrl" value="/bbs/comment_delete.do">
+										<c:param name="document_id" value="${readDocument.id}" />
+										<c:param name="comment_id" value="${readComment.id}" />
+									</c:url>
+									<a href="${deleteUrl}" class="btn btn-danger">답변삭제</a>
+								</c:when>
+								<c:otherwise>
+									<a href="${pageContext.request.contextPath}/bbs/comment_write.do?document_id=${readDocument.id}" class="btn btn-success">답변하기</a>
+								</c:otherwise>
+							</c:choose>
+											
 					</div>
 				</div>
 

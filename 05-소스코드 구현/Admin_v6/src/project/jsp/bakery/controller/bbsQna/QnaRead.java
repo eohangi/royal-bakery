@@ -45,8 +45,8 @@ public class QnaRead extends BaseController {
 			
 		/** 글 번호 파라미터 받기 */
 		int documentId = web.getInt("document_id");
-				
-		logger.debug("documentId=" + documentId);
+		int commentId = web.getInt("comment_id");
+		logger.debug("document_id=" + documentId);
 	
 		
 		if (documentId == 0) {
@@ -62,6 +62,7 @@ public class QnaRead extends BaseController {
 		
 		Comment comment = new Comment();
 		comment.setDocumentId(documentId);
+		comment.setId(commentId);
 		comment.setMemberId(1);
 		
 		/** 게시물 일련번호를 사용한 데이터 조회 */

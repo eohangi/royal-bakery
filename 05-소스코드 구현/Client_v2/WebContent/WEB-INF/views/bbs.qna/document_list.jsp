@@ -54,9 +54,9 @@
 					</c:choose>
 				</tbody>
 			</table>
-		<%@ include file="/WEB-INF/inc/bbs_qna_bottom.jsp" %>
 		</div>
 		<!--// 글 목록 끝 -->
+		<%@ include file="/WEB-INF/inc/bbs_qna_bottom.jsp" %>
 	</div>
 	<%@ include file="/WEB-INF/inc/Footer.jsp"%>
 </body>

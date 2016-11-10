@@ -86,7 +86,11 @@ public interface DocumentService {
 	public void updateDocument(Document document) throws Exception;
 	
 	
-	
+	/**
+	 * 자신의 게시글 목록 조회
+	 * @param document
+	 * @throws Exception
+	 */
 	public List<Document> selectMyDocumentList(Document document) throws Exception; 
 	
 	public int selectMyDocumentCount(Document document) throws Exception;
@@ -99,5 +103,19 @@ public interface DocumentService {
 	
 	public void updateDocumentMemberOut(Document document) throws Exception;
 	
+	/**
+	 * 현재글을 기준으로 이전글을 읽어들인다.
+	 * @param document - 현재글에 대한 게시물 번호가 저장된 Beans
+	 * @return Document - 읽어들인 게시물 내용 (없을 경우 null)
+	 * @throws Exception
+	 */
+	public Document selectMyPrevDocument(Document document) throws Exception;
 	
+	/**
+	 * 현재글을 기준으로 다음글을 읽어들인다.
+	 * @param document - 현재글에 대한 게시물 번호가 저장된 Beans
+	 * @return Document - 읽어들인 게시물 내용 (없을 경우 null)
+	 * @throws Exception
+	 */
+	public Document selectMyNextDocument(Document document) throws Exception;
 }

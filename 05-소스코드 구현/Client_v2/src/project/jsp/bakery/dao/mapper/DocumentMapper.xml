@@ -142,6 +142,40 @@
 		LIMIT 0, 1
 	</select>
 	
+	<!-- 자신의 이전 글 정보를 조회한다. -->
+	<select id="selectMyPrevDocument"
+		parameterType="project.jsp.bakery.model.Document"
+		resultMap="document">
+		SELECT
+			id, category, writer_name, writer_pw, subject, content,
+			DATE_FORMAT(reg_date, '%Y-%m-%d') AS reg_date,
+			DATE_FORMAT(edit_date, '%Y-%m-%d') AS edit_date,
+			ip_addr, Member_id
+		FROM document
+		WHERE category=#{category} AND id &lt; #{id} AND Member_id=#{memberId}
+		ORDER BY id DESC
+		LIMIT 0, 1
+	</select>
+	
+	
+	<!-- 자신의 다음 글 정보를 조회한다. -->
+	<select id="selectMyNextDocument"
+		parameterType="project.jsp.bakery.model.Document"
+		resultMap="document">
+		SELECT
+			id, category, writer_name, writer_pw, subject, content,
+			DATE_FORMAT(reg_date, '%Y-%m-%d') AS reg_date,
+			DATE_FORMAT(edit_date, '%Y-%m-%d') AS edit_date,
+			ip_addr, Member_id
+		FROM document
+		WHERE category=#{category} AND id &gt; #{id} AND Member_id=#{memberId}
+		ORDER BY id ASC
+		LIMIT 0, 1
+	</select>
+	
+	
+	
+	
 	<!-- 전체 게시물 수를 조회한다. -->
 	<select id="selectDocumentCount"
 		parameterType="project.jsp.bakery.model.Document"
@@ -203,8 +237,7 @@
 	<update id="updateDocument"
 		parameterType="project.jsp.bakery.model.Document">
 		UPDATE document SET
-			category=#{category}, writer_name=#{writerName}, 
-			subject=#{subject}, content=#{content}, ip_addr=#{ipAddr},
+			category=#{category}, subject=#{subject}, content=#{content}, ip_addr=#{ipAddr},
 			edit_date=now()
 		WHERE id=#{id}		
 	</update>

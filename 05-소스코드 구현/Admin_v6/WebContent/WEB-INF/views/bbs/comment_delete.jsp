@@ -1,37 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page trimDirectiveWhitespaces="true" %>
-
 <!doctype html>
+<html>
+<head>
+	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 
-<%@ include file="/WEB-INF/inc/topbar.jsp"%>
+<style type="text/css">
+div.container {
+	min-height: auto;
+}
+/**  content  */
+div.sidebar1 {
+	float: left;
+	position: relative;
+	width: 10%;
+	height: auto;
+}
+
+div.sidebar2 {
+	float: left;
+	position: relative;
+	width: 10%;
+	height: auto;
+}
+
+div.content {
+	float: left;
+	padding-top: 20px;
+	min-height: 500px;
+	position: relative;
+	width: 80%;
+	overflow: hidden;
+}
+</style>
+
 </head>
 <body>
-	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
+<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="container">
-		<h1>공지사항 - <small>글 삭제하기</small></h1>
+		<h1>Q n A - <small>글 삭제하기</small></h1>
 		
-		<form name="myform" method="post" action="${pageContext.request.contextPath}/bbs/notice_delete_ok.do">
+		<form name="myform" method="post" action="${pageContext.request.contextPath}/bbs/comment_delete_ok.do">
 			<!-- 카테고리와 게시글 번호 상태유지 -->
 			
 			<input type="hidden" name="document_id" value="${documentId}" />
+			<input type="hidden" name="comment_id" value="${commentId}" />
 			
 			<div style='width: 300px; margin: 50px auto;'>
 				<!-- 자신의 글인 경우와 아닌 경우에 대한 분기 -->
-				<c:choose>
-					<c:when test="${myDocument == true}">
+			
 						<!-- 자신의 글에 대한 삭제 -->
-						<p>정말 이 게시물을 삭제하시겠습니까?</p>
-					</c:when>
-					<c:otherwise>
-						<p>글 작성시 설정한 비밀번호를 입력해야 합니다.</p>
-						<div class="form-group">
-							<label for='writer_pw'>비밀번호</label>
-							<input type="password" name="writer_pw" id="writer_pw" 
-								class="form-control" />
-						</div>
-					</c:otherwise>
-				</c:choose>
+						<p>정말 답변을 삭제하시겠습니까?</p>
+					
+					
 				<div class="form-group">
 					<button type='submit' class='btn btn-danger btn-block'>삭제하기</button>
 					<button type='button' class='btn btn-primary btn-block'

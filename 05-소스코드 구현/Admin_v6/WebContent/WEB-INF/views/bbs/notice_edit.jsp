@@ -4,7 +4,7 @@
 <html>
 <head>
 	
-<%@ include file="/WEB-INF/inc/head.jsp"%>
+<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	
 <link rel="stylesheet" href="plugins/sweetalert/sweetalert.css" />
 

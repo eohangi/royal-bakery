@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Comment;
 import project.jsp.bakery.model.Document;
+import project.jsp.bakery.model.Member;
 import project.jsp.bakery.service.CommentService;
 import project.jsp.bakery.service.DocumentService;
 import project.jsp.bakery.service.impl.CommentServiceImpl;
@@ -41,10 +42,14 @@ public class QnaRead extends BaseController {
 		web = WebHelper.getInstance(request, response);
 		documentService = new DocumentServiceImpl(sqlSession, logger);
 		CommentService = new CommentServiceImpl(sqlSession, logger);
-			
+		
+		Member loginInfo = (Member) web.getSession("loginInfo");
+		
 		/** 글 번호 파라미터 받기 */
 		int documentId = web.getInt("document_id");
-				
+		String writerName = web.getString("writer_name");
+		String writerPw = web.getString("writer_pw");
+		
 		logger.debug("documentId=" + documentId);
 	
 		
@@ -58,6 +63,9 @@ public class QnaRead extends BaseController {
 		Document document = new Document();
 		document.setId(documentId);
 		document.setCategory("qna");
+		document.setWriterName(writerName);
+		document.setWriterPw(writerPw);
+		document.setMemberId(loginInfo.getId());
 		
 		Comment comment = new Comment();
 		comment.setDocumentId(documentId);
@@ -70,8 +78,8 @@ public class QnaRead extends BaseController {
 		Comment readComment = null;
 		try {
 			readDocument = documentService.selectDocument(document);
-			prevDocument = documentService.selectPrevDocument(document);
-			nextDocument = documentService.selectNextDocument(document);
+			prevDocument = documentService.selectMyPrevDocument(document);
+			nextDocument = documentService.selectMyNextDocument(document);
 			readComment = CommentService.selectComment(comment);
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());

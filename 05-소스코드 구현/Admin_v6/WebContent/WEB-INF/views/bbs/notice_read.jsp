@@ -4,7 +4,7 @@
 <!doctype html>
 <html>
 <head>
-<%@ include file="/WEB-INF/inc/head.jsp"%>
+<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 <!-- jQuery Framework 참조하기 -->
 <script src="http://code.jquery.com/jquery.min.js"></script>
 
