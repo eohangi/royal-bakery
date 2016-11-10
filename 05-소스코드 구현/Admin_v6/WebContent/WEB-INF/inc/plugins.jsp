@@ -7,63 +7,55 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<!-- 기본 스타일 시트 우리가 만듯 것 -->
+<!-- 기본 스타일 시트 우리가 만듯 것 ㅇ-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common.css" />
 
-<!-- jQuery Framework 참조하기 -->
+<!-- jQuery Framework 참조하기 ㅇ-->
 <script src="http://code.jquery.com/jquery.min.js"></script>
 
-<!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon" href="assets/ico/favicon.ico" />
-<link rel="apple-touch-icon-precomposed"
-	href="assets/ico/apple-touch-icon-144-precomposed.png" />
-
-<!-- Latest compiled and minified CSS -->
+<!-- Latest compiled and minified CSS ㅇ-->
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
-<!-- Optional theme -->
+<!-- Optional theme ㅇ-->
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 
-<!-- bootstrap -->
+<!-- bootstrap 있어-->
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
 
-<!-- 나눔고딕 웹 폰트 적용 -->
-<link rel="stylesheet" type="text/css" href="assets/css/nanumfont.css" />
-
-<!-- CKEditor -->
+<!-- CKEditor ㅇ-->
 <script src="http://cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
 
-<!-- Multi-column -->
+<!-- Multi-column 있고-->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/plugins/multi-column/ie-row-fix.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/plugins/multi-column/multi-columns-row.css" />
 
-<!-- swipe -->
+<!-- swipe 있어-->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/plugins/swipe/jquery.touchSwipe.js"></script>
 
-<!-- tmpl -->
+<!-- tmpl 있어-->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/plugins/tmpl/jquery.tmpl.min.js"></script>
 
-<!-- ajax -->
+<!-- ajax 있어-->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/plugins/ajax/ajax_helper.css" />
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/plugins/ajax/ajax_helper.js"></script>
 
-<!-- ajaxForm -->
+<!-- ajaxForm 있어-->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/plugins/ajax-form/jquery.form.min.js"></script>
 
-<!-- handlebar plugin -->
+<!-- handlebar plugin 있어-->
 <script
 	src="${pageContext.request.contextPath}/assets/plugins/handlebars/handlebars-v4.0.5.js"></script>
 
-<!-- 스윗알럿 -->
+<!-- 스윗알럿 있어-->
 <script src="${pageContext.request.contextPath}/assets/plugins/sweetalert/sweetalert.min.js"></script>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/sweetalert/sweetalert.css">
