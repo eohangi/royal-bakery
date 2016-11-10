@@ -49,8 +49,8 @@
 		<div class="carinner-content" 
 		style="height: 463px; width: 100%;
 				
-				background: url('${pageContext.request.contextPath}/assets/img/background.png');
-				background-size: cover;">
+				background: url('${pageContext.request.contextPath}/assets/img/background.png') no-repeat;
+				background-size: 100% 100%">
 			
 		</div>
 		<br />
