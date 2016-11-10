@@ -29,7 +29,7 @@ import project.jsp.helper.WebHelper;
 /**
  * Servlet implementation class ProductBread
  */
-@WebServlet("/product/productBread.do")
+@WebServlet("/PRODUCTINDEX.do")
 public class ProductBread extends BaseController {
 	private static final long serialVersionUID = -8425560016206479046L;
 	//** 1. 사용할 것들 선언 *//*
@@ -58,7 +58,7 @@ public class ProductBread extends BaseController {
 
 		
 		
-		view = "menu/bread";
+		view = "3Admin_product";
 
 		return view;
 	}

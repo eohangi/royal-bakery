@@ -41,33 +41,30 @@
 </style>
 <!-- JSON 데이터 가져오기 스크립트 시작 -->
 <script type="text/javascript">
-	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */
-	$(function() {
-		page(); //페이지가 열림과 동시에 호출된다.
-	});
-	
-	
-	$(function page() {
+	function page() {
 		//data-deptno 속성의 값을 취득한다.
 		console.log("list 검사");
 		var current_classify = $("li.active a").data("classify");
-
+	
 		//Ajax요청을 통한 제품 데이터 조회
 		$.get('../product/productList.do', {
 			classify : current_classify
 		}, function(json) {
-
+	
 			//미리 준비한 HTML틀을 읽어온다.
-			var template = Handlebars.compile($("#image_item_tmpl").html());
+			var template = Handlebars.compile($("#item_tmpl").html());
 			//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
 			var html = template(json);
 			//완성품을 출력한다.
-			$("#list").html(html).find(".detail").hide();
-
+			$("#product").html(html).find(".detail").hide();
 		});
-	});
+	}
 	
-	$(function (){
+	
+	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */
+	$(function() {
+		page(); //페이지가 열림과 동시에 호출된다.
+		
 		$("#myTab a").click(function(e) {
 			//data-deptno 속성의 값을 취득한다.
 			var select_classify = $(this).data("classify");
@@ -82,29 +79,27 @@
 				//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
 				var html = template(json);
 				//완성품을 출력한다.
-				$("#list").html(html);
-
+				$("#product").html(html);
 		});
-	});
-	
-	
-	$(function(){
-		$("#search").submit(function(e){
-			e.preventDefault();
-			var word = $("input[name='keyword']").val();
-			if(!word){
-				alert("검색어를 입력하세요");
-				$("input[name='keyword']").focus();
-				return false;
-			}
-			$.post("${pageContext.request.contextPath}product.do",
-					{keyword:word},
-					function(json){
-						var temp = Handlebars.compile($("#item").html());
-						var html2 = temp(json);
-						$("#member").append(html2);
-					});//end json
-		});//end submit
+		
+			$("#search").submit(function(e){
+				e.preventDefault();
+				var word = $("input[name='keyword']").val();
+				if(!word){
+					alert("검색어를 입력하세요");
+					$("input[name='keyword']").focus();
+					return false;
+				}
+				$.post("${pageContext.request.contextPath}searchproduct.do",
+						{keyword:word},
+						function(json){
+							var temp = Handlebars.compile($("#item").html());
+							var html2 = temp(json);
+							$("#member").append(html2);
+						});//end json
+			});
+			
+	}
 	
 	
 	
@@ -200,7 +195,6 @@
 				<div class="tab-pane active" id="list">
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
-						<thead>
 							<tr>
 								<td class="text-center">이미지</td>
 								<td class="text-center">분류</td>
@@ -225,19 +219,19 @@
 								<td class="text-center">
 								<img src="../download.do?file={{{proImg}}}" width="100%" />	
 								</td>
-								<td class="text-center">{{itemlist.proClassify}}</td>
-								<td class="text-center">{{itemlist.proName}}</td>
-								<td class="text-center">{{itemlist.proPrice}}</td>
-								<td class="text-center">{{itemlist.stock}}</td>
-								<td class="text-center">{{itemlist.stuatus}}</td>
-								<td class="text-center">{{itemlist.content}}</td>
-								<td class="text-center">{{itemlist.kcal}}</td>
-								<td class="text-center">{{itemlist.na}}</td>
-								<td class="text-center">{{itemlist.sugar}}</td>
-								<td class="text-center">{{itemlist.fat}}</td>
-								<td class="text-center">{{itemlist.protein}}</td>
-								<td class="text-center">{{itemlist.proEditDate}}</td>
-								<td class="text-center">{{itemlist.proRegDate}}</td>								
+								<td class="text-center">{{proClassify}}</td>
+								<td class="text-center">{{proName}}</td>
+								<td class="text-center">{{proPrice}}</td>
+								<td class="text-center">{{stock}}</td>
+								<td class="text-center">{{stuatus}}</td>
+								<td class="text-center">{{content}}</td>
+								<td class="text-center">{{kcal}}</td>
+								<td class="text-center">{{na}}</td>
+								<td class="text-center">{{sugar}}</td>
+								<td class="text-center">{{fat}}</td>
+								<td class="text-center">{{protein}}</td>
+								<td class="text-center">{{proEditDate}}</td>
+								<td class="text-center">{{proRegDate}}</td>								
 								<td class="text-center">
 								<a href="">수정</a></td>
 								<td class="text-center">

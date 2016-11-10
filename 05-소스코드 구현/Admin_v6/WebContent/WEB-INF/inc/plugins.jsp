@@ -6,7 +6,12 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>Form</title>
+
+<!-- 기본 스타일 시트 우리가 만듯 것 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common.css" />
+
+<!-- jQuery Framework 참조하기 -->
+<script src="http://code.jquery.com/jquery.min.js"></script>
 
 <!-- 모바일 웹 페이지 설정 -->
 <link rel="shortcut icon" href="assets/ico/favicon.ico" />
@@ -19,33 +24,14 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-
-
-    theme.min.css" />
-
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <!-- bootstrap -->
-<link rel="stylesheet" type="text/css"
-	href="assets/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
 
 <!-- 나눔고딕 웹 폰트 적용 -->
 <link rel="stylesheet" type="text/css" href="assets/css/nanumfont.css" />
-
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/common.css" />
-
-
-<!-- 다음 우편번호 검색 스크립트 -->
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script
-	src="${pageContext.request.contextPath}/assets/js/daumPostCode.js"></script>
-
 
 <!-- CKEditor -->
 <script src="http://cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>

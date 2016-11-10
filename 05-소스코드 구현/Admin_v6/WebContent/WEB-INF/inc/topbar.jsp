@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page trimDirectiveWhitespaces="true" %>
-<!-- jQuery Framework 참조하기 -->
-<script src="http://code.jquery.com/jquery.min.js"></script>
-	
-<link rel="stylesheet" href="plugins/sweetalert/sweetalert.css" />
-<script src="plugins/sweetalert/sweetalert.min.js"></script>
-<script src="plugins/sweetalert/sweetalert.js"></script>
+
+<%@ include file="/WEB-INF/inc/plugins.jsp"%>
 
 <script type="text/javascript">
 $(function(){
@@ -50,7 +46,7 @@ $(function(){
 				</ul></li>
 			<li><a href="3Admin_product.jsp">제품관리</a>
 				<ul class="list-unstyled">
-					<li><a href="3Admin_product.jsp">일반제품</a></li>
+					<li><a href="${pageContext.request.contextPath}/PRODUCTINDEX.do">일반제품</a></li>
 					<li><a href="3Admin_order.jsp">주문제품</a></li>
 				</ul></li>
 			<li><a href="4Admin_com_info.jsp">게시판관리</a>
