@@ -62,7 +62,17 @@
 		ORDER BY id DESC
 	</select>
 
-	<!-- 제품 하나에 대한 정보를 조회한다. -->
+	<!-- 이름으로 제품 하나에 대한 정보를 조회한다.  -->
+	<select parameterType="project.jsp.bakery.model.Product"
+		resultMap="product" id="selectProductByname">
+		SELECT id, pro_classify, pro_name, pro_price,
+		pro_img, stock, status, content, kcal, na, sugar, fat,
+		protein,pro_edit_date, pro_reg_date
+		FROM product
+		WHERE
+		pro_name=#{proName}
+	</select>
+		<!-- 제품 하나에 대한 정보를 조회한다. -->
 	<select parameterType="project.jsp.bakery.model.Product"
 		resultMap="product" id="selectProduct">
 		SELECT id, pro_classify, pro_name, pro_price,

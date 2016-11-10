@@ -42,29 +42,23 @@
 <!-- JSON 데이터 가져오기 스크립트 시작 -->
 <script type="text/javascript">
 	function page() {
-		//data-deptno 속성의 값을 취득한다.
-		console.log("list 검사");
-		var current_classify = $("li.active a").data("classify");
-	
-		//Ajax요청을 통한 제품 데이터 조회
+		//페이지가 열릴때 실행되는 이벤트,기본적으로 bread를 노출시킨다 ㅡ> JSON데이타 a
 		$.get('${pageContext.request.contextPath}/PRODUCTLIST.do', {
-			classify : current_classify
+			classify : 'a'
 		}, function(json) {
-	
 			//미리 준비한 HTML틀을 읽어온다.
 			var template = Handlebars.compile($("#item_tmpl").html());
 			//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
 			var html = template(json);
 			//완성품을 출력한다.
-			$("#product").html(html).find(".detail").hide();
+			$("#product").html(html)
 		});
 	}
-	
-	
+
 	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */
-	$(function(){
+	$(function() {
 		page(); //페이지가 열림과 동시에 호출된다.
-		
+
 		$("#myTab a").click(function(e) {
 			//data-deptno 속성의 값을 취득한다.
 			var select_classify = $(this).data("classify");
@@ -82,28 +76,70 @@
 				$("#product").html(html);
 			});
 		});
-		
-			$("#search").submit(function(e){
-				e.preventDefault();
-				var word = $("input[name='keyword']").val();
-				if(!word){
-					alert("검색어를 입력하세요");
-					$("input[name='keyword']").focus();
-					return false;
-				}
-				$.post("${pageContext.request.contextPath}searchproduct.do",
-						{keyword:word},
-						function(json){
-							var temp = Handlebars.compile($("#item").html());
-							var html2 = temp(json);
-							$("#member").append(html2);
-				});//end json
-			});
+
+		$("#search").submit(function(e) {
+			e.preventDefault();
+			var word = $("input[name='keyword']").val();
+			if (!word) {
+				alert("검색어를 입력하세요");
+				$("input[name='keyword']").focus();
+				return false;
+			}
+			$.post("${pageContext.request.contextPath}/PRODUSELECT.do", {
+				keyword : word
+			}, function(json) {
+				var temp = Handlebars.compile($("#itemsearch").html());
+				var html2 = temp(json);
+				$("#productsearch").append(html2);
+			});//end json
 		});
-	
-	
-	
-	
+	});
+</script>
+
+<!-- 제품리스트 -->
+<script id="item_tmpl" type="text/x-handlebars-template">
+{{#each itemlist}}
+<tr>
+	<td class="text-center"><img src="{{proImg}}" width="100%" /></td>
+	<td>{{proClassify}}</td>
+	<td>{{proName}}</td>
+	<td>{{proPrice}}</td>
+	<td>{{stock}}</td>
+	<td>{{stuatus}}</td>
+	<td>{{content}}</td>
+	<td>{{kcal}}</td>
+	<td>{{na}}</td>
+	<td>{{sugar}}</td>
+	<td>{{fat}}</td>
+	<td>{{protein}}</td>
+	<td>{{proEditDate}}</td>
+	<td>{{proRegDate}}</td>								
+	<td><button type="button" href="">수정</button>
+		<button type="button" href="">삭제</button></td>
+</tr>
+{{/each}}
+</script>
+
+<!-- 제품찾기 -->
+<script id="itemsearch" type="text/x-handlebars-template">
+<tr>
+	<td><img src="../download.do?file={{{proImg}}}" width="100%" /></td>
+	<td>{{proClassify}}</td>
+	<td>{{proName}}</td>
+	<td>{{proPrice}}</td>
+	<td>{{stock}}</td>
+	<td>{{stuatus}}</td>
+	<td>{{content}}</td>
+	<td>{{kcal}}</td>
+	<td>{{na}}</td>
+	<td>{{sugar}}</td>
+	<td>{{fat}}</td>
+	<td>{{protein}}</td>
+	<td>{{proEditDate}}</td>
+	<td>{{proRegDate}}</td>							
+	<td><button type="button" href="">수정</button>
+		<button type="button" href="">삭제</button></td>
+</tr>
 </script>
 </head>
 <body>
@@ -128,47 +164,23 @@
 								<table class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
-											<td class="text-center">이미지</td>
-											<td class="text-center">분류</td>
-											<td class="text-center">제품이름</td>
-											<td class="text-center">제품가격</td>
-											<td class="text-center">수량</td>
-											<td class="text-center">품절상태</td>
-											<td class="text-center">제품설명</td>
-											<td class="text-center">칼로리</td>
-											<td class="text-center">나트륨</td>
-											<td class="text-center">설탕</td>
-											<td class="text-center">지방</td>
-											<td class="text-center">단백질</td>
-											<td class="text-center">최종수정일</td>
-											<td class="text-center">입력일</td>
+											<td>이미지</td>
+											<td>분류</td>
+											<td>제품이름</td>
+											<td>제품가격</td>
+											<td>수량</td>
+											<td>품절상태</td>
+											<td style="width:400px">제품설명</td>
+											<td>칼로리</td>
+											<td>나트륨</td>
+											<td>설탕</td>
+											<td>지방</td>
+											<td>단백질</td>
+											<td>최종수정일</td>
+											<td>입력일</td>
 										</tr>
 									</thead>
-									<tbody id="product">
-										<script id="item" type="text/x-handlebars-template">
-							<tr>
-								<td class="text-center">
-								<img src="../download.do?file={{{proImg}}}" width="100%" />
-								</td>
-								<td class="text-center">{{proClassify}}</td>
-								<td class="text-center">{{proName}}</td>
-								<td class="text-center">{{proPrice}}</td>
-								<td class="text-center">{{stock}}</td>
-								<td class="text-center">{{stuatus}}</td>
-								<td class="text-center">{{content}}</td>
-								<td class="text-center">{{kcal}}</td>
-								<td class="text-center">{{na}}</td>
-								<td class="text-center">{{sugar}}</td>
-								<td class="text-center">{{fat}}</td>
-								<td class="text-center">{{protein}}</td>
-								<td class="text-center">{{proEditDate}}</td>
-								<td class="text-center">{{proRegDate}}</td>								
-								<td class="text-center">
-								<a href="">수정</a></td>
-								<td class="text-center">
-								<a href="">삭제</a></td>
-						</tr>
-						</script>
+									<tbody id="productsearch">
 									</tbody>
 								</table>
 							</div>
@@ -178,68 +190,43 @@
 				</div>
 			</div>
 			<!-- 페이지 내용 영역 -->
-			<div class="col-md-1" id="slide1">
-			<div class="col-md-9">
+			<div class="col-md-12">
 				<ul id="myTab" class="nav nav-tabs">
-					<li class="col-md-4 col-sm-4 active text-center"><a
-						data-classify="a" data-toggle="tab" href="#list">bread</a></li>
-					<li class="col-md-4 col-sm-4 text-center"><a data-classify="b"
-						data-toggle="tab" href="#list">cake</a></li>
-					<li class="col-md-4 col-sm-4 text-center"><a data-classify="c"
-						data-toggle="tab" href="#list">cookie</a></li>
+					<li class="col-md-4 col-sm-4 text-center"><a href="#list"
+						data-toggle="tab" data-classify="a">bread</a></li>
+					<li class="col-md-4 col-sm-4 text-center"><a href="#list"
+						data-toggle="tab" data-classify="b">cake</a></li>
+					<li class="col-md-4 col-sm-4 text-center"><a href="#list"
+						data-toggle="tab" data-classify="c">cookie</a></li>
 				</ul>
 
 				<div class="tab-content">
-				<div class="tab-pane active" id="list">
-					<table class="table table-striped table-bordered table-hover">
-						<thead>
-							<tr>
-								<td class="text-center">이미지</td>
-								<td class="text-center">분류</td>
-								<td class="text-center">제품이름</td>
-								<td class="text-center">제품가격</td>
-								<td class="text-center">수량</td>
-								<td class="text-center">품절상태</td>
-								<td class="text-center">제품설명</td>
-								<td class="text-center">칼로리</td>
-								<td class="text-center">나트륨</td>
-								<td class="text-center">설탕</td>
-								<td class="text-center">지방</td>
-								<td class="text-center">단백질</td>
-								<td class="text-center">최종수정일</td>
-								<td class="text-center">입력일</td>
-							</tr>
-						</thead>
-						<tbody id="product">
-							<script id="item_tmpl" type="text/x-handlebars-template">
-							<tr>
-						{{#each itemlist}}
-								<td class="text-center">
-								<img src="{{proImg}}" width="100%" />	
-								</td>
-								<td class="text-center">{{proClassify}}</td>
-								<td class="text-center">{{proName}}</td>
-								<td class="text-center">{{proPrice}}</td>
-								<td class="text-center">{{stock}}</td>
-								<td class="text-center">{{stuatus}}</td>
-								<td class="text-center">{{content}}</td>
-								<td class="text-center">{{kcal}}</td>
-								<td class="text-center">{{na}}</td>
-								<td class="text-center">{{sugar}}</td>
-								<td class="text-center">{{fat}}</td>
-								<td class="text-center">{{protein}}</td>
-								<td class="text-center">{{proEditDate}}</td>
-								<td class="text-center">{{proRegDate}}</td>								
-								<td class="text-center">
-								<a href="">수정</a></td>
-								<td class="text-center">
-								<a href="">삭제</a></td>
-						</tr>
-						{{/each}}
-						</script>
-						</tbody>
-					</table>
-				</div>
+					<div class="tab-pane active" id="list">
+						<table id="jpoom" class="table table-striped table-bordered table-hover">
+							<thead>
+								<tr>
+									<td>이미지</td>
+									<td>분류</td>
+									<td>제품이름</td>
+									<td>제품가격</td>
+									<td>수량</td>
+									<td>품절상태</td>
+									<td style="width:400px">제품설명</td>
+									<td>칼로리</td>
+									<td>나트륨</td>
+									<td>설탕</td>
+									<td>지방</td>
+									<td>단백질</td>
+									<td>최종수정일</td>
+									<td>입력일</td>
+									<td>관리</td>
+								</tr>
+							</thead>
+							<tbody id="product">
+								<!-- ajax -->
+							</tbody>
+						</table>
+					</div>
 				</div>
 
 				<!-- 페이지 번호 시작 -->
@@ -250,7 +237,8 @@
 							<c:when test="${pageHelper.prevPage > 0}">
 								<!-- 이전 그룹에 대한 페이지 번호가 존재한다면? -->
 								<!-- 이전 그룹으로 이동하기 위한 URL을 생성해서 "prevUrl"에 저장 -->
-								<c:url var="prevUrl" value="${pageContext.request.contextPath}/PRODUCTLIST.do">
+								<c:url var="prevUrl"
+									value="${pageContext.request.contextPath}/PRODUCTLIST.do">
 									<c:param name="page" value="${pageHeler.prevPage}"></c:param>
 								</c:url>
 
@@ -268,7 +256,8 @@
 						<c:forEach var="i" begin="${pageHelper.startPage}"
 							end="${pageHelper.endPage}" step="1">
 							<!-- 각 페이지 번호로 이동할 수 있는 URL을 생성하여 page_url 에 저장 -->
-							<c:url var="pageUrl" value="${pageContext.request.contextPath}/PRODUCTLIST.do">
+							<c:url var="pageUrl"
+								value="${pageContext.request.contextPath}/PRODUCTLIST.do">
 								<c:param name="page" value="${i}"></c:param>
 							</c:url>
 
@@ -288,7 +277,8 @@
 							<c:when test="${pageHelper.nextPage > 0}">
 								<!-- 다음 그룹에 대한 페이지 번호가 존재한다면? -->
 								<!-- 다음 그룹으로 이동하기 위한 URL을 생성해서 "nextUrl"에 저장 -->
-								<c:url var="nextUrl" value="${pageContext.request.contextPath}/PRODUCTLIST.do">
+								<c:url var="nextUrl"
+									value="${pageContext.request.contextPath}/PRODUCTLIST.do">
 									<c:param name="page" value="${pageHelper.nextPage}"></c:param>
 								</c:url>
 
@@ -306,9 +296,10 @@
 				<div></div>
 			</div>
 		</div>
-</div>
+	</div>
+	</div>
 
-		<%@ include file="/WEB-INF/inc/footer.jsp"%>
+	<%@ include file="/WEB-INF/inc/footer.jsp"%>
 </body>
 
 </html>

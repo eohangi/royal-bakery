@@ -80,4 +80,26 @@ public class ProductServiceImpl implements ProductService {
 		return result;
 	}
 
+	
+	//이름으로 빵 조회한다
+	@Override
+	public Product SelectProductNyname(Product product) throws Exception {
+		Product result = null;
+
+		try {
+			result = sqlSession.selectOne("ProductMapper.selectProductByname", product);
+			if (result == null) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			throw new Exception("조회된 제품이 없습니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("제품 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
 }

@@ -13,6 +13,16 @@ public interface ProductService {
 	 */
 	public Product selectProduct (Product product) throws Exception;
 	
+	
+	/**
+	 * 이름으로 빵 조회한다.
+	 * @param product - 빵이름
+	 * @return - 조회된 값 전부
+	 * @throws Exception
+	 */
+	public Product SelectProductNyname (Product product) throws Exception;
+	
+	
 	/**
 	 * 제품 목록 조회
 	 * @param product - Classify 정보가 저장된 Beans
