@@ -102,4 +102,26 @@ public class ProductServiceImpl implements ProductService {
 		return result;
 	}
 
+	@Override
+	public void Update(Product product) throws Exception {
+		try {
+			int result = sqlSession.update("ProductMapper.updateProduct", product);
+			// 삭제된 데이터가 없다는 것은 WHERE절의 조건값이 맞지 않다는 의미.
+			// 이 경우, 첫 번째 WHERE조건에서 사용되는 ID값에 대한 회원을 찾을 수 없다는 의미.
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("해당 제품값을 찾지 못했습니다.");
+		} catch (Exception e) {
+			sqlSession.rollback();
+			e.printStackTrace();
+			throw new Exception("정보수정에 실패했습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+	}
+
+	
 }

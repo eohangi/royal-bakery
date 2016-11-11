@@ -121,7 +121,7 @@
 	<td>{{proRegDate}}</td>								
 	<td>
 	<a href='${pageContext.request.contextPath}
-	/WEB-INF/views/3Admin_product_edit=${json}'>수정/삭제</a>
+	/PRODUCTEDIT.do?proName={{proName}}&&id={{id}}'>수정/삭제</a>
 	</td>
 </tr>
 {{/each}}
@@ -146,7 +146,7 @@
 	<td>{{proRegDate}}</td>							
 	<td>
 	<a href='${pageContext.request.contextPath}
-	/WEB-INF/views/3Admin_product_edit=${json}'>수정/삭제</a>
+	/PRODUCTEDIT.do?proName={{proName}}&&id={{id}}'>수정/삭제</a>
 	</td>
 </tr>
 </script>

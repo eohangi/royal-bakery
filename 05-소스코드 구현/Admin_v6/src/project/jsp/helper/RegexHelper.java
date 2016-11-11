@@ -51,6 +51,15 @@ public class RegexHelper {
 		}
 		return result;
 	}
+	
+	public boolean isNumInt(int str) {
+		boolean result = false;
+		String stri = ""+str; 
+		if (isValue(str)) {
+			result = Pattern.matches("^[0-9]*$", str);
+		}
+		return result;
+	}
 
 	/**
 	 * 영문으로만 구성되었는지에 대한 형식 검사

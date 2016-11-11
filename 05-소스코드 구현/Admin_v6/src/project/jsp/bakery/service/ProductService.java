@@ -23,6 +23,15 @@ public interface ProductService {
 	public Product SelectProductNyname (Product product) throws Exception;
 	
 	
+	/***
+	 * 제품을 수정한다.
+	 * @param product - 제품 ID값
+	 * @return - 됐냐 안됐냐 뭐 딱히 없음
+	 * @throws Exception
+	 */
+	public void Update (Product product) throws Exception;
+	
+	
 	/**
 	 * 제품 목록 조회
 	 * @param product - Classify 정보가 저장된 Beans
