@@ -14,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Document;
-import project.jsp.bakery.model.Member;
 import project.jsp.bakery.service.DocumentService;
 import project.jsp.bakery.service.impl.DocumentServiceImpl;
 import project.jsp.helper.BaseController;

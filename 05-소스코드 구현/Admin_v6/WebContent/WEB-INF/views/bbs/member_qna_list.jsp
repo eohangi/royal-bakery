@@ -32,7 +32,7 @@
 								<tr>
 									<td class="text-center">${document.id}</td>
 									<td>
-										<c:url var="readUrl" value="/bbs/qna_read.do">
+										<c:url var="readUrl" value="/bbs/member_qna_read.do">
 											<c:param name="category" value="${document.category}" />
 											<c:param name="document_id" value="${document.id}" />
 										</c:url>

@@ -120,7 +120,7 @@ $(function() {
 	<td class="text-center">
 	<a href="">구매내역</a></td>
 	<td class="text-center">
-	<a href='${pageContext.request.contextPath}/bbs/member_qna_list.do?Member_id={{resultmember.id}}'>문의내역</a></td>
+	<a href='${pageContext.request.contextPath}/bbs/member_qna_list.do?Member_id={{id}}'>문의내역</a></td>
 </tr>
 {{/each}}
 </script>
@@ -138,7 +138,7 @@ $(function() {
 	<td class="text-center">
 	<a href="">구매내역</a></td>
 	<td class="text-center">
-	<a href='${pageContext.request.contextPath}/bbs/member_qna_list.do?Member_id={{mem_id}}'>문의내역</a></td>
+	<a href='${pageContext.request.contextPath}/bbs/member_qna_list.do?Member_id={{id}}'>문의내역</a></td>
 	<td class="text-center">
 	<button type="submit" id="outok" name="outok" 
 	value="{{mem_id}}">회원탈퇴

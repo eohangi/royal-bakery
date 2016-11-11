@@ -93,7 +93,7 @@ div.content {
 										<a href="${prevUrl}">${prevDocument.subject}</a>
 									</c:when>
 									<c:otherwise>
-										다음글이 없습니다.
+										이전글이 없습니다.
 									</c:otherwise>
 								</c:choose>
 							</td>

@@ -59,7 +59,7 @@ div.content {
 					${readComment.coContent}
 				</section>
 								
-				<!-- 다음글 이전글 -->
+				<%-- <!-- 다음글 이전글 -->
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
@@ -94,11 +94,11 @@ div.content {
 							</td>
 						</tr>
 					</tbody>
-				</table>
+				</table> --%>
 				<!-- 버튼들 -->
 				<div class="clearfix">
 					<div class="pull-right">
-						<a href="${pageContext.request.contextPath}/bbs/qna_list.do" class="btn btn-info">목록보기</a>
+						<a href="${pageContext.request.contextPath}/bbs/member_qna_list.do?Member_id=${readDocument.memberId}" class="btn btn-info">목록보기</a>
 							<c:choose>
 								<c:when test="${readComment.coContent != null}">
 									<c:url var="editUrl" value="/bbs/comment_edit.do">
