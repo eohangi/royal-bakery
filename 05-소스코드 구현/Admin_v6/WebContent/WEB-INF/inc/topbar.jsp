@@ -47,7 +47,7 @@ $(function(){
 			<li><a href="${pageContext.request.contextPath}/PRODUCTINDEX.do">제품관리</a>
 				<ul class="list-unstyled">
 					<li><a href="${pageContext.request.contextPath}/PRODUCTINDEX.do">일반제품</a></li>
-					<li><a href="3Admin_order.jsp">주문제품</a></li>
+					<li><a href="${pageContext.request.contextPath}/custom/3Admin_custom.do">주문제품</a></li>
 				</ul></li>
 			<li><a href="#">게시판관리</a>
 				<ul class="list-unstyled">
