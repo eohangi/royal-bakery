@@ -85,11 +85,11 @@
 				$("input[name='keyword']").focus();
 				return false;
 			}
-			$.post("${pageContext.request.contextPath}/PRODUSELECT.do", {
-				keyword : word
-			}, function(json) {
+			$.post("${pageContext.request.contextPath}/PRODUSELECT.do",
+					{keyword:word},
+				function(json){
 				var temp = Handlebars.compile($("#itemsearch").html());
-				var html2 = temp(json);
+				var html2 = temp(json.resultproduct);
 				$("#productsearch").append(html2);
 			});//end json
 		});
@@ -100,7 +100,7 @@
 <script id="item_tmpl" type="text/x-handlebars-template">
 {{#each itemlist}}
 <tr>
-	<td class="text-center"><img src="{{proImg}}" width="100%" /></td>
+	<td class="text-center"><img src="{{{proImg}}}" width="100%" /></td>
 	<td>{{proClassify}}</td>
 	<td>{{proName}}</td>
 	<td>{{proPrice}}</td>
@@ -178,6 +178,7 @@
 											<td>단백질</td>
 											<td>최종수정일</td>
 											<td>입력일</td>
+											<td>관리</td>
 										</tr>
 									</thead>
 									<tbody id="productsearch">
@@ -296,7 +297,6 @@
 				<div></div>
 			</div>
 		</div>
-	</div>
 	</div>
 
 	<%@ include file="/WEB-INF/inc/footer.jsp"%>

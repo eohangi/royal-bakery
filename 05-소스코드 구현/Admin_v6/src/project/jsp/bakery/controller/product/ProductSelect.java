@@ -59,7 +59,7 @@ public class ProductSelect extends BaseController {
 
 		// ** 3. classify 값을 받아서 항목을 출력 *//*
 		// a: bread , b: cake, c:cokie
-		String keyword = request.getParameter("word");
+		String keyword = request.getParameter("keyword");
 		logger.debug("[DEBUG] 키워드로 넘어온 제품명>>>>>>>>>>>>>>> =" + keyword);
 
 		product.setProName(keyword);
