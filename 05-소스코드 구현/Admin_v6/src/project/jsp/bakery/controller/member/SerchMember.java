@@ -2,7 +2,6 @@ package project.jsp.bakery.controller.member;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -22,8 +20,6 @@ import project.jsp.bakery.model.Member;
 import project.jsp.bakery.service.AdminService;
 import project.jsp.bakery.service.impl.AdminServiceImpl;
 import project.jsp.helper.BaseController;
-import project.jsp.helper.PageHelper;
-import project.jsp.helper.UploadHelper;
 import project.jsp.helper.WebHelper;
 
 /**

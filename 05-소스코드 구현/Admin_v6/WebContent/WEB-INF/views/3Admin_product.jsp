@@ -93,6 +93,11 @@
 				$("#productsearch").append(html2);
 			});//end json
 		});
+		
+		$("#addproduct").click(function() {
+			// 입력값을 취득하고, 내용의 존재여부를 검사한다.
+			$.post("../api/id_unique_check.do");
+		}); // end click
 	});
 </script>
 
@@ -100,7 +105,7 @@
 <script id="item_tmpl" type="text/x-handlebars-template">
 {{#each itemlist}}
 <tr>
-	<td class="text-center"><img src="{{{proImg}}}" width="100%" /></td>
+	<td class="text-center"><img src="${pageContext.request.contextPath}/download.do?file={{{proImg}}}" width="20%" /></td>
 	<td>{{proClassify}}</td>
 	<td>{{proName}}</td>
 	<td>{{proPrice}}</td>
@@ -114,8 +119,10 @@
 	<td>{{protein}}</td>
 	<td>{{proEditDate}}</td>
 	<td>{{proRegDate}}</td>								
-	<td><button type="button" href="">수정</button>
-		<button type="button" href="">삭제</button></td>
+	<td>
+	<a href='${pageContext.request.contextPath}
+	/WEB-INF/views/3Admin_product_edit=${json}'>수정/삭제</a>
+	</td>
 </tr>
 {{/each}}
 </script>
@@ -123,7 +130,7 @@
 <!-- 제품찾기 -->
 <script id="itemsearch" type="text/x-handlebars-template">
 <tr>
-	<td><img src="../download.do?file={{{proImg}}}" width="100%" /></td>
+	<td><img src="${pageContext.request.contextPath}/download.do?file={{{proImg}}}" width="20%" /></td>
 	<td>{{proClassify}}</td>
 	<td>{{proName}}</td>
 	<td>{{proPrice}}</td>
@@ -137,8 +144,10 @@
 	<td>{{protein}}</td>
 	<td>{{proEditDate}}</td>
 	<td>{{proRegDate}}</td>							
-	<td><button type="button" href="">수정</button>
-		<button type="button" href="">삭제</button></td>
+	<td>
+	<a href='${pageContext.request.contextPath}
+	/WEB-INF/views/3Admin_product_edit=${json}'>수정/삭제</a>
+	</td>
 </tr>
 </script>
 </head>
@@ -155,6 +164,7 @@
 									placeholder="검색할 제품명을 입력하세요">
 							</div>
 							<button type="submit" class="btn btn-primary">검색</button>
+							<button id="addproduct" type="submit" class="btn btn-primary">제품추가</button>
 						</fieldset>
 					</form>
 					<c:choose>
