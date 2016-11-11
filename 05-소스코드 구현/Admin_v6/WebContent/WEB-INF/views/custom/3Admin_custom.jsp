@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%@ include file="/WEB-INF/inc/topbar.jsp"%>
+
 <!DOCTYPE html>
+<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 <html lang="ko">
 <head>
 
