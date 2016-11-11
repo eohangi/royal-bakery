@@ -40,6 +40,17 @@
 }
 </style>
 <!-- JSON 데이터 가져오기 스크립트 시작 -->
+<script type="text/javascript">
+
+	var id = $("#delete").val();
+	$(function(){
+		$("#delete").click(function() {
+			window.location("${pageContext.request.contextPath}/PRODUCTDELETE.do?id=id");
+	});
+	});
+	
+		
+	</script>
 
 
 <!-- 제품리스트 -->
@@ -190,7 +201,8 @@
 			<div class="form-group">
 				<div class="col-md-offset-2 col-md-6">
 					<button type="submit" class="btn btn-primary">수정완료</button>
-					<button type="button" class="btn btn-danger pull-right">제품삭제</button>
+					<button type="button" id="delete" class="btn btn-danger pull-right" value="${item.id}">제품삭제</button>
+					
 				</div>
 			</div>
 		</form>

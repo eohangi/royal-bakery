@@ -31,6 +31,13 @@ public interface ProductService {
 	 */
 	public void Update (Product product) throws Exception;
 	
+	/***
+	 * 제품을 삭제한다.
+	 * @param product - 제품 ID값
+	 * @throws Exception
+	 */
+	public void Delete (Product product) throws Exception;
+	
 	
 	/**
 	 * 제품 목록 조회
@@ -49,4 +56,6 @@ public interface ProductService {
 	 */
 	public int selectProductCount(Product product) throws
 	 Exception;
+	
+	
 }
