@@ -42,73 +42,109 @@
 </style>
 <!-- JSON 데이터 가져오기 스크립트 시작 -->
 <script type="text/javascript">
-	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */
-	$(function() {
-		get_list(); //페이지가 열림과 동시에 호출된다.
-	});
+
+function get_list() {
+	$.get("${pageContext.request.contextPath}/MEMBERLISTBYADMIN.do",
+			function(json) {
+				var template = Handlebars.compile($("#memberitem").html());
+				var html = template(json);
+				$("#memberlist").append(html);
+			});
+}
+
+/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */
+$(function() {
+	get_list(); //페이지가 열림과 동시에 호출된다.
 	
 	
-	function get_list() {
-		$.get("${pageContext.request.contextPath}/MEMBERLISTBYADMIN.do",
-				function(json) {
-					var template = Handlebars.compile($("#memberitem").html());
-					var html = template(json);
-					$("#memberlist").append(html);
-				});
-	}
-	$(function(){
-		$("#search").submit(function(e){
-			e.preventDefault();
-			var word = $("input[name='keyword']").val();
+	$("#search").submit(function(e){
+		e.preventDefault();
+		var word = $("input[name='keyword']").val();
 			if(!word){
 				alert("검색어를 입력하세요");
 				$("input[name='keyword']").focus();
 				return false;
 			}
-			$.post("${pageContext.request.contextPath}/SEARCHMEMBER.do",
-					{keyword:word},
-					function(json){
-						var temp = Handlebars.compile($("#item").html());
-						var html2 = temp(json);
-						$("#member").append(html2);
-					});//end json
-		});//end submit
-	});//end function
+		$.post("${pageContext.request.contextPath}/SEARCHMEMBER.do",
+			{keyword:word},
+				function(json){
+					var temp = Handlebars.compile($("#item").html());
+					var html2 = temp(json.member);
+					$("#member").append(html2);
+				});//end json
+	});//end submit
 	
-	//한종이 참고해
-	$(function(){
-		$(document).on("click","#outok",function(e){
-			var mem_id = $("#outok").val();
-			console.log("동적 클릭 이벤트 발생시 >>>>>>>>>>>>>>>>>>>>>>>>"+mem_id);
-			swal({
-				  title: "회원탈퇴",
-				  text: "정말 탈퇴시키겠습니까?",
-				  type: "warning",
-				  showCancelButton: true,
-				  confirmButtonClass: "btn-primary",
-				  confirmButtonText: "확인",
-				
-				    
-				  
-				  cancelButtonClass: "btn-danger",
-				  cancelButtonText: "취소",
-				  closeOnConfirm: false,
-				  closeOnCancel: false
-				},
-				function(isConfirm){
-					if(isConfirm){
-						location.href="${pageContext.request.contextPath}/OUTOK.do?mem_id="+mem_id;
-				}else{
-					swal.close();
-				}
-				
-				});  
-		});
+	$(document).on("click","#outok",function(e){
+		var mem_id = $("#outok").val();
+		console.log("동적 클릭 이벤트 발생시 >>>>>>>>>>>>>>>>>>>>>>>>"+mem_id);
+		swal({
+			  title: "회원탈퇴",
+			  text: "정말 탈퇴시키겠습니까?",
+			  type: "warning",
+			  showCancelButton: true,
+			  confirmButtonClass: "btn-primary",
+			  confirmButtonText: "확인",
+			
+			    
+			  
+			  cancelButtonClass: "btn-danger",
+			  cancelButtonText: "취소",
+			  closeOnConfirm: false,
+			  closeOnCancel: false
+			},
+			function(isConfirm){
+				if(isConfirm){
+					location.href="${pageContext.request.contextPath}/OUTOK.do?mem_id="+mem_id;
+			}else{
+				swal.close();
+			}
+			
+		}); 
 	});
-	
+})
 </script>
 </head>
 <body>
+
+<!-- 회원리스트 노출 -->
+<script id="memberitem" type="text/x-handlebars-template">
+{{#each member}}
+<tr>
+	<td class="text-center">{{classify}}</td>
+	<td class="text-center">{{birthdate}}</td>
+	<td class="text-center">{{mem_id}}</td>
+	<td class="text-center">{{mem_name}}</td>
+	<td class="text-center">{{gender}}</td>
+	<td class="text-center">{{phone_no}}</td>
+	<td class="text-center">{{reg_date}}</td>
+	<td class="text-center">
+	<a href="">구매내역</a></td>
+	<td class="text-center">
+	<a href='${pageContext.request.contextPath}/bbs/member_qna_list.do?Member_id={{resultmember.id}}'>문의내역</a></td>
+</tr>
+{{/each}}
+</script>
+
+<!-- 검색한거노출 -->
+<script id="item" type="text/x-handlebars-template">
+<tr>
+	<td class="text-center">{{classify}}</td>
+	<td class="text-center">{{birthdate}}</td>
+	<td class="text-center">{{mem_id}}</td>
+	<td class="text-center">{{mem_name}}</td>
+	<td class="text-center">{{gender}}</td>
+	<td class="text-center">{{phone_no}}</td>
+	<td class="text-center">{{reg_date}}</td>
+	<td class="text-center">
+	<a href="">구매내역</a></td>
+	<td class="text-center">
+	<a href='${pageContext.request.contextPath}/bbs/member_qna_list.do?Member_id={{mem_id}}'>문의내역</a></td>
+	<td class="text-center">
+	<button type="submit" id="outok" name="outok" 
+	value="{{mem_id}}">회원탈퇴
+	</button></td>
+</tr>
+</script>
 	<div class="container">
 		<div class="row">
 			<div class="header">
@@ -123,13 +159,12 @@
 							<button type="submit" class="btn btn-primary">검색</button>
 						</fieldset>
 					</form>
-				<c:choose>
-					<c:when test="${resultmember =! null}">
 				<!-- 검색 후 노출될 에이잭스 -->
 				<div class="table-responsive-ajax">
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
+							<td class="text-center">회원분류</td>
 							<td class="text-center">생년월일</td>
 							<td class="text-center">아이디</td>
 							<td class="text-center">이름</td>
@@ -142,30 +177,11 @@
 						</tr>
 					</thead>
 					<tbody id="member">
-						<script id="item" type="text/x-handlebars-template">
-							<tr>
-								<td class="text-center">{{resultmember.birthdate}}</td>
-								<td class="text-center">{{resultmember.mem_id}}</td>
-								<td class="text-center">{{resultmember.mem_name}}</td>
-								<td class="text-center">{{resultmember.gender}}</td>
-								<td class="text-center">{{resultmember.phone_no}}</td>
-								<td class="text-center">{{resultmember.reg_date}}</td>
-								<td class="text-center">
-								<a href="">구매내역</a></td>
-								<td class="text-center">
-								<a href='${pageContext.request.contextPath}/bbs/member_qna_list.do?Member_id={{resultmember.id}}'>문의내역</a></td>
-								<td class="text-center">
-								<button type="submit" id="outok" name="outok" 
-								value="{{resultmember.mem_id}}">회원탈퇴
-								</button></td>
-						</tr>
-						</script>
+						
 					</tbody>
 				</table>
 			</div>
 				<!-- //검색 -->
-				</c:when>
-				</c:choose>
 				</div>
 			</div>
 			<!-- 페이지 내용 영역 -->
@@ -173,6 +189,7 @@
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
+							<td class="text-center">회원분류</td>
 							<td class="text-center">생년월일</td>
 							<td class="text-center">아이디</td>
 							<td class="text-center">이름</td>
@@ -184,22 +201,7 @@
 						</tr>
 					</thead>
 					<tbody id="memberlist">
-						<script id="memberitem" type="text/x-handlebars-template">
-					{{#each member}}						
-							<tr>
-								<td class="text-center">{{birthdate}}</td>
-								<td class="text-center">{{mem_id}}</td>
-								<td class="text-center">{{mem_name}}</td>
-								<td class="text-center">{{gender}}</td>
-								<td class="text-center">{{phone_no}}</td>
-								<td class="text-center">{{reg_date}}</td>
-								<td class="text-center">
-								<a href="">구매내역</a></td>
-								<td class="text-center">
-								<a href='${pageContext.request.contextPath}/bbs/member_qna_list.do?Member_id={{resultmember.id}}'>문의내역</a></td>
-						</tr>
-					{{/each}}
-						</script>
+					
 					</tbody>
 				</table>
 			</div>

@@ -2,7 +2,6 @@ package project.jsp.bakery.controller.product;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -54,41 +53,42 @@ public class ProductSelect extends BaseController {
 		proCommon = ProductCommon.getInstance();
 		productService = new ProductServiceImpl(logger, sqlSession);
 		Product product = new Product();
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
 
 		// ** 3. classify 값을 받아서 항목을 출력 *//*
 		// a: bread , b: cake, c:cokie
-		String keyword= request.getParameter("word");
-		logger.debug("[DEBUG] 키워드로 넘어온 제품명>>>>>>>>>>>>>>> ="+ keyword);
-		
+		String keyword = request.getParameter("word");
+		logger.debug("[DEBUG] 키워드로 넘어온 제품명>>>>>>>>>>>>>>> =" + keyword);
+
 		product.setProName(keyword);
-		
-		//이름으로 빵 조회
-		try{
-		product = productService.SelectProductNyname(product);
-		}catch(Exception e){
+
+		// 이름으로 빵 조회
+		try {
+			product = productService.SelectProductNyname(product);
+		} catch (Exception e) {
 			web.redirect(null, "알수없는오류 from servlet");
-		}finally{
+		} finally {
 			sqlSession.close();
 		}
-		
+
 		// 조회결과가 존재할 경우 --> 이미지 경로를 썸네일로 교체
 		if (product != null) {
-				String imagePath = product.getProImg();
-				if (imagePath != null) {
-					String thumbPath = upload.createThumbnail(imagePath, 320, 320, true);
-					// 글 목록 컬렉션 내의 Beans 객체가 갖는 이미지 경로를 썸네일로 변경한다.
-					product.setProImg(thumbPath);
-					logger.debug("thumbnail create >" + product.getProImg());
-				}
+			String imagePath = product.getProImg();
+			if (imagePath != null) {
+				String thumbPath = upload.createThumbnail(imagePath, 320, 320, true);
+				// 글 목록 컬렉션 내의 Beans 객체가 갖는 이미지 경로를 썸네일로 변경한다.
+				product.setProImg(thumbPath);
+				logger.debug("thumbnail create >" + product.getProImg());
 			}
 		}
 
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("resultmember", member);
+		data.put("resultproduct", product);
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(response.getWriter(), data);
-
 
 		return null;
 	}

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -72,12 +73,11 @@ public class SerchMember extends BaseController {
 		
 		/**에이젝스로 쏴주기*/
 		// ** 처리 결과를 JSON으로 출력하기 *//*
-				Map<String, Object> data = new HashMap<String, Object>();
-				data.put("resultmember", member);
-				ObjectMapper mapper = new ObjectMapper();
-				mapper.writeValue(response.getWriter(), data);
-
-				return null;
+		Map<String,Object> json = new HashMap<String,Object>();
+		json.put("member", member);
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.writeValue(response.getWriter(), json);
+		return null;
 	}
 
 }
