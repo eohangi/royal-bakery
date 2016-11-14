@@ -54,22 +54,15 @@ div.content {
 			<!-- 페이지 내용 영역 -->
 			<div class="content">
 
-				<h2 class="page-header "
-					style="text-align: left; padding-left: 30px; padding-bottom: 20px">|
-					Q n A</h2>
-
-
-
-
-				<div class="container"
-					style="padding-left: 30px; padding-right: 30px;">
+				<h2 class="page-header" style="text-align: left; padding-left: 30px;
+					padding-bottom: 20px">| Q n A</h2>
+				<div class="container" style="padding-left: 30px; padding-right: 30px;">
 					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th class="text-center  col-md-1">번호</th>
 								<th class="text-center  col-md-4">제목</th>
 								<th class="text-center  col-md-2">등록일</th>
-								
 								<th class="text-center  col-md-2"></th>
 							</tr>
 						</thead>

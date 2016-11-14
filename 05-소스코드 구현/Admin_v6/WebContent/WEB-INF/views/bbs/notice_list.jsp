@@ -50,7 +50,7 @@ div.content {
 			<div class="content">
 
 				<h2 class="page-header" style="text-align: left; padding-left: 30px; 
-					padding-bottom: 20px">| 공지사항 작성</h2>
+					padding-bottom: 20px">| 공지사항 </h2>
 				<div class="container" style="padding-left: 30px; padding-right: 30px;">
 					<table class="table table-hover" style="padding: 10px;">
 						<thead>

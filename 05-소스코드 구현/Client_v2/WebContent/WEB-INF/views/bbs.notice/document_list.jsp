@@ -44,7 +44,7 @@
 								</tr>
 								
 								<tr id="${document.id}" class="panel-collapse collapse">
-									<td class="panel-body" colspan="4" >${document.content}</td>
+									<td class="panel-body" colspan="4" style="height: 120px;">${document.content}</td>
 								</tr>
 							</c:forEach>
 						</c:when>

@@ -14,6 +14,8 @@ div.container {
 /**  content  */
 div.sidebar1 {
 	float: left;
+	background: #ccc;
+	min-height: 500px;
 	position: relative;
 	width: 10%;
 	height: auto;
@@ -21,6 +23,8 @@ div.sidebar1 {
 
 div.sidebar2 {
 	float: left;
+	background: #ccc;
+	min-height: 500px;
 	position: relative;
 	width: 10%;
 	height: auto;

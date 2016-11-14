@@ -11,7 +11,7 @@
 <body>
 	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class="container">
-		<h1 class="page-header">문의하기 - <small>글 읽기</small></h1>
+		<h1 class="page-header">문의하기 - <small>| 글 읽기</small></h1>
 		
 		<!-- 제목, 작성자, 작성일시 -->
 		<div class="alert alert-info">
