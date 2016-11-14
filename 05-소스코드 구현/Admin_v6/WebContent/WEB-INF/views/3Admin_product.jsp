@@ -95,8 +95,7 @@
 		});
 		
 		$("#addproduct").click(function() {
-			// 입력값을 취득하고, 내용의 존재여부를 검사한다.
-			$.post("../api/id_unique_check.do");
+			location.replace("${pageContext.request.contextPath}/GOADDPRODUCT.do");
 		}); // end click
 	});
 </script>
@@ -164,7 +163,7 @@
 									placeholder="검색할 제품명을 입력하세요">
 							</div>
 							<button type="submit" class="btn btn-primary">검색</button>
-							<button id="addproduct" type="submit" class="btn btn-primary">제품추가</button>
+							<button id="addproduct" type="button" class="btn btn-primary">제품추가</button>
 						</fieldset>
 					</form>
 					<c:choose>

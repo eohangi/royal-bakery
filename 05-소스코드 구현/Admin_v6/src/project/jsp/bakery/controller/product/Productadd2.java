@@ -15,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Product;
-import project.jsp.bakery.model.ProductCommon;
 import project.jsp.bakery.service.ProductService;
 import project.jsp.bakery.service.impl.ProductServiceImpl;
 import project.jsp.helper.BaseController;
@@ -27,17 +26,16 @@ import project.jsp.helper.WebHelper;
 /**
  * Servlet implementation class ProductBread
  */
-@WebServlet("/PRODUCTEDITOK.do")
-public class Producteditok extends BaseController {
+@WebServlet("/PRODUCTADD.do")
+public class Productadd2 extends BaseController {
 	// ** 1. 사용할 것들 선언 *//*
 	private static final long serialVersionUID = -3691943202696624764L;
 	Logger logger;
 	SqlSession sqlSession;
 	WebHelper web;
 	UploadHelper upload;
-	RegexHelper regex;
-	ProductCommon proCommon;
 	ProductService productService;
+	RegexHelper regex;
 
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,12 +45,11 @@ public class Producteditok extends BaseController {
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
 		upload = UploadHelper.getInstance();
-		proCommon = ProductCommon.getInstance();
-		regex = RegexHelper.getInstance();
 		productService = new ProductServiceImpl(logger, sqlSession);
 		Product product = new Product();
+		regex = RegexHelper.getInstance();
 		request.setCharacterEncoding("UTF-8");
-		
+
 		try {
 			upload.multipartRequest(request);
 		} catch (Exception e1) {
@@ -67,8 +64,6 @@ public class Producteditok extends BaseController {
 		String status = paramMap.get("status");
 		String content = paramMap.get("content");
 		
-		String id = paramMap.get("id");
-		logger.debug("아이디값 뭔데>>>>>>>>>>>>>>>>>>>>>>>>>" + id);
 		String kcal = paramMap.get("kcal");
 		String na = paramMap.get("na");
 		String sugar = paramMap.get("sugar");
@@ -77,7 +72,6 @@ public class Producteditok extends BaseController {
 		String stock = paramMap.get("stock");
 		String proprice = paramMap.get("proPrice");
 		
-		int idd = Integer.parseInt(id);
 		int kcall = Integer.parseInt(kcal);
 		int naa = Integer.parseInt(na);
 		int sugarr = Integer.parseInt(sugar);
@@ -85,10 +79,6 @@ public class Producteditok extends BaseController {
 		int proteinn = Integer.parseInt(protein);
 		int stockk = Integer.parseInt(stock);
 		int propricee = Integer.parseInt(proprice);
-		
-		
-		
-		
 		
 		//유효성 검사
 		// 이름 검사
@@ -123,7 +113,7 @@ public class Producteditok extends BaseController {
 			web.redirect(null, "제품소개내용을 입력해 주세요.");
 			return null;
 		}
-		
+
 		List<FileInfo> fileList = upload.getFileList();
 		String profileImg = null;
 		if(fileList.size() > 0 ){
@@ -134,7 +124,6 @@ public class Producteditok extends BaseController {
 		
 		product.setContent(content);
 		product.setFat(fatt);
-		product.setId(idd);
 		product.setKcal(kcall);
 		product.setNa(naa);
 		product.setProClassify(proClassify);
@@ -147,9 +136,8 @@ public class Producteditok extends BaseController {
 		product.setSugar(sugarr);
 		logger.debug("아썅 다출력해>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + product);
 		
-		
 		try{
-			productService.Update(product);
+			productService.insertProduct(product);
 			logger.debug("저장될 값>>>>>>>>>>>>>>>>>>>>>>>>>>>" + product);
 		} catch(Exception e){
 			web.redirect(null, e.getLocalizedMessage());
@@ -157,7 +145,8 @@ public class Producteditok extends BaseController {
 			sqlSession.close();
 		}
 		
-		web.redirect(web.getRootPath()+"/PRODUCTINDEX.do","정보수정이 성공적으로 완료되었습니다.");
+		web.redirect(web.getRootPath()+"/PRODUCTINDEX.do","제품등록이 성공적으로 이루어 졌습니다.");
 		return null;
 	}
+
 }

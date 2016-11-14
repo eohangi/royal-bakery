@@ -146,4 +146,25 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	
+	//제품 등록하기
+	@Override
+	public void insertProduct(Product product) throws Exception {
+		try {
+			int result = sqlSession.update("ProductMapper.insertProduct", product);
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("널값이 존재합니다");
+		} catch (Exception e) {
+			sqlSession.rollback();
+			e.printStackTrace();
+			throw new Exception("제품등록에 실패했습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+	}
+
+	
 }

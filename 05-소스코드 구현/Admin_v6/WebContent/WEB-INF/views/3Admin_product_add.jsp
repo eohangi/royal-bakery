@@ -45,7 +45,7 @@
 	var id = $("#delete").val();
 	$(function(){
 		$("#delete").click(function() {
-			location.replace("${pageContext.request.contextPath}/PRODUCTDELETE.do?id=id");
+			window.location("${pageContext.request.contextPath}/PRODUCTDELETE.do?id=id");
 	});
 	});
 	
@@ -59,34 +59,29 @@
 <body>
 	<div class="container">
 		<div class="page-header">
-		<h1>${item.proName}</h1><h3>수정 페이지</h3>
+		<h3>제품등록 페이지</h3>
 		</div>
 		<div class="row">
 			<form class="form-horizontal" id="member_edit_form"
 			name="member_edit_form" method="post"
-			action="${pageContext.request.contextPath}/PRODUCTEDITOK.do" enctype="multipart/form-data">
+			action="${pageContext.request.contextPath}/PRODUCTADD.do" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for='proImg' class="col-md-2">이미지</label>
 				<div class="col-md-6">
-				<img src="${pageContext.request.contextPath}/download.do?file=${item.proImg}" width="20%" />
-				<input type="file" class="form-control pull-left" id="proImg" name="proImg" multiple/>
+				<input type="file" class="form-control pull-left" id="proImg" name="proImg"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for='proClassify' class="col-md-2">분류</label>
 				<div class="col-md-6">
-					<select name="proClassify" id="proClassify" class="form-control">
-						<option value="" 
-						<c:if test="${item.proClassify =='null'}">selected="selected"</c:if>>
+					<select class="form-control" name="proClassify" id="proClassify">
+						<option>
 						-------------------------------선택하세요--------------------------------</option>
-						<option value="a" 
-						<c:if test="${item.proClassify =='a'}">selected="selected"</c:if>>
+						<option value="a" >
 						--------------------------------BREAD---------------------------------</option>
-						<option value="b" 
-						<c:if test="${item.proClassify =='b'}">selected="selected"</c:if>>
+						<option value="b" >
 						---------------------------------CAKE---------------------------------</option>
-						<option value="c" 
-						<c:if test="${item.proClassify =='c'}">selected="selected"</c:if>>
+						<option value="b" >
 						--------------------------------COOKIE--------------------------------</option>
 					</select>
 				</div>
@@ -95,8 +90,7 @@
 				<label for='id' class="col-md-2">제품번호</label>
 				<div class="col-md-6">
 					<input type="text" class="form-control pull-left" id="id"
-						name="id" value="${item.id}"
-						style="width: 25%; display: inline-block; margin-right: 5px;"
+						name="id" style="width: 25%; display: inline-block; margin-right: 5px;"
 						readonly />
 				</div>
 			</div>
@@ -104,8 +98,7 @@
 				<label for='proName' class="col-md-2">제품이름</label>
 				<div class="col-md-6">
 					<input type="text" class="form-control pull-left" id="proName"
-						name="proName" value="${item.proName}"
-						style="width: 25%; display: inline-block; margin-right: 5px;"
+						name="proName"style="width: 25%; display: inline-block; margin-right: 5px;"
 						/>
 				</div>
 			</div>
@@ -114,7 +107,7 @@
 				<label for='proPrice' class="col-md-2">제품가격</label>
 				<div class="col-md-6">
 					<input type="text" name="proPrice" id="proPrice"
-						value="${item.proPrice}" class="form-control" />
+						class="form-control" />
 				</div>
 			</div>
 			
@@ -122,7 +115,7 @@
 				<label for='stock' class="col-md-2">수량</label>
 				<div class="col-md-6">
 					<input type="text" name="stock" id="stock"
-						value="${item.stock}" class="form-control" />
+					class="form-control" />
 				</div>
 			</div>
 
@@ -130,10 +123,9 @@
 				<label for='status' class="col-md-2">품절상태</label>
 				<div class="col-md-6">
 					<input type="text" name="status" id="status"
-						value="${item.status}" class="form-control" />
+					class="form-control" />
 				</div>
 			</div>
-
 			<div class="form-group">
 				<label for='content' class="col-md-2">제품설명</label>
 				<div class="col-md-6">
@@ -146,7 +138,7 @@
 				<label for='kcal' class="col-md-2">칼로리</label>
 				<div class="col-md-6">
 					<input type="text" name="kcal" id="kcal"
-						class="form-control"value="${item.kcal}" />
+						class="form-control" />
 				</div>
 			</div>
 
@@ -154,7 +146,7 @@
 				<label for='na' class="col-md-2">나트륨</label>
 				<div class="col-md-6">
 					<input type="text" name="na" id="na"
-						class="form-control" value="${item.na}" />
+						class="form-control"  />
 				</div>
 			</div>
 
@@ -162,7 +154,7 @@
 				<label for='sugar' class="col-md-2">설탕</label>
 				<div class="col-md-6">
 					<input type="text" name="sugar" id="sugar" class="form-control"
-						 value="${item.sugar}" />
+						 />
 				</div>
 			</div>
 
@@ -170,7 +162,7 @@
 				<label for='fat' class="col-md-2">지방</label>
 				<div class="col-md-6">
 					<input type="text" name="fat" id="fat" class="form-control"
-						 value="${item.fat}" />
+						 />
 				</div>
 			</div>
 			
@@ -178,31 +170,13 @@
 				<label for='protein' class="col-md-2">단백질</label>
 				<div class="col-md-6">
 					<input type="text" name="protein" id="protein" class="form-control"
-						 value="${item.protein}" />
+						/>
 				</div>
 			</div>
-			
-			<div class="form-group">
-				<label for='proEditDate' class="col-md-2">최종수정일</label>
-				<div class="col-md-6">
-					<input type="text" name="proEditDate" id="proEditDate" class="form-control"
-						 value="${item.proEditDate}" readonly />
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label for='proRegDate' class="col-md-2">입력일</label>
-				<div class="col-md-6">
-					<input type="text" name="proRegDate" id="proRegDate" class="form-control"
-					 value="${item.proRegDate}" readonly/>
-				</div>
-			</div>
-			
+		
 			<div class="form-group">
 				<div class="col-md-offset-2 col-md-6">
-					<button type="submit" class="btn btn-primary">수정완료</button>
-					<button type="button" id="delete" class="btn btn-danger pull-right" value="${item.id}">제품삭제</button>
-					
+					<button type="submit" class="btn btn-primary">제품등록</button>					
 				</div>
 			</div>
 		</form>

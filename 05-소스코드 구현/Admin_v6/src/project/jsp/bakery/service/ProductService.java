@@ -57,5 +57,10 @@ public interface ProductService {
 	public int selectProductCount(Product product) throws
 	 Exception;
 	
-	
+	/***
+	 * 제품 넣기
+	 * @param product - 제품정보가 담긴 빈즈
+	 * @throws Exception
+	 */
+	public void insertProduct(Product product) throws Exception;
 }
