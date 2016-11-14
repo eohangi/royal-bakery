@@ -119,10 +119,10 @@ public class CustomList extends BaseController {
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("custom", customList);
+
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ멤버 리스트.do 끝ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(response.getWriter(), data);
-		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ멤버 리스트.do 끝ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-
 		/* String view = "custom/3Admin_custom"; */
 		// "/WEB-INF/views/index.jsp"파일을 View로 사용한다.
 		return null;

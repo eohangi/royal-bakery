@@ -3,6 +3,7 @@ package project.jsp.bakery.controller.custom;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -71,12 +72,25 @@ public class CustomCreateOk extends BaseController {
 		/** (3) 게시판 카테고리 값을 받아서 View에 전달 */
 		/** (4) 존재하는 게시판인지 판별하기 */
 
+		Map<String, String> paramMap = upload.getParamMap();
 		String list = web.getString("list");
-		
-		
+
 		String text1 = web.getString("cu_name");
 		int text2 = web.getInt("cu_price");
 
+		logger.debug("cu_name=" + text1);
+		logger.debug("cu_price=" + text2);
+		
+		if (text1 == null) {
+			web.redirect(null, "제품명을 정해주십시오.");
+			return null;
+		}
+
+		if (text2 == 0) {
+			web.redirect(null, "가격을 정해주십시오.");
+			return null;
+		}
+		
 		System.out.println("classify=" + list);
 
 		Custom custom = new Custom();

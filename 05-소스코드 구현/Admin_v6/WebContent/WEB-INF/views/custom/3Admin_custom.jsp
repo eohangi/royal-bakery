@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-
 <!DOCTYPE html>
-<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 <html lang="ko">
 <head>
 
-<style type="text/css">
+</head>
+<body>
+	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
+	<div class="container">
+		<div class="row">
+			<style type="text/css">
 .header {
 	padding-top: 70px;
 }
@@ -38,53 +41,55 @@
 	margin: 0;
 }
 </style>
-<!-- JSON 데이터 가져오기 스크립트 시작 -->
-<script type="text/javascript">
-	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 ---> req는 JSON 내용. */
-
-
-	function get_list() {
-		$.get("../custom/CustomList.do", {
-			customId : 0
-		}, function(json) {
-					var template = Handlebars.compile($("#customitem").html());
-					var html = template(json);
-					$("#customlist").html(html);
-				});
-	}
-	$(function() {
-		get_list();
-		//장바구니에서 품목 삭제
-		$(document).on(
-				"click",
-				".Custom_delete",
-				function() {
-					//data-proId 속성의 값을 취득한다.
-					var id = $(this).data("id");
-					console.log(id);
-
-					//삭제 버튼을 눌렀을 때 삭제
-					$.get("../custom/Custom_delete.do", {
-						id : id
+			<script id="customitem" type="text/x-handlebars-template">	
+					{{#each custom}}						
+							<tr>
+								<td class="text-center">{{cuClassify}}</td>
+								<td class="text-center">{{cuName}}</td>
+								<td class="text-center">{{cuPrice}}</td>
+								<td class="text-center">
+								<a href="">수정</a></td>
+								<td><a class="Custom_delete btn btn-xs" id="Custom_delete" data-id="{{{id}}}"  onclick=''><i class="glyphicon glyphicon-remove"></i></a></td>
+									</tr>
+					{{/each}}
+						</script>
+			<!-- JSON 데이터 가져오기 스크립트 시작 -->
+			<script type="text/javascript">
+				function get_list() {
+					$.get("../custom/CustomList.do", {
+						customId : 0
 					}, function(json) {
-						//미리 준비한 HTML틀을 읽어온다.
-						var template = Handlebars.compile($("#customitem").html());
-						// Ajax를 통해서 읽어온 JSON을 템플릿에 병합한다.
+						var template = Handlebars.compile($("#customitem")
+								.html());
 						var html = template(json);
-						// #result에 읽어온 내용을 추가한다.
 						$("#customlist").html(html);
 					});
+				}
+				$(function() {
+					get_list();
+					//장바구니에서 품목 삭제
+					$(document).on(
+							"click",
+							".Custom_delete",
+							function() {
+								//data-proId 속성의 값을 취득한다.
+								var id = $(this).data("id");
+								console.log(id);
+
+								//삭제 버튼을 눌렀을 때 삭제
+								$.get("../custom/Custom_delete.do", {
+									id : id
+								}, function(json) {
+									var template = Handlebars.compile($(
+											"#customitem").html());
+									var html = template(json);
+									$("#customlist").html(html);
+								});
+
+							});
 
 				});
-
-				});
-
-</script>
-</head>
-<body>
-	
-	<div class="container">
-		<div class="row">
+			</script>
 
 
 			<div class="header">
@@ -121,18 +126,7 @@
 						</tr>
 					</thead>
 					<tbody id="customlist">
-						<script id="customitem" type="text/x-handlebars-template">
-					{{#each custom}}						
-							<tr>
-								<td class="text-center">{{cuClassify}}</td>
-								<td class="text-center">{{cuName}}</td>
-								<td class="text-center">{{cuPrice}}</td>
-								<td class="text-center">
-								<a href="">수정</a></td>
-								<td><a class="Custom_delete btn btn-xs" id="Custom_delete" data-id="{{{id}}}"  onclick=''><i class="glyphicon glyphicon-remove"></i></a></td>
-									</tr>
-					{{/each}}
-						</script>
+
 					</tbody>
 				</table>
 			</div>

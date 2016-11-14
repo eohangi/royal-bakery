@@ -23,6 +23,9 @@ import project.jsp.bakery.service.CustomService;
 import project.jsp.bakery.service.impl.CustomServiceImpl;
 import project.jsp.bakery.service.impl.DocumentServiceImpl;
 import project.jsp.helper.BaseController;
+import project.jsp.helper.PageHelper;
+import project.jsp.helper.RegexHelper;
+import project.jsp.helper.UploadHelper;
 import project.jsp.helper.WebHelper;
 
 @WebServlet("/custom/Custom_delete.do")
@@ -35,14 +38,23 @@ public class CustomDelete extends BaseController {
 	WebHelper web;
 	Custom custom;
 	CustomService customService;
+	RegexHelper regex;
+
+	PageHelper pageHelper;
+	UploadHelper upload;
 
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		/** 사용하고자 하는 핼퍼 + 서비스 객체 생성 */
+		/** (2) 사용하고자 하는 Helper+Service 객체 생성 */
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
-		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
+		sqlSession = MyBatisConnectionFactory.getSqlSession();
+		regex = RegexHelper.getInstance();
+		// --> import study.jsp.mysite.service.impl.BbsDocumentServiceImpl;
+		pageHelper = PageHelper.getInstance();
+
+		upload = UploadHelper.getInstance();
 
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
@@ -50,51 +62,49 @@ public class CustomDelete extends BaseController {
 
 		customService = new CustomServiceImpl(sqlSession, logger);
 
-		int customid = web.getInt("id");
-		System.out.println("customid=" + customid);
-		request.setAttribute("customid", customid);
+		int id = web.getInt("id");
+		System.out.println("id=" + id);
+		request.setAttribute("id", id);
 		// 파라미터를 Beans로 묶기
-		custom = new Custom();
-		custom.setId(customid);
+
+		List<Custom> customList = null;
+		Custom custom = new Custom();
+		custom.setId(id);
 		String rt = "FAIL";
-		logger.debug("[DEBUG] customid =" + customid);
-
-		List<Custom> customlist = null;
-
+		logger.debug("[DEBUG] id =" + id);
+		int page = web.getInt("page", 1);
 		try {
 
 			logger.debug("[DEBUG] : custom =" + custom.toString());
 
 			customService.deleteCustomItem(custom);
 
-			customlist = customService.getCustomList(custom);
-			logger.debug("조회한 회원 목록>>>>>>>>>>>>>>>>>", customlist);
+			customList = customService.getCustomList(custom);
+			logger.debug("조회한 회원 목록>>>>>>>>>>>>>>>>>", customList);
 
-			System.out.println("customlist=" + customlist);
+			System.out.println("customlist=" + customList);
 		} catch (Exception e) {
 			web.printJsonRt(e.getLocalizedMessage());
 			return null;
 		} finally {
 			sqlSession.close();
 		}
+		sqlSession.close();
+		System.out.println("customlist=" + customList);
 
-		System.out.println("customlist=" + customlist);
-		for (int i = 0; i < customlist.size(); i++) {
-			System.out.println(customlist.get(i));
+		for (int i = 0; i < customList.size(); i++) {
+			System.out.println(customList.get(i));
 		}
 
-		// 상태유지를 위하여 게시글 일련번호를 View에 전달한다.
-		request.setAttribute("customid", customid);
-
 		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("rt", rt);
-		data.put("item", customlist);
+		data.put("custom", customList);
 
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ멤버 리스트.do 끝ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(response.getWriter(), data);
-
+		/* String view = "custom/3Admin_custom"; */
+		// "/WEB-INF/views/index.jsp"파일을 View로 사용한다.
 		return null;
-
 	}
 
 }

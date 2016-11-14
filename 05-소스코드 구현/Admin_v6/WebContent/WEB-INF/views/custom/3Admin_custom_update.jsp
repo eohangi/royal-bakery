@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
 <style type="text/css">
 .join {
 	margin: auto;
@@ -16,11 +15,6 @@
 
 .page-header {
 	text-align: center;
-}
-
-.form-group2 {
-	align: center;
-	padding-bottom: 50px;
 }
 </style>
 </head>
@@ -34,75 +28,40 @@
 		<div class="row">
 			<div class="join">
 				<!-- 가입폼 시작 -->
-				<form class="form-horizontal" id="myform">
+				<form class="form-horizontal" method="post" id="myform"
+					action="${pageContext.request.contextPath}/custom/CustomUpdateOk.do">
+
+					<input type="hidden" name="id" value="${custom.id}" />
 
 					<div class="form-group">
-						<label for="user_id" class="col-md-2">분 류*</label>
-						<fieldset>
-							<div>
-								<!-- 드롭다운 (싱글타입) -->
-								<select name="telecom" id="telecom" disabled>
-									<option value="normal">주문제품</option>
-								</select>
-							</div>
-						</fieldset>
+						<label for="list">카테고리 선택</label> <select id="list" name="list"
+							class="list-option" style="width: 120px;">
+							<option class="text-center" value="${custom.classify}"
+								id=classify readonly>${custom.classify}</option>
+						</select>
 					</div>
+					</br>
 					<div class="form-group">
-						<label for=user_pw " class="col-md-2">상 태*</label>
-						<fieldset>
-							<div>
-								<!-- 드롭다운 (싱글타입) -->
-								<select name="telecom" id="telecom">
-									<option>-----선택하세요-----</option>
-									<option value="normal">판매중</option>
-									<option value="order">품절</option>
-								</select>
-							</div>
-						</fieldset>
-					</div>
-					<div class="form-group">
-						<label for="user_pw_re" class="col-md-2" disabled>상세 분류*</label>
-						<fieldset>
-							<div>
-								<!-- 드롭다운 (싱글타입) -->
-								<select name="telecom" id="telecom">
-									<option>-----선택하세요-----</option>
-									<option value="normal">초</option>
-									<option value="order">크림</option>
-									<option value="order">토핑</option>
-								</select>
-							</div>
-						</fieldset>
-					</div>
-					<div class="form-group">
-						<label for="name" class="col-md-2">제품명*</label>
-						<div class="col-md-10">
-							<input type="text" name="name" id="name" class="form-control">
+						<label for="list" class="col-md-2">제품명*</label>
+						<div class="col-md-10" id="list" name="list">
+							<input type="text" name="cu_name" id="cu_name"
+								value="${custom.cuName}" class="form-control">${custom.cuName}
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="tel" class="col-md-2">가 격*</label>
-						<div class="col-md-10">
-							<input type="text" name="tel" id="tel" class="form-control">
+						<div class="col-md-10" id="list" name="list">
+							<input type="text" name="cu_price" id="cu_price"
+								class="form-control" value="${custom.cuPrice}">${custom.cuPrice}
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="profile_img" class="col-md-2">이미지</label>
-						<div class="col-md-10">
-							<input type="file" name="profile_img" id="profile_img"
-								class="form-control">
-						</div>
-					</div>
-					<div class="form-group2">
-						<div class="col-md-12">
+						<div class="col-md-offset-2 col-md-10">
 							<!-- 들여쓰기 -->
-							<button type="submit" class="btn btn-primary" id="change">수정
-								완료</button>
-							<button type="submit" class="btn btn-primary" id="delete">삭
-								제</button>
-							<button type="reset" class="btn btn-danger" id="cancel">취
-								소</button>
+							<button type="submit" class="btn btn-primary" id="put">수정완료</button>
+							<button type="reset" class="btn btn-danger" id="cancel"
+								onclick="history.back()">취소</button>
 						</div>
 					</div>
 				</form>
@@ -110,7 +69,6 @@
 			</div>
 		</div>
 	</div>
-
 	<%@ include file="/WEB-INF/inc/footer.jsp"%>
 
 </body>

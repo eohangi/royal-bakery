@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
 <style type="text/css">
 .join {
 	margin: auto;
@@ -45,7 +44,8 @@
 					<div class="form-group">
 						<label for="name" class="col-md-2">제품명*</label>
 						<div class="col-md-10">
-							<input type="text" name="cu_name" id="cu_name" class="form-control">
+							<input type="text" name="cu_name" id="cu_name"
+								class="form-control">
 						</div>
 					</div>
 					<div class="form-group">
@@ -60,7 +60,8 @@
 						<div class="col-md-offset-2 col-md-10">
 							<!-- 들여쓰기 -->
 							<button type="submit" class="btn btn-primary" id="put">제품등록</button>
-							<button type="reset" class="btn btn-danger" id="cancel">취소</button>
+							<button type="reset" class="btn btn-danger" id="cancel"
+								onclick="history.back()">취소</button>
 						</div>
 					</div>
 				</form>
