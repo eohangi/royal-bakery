@@ -29,7 +29,6 @@
 </style>
 </head>
 <body>
-	<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class='page-header'>
 		<h1>결제 상세 정보</h1>
 	</div>

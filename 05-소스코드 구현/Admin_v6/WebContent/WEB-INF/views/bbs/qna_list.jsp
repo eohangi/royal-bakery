@@ -69,7 +69,7 @@ div.content {
 								<th class="text-center  col-md-1">번호</th>
 								<th class="text-center  col-md-4">제목</th>
 								<th class="text-center  col-md-2">등록일</th>
-								<th class="text-center  col-md-1">답변 유무</th>
+								
 								<th class="text-center  col-md-2"></th>
 							</tr>
 						</thead>
@@ -84,7 +84,7 @@ div.content {
 											<td class="text-center">${document.id}</td>
 											<td class="text-center">${document.subject}</td>
 											<td class="text-center">${document.regDate}</td>
-											<td class="text-center">${document.checks}</td>
+											
 											<td class="text-center">
 												<c:url var="readUrl" value="/bbs/qna_read.do">
 												<c:param name="category" value="${document.category}" />

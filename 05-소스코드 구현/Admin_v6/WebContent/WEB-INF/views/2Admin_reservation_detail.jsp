@@ -7,7 +7,7 @@
 <html>
 <head>
 
-<%@ include file="/WEB-INF/inc/head.jsp"%>
+<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 <!-- 바코드 부분 -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/js/code39.js"></script>
@@ -29,7 +29,6 @@
 </style>
 </head>
 <body>
-<%@ include file="/WEB-INF/inc/topbar.jsp"%>
 	<div class='page-header'>
 		<h1>예약 상세 정보</h1>
 	</div>
