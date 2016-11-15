@@ -118,8 +118,6 @@ $(function() {
 	<td class="text-center">{{phone_no}}</td>
 	<td class="text-center">{{reg_date}}</td>
 	<td class="text-center">
-	<a href="">구매내역</a></td>
-	<td class="text-center">
 	<a href='${pageContext.request.contextPath}/bbs/member_qna_list.do?Member_id={{id}}'>문의내역</a></td>
 </tr>
 {{/each}}
@@ -135,8 +133,6 @@ $(function() {
 	<td class="text-center">{{gender}}</td>
 	<td class="text-center">{{phone_no}}</td>
 	<td class="text-center">{{reg_date}}</td>
-	<td class="text-center">
-	<a href="">구매내역</a></td>
 	<td class="text-center">
 	<a href='${pageContext.request.contextPath}/bbs/member_qna_list.do?Member_id={{id}}'>문의내역</a></td>
 	<td class="text-center">
@@ -171,7 +167,6 @@ $(function() {
 							<td class="text-center">성별</td>
 							<td class="text-center">연락처</td>
 							<td class="text-center">가입일자</td>
-							<td class="text-center">구매내역</td>
 							<td class="text-center">문의내역</td>
 							<td class="text-center">회원탈퇴</td>
 						</tr>
@@ -196,7 +191,6 @@ $(function() {
 							<td class="text-center">성별</td>
 							<td class="text-center">연락처</td>
 							<td class="text-center">가입일자</td>
-							<td class="text-center">구매내역</td>
 							<td class="text-center">문의내역</td>
 						</tr>
 					</thead>

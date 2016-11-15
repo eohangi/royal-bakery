@@ -93,18 +93,7 @@
 
 
 			<div class="header">
-				<div class="Search">
-					<form class="form-inline">
-						<fieldset>
-							<div class="form-group">
-								<label class="sr-only" for="search">검색할 단어를 입력하세요.</label> <input
-									type="search" class="form-control" id="search">
-							</div>
-							<button type="submit" class="btn btn-primary">검색</button>
-						</fieldset>
-					</form>
-
-				</div>
+	
 
 				<div class="product" class="btn btn-primary btn-lg">
 					<button type="submit">
