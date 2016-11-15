@@ -28,9 +28,17 @@
 				</c:otherwise>
 			</c:choose>
 
-			<li><a
-				href="${pageContext.request.contextPath}/company/Story.do">Brand</a>
-			</li>
+				<li><a
+				href="${pageContext.request.contextPath}/company/Story.do">Brand
+					Story</a>
+				<ul class="list-unstyled">
+					<li><a
+						href="${pageContext.request.contextPath}/company/Story.do">Brand
+							Story</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/company/Creators.do">The
+							Creators</a></li>
+				</ul></li>
 			<li><a
 				href="${pageContext.request.contextPath}/product/productBread.do">Product</a>
 				<ul class="list-unstyled">
