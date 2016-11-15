@@ -28,31 +28,33 @@
 		<div class="row">
 			<div class="join">
 				<!-- 가입폼 시작 -->
-				<form class="form-horizontal" method="post" id="myform"
+				<form class="form-horizontal" method="post" id="myform" name="myform"
 					action="${pageContext.request.contextPath}/custom/CustomUpdateOk.do">
 
 					<input type="hidden" name="id" value="${custom.id}" />
 
 					<div class="form-group">
-						<label for="list">카테고리 선택</label> <select id="list" name="list"
-							class="list-option" style="width: 120px;">
-							<option class="text-center" value="${custom.classify}"
-								id=classify readonly>${custom.classify}</option>
-						</select>
+						<label for=cuClassify class="col-md-2">카테고리*</label>
+						<div class="col-md-10">
+							<input type="text" name="cuClassify" id="cuClassify"
+								value="${custom.cuClassify}" class="form-control" style="display:
+								inline-block; margin-right: 5px;"
+						readonly />
+						</div>
 					</div>
 					</br>
 					<div class="form-group">
-						<label for="list" class="col-md-2">제품명*</label>
-						<div class="col-md-10" id="list" name="list">
+						<label for="cu_name" class="col-md-2">제품명*</label>
+						<div class="col-md-10">
 							<input type="text" name="cu_name" id="cu_name"
-								value="${custom.cuName}" class="form-control">${custom.cuName}
+								value="${custom.cuName}" class="form-control" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="tel" class="col-md-2">가 격*</label>
-						<div class="col-md-10" id="list" name="list">
+						<label for="cu_price" class="col-md-2">가 격*</label>
+						<div class="col-md-10" >
 							<input type="text" name="cu_price" id="cu_price"
-								class="form-control" value="${custom.cuPrice}">${custom.cuPrice}
+								class="form-control" value="${custom.cuPrice}" />
 						</div>
 					</div>
 

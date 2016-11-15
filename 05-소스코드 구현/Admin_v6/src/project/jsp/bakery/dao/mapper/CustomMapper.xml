@@ -68,8 +68,8 @@
 
 	<update id="updateCustomItem" parameterType="project.jsp.bakery.model.Custom">
 		UPDATE custom SET
-		cu_classify=#{cuClassify}, cu_name=#{cuName}, cu_price=#{cuPrice},
-		cu_edit_date=#{cuEditDate}, cu_reg_date=#{cuRegDate} WHERE id=#{id}
+		 cu_name=#{cuName}, cu_price=#{cuPrice},
+		cu_edit_date=now() WHERE id=#{id}
 	</update>
 
 	<delete id="deleteCustomItem" parameterType="project.jsp.bakery.model.Custom">

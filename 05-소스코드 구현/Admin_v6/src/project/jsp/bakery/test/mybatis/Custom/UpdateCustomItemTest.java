@@ -12,12 +12,10 @@ public class UpdateCustomItemTest {
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		/** (2) 데이터베이스에 저장할 교수의 정보를 저장하고 있는 javabeans 객체 */
 		Custom custom = new Custom();
-		custom.setId(8);
-		custom.setCuClassify("단수");
-		custom.setCuName("2단");
+		custom.setId(30);
+		custom.setCuName("초코");
 		custom.setCuPrice(3000);
-		custom.setCuEditDate("2016-10-11");
-		custom.setCuRegDate("2016-10-11");
+
 
 		/** (3) */
 		/** 데이터 저장 기능 호출하기 + 트렌젝션 */

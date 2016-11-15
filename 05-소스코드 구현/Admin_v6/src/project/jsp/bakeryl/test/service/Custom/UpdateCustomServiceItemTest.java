@@ -13,12 +13,10 @@ public class UpdateCustomServiceItemTest {
 
 	public static void main(String[] args) {
 		Custom custom = new Custom();
-		custom.setId(8);
-		custom.setCuClassify("단수");
-		custom.setCuName("1단");
+		custom.setId(30);
+		custom.setCuName("asdasda");
 		custom.setCuPrice(3000);
-		custom.setCuEditDate("2016-10-11");
-		custom.setCuRegDate("2016-10-11");
+
 
 		/** (2) */
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();

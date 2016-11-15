@@ -48,7 +48,7 @@
 								<td class="text-center">{{cuName}}</td>
 								<td class="text-center">{{cuPrice}}</td>
 								<td class="text-center">
-								<a href="">수정</a></td>
+								<a href='${pageContext.request.contextPath}/custom/CustomUpdate.do?id={{id}}'>수정</a></td>
 								<td><a class="Custom_delete btn btn-xs" id="Custom_delete" data-id="{{{id}}}"  onclick=''><i class="glyphicon glyphicon-remove"></i></a></td>
 									</tr>
 					{{/each}}
@@ -131,17 +131,7 @@
 				</table>
 			</div>
 
-			<ul class="pagination">
-				<li class="disabled"><a href="#">&laquo;</a></li>
-				<!-- 활성화 버튼은 아래의 구조로 구성하시면 됩니다. sr-only는 스크린리더 전용 입니다 .-->
-				<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
-			</ul>
-			<div></div>
+
 		</div>
 	</div>
 	<%@ include file="/WEB-INF/inc/footer.jsp"%>
