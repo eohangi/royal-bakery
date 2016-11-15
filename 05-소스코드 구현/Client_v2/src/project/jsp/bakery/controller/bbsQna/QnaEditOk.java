@@ -73,7 +73,7 @@ public class QnaEditOk extends BaseController {
 		String content = paramMap.get("content");
 		// 작성자 아이피 주소 가져오기
 		String ipAddr = web.getClientIP();
-		// 회원 일연번호 --> 비 로그인인 경우 0
+		// 회원 일련번호 --> 비 로그인인 경우 0
 		int memberId = 0;
 		
 			
@@ -86,6 +86,7 @@ public class QnaEditOk extends BaseController {
 			try {
 				// 소유권 판정을 위하여 사용하는 임시 객체
 				Document temp = new Document();
+				temp.setCategory("qna");
 				temp.setId(documentId);
 				temp.setMemberId(loginInfo.getId());
 				

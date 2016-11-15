@@ -36,8 +36,7 @@
 						href="${pageContext.request.contextPath}/company/Story.do">Brand
 							Story</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/company/Creators.do">The
-							Creators</a></li>
+						href="${pageContext.request.contextPath}/company/Creators.do">Creators</a></li>
 				</ul></li>
 			<li><a
 				href="${pageContext.request.contextPath}/product/productBread.do">Product</a>

@@ -156,8 +156,7 @@ public class NoticeEditOk extends BaseController {
 		/** 모든 절차가 종료되었으므로 DB접속 해제후 페이지 이동 */
 		sqlSession.close();
 		
-		/** 모든 절차가 종료되었으므로 DB접속 해제후 페이지 이동 */
-		sqlSession.close();
+		
 		
 		String url = "%s/bbs/notice_read.do?&document_id=%d";
 		url = String.format(url, web.getRootPath(), documentId);
