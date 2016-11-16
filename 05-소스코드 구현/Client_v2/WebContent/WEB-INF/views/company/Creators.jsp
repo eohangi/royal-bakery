@@ -130,7 +130,7 @@
 								src="${pageContext.request.contextPath}/assets/img/main/5.jpg"
 								alt="" style="width: 150px; height: 248px;" />
 						</div>
-						<a class="btn-more hover-effect" href="#">read more +</a>
+						<a class="btn-more hover-effect" href="http://chunsa1615.cafe24.com/MyPortfolio/">read more +</a>
 					</div>
 					<div class="caption">
 						<h3>
