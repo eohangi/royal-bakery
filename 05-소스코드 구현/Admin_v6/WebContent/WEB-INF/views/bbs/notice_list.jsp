@@ -6,10 +6,10 @@
 <!doctype html>
 <html>
 <head>
-
 <%@ include file="/WEB-INF/inc/topbar.jsp"%>
 
 <style type="text/css">
+
 div.container {
 	min-height: auto;
 }
