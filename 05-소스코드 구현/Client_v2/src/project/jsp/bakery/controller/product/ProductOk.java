@@ -81,7 +81,7 @@ public class ProductOk extends BaseController {
 
 		logger.debug("[DEBUG] id =" + id);
 
-		/** 4. 조회할 제품 선택 */
+		/** 4. 중복 검사를 위해 조회할 제품 선택 */
 		product.setId(id);
 
 		// javabeans & list
@@ -113,7 +113,7 @@ public class ProductOk extends BaseController {
 			cart myCart = new cart();
 			myCart.setMemberId(loginInfo.getId());
 
-			// cart List
+			// cart List -> 회원이 담은 장바구니 리스트 조회
 			myList = cartService.selectProductList(myCart);
 			logger.debug("[DEBUG] : myList = " + myList.toString());
 
@@ -127,7 +127,7 @@ public class ProductOk extends BaseController {
 					}
 				}
 			}
-
+			// 장바구니가 비어있다면 Insert한다.
 			if (myList.size() == 0) {
 				// insert
 				cartService.insertProductItem(cart);
@@ -139,9 +139,9 @@ public class ProductOk extends BaseController {
 			} else {
 				// List에 같은 제품이 있는지 검사하여 있다면 UPDATE를, 없다면 INSERT를 실행
 				for (int i = 0; myList.size() > i; i++) {
-					if (myList.get(i).getProId() == cart.getProId()) {
-						cart.setProCount(myList.get(i).getProCount() + cart.getProCount());
-						cart.setProPrice(myList.get(i).getProPrice() + cart.getProPrice());
+					if (myList.get(i).getProId() == cart.getProId()) {	//장바구니 내에 중복된 제품이 존재하면 
+						cart.setProCount(myList.get(i).getProCount() + cart.getProCount()); // 주문수량을 더하고,
+						cart.setProPrice(myList.get(i).getProPrice() + cart.getProPrice()); // 합계를 갱신한다.
 						is_same = true;
 						break;
 					}
@@ -182,18 +182,15 @@ public class ProductOk extends BaseController {
 		
 		int sum =0;
 		
-		// 리스트 총 합계
-		
+		// 리스트 총 합계		
 		for (int i = 0; i < itemList.size(); i++) {
 			sum += itemList.get(i).getProPrice();
 		}
-
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("rt", rt);
 		data.put("sum", sum);
 		data.put("item", itemList);
-
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(response.getWriter(), data);
 

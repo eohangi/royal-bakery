@@ -53,7 +53,7 @@
 				background-size: 100% 100%">
 			
 			<!-- 캐러셀 내용 -->
-	    <div id="productCarousel" class="carousel slide carousel-fade productCarousel" data-ride="carousel" data-interval="2000">
+	   <a href="${pageContext.request.contextPath}/product/productBread.do"> <div id="productCarousel" class="carousel slide carousel-fade productCarousel" data-ride="carousel" data-interval="2000">
 			
 			<div class="carousel-inner" role="listbox">
 				<!-- 항목 (1) -->
@@ -99,7 +99,7 @@
 	
 				</div>
 			</div>
-		</div>
+		</div></a>
   </div>
 <script type="text/javascript">
 	$(function(){

@@ -91,7 +91,8 @@ public class ProductList extends BaseController {
 			// 페이지 번호 계산 결과에 Limit 절에 필요한 Beans를 추가
 			product.setLimitStart(pageHelper.getLimitStart());
 			product.setListCount(pageHelper.getListCount());
-
+			
+			// 선택한 품종에 따른 리스트 출력
 			productList = productService.selectProductList(product);
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());

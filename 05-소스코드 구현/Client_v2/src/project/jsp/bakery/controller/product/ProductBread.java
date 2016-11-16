@@ -34,28 +34,15 @@ public class ProductBread extends BaseController {
 	private static final long serialVersionUID = -8425560016206479046L;
 	//** 1. 사용할 것들 선언 *//*
 
-	Logger logger;
-	SqlSession sqlSession;
-	WebHelper web;
-	UploadHelper upload;
-	PageHelper pageHelper;
-	ProductCommon proCommon;
-	ProductService productService;
+	
 
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String view = null;
 
-		//** 2.객체 생성 *//*
-		logger = LogManager.getFormatterLogger(request.getRequestURI());
-		sqlSession = MyBatisConnectionFactory.getSqlSession();
-		web = WebHelper.getInstance(request, response);
-		upload = UploadHelper.getInstance();
-		pageHelper = PageHelper.getInstance();
-		proCommon = ProductCommon.getInstance();
-		productService = new ProductServiceImpl(logger, sqlSession);
-		Product product = new Product();
+		
 
+		//** 2.View 경로 설정 *//*
 		
 		
 		view = "menu/bread";
