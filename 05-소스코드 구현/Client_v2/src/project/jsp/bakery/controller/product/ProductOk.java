@@ -79,6 +79,14 @@ public class ProductOk extends BaseController {
 		
 		//기본값
 		String rt = "FAIL";
+		//수량이 없으면 'FAIL'출력 후 종료.
+		if( quantity ==0 ){
+			sqlSession.close();
+			web.printJsonRt(rt);
+			return null;
+		}else{
+			logger.debug("[DEBUG] quantity ="+quantity);
+		}
 
 		logger.debug("[DEBUG] id =" + id);
 
