@@ -4,20 +4,15 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
-import project.jsp.bakery.model.Custom;
 import project.jsp.bakery.model.Member;
 import project.jsp.bakery.model.cart;
 import project.jsp.bakery.service.CartService;
@@ -32,47 +27,25 @@ import project.jsp.helper.WebHelper;
 public class CartPage extends BaseController {
 
 	private static final long serialVersionUID = 4208114428968364694L;
-	/**
-	 * 특정 카테고리에 대한 상위 n개의 게시물 가져오기
-	 * 
-	 * @param category
-	 *            - 가져올 카테고리
-	 * @param listCount
-	 *            - 가져올 게시물 수
-	 * @return
-	 * @throws Exception
-	 */
 
-	/** (1) 사용하고자 하는 Helper + Service 객체 선언 */
-	/** (1) 사용하고자 하는 Helper 객체 선언 */
-	// --> import org.apache.logging.log4j.Logger;
 	Logger logger;
-	// --> import org.apache.ibatis.session.SqlSession;
 	SqlSession sqlSession;
-	// --> import study.jsp.helper.WebHelper;
 	WebHelper web;
-
 	CartService cartService;
-
 	RegexHelper regex;
-
 	PageHelper pageHelper;
-	// --> import study.jsp.helper.Upload;
 	UploadHelper upload;
 
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		/** (2) 페이지 형식 지정 + 사용하고자 하는 Helper+Service 객체 생성 */
 		// 페이지 형식을 JSON으로 설정한다.
 		response.setContentType("application/json");
 
-		/** (2) 사용하고자 하는 Helper+Service 객체 생성 */
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		web = WebHelper.getInstance(request, response);
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		regex = RegexHelper.getInstance();
-		// --> import study.jsp.mysite.service.impl.BbsDocumentServiceImpl;
 		cartService = new CartServiceImpl(sqlSession, logger);
 
 		pageHelper = PageHelper.getInstance();
@@ -96,14 +69,13 @@ public class CartPage extends BaseController {
 
 		System.out.println(cart);
 		List<cart> cartlist = null;
-		/* System.out.println("cartlist=" + cartlist); */
 		List<cart> cartlist2 = null;
 		try {
 			cartlist = cartService.selectCartProMemberId(cart);
 			System.out.println("cartlist=" + cartlist);
 			cartlist2 = cartService.selectCartCuMemberId(cart);
 		} catch (Exception e) {
-			// TODO: handle exception
+
 			web.printJsonRt("Data_fail");
 			return null;
 		} finally {
@@ -121,9 +93,6 @@ public class CartPage extends BaseController {
 
 		request.setAttribute("loginInfo", loginInfo.getId());
 
-	/*	request.setAttribute("cartlist", cartlist);
-		request.setAttribute("cartlist2", cartlist2);*/
-
 		// ** 처리 결과를 JSON으로 출력하기 *//*
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("rt", "OK");
@@ -133,11 +102,6 @@ public class CartPage extends BaseController {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(response.getWriter(), data);
 		
-		/*
-		 String view = "cart/Cart";
-		 * 
-		 * // "/WEB-INF/views/index.jsp"파일을 View로 사용한다. return view;
-		 */
 		return null;
 	}
 

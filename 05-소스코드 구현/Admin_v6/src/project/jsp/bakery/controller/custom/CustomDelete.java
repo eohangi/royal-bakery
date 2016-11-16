@@ -4,24 +4,18 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import project.jsp.bakery.dao.MyBatisConnectionFactory;
 import project.jsp.bakery.model.Custom;
-
 import project.jsp.bakery.service.CustomService;
 import project.jsp.bakery.service.impl.CustomServiceImpl;
-import project.jsp.bakery.service.impl.DocumentServiceImpl;
 import project.jsp.helper.BaseController;
 import project.jsp.helper.PageHelper;
 import project.jsp.helper.RegexHelper;
