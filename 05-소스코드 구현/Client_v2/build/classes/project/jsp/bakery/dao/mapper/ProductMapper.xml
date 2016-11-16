@@ -44,10 +44,7 @@
 		SELECT id, pro_classify, pro_name, pro_price,
 		pro_img, stock, status,
 		content, kcal, na, sugar, fat, protein
-
-		FROM
-		product
-
+		FROM product
 		<where>
 			<if	test="proClassify != null or proName != null or proPrice > 0 or status != null">
 				<if test="proClassify !=null">
@@ -64,7 +61,6 @@
 				</if>
 			</if>
 		</where>
-
 		ORDER BY id DESC
 	</select>
 
