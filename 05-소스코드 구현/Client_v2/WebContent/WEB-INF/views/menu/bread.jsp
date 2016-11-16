@@ -427,7 +427,7 @@ table.table {
 				var line = ($(document).height()-105)+"px";
 				console.log(line)
 				
-				/* 장바구니의 스크롤이 움직인다. */
+		/* 		/* 장바구니의 스크롤이 움직인다. */
 			if($(window).scrollTop()+$(window).height() < $(document).height()-10){
 				$(".right-side").animate({
 					"top" : $(this).scrollTop()
@@ -450,7 +450,7 @@ table.table {
 						});
 				}
 			});
-		});
+		}); */
 	</script>
 	<%@ include file="/WEB-INF/inc/Footer.jsp"%>
 </body>

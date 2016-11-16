@@ -76,7 +76,8 @@ public class ProductOk extends BaseController {
 		request.setAttribute("id", id);
 		int quantity = web.getInt("quantity"); // 주문 수량
 		request.setAttribute("quantity", quantity);
-
+		
+		//기본값
 		String rt = "FAIL";
 
 		logger.debug("[DEBUG] id =" + id);
@@ -175,7 +176,8 @@ public class ProductOk extends BaseController {
 		} finally {
 			sqlSession.close();
 		}
-
+		
+		//출력 직전에 예외처리
 		if (it.getQuantity() != 0) {
 			rt = "OK";
 		}
