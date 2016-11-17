@@ -56,7 +56,7 @@
 		
 		
 		<div>
-			<a type="button" href="<%=gotomember%>">사이트로 돌아가기</a>
+			<a type="button" href="http://dlagkswhd.cafe24.com/Client_v2/MainIndex.do">사이트로 돌아가기</a>
 		</div>
 		<br /> <br />
 
