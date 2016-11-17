@@ -24,9 +24,7 @@
 	width: 60%;
 }
 </style>
-<%
-	String gotomember = "http://localhost:8080/Client_v2/member/Index.do";
-%>
+
 </head>
 
 <body>
