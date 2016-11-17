@@ -100,12 +100,12 @@ div.content {
 						</tbody>
 					</table>
 				</div>
+<%@ include file="/WEB-INF/inc/bbs_qna_bottom.jsp" %>
 			</div>
 
 			<div class="sidebar2"></div>
 		</div>
 	</div>
-<%@ include file="/WEB-INF/inc/bbs_qna_bottom.jsp" %>
 <%@ include file="/WEB-INF/inc/footer.jsp"%>
 	<!-- lightbox 플러그인 스크립트를 body 종료 직전에 적용 해야한다. -->
 	<script src="plugins/lightbox/js/lightbox-plus-jquery.min.js"></script>

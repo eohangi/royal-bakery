@@ -56,9 +56,9 @@ div.content {
 						<thead>
 							<tr>
 								<th class="text-center  col-md-1">번호</th>
-								<th class="text-center  col-md-4">제목</th>
-								<th class="text-center  col-md-1">작성자</th>
-								<th class="text-center  col-md-2">작성일</th>
+								<th class="text-center  col-md-5">제목</th>
+								<th class="text-center  col-md-3">작성자</th>
+								<th class="text-center  col-md-3">작성일</th>
 							</tr>
 						</thead>
 
@@ -90,6 +90,7 @@ div.content {
 							</c:choose>
 						</tbody>
 					</table>
+	<%@ include file="/WEB-INF/inc/bbs_notice_bottom.jsp" %>
 				</div>
 			</div>
 
@@ -97,7 +98,6 @@ div.content {
 		</div>
 		
 	</div>
-	<%@ include file="/WEB-INF/inc/bbs_notice_bottom.jsp" %>
 	<%@ include file="/WEB-INF/inc/footer.jsp"%>
 	<!-- lightbox 플러그인 스크립트를 body 종료 직전에 적용 해야한다. -->
 	<script src="plugins/lightbox/js/lightbox-plus-jquery.min.js"></script>
