@@ -16,9 +16,9 @@
 								{{#each item}}		
 								
 									<tr align="center">
-										<td width="23%" class="text-center">{{proName}}</td>
-										<td width="23%" class="text-center">{{proCount}}</td>
-										<td width="23%" class="text-center">{{proPrice}}</td>
+										<td class="text-center">{{proName}}</td>
+										<td class="text-center">{{proCount}}</td>
+										<td class="text-center">{{proPrice}}</td>
 										<td><a class="cart_delete btn btn-xs" id="cart-delete" data-id="{{{id}}}"  onclick=''><i class="glyphicon glyphicon-remove"></i></a></td>
 									</tr>
 						
@@ -26,10 +26,10 @@
 								{{#each item2}}	
 								
 									<tr align="center">
-										<td width="23%" class="text-center">{{cuText}}</td>
-										<td width="23%" class="text-center">{{cuCount}}</td>
-										<td width="23%" class="text-center">{{cuPrice}}</td>
-								<td><a class="cart_delete btn btn-xs" id="cart-delete" data-id="{{{id}}}"  onclick=''><i class="glyphicon glyphicon-remove"></i></a></td>
+										<td class="text-center">{{cuText}}</td>
+										<td class="text-center">{{cuCount}}</td>
+										<td class="text-center">{{cuPrice}}</td>
+										<td><a class="cart_delete btn btn-xs" id="cart-delete" data-id="{{{id}}}"  onclick=''><i class="glyphicon glyphicon-remove"></i></a></td>
 									</tr>
 						
 								{{/each}}
@@ -128,7 +128,7 @@
 					<!-- 페이지에 들어갈 2가지 메뉴시작-->
 					<ul class="myquestionlist">
 						<li class="table list-unstyled">
-							<table class="table table-hover">
+							<table class="table table-hover" style="word-wrap: break-word; table-layout: fixed">
 								<thead style="background-color: #eee">
 									<tr align="center">
 										<td width="23%" align="center">상 품</td>
