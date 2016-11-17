@@ -39,11 +39,11 @@
 					alt="최고">
 
 			</div>
-			<!--이동 버튼-->
+			<!--이동 버튼
 			<a href="#carousel-example-generic" data-slide="prev"
 				class="left carousel-control"> <span class="icon-prev"></span></a> 
 			<a	href="#carousel-example-generic" data-slide="next"
-				class="right carousel-control"> <span class="icon-next"></span></a>
+				class="right carousel-control"> <span class="icon-next"></span></a>-->
 			<!-- // 내용영역 구성 -->
 		</div>
 	</div>
@@ -53,8 +53,8 @@
 				background-size: 100% 100%">
 			
 			<!-- 캐러셀 내용 -->
-	   <a href="${pageContext.request.contextPath}/product/productBread.do"> <div id="productCarousel" class="carousel slide carousel-fade productCarousel" data-ride="carousel" data-interval="2000">
-			
+	  <div id="productCarousel" class="carousel slide carousel-fade productCarousel" data-ride="carousel" data-interval="2000">
+			 <a href="${pageContext.request.contextPath}/product/productBread.do"> 
 			<div class="carousel-inner" role="listbox">
 				<!-- 항목 (1) -->
 				<div class="item active">
@@ -98,8 +98,8 @@
 						alt="최고">
 	
 				</div>
-			</div>
-		</div></a>
+			</div></a>
+		</div>
   </div>
 <script type="text/javascript">
 	$(function(){
