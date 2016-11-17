@@ -71,10 +71,17 @@
 		<!-- 버튼들 -->
 		<div class="clearfix">
 			<div class="pull-right">
-				<a href="${pageContext.request.contextPath}/bbs.qna/document_list.do?category=${category}" class="btn btn-info">목록보기</a>
-				<a href="${pageContext.request.contextPath}/bbs.qna/document_write.do?category=${category}" class="btn btn-primary">글쓰기</a>
-				<a href="${pageContext.request.contextPath}/bbs.qna/document_edit.do?category=${category}&document_id=${readDocument.id}" class="btn btn-warning">수정하기</a>
-				<a href="${pageContext.request.contextPath}/bbs.qna/document_delete.do?category=${category}&document_id=${readDocument.id}" class="btn btn-danger">삭제하기</a>		
+				<c:choose>
+					<c:when test="${readComment.coContent != null}">
+						<a href="${pageContext.request.contextPath}/bbs.qna/document_list.do?category=${category}" class="btn btn-info">목록보기</a>
+						<a href="${pageContext.request.contextPath}/bbs.qna/document_edit.do?category=${category}&document_id=${readDocument.id}" class="btn btn-warning">수정하기</a>			
+					</c:when>
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath}/bbs.qna/document_list.do?category=${category}" class="btn btn-info">목록보기</a>
+						<a href="${pageContext.request.contextPath}/bbs.qna/document_edit.do?category=${category}&document_id=${readDocument.id}" class="btn btn-warning">수정하기</a>
+						<a href="${pageContext.request.contextPath}/bbs.qna/document_delete.do?category=${category}&document_id=${readDocument.id}" class="btn btn-danger">삭제하기</a>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<!-- 덧글 -->
