@@ -50,7 +50,7 @@
 								src="${pageContext.request.contextPath}/assets/img/main/1.jpg"
 								alt="" style="width: 150px; height: 248px;" />
 						</div>
-						<a class="btn-more hover-effect" href="#">read more +</a>
+						<a class="btn-more hover-effect" href="http://sisekin.cafe24.com/pot/">read more +</a>
 					</div>
 					<div class="caption">
 						<h3>
@@ -114,7 +114,7 @@
 					</div>
 					<div class="caption">
 						<h3>
-							<a class="hover-effect" href="#">어한기</a>
+							<a class="hover-effect" href="http://eohangi2.cafe24.com/">어한기</a>
 						</h3>
 						<p>
 							구매 및 주문내역 <br /> 결제 기능 담당
