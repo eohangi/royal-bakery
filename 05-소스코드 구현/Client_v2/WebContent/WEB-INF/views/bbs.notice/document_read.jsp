@@ -23,7 +23,7 @@
 			</h3>
 		</div>
 		<!-- 내용 -->
-		<section style="padding: 0 10px 20px 10px">
+		<section style="padding: 0 10px 20px 10px; word-wrap: break-word;">
 			${readDocument.content}
 		</section>
 		<!-- 다음글 이전글 -->

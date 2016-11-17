@@ -57,10 +57,10 @@ div.content {
 					</h3>
 				</div>
 				<!-- 내용 -->
-				<section style="padding: 0 10px 20px 10px">
+				<section style="padding: 0 10px 20px 10px; word-wrap: break-word;" >
 					${readDocument.content}
 				</section>
-				<section style="padding: 0 70px 40px 10px; background-color: #F2F2F2;" >
+				<section style="padding: 0 70px 40px 10px; background-color: #F2F2F2; word-wrap: break-word;" >
 					${readComment.coContent}
 				</section>
 								
