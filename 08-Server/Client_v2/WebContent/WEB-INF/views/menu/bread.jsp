@@ -34,7 +34,7 @@ table.table {
 
 		<!-- 페이지 내용 영역 -->
 		<div class="col-md-1" id="slide1">
-			<h1></h1>
+			<h1>슬라이드1</h1>
 		</div>
 		<div class="col-md-9">
 			<!-- 탭 메뉴 시작 -->
@@ -46,6 +46,7 @@ table.table {
 				<li class="col-md-4 col-sm-4 text-center"><a data-classify="c"
 					data-toggle="tab" href="#list">cookie</a></li>
 			</ul>
+
 			<!--// 탭 메뉴 끝 -->
 
 			<!-- 탭 화면 시작 -->
@@ -414,20 +415,20 @@ table.table {
 	</div>
 	<script type="text/javascript">
 	
-/*		$(function() {
+		$(function() {
 			/* 장바구니 스크롤 애니매이션 기능 */
 			
-	/*		$(window).on("scroll",function(){
+			$(window).on("scroll",function(){
 				/* 장바구니의 밑바닥의 상대 높이값  = 장바구니의 margin-top 값 + 장바구니의 높이*/
-	/*			var cart_bottom = $("div.right-side").css("top")+$("div.right-side").css("height") ;
+				var cart_bottom = $("div.right-side").css("top")+$("div.right-side").css("height") ;
 				console.log(cart_bottom);
 				
 				/* 바닥에서 100px  */
-	/*			var line = ($(document).height()-105)+"px";
+				var line = ($(document).height()-105)+"px";
 				console.log(line)
-	*/			
-			/* 장바구니의 스크롤이 움직인다. */
-			/* 	if($(window).scrollTop()+$(window).height() < $(document).height()-10){
+				
+		/* 		/* 장바구니의 스크롤이 움직인다. */
+			if($(window).scrollTop()+$(window).height() < $(document).height()-10){
 				$(".right-side").animate({
 					"top" : $(this).scrollTop()
 				},
@@ -436,9 +437,9 @@ table.table {
 						ducation : 50,
 						easing : "swing"
 					});
-			} */
+			}
 				/* 스크롤이 맨 아래에 도달하면 장바구니의 margin-bottom을 150px 준다. */
-		/*		if($(window).scrollTop()+$(window).height() >= $(document).height()-10){
+				if($(window).scrollTop()+$(window).height() >= $(document).height()-10){
 					$(".right-side").animate({
 						"bottom" : "150px"
 					},

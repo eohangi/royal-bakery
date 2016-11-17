@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
+<mapper namespace="CommentMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap type="project.jsp.bakery.model.Comment" id="comment">
+		<result property="id" column="id" />
+		<result property="coContent" column="co_content" />
+		<result property="coRegDate" column="co_reg_date" />
+		<result property="coEditDate" column="co_edit_date" />
+		<result property="memberId" column="Member_id" />
+		<result property="documentId" column="Document_id" />
+	
+	</resultMap>
+	
+	<!-- 답변 정보 저장 -->
+	<insert id="insertComment" parameterType="project.jsp.bakery.model.Comment"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO comment (
+			co_content, co_reg_date, co_edit_date, Member_id, Document_id
+		) VALUE (
+			#{coContent}, now(), now(), #{memberId}, #{documentId}
+		)
+	
+	</insert>
+	
+	<!-- 답변 정보 조회 -->
+	<select id="selectComment" parameterType="project.jsp.bakery.model.Comment"
+		resultMap="comment">
+		SELECT  id, co_content,	Member_id, Document_id
+		FROM 	comment
+		WHERE   Member_id=#{memberId} AND Document_id=#{documentId}
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateComment"
+		parameterType="project.jsp.bakery.model.Comment">
+		UPDATE comment SET
+			co_content=#{coContent}, co_edit_date=now()
+		WHERE id=#{id}		
+	</update>
+	
+	<!-- 답변 정보 삭제 -->
+	<delete id="deleteComment"
+		parameterType="project.jsp.bakery.model.Comment">
+		DELETE FROM comment WHERE id=#{id}
+	</delete>
+	
+	<!-- 특정 회원과의 게시물 참조 해제하기 -->
+	<update id="updateCommentMemberOut" parameterType="project.jsp.bakery.model.Member">
+		UPDATE comment
+		SET    Member_id =null,co_edit_date=now()
+		WHERE  Member_id = #{memberId}
+	</update>
+</mapper>

@@ -16,9 +16,9 @@
 								{{#each item}}		
 								
 									<tr align="center">
-										<td width="23%" class="text-center">{{proName}}</td>
-										<td width="23%" class="text-center">{{proCount}}</td>
-										<td width="23%" class="text-center">{{proPrice}}</td>
+										<td class="text-center">{{proName}}</td>
+										<td class="text-center">{{proCount}}</td>
+										<td class="text-center">{{proPrice}}</td>
 										<td><a class="cart_delete btn btn-xs" id="cart-delete" data-id="{{{id}}}"  onclick=''><i class="glyphicon glyphicon-remove"></i></a></td>
 									</tr>
 						
@@ -26,10 +26,10 @@
 								{{#each item2}}	
 								
 									<tr align="center">
-										<td width="23%" class="text-center">{{cuText}}</td>
-										<td width="23%" class="text-center">{{cuCount}}</td>
-										<td width="23%" class="text-center">{{cuPrice}}</td>
-								<td><a class="cart_delete btn btn-xs" id="cart-delete" data-id="{{{id}}}"  onclick=''><i class="glyphicon glyphicon-remove"></i></a></td>
+										<td class="text-center">{{cuText}}</td>
+										<td class="text-center">{{cuCount}}</td>
+										<td class="text-center">{{cuPrice}}</td>
+										<td><a class="cart_delete btn btn-xs" id="cart-delete" data-id="{{{id}}}"  onclick=''><i class="glyphicon glyphicon-remove"></i></a></td>
 									</tr>
 						
 								{{/each}}
@@ -80,7 +80,8 @@
 							id : id
 						}, function(json) {
 							//미리 준비한 HTML틀을 읽어온다.
-							var template = Handlebars.compile($("#cart_item_tmpl").html());
+							var template = Handlebars.compile($(
+									"#cart_item_tmpl").html());
 							// Ajax를 통해서 읽어온 JSON을 템플릿에 병합한다.
 							var html = template(json);
 							// #result에 읽어온 내용을 추가한다.
@@ -127,7 +128,7 @@
 					<!-- 페이지에 들어갈 2가지 메뉴시작-->
 					<ul class="myquestionlist">
 						<li class="table list-unstyled">
-							<table class="table table-hover">
+							<table class="table table-hover" style="word-wrap: break-word; table-layout: fixed">
 								<thead style="background-color: #eee">
 									<tr align="center">
 										<td width="23%" align="center">상 품</td>
@@ -151,15 +152,13 @@
 								<a
 									href="${pageContext.request.contextPath}/mypage/OrderComplete.do">주문하기</a>
 							</button>
-
 						</p>
-
-						<p class="orderall pull-right btn-lg" id="orderall">
-							<input type="button" class="btn btn-default" value="계속 쇼핑하기"
-								onclick="location.href='bread.jsp'">
+						<p class="continue pull-right btn-lg" id="orderall">
+							<button class="btn btn-default">
+								<a
+									href="${pageContext.request.contextPath}/product/productBread.do">계속 쇼핑하기</a>
+							</button>
 						</p>
-
-
 
 					</ul>
 					<!-- /페이지에 들어갈 2가지 메뉴시작-->

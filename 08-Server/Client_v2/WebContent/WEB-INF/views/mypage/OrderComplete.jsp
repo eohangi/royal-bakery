@@ -66,7 +66,6 @@
 								<div class="col-md-4 clearfix">
 									<!-- 드롭다운 (싱글타입) -->
 									<select name="time" id="time">
-										<option>-----선택하세요-----</option>
 										<option value="normal">15분후</option>
 										<option value="order">30분후</option>
 									</select>

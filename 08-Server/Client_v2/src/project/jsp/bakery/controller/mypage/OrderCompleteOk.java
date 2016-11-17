@@ -138,6 +138,7 @@ public class OrderCompleteOk extends BaseController {
 		order.setOrderCategory("reservation");
 		order.setOrType(paytype);
 		order.setOrName(OrderName);
+		order.setOrTime(time);
 		order.setOrTel(tel);
 		
 		order.setOrTime(time);

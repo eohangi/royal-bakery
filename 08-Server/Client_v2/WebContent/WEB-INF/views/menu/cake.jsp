@@ -34,7 +34,7 @@ table.table {
 
 		<!-- 페이지 내용 영역 -->
 		<div class="col-md-1" id="slide1">
-			<h1></h1>
+			<h1>슬라이드1</h1>
 		</div>
 		<div class="col-md-9">
 			<ul id="myTab" class="nav nav-tabs">
@@ -413,7 +413,22 @@ table.table {
 
 		<!--------------------------------------  장바구니 ------------ ------------------------- -->
 	</div>
+	<script type="text/javascript">
+		$(function() {
+			/* 장바구니 스크롤 애니매이션 기능 */
+			$(window).scroll(function() {
+				$(".right-side").animate({
+					"top" : $(this).scrollTop()
+				},
+					{
+						queue : false,
+						ducation : 50,
+						easing : "swing"
+					});
 	
+			});
+		});
+	</script>
 	<%@ include file="/WEB-INF/inc/Footer.jsp"%>
 </body>
 
