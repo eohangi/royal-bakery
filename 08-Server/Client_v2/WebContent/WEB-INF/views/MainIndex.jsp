@@ -39,7 +39,7 @@
 					alt="최고">
 
 			</div>
-			<!--이동 버튼-->
+			<!--이동 버튼
 			<a href="#carousel-example-generic" data-slide="prev"
 				class="left carousel-control"> <span class="icon-prev"></span></a> 
 			<a	href="#carousel-example-generic" data-slide="next"
