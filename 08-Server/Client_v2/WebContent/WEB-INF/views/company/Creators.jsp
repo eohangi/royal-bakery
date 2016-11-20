@@ -54,7 +54,7 @@
 					</div>
 					<div class="caption">
 						<h3>
-							<a class="hover-effect" href="#">김양수</a>
+							<a class="hover-effect" href="http://sisekin.cafe24.com/pot/">김양수</a>
 						</h3>
 						<p>
 							회원 과 일반제품 <br /> 관리 담당
@@ -90,11 +90,11 @@
 								src="${pageContext.request.contextPath}/assets/img/main/3.jpg"
 								alt="" style="width: 150px; height: 248px;" />
 						</div>
-						<a class="btn-more hover-effect" href="#">read more +</a>
+						<a class="btn-more hover-effect" href="http://kdoyub.cafe24.com/profile/">read more +</a>
 					</div>
 					<div class="caption">
 						<h3>
-							<a class="hover-effect" href="#">권도엽</a>
+							<a class="hover-effect" href="http://kdoyub.cafe24.com/profile/">권도엽</a>
 						</h3>
 						<p>
 							주문제작 및 관리 와 <br /> 장바구니 기능 담당
@@ -110,7 +110,7 @@
 								src="${pageContext.request.contextPath}/assets/img/main/4.jpg"
 								alt="" style="width: 150px; height: 248px;" />
 						</div>
-						<a class="btn-more hover-effect" href="#">read more +</a>
+						<a class="btn-more hover-effect" href="http://eohangi2.cafe24.com/">read more +</a>
 					</div>
 					<div class="caption">
 						<h3>
@@ -134,7 +134,7 @@
 					</div>
 					<div class="caption">
 						<h3>
-							<a class="hover-effect" href="#">강호성</a>
+							<a class="hover-effect" href="http://chunsa1615.cafe24.com/MyPortfolio/">강호성</a>
 						</h3>
 						<p>
 							일반제품 및 장바구니 <br /> 기능 구현 담당
