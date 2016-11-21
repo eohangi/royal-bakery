@@ -37,6 +37,7 @@ table.table {
 			<h1>슬라이드1</h1>
 		</div>
 		<div class="col-md-9">
+			<!-- 탭 메뉴 시작 -->
 			<ul id="myTab" class="nav nav-tabs">
 				<li class="col-md-4 col-sm-4 text-center"><a
 					data-classify="a" data-toggle="tab" href="#list">bread</a></li>
@@ -114,10 +115,14 @@ table.table {
 								<br />
 								<div class="order" id="order">
 									<br />
-									<form id="put-form" method="post" class="form-inline row put-form" action="${pageContext.request.contextPath}/product/productOk.do"><!--여기서 장바구니로 전송-->
-										<input id="quantity" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left text-center" style="height:30px" type="number" name="quantity" min="1" max="{{{stock}}}">
+									<form id="put-form" method="post" class="form-inline row put-form" action="${pageContext.request.contextPath}/product/productOk.do">
+										<!--여기서 장바구니로 전송-->
+										<input id="quantity" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left text-center"
+													 style="height:30px" type="number" name="quantity" min="1" max="{{{stock}}}">
 										<input type="hidden" value="{{{id}}}" id="id" name="id" />		
-										<button name="id" id="id" value="{{{id}}}" class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 btn btn-success btn-xs put" type="submit" style="height:30px">담기</button>
+										<button name="id" id="id" value="{{{id}}}" 
+													class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 btn btn-success btn-xs put" type="submit" 
+													style="height:30px">담기</button>
 									</form>
 								</div>
 							{{else}}
@@ -291,19 +296,14 @@ table.table {
 								return false;
 							}
 							//미리 준비한 HTML틀을 읽어온다.
-							var template = Handlebars.compile($("#cart_item_tmpl").html());
-							//Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
-							var html = template(json);
-							//완성품을 출력한다.
-							$("#cart_list").html(html);
-							$("#put-form").trigger('reset');
+							var template = Handlebars.compile($("#cart_item_tmpl").html());							
+							var html = template(json); 		 //Ajax를 통해서 읽어온 JSON내부의 배열 데이터를 템플릿에 병합한다.
+							$("#cart_list").html(html);		 //완성품을 출력한다.
+							$("#put-form").trigger('reset'); //input 태그의 값을 다시 리셋해준다.
 							
-							
-							/* 총합계 */
-							//Ajax를 통해서 값을 불러온다.
-							var html = json.sum+"원";
-							//완성품을 출력한다.
-							$("#sum_price").html(html);
+							/* 총합계 */							
+							var html = json.sum+"원"; //Ajax를 통해서 값을 불러온다.							
+							$("#sum_price").html(html); //완성품을 출력한다.
 						});
 					});
 			
@@ -365,9 +365,9 @@ table.table {
 
 		<!-- 슬라이드 2 -->
 		<!---------------------------------------  장바구니    ------------------------------------------->
-		<div class="col-md-2 right-side" style="padding-right: 0px;">
+		<div class="col-md-2 right-side row" style="padding-right: 0px; margin-bottom:0">
 			<form class="form-horizontal right-side" id="inquireform">
-				<table class="table table-striped table-bordered table-hover">
+				<table class="table table-striped table-bordered table-hover" style="">
 					<thead>
 						<tr>
 							<th class="text-center" colspan="4"
@@ -414,9 +414,21 @@ table.table {
 		<!--------------------------------------  장바구니 ------------ ------------------------- -->
 	</div>
 	<script type="text/javascript">
+	
 		$(function() {
 			/* 장바구니 스크롤 애니매이션 기능 */
-			$(window).scroll(function() {
+			
+			$(window).on("scroll",function(){
+				/* 장바구니의 밑바닥의 상대 높이값  = 장바구니의 margin-top 값 + 장바구니의 높이*/
+				var cart_bottom = $("div.right-side").css("top")+$("div.right-side").css("height") ;
+				console.log(cart_bottom);
+				
+				/* 바닥에서 100px  */
+				var line = ($(document).height()-105)+"px";
+				console.log(line)
+				
+		/* 		/* 장바구니의 스크롤이 움직인다. */
+			if($(window).scrollTop()+$(window).height() < $(document).height()-10){
 				$(".right-side").animate({
 					"top" : $(this).scrollTop()
 				},
@@ -425,9 +437,20 @@ table.table {
 						ducation : 50,
 						easing : "swing"
 					});
-	
+			}
+				/* 스크롤이 맨 아래에 도달하면 장바구니의 margin-bottom을 150px 준다. */
+				if($(window).scrollTop()+$(window).height() >= $(document).height()-10){
+					$(".right-side").animate({
+						"bottom" : "150px"
+					},
+						{
+							queue : false,
+							ducation : 50,
+							easing : "swing"
+						});
+				}
 			});
-		});
+		}); */
 	</script>
 	<%@ include file="/WEB-INF/inc/Footer.jsp"%>
 </body>
